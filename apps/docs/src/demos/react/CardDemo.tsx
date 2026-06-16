@@ -11,7 +11,7 @@ export default function CardDemo() {
         </>
       }
     >
-      Acceso a todas las funciones, soporte prioritario y facturación anual editada.
+      Acceso a todas las funciones, soporte prioritario y facturación anual.
     </Card>
   )
 }

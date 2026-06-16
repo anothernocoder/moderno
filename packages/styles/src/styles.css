@@ -130,3 +130,107 @@
   color: var(--md-text-primary);
 }
 .md-tabs-content:focus-visible { outline: 2px solid var(--md-primary); outline-offset: 2px; }
+
+/* ---------- Input / Field (pure CSS) ---------- */
+.md-field-label {
+  display: block;
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  margin-bottom: var(--md-spacing-2);
+  color: var(--md-text-primary);
+}
+.md-field-hint { margin: var(--md-spacing-2) 0 0; font-size: var(--md-text-label-md); color: var(--md-text-secondary); }
+.md-field-error { margin: var(--md-spacing-2) 0 0; font-size: var(--md-text-label-md); color: var(--md-error); }
+.md-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--md-spacing-4);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  background: var(--md-surface-muted);
+  color: var(--md-text-primary);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  transition: border-color 150ms;
+}
+.md-input::placeholder { color: var(--md-text-secondary); }
+.md-input:focus { outline: none; border-color: var(--md-primary); }
+.md-input:disabled { background: var(--md-border-default); color: var(--md-text-secondary); cursor: not-allowed; }
+.md-input--error,
+.md-input--error:focus { border-color: var(--md-error); }
+.md-textarea {
+  height: auto;
+  min-height: 80px;
+  padding: var(--md-spacing-3) var(--md-spacing-4);
+  resize: vertical;
+  line-height: var(--md-text-body-sm-lh);
+}
+
+/* ---------- Card (pure CSS, closed-prop) ---------- */
+.md-card {
+  background: var(--md-surface-base);
+  border: 1px solid var(--md-border-default);
+  border-radius: var(--md-radius-none);
+  padding: var(--md-spacing-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-4);
+}
+.md-card__title {
+  margin: 0;
+  font-family: var(--md-font-serif);
+  font-size: var(--md-text-headline-md);
+  line-height: var(--md-text-headline-md-lh);
+  color: var(--md-text-primary);
+}
+.md-card__body { color: var(--md-text-secondary); font-size: var(--md-text-body-sm); line-height: var(--md-text-body-sm-lh); }
+.md-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--md-spacing-3);
+  margin-top: var(--md-spacing-2);
+}
+
+/* ---------- Badge (pure CSS) ---------- */
+.md-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-spacing-2);
+  height: 22px;
+  padding: 0 10px;
+  border-radius: var(--md-radius-full);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-label-md);
+  line-height: 1;
+  white-space: nowrap;
+}
+.md-badge__dot { width: 6px; height: 6px; border-radius: var(--md-radius-full); background: currentColor; }
+.md-badge--neutral { border: 1px solid var(--md-border-strong); color: var(--md-text-secondary); }
+.md-badge--solid { background: var(--md-primary); color: var(--md-on-primary); }
+.md-badge--success { background: color-mix(in srgb, var(--md-success) 14%, transparent); color: var(--md-success); }
+.md-badge--warning { background: color-mix(in srgb, var(--md-warning) 14%, transparent); color: var(--md-warning); }
+.md-badge--error { background: color-mix(in srgb, var(--md-error) 14%, transparent); color: var(--md-error); }
+.md-badge--info { background: color-mix(in srgb, var(--md-info) 14%, transparent); color: var(--md-info); }
+
+/* ---------- Callout (pure CSS) ---------- */
+.md-callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-2);
+  padding: var(--md-spacing-6);
+  border: 1px solid var(--md-border-default);
+  border-left-width: 3px;
+  background: var(--md-surface-muted);
+  border-radius: var(--md-radius-none);
+}
+.md-callout__title {
+  margin: 0;
+  font-size: var(--md-text-body-sm);
+  font-weight: 600;
+  color: var(--md-text-primary);
+}
+.md-callout__body { margin: 0; font-size: var(--md-text-body-sm); line-height: var(--md-text-body-sm-lh); color: var(--md-text-secondary); }
+.md-callout--info { border-left-color: var(--md-info); }
+.md-callout--success { border-left-color: var(--md-success); }
+.md-callout--warning { border-left-color: var(--md-warning); }
+.md-callout--error { border-left-color: var(--md-error); }

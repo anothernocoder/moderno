@@ -1,0 +1,92 @@
+---
+title: Card
+description: Superficie contenedora que agrupa contenido y acciones relacionadas. Closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RCardDemo from '../../../demos/react/CardDemo.tsx'
+import VCardDemo from '../../../demos/vue/CardDemo.vue'
+import SCardDemo from '../../../demos/svelte/CardDemo.svelte'
+import OCardDemo from '../../../demos/solid/CardDemo.tsx'
+
+**Card** es una superficie que agrupa contenido y acciones relacionadas. Primitive
+**closed-prop**: estructura fija (título, cuerpo, footer). En React/Solid el título y el
+footer son props; en Vue son slots con nombre (`#title`, `#footer`); en Svelte, snippets.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCardDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCardDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCardDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCardDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Card, Button } from '@moderno/react'
+
+<Card
+  title="Plan Pro"
+  footer={<Button size="sm" label="Actualizar" />}
+>
+  Acceso a todas las funciones y soporte prioritario.
+</Card>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Card, Button } from '@moderno/vue'
+</script>
+
+<template>
+  <Card>
+    <template #title>Plan Pro</template>
+    Acceso a todas las funciones y soporte prioritario.
+    <template #footer>
+      <Button size="sm" label="Actualizar" />
+    </template>
+  </Card>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Card, Button } from '@moderno/svelte'
+</script>
+
+<Card>
+  {#snippet title()}Plan Pro{/snippet}
+  Acceso a todas las funciones y soporte prioritario.
+  {#snippet footer()}
+    <Button size="sm" label="Actualizar" />
+  {/snippet}
+</Card>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Card, Button } from '@moderno/solid'
+
+<Card
+  title="Plan Pro"
+  footer={<Button size="sm" label="Actualizar" />}
+>
+  Acceso a todas las funciones y soporte prioritario.
+</Card>
+```
+</TabItem>
+</Tabs>
+
+## Anatomía
+
+| Parte | React / Solid | Vue | Svelte |
+|-------|---------------|-----|--------|
+| Título | prop `title` | slot `#title` | snippet `title` |
+| Cuerpo | children | slot default | children |
+| Footer | prop `footer` | slot `#footer` | snippet `footer` |

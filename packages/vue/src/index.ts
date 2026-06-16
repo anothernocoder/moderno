@@ -9,6 +9,17 @@ export { default as Badge } from './Badge.vue'
 export { default as Card } from './Card.vue'
 export { default as Callout } from './Callout.vue'
 export { default as Input } from './Input.vue'
+export { default as Textarea } from './Textarea.vue'
+export { default as Avatar } from './Avatar.vue'
+export { default as Chip } from './Chip.vue'
+export { default as Indicator } from './Indicator.vue'
+export { default as Skeleton } from './Skeleton.vue'
+export { default as Spinner } from './Spinner.vue'
+export { default as Divider } from './Divider.vue'
+export { default as Toggle } from './Toggle.vue'
+export { default as Checkbox } from './Checkbox.vue'
+export { default as Radio } from './Radio.vue'
+export { default as Tooltip } from './Tooltip.vue'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */
 export const Tabs = { Root: TabsRoot, List: TabsList, Trigger: TabsTrigger, Content: TabsContent }

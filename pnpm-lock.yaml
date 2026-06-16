@@ -77,13 +77,25 @@ importers:
       '@moderno/tokens':
         specifier: workspace:*
         version: link:../tokens
+      '@zag-js/checkbox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/radio-group':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/react':
         specifier: ^1.0.0
         version: 1.41.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@zag-js/switch':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/tabs':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/tooltip':
         specifier: ^1.0.0
         version: 1.41.2
       react:
@@ -103,13 +115,25 @@ importers:
       '@moderno/tokens':
         specifier: workspace:*
         version: link:../tokens
+      '@zag-js/checkbox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/radio-group':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/solid':
         specifier: ^1.0.0
         version: 1.41.2(solid-js@1.9.13)
+      '@zag-js/switch':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/tabs':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/tooltip':
         specifier: ^1.0.0
         version: 1.41.2
       solid-js:
@@ -130,13 +154,25 @@ importers:
       '@moderno/tokens':
         specifier: workspace:*
         version: link:../tokens
+      '@zag-js/checkbox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/radio-group':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/svelte':
         specifier: ^1.0.0
         version: 1.41.2(svelte@5.56.3)
+      '@zag-js/switch':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/tabs':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/tooltip':
         specifier: ^1.0.0
         version: 1.41.2
       svelte:
@@ -153,10 +189,22 @@ importers:
       '@moderno/tokens':
         specifier: workspace:*
         version: link:../tokens
+      '@zag-js/checkbox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/radio-group':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/switch':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/tabs':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/tooltip':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/vue':
@@ -642,6 +690,15 @@ packages:
 
   '@expressive-code/plugin-text-markers@0.43.1':
     resolution: {integrity: sha512-JWf8wdbZSNoGY4TFv3lmt3/NNDaCP7iYL6rRYD05g8YYjKL62hKUHLl5+B47+v0+bqbuMhXDN7qz2wywFUvMkg==}
+
+  '@floating-ui/core@1.7.5':
+    resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
+
+  '@floating-ui/dom@1.7.6':
+    resolution: {integrity: sha512-9gZSAI5XM36880PPMm//9dfiEngYoC6Am2izES1FF406YFsjvyBMmeJ2g4SAju3xWwtuynNRFL2s9hgxpLI5SQ==}
+
+  '@floating-ui/utils@0.2.11':
+    resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -1291,6 +1348,9 @@ packages:
   '@zag-js/aria-hidden@1.41.2':
     resolution: {integrity: sha512-qEcYmwlQr3qjA0T/IZ5a/o7fRUxfQ14tXjAFhR3GXCtxBKaqS+wnq/LN09Xw4bin3QWTINU+Z0oXFs9spWtNwA==}
 
+  '@zag-js/checkbox@1.41.2':
+    resolution: {integrity: sha512-aQ5dZWHUHRIw4cbLtzrR+dc8M0N6wSiiCml/zbU3ciHOTBXSrs2rKnp/L99xhi97Lj2uCEhpIZ704Ou/MjGuCg==}
+
   '@zag-js/core@1.41.2':
     resolution: {integrity: sha512-xXTN3zKwOtMI4+5dG2cG+T1B4WR3X9alXiYaPJKaGd4N2eYRj9JEPte3Hv9gtFm+RM0b9VIwksHEg25rqE4apw==}
 
@@ -1306,8 +1366,17 @@ packages:
   '@zag-js/focus-trap@1.41.2':
     resolution: {integrity: sha512-3QTtGUjFU2OLbyrDlyoYWvKZecCmtn/+bsfsHW159jJHiEGHVYK6CY8AI1ePsMk9gVay48bXh008j+lVli7gAw==}
 
+  '@zag-js/focus-visible@1.41.2':
+    resolution: {integrity: sha512-oRjwtgafUdGVwLJUN6mKsnBQbez/CHYAPkPg1FxOnr5GFpEpr8oMTOZJ3wdPM2U1ynS9QnUUu/sXc3KQv/jX0Q==}
+
   '@zag-js/interact-outside@1.41.2':
     resolution: {integrity: sha512-dM4Fn9iyqQeqkCMRYZP+bAgWEPKRVQRqMmcPsN0OXBhhFKC31Em15LTIZXaOtVKAjH+iwx+UvSYFRiWwEjkOEA==}
+
+  '@zag-js/popper@1.41.2':
+    resolution: {integrity: sha512-Iz4D5YAIiIPn4IHGjhX3QatR/RyGaDt43lBSZv0RYcPQYtFg9sUuek3wizjW9qXgdvItevvNMqRdpl7f3es09g==}
+
+  '@zag-js/radio-group@1.41.2':
+    resolution: {integrity: sha512-EZjos61jKHZlNw8ez80vG2T9gUwpooxcVpYOKS2hyhuEXn3wEoefS5v1WFbmpoA/8TUpUQnYxisAeNuQfEQCuQ==}
 
   '@zag-js/react@1.41.2':
     resolution: {integrity: sha512-5Bx7mQAron4LFWI8Hhs/uw5kwQ19s2Tn30HhctozLqmCu4nnJSTSh7GRvX+uwRZnztGXBXoOrgBWIepU4RXFGg==}
@@ -1331,8 +1400,14 @@ packages:
     peerDependencies:
       svelte: '>=5'
 
+  '@zag-js/switch@1.41.2':
+    resolution: {integrity: sha512-qHbQK95UUHN0tj+bf9LLphLcMo/uTg2Pvs0c1Gs03Zh4g3NtHf0uYIhMZKYlCH0hNVlKrmdzLKWgeoDxv9gySw==}
+
   '@zag-js/tabs@1.41.2':
     resolution: {integrity: sha512-7YVj2mCcxRbn1wMXP9anaTOVf+J0fa5uaPScr8e4+e2xc+/1WKzqN6V8IDeKS5wV/xzi1r3Ny307sX7Xz4ZJVQ==}
+
+  '@zag-js/tooltip@1.41.2':
+    resolution: {integrity: sha512-68okWJCFXfW8r0h97kEcU2yKPkq6e0S6QkiYh09ifMXoYjrQw/shPol8PgrS1poqKJigUWtsKm+bw73abhMn3w==}
 
   '@zag-js/types@1.41.2':
     resolution: {integrity: sha512-L6CNvK06lIVpy0X8eG3kbDIx8Uuv+3KHElxXYSzRXSJ7/OLCv1sTRgEvnxNtdIWOrksGgxF4JtT7PXtoClGqNQ==}
@@ -3683,6 +3758,17 @@ snapshots:
     dependencies:
       '@expressive-code/core': 0.43.1
 
+  '@floating-ui/core@1.7.5':
+    dependencies:
+      '@floating-ui/utils': 0.2.11
+
+  '@floating-ui/dom@1.7.6':
+    dependencies:
+      '@floating-ui/core': 1.7.5
+      '@floating-ui/utils': 0.2.11
+
+  '@floating-ui/utils@0.2.11': {}
+
   '@img/colour@1.1.0':
     optional: true
 
@@ -4299,6 +4385,15 @@ snapshots:
     dependencies:
       '@zag-js/dom-query': 1.41.2
 
+  '@zag-js/checkbox@1.41.2':
+    dependencies:
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/focus-visible': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
+
   '@zag-js/core@1.41.2':
     dependencies:
       '@zag-js/dom-query': 1.41.2
@@ -4330,9 +4425,28 @@ snapshots:
     dependencies:
       '@zag-js/dom-query': 1.41.2
 
+  '@zag-js/focus-visible@1.41.2':
+    dependencies:
+      '@zag-js/dom-query': 1.41.2
+
   '@zag-js/interact-outside@1.41.2':
     dependencies:
       '@zag-js/dom-query': 1.41.2
+      '@zag-js/utils': 1.41.2
+
+  '@zag-js/popper@1.41.2':
+    dependencies:
+      '@floating-ui/dom': 1.7.6
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/utils': 1.41.2
+
+  '@zag-js/radio-group@1.41.2':
+    dependencies:
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/focus-visible': 1.41.2
+      '@zag-js/types': 1.41.2
       '@zag-js/utils': 1.41.2
 
   '@zag-js/react@1.41.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
@@ -4368,11 +4482,30 @@ snapshots:
       '@zag-js/utils': 1.41.2
       svelte: 5.56.3
 
+  '@zag-js/switch@1.41.2':
+    dependencies:
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/focus-visible': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
+
   '@zag-js/tabs@1.41.2':
     dependencies:
       '@zag-js/anatomy': 1.41.2
       '@zag-js/core': 1.41.2
       '@zag-js/dom-query': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
+
+  '@zag-js/tooltip@1.41.2':
+    dependencies:
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/focus-visible': 1.41.2
+      '@zag-js/popper': 1.41.2
       '@zag-js/types': 1.41.2
       '@zag-js/utils': 1.41.2
 

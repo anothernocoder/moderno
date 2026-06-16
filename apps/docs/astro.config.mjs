@@ -14,6 +14,9 @@ export default defineConfig({
       description:
         'Sistema de diseño agnóstico al framework: un comportamiento (Zag.js) y un look (tokens) para React, Vue, Svelte y Solid.',
       customCss: ['./src/styles/moderno-theme.css'],
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+      },
       sidebar: [
         {
           label: 'Introducción',

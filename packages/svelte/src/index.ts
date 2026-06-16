@@ -9,6 +9,17 @@ export { default as Badge } from './Badge.svelte'
 export { default as Card } from './Card.svelte'
 export { default as Callout } from './Callout.svelte'
 export { default as Input } from './Input.svelte'
+export { default as Textarea } from './Textarea.svelte'
+export { default as Avatar } from './Avatar.svelte'
+export { default as Chip } from './Chip.svelte'
+export { default as Indicator } from './Indicator.svelte'
+export { default as Skeleton } from './Skeleton.svelte'
+export { default as Spinner } from './Spinner.svelte'
+export { default as Divider } from './Divider.svelte'
+export { default as Toggle } from './Toggle.svelte'
+export { default as Checkbox } from './Checkbox.svelte'
+export { default as Radio } from './Radio.svelte'
+export { default as Tooltip } from './Tooltip.svelte'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */
 export const Tabs = { Root: TabsRoot, List: TabsList, Trigger: TabsTrigger, Content: TabsContent }

@@ -1,0 +1,118 @@
+---
+title: Radio
+description: Selección única dentro de un grupo de opciones mutuamente excluyentes. Behavior core Zag (radio-group), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Radio as RRadio } from '@moderno/react'
+import { Radio as VRadio } from '@moderno/vue'
+import { Radio as SRadio } from '@moderno/svelte'
+import { Radio as ORadio } from '@moderno/solid'
+
+export const opts = [
+  { value: 'card', label: 'Tarjeta' },
+  { value: 'cash', label: 'Efectivo' },
+  { value: 'transfer', label: 'Transferencia', disabled: true },
+]
+
+**Radio** ofrece selección única dentro de un grupo de opciones mutuamente excluyentes. Primitive **closed-prop** (ADR-0003) sobre la máquina `radio-group` de Zag.js: pásale un array `options` y un `label` de grupo.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RRadio client:only="react" label="Método de pago" options={opts} defaultValue="card" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VRadio client:only="vue" label="Método de pago" options={opts} defaultValue="card" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SRadio client:only="svelte" label="Método de pago" options={opts} defaultValue="card" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <ORadio client:only="solid-js" label="Método de pago" options={opts} defaultValue="card" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Radio } from '@moderno/react'
+
+const options = [
+  { value: 'card', label: 'Tarjeta' },
+  { value: 'cash', label: 'Efectivo' },
+]
+
+<Radio label="Método de pago" options={options} defaultValue="card" onValueChange={(v) => console.log(v)} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Radio } from '@moderno/vue'
+import { ref } from 'vue'
+const value = ref('card')
+const options = [
+  { value: 'card', label: 'Tarjeta' },
+  { value: 'cash', label: 'Efectivo' },
+]
+</script>
+
+<template>
+  <Radio label="Método de pago" :options="options" v-model="value" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Radio } from '@moderno/svelte'
+  let value = $state('card')
+  const options = [
+    { value: 'card', label: 'Tarjeta' },
+    { value: 'cash', label: 'Efectivo' },
+  ]
+</script>
+
+<Radio label="Método de pago" {options} bind:value />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Radio } from '@moderno/solid'
+
+const options = [
+  { value: 'card', label: 'Tarjeta' },
+  { value: 'cash', label: 'Efectivo' },
+]
+
+<Radio label="Método de pago" options={options} defaultValue="card" onValueChange={(v) => console.log(v)} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `options` | `{ value: string; label?: string; disabled?: boolean }[]` | — | Opciones del grupo. |
+| `label` | `string` | — | Etiqueta del grupo. |
+| `defaultValue` | `string` | — | Valor inicial no controlado. |
+| `value` / `v-model` / `bind:value` | `string` | — | Valor controlado. |
+| `onValueChange` | `(value: string \| null) => void` | — | Callback al cambiar. |
+| `disabled` | `boolean` | `false` | Desactiva todo el grupo. |
+| `invalid` | `boolean` | `false` | Marca el grupo como inválido. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Disposición de las opciones. |
+| `name` | `string` | — | Para envío en formularios. |
+

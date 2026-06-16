@@ -1,0 +1,103 @@
+---
+title: Divider
+description: Separador visual y semántico, opcionalmente con etiqueta. Pura CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Divider as RDivider } from '@moderno/react'
+import { Divider as VDivider } from '@moderno/vue'
+import { Divider as SDivider } from '@moderno/svelte'
+import { Divider as ODivider } from '@moderno/solid'
+
+**Divider** separa contenido con semántica `role="separator"`, opcionalmente con una etiqueta centrada. Primitive **closed-prop**, pura CSS.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Sección A</span>
+    <RDivider client:only="react" />
+    <RDivider client:only="react" label="o" />
+    <span>Sección B</span>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Sección A</span>
+    <VDivider client:only="vue" />
+    <VDivider client:only="vue" label="o" />
+    <span>Sección B</span>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Sección A</span>
+    <SDivider client:only="svelte" />
+    <SDivider client:only="svelte" label="o" />
+    <span>Sección B</span>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Sección A</span>
+    <ODivider client:only="solid-js" />
+    <ODivider client:only="solid-js" label="o" />
+    <span>Sección B</span>
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Divider } from '@moderno/react'
+
+<Divider />
+<Divider label="o" />
+<Divider orientation="vertical" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Divider } from '@moderno/vue'
+</script>
+
+<template>
+  <Divider />
+  <Divider label="o" />
+  <Divider orientation="vertical" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Divider } from '@moderno/svelte'
+</script>
+
+<Divider />
+<Divider label="o" />
+<Divider orientation="vertical" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Divider } from '@moderno/solid'
+
+<Divider />
+<Divider label="o" />
+<Divider orientation="vertical" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Eje del separador. La etiqueta solo aplica en horizontal. |
+| `label` | `string` | — | Etiqueta centrada (solo horizontal). |

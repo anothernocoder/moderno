@@ -82,6 +82,42 @@
    depending on where Astro injects its client:only bootstrap nodes).
    Specificity 0,1,1 beats Starlight's .sl-markdown-content rules (0,1,0). */
 .md-demo > *,
-.md-demo astro-island > * {
+.md-demo astro-island * {
   margin: 0;
+}
+
+/* Minimalist Moderno pagination (Previous / Next links).
+   Strip Starlight's default rounded card + box-shadow for a flat, hairline
+   surface that matches the Moderno token system. */
+.pagination-links a {
+  border: 1px solid var(--md-border-default);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--md-surface-base);
+  padding: var(--md-spacing-4) var(--md-spacing-5);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.pagination-links a:hover {
+  border-color: var(--md-border-strong);
+  background: var(--md-surface-muted);
+  box-shadow: none;
+}
+.pagination-links a .link-title {
+  color: var(--md-text-primary);
+  font-weight: 500;
+}
+
+/* Sidebar: drop Starlight's vertical guide lines on nested groups, and
+   replace the heavy dark "active" pill with a subtle muted highlight. */
+nav.sidebar ul ul li {
+  border-inline-start: none;
+}
+nav.sidebar a:hover {
+  background: color-mix(in srgb, var(--md-border-default) 45%, transparent);
+  color: var(--md-text-primary);
+}
+nav.sidebar a[aria-current="page"] {
+  background: var(--md-border-default);
+  color: var(--md-text-primary);
+  font-weight: 600;
 }

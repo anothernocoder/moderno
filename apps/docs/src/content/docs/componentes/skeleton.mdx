@@ -1,0 +1,100 @@
+---
+title: Skeleton
+description: Placeholder de carga con shimmer. Decorativo (aria-hidden). Pura CSS.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Skeleton as RSkeleton } from '@moderno/react'
+import { Skeleton as VSkeleton } from '@moderno/vue'
+import { Skeleton as SSkeleton } from '@moderno/svelte'
+import { Skeleton as OSkeleton } from '@moderno/solid'
+
+**Skeleton** es un placeholder de carga con animación shimmer. Es decorativo (`aria-hidden`), pura CSS. Las animaciones respetan `prefers-reduced-motion`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo" style="flex-direction:column;align-items:flex-start;gap:8px;width:100%">
+    <RSkeleton client:only="react" variant="circle" width={48} height={48} />
+    <RSkeleton client:only="react" variant="text" width="80%" />
+    <RSkeleton client:only="react" variant="text" width="60%" />
+    <RSkeleton client:only="react" variant="rect" width="100%" height={80} />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo" style="flex-direction:column;align-items:flex-start;gap:8px;width:100%">
+    <VSkeleton client:only="vue" variant="circle" width={48} height={48} />
+    <VSkeleton client:only="vue" variant="text" width="80%" />
+    <VSkeleton client:only="vue" variant="text" width="60%" />
+    <VSkeleton client:only="vue" variant="rect" width="100%" height={80} />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo" style="flex-direction:column;align-items:flex-start;gap:8px;width:100%">
+    <SSkeleton client:only="svelte" variant="circle" width={48} height={48} />
+    <SSkeleton client:only="svelte" variant="text" width="80%" />
+    <SSkeleton client:only="svelte" variant="text" width="60%" />
+    <SSkeleton client:only="svelte" variant="rect" width="100%" height={80} />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo" style="flex-direction:column;align-items:flex-start;gap:8px;width:100%">
+    <OSkeleton client:only="solid-js" variant="circle" width={48} height={48} />
+    <OSkeleton client:only="solid-js" variant="text" width="80%" />
+    <OSkeleton client:only="solid-js" variant="text" width="60%" />
+    <OSkeleton client:only="solid-js" variant="rect" width="100%" height={80} />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Skeleton } from '@moderno/react'
+
+<Skeleton variant="circle" width={48} height={48} />
+<Skeleton variant="text" width="80%" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Skeleton } from '@moderno/vue'
+</script>
+
+<template>
+  <Skeleton variant="circle" :width="48" :height="48" />
+  <Skeleton variant="text" width="80%" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Skeleton } from '@moderno/svelte'
+</script>
+
+<Skeleton variant="circle" width={48} height={48} />
+<Skeleton variant="text" width="80%" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Skeleton } from '@moderno/solid'
+
+<Skeleton variant="circle" width={48} height={48} />
+<Skeleton variant="text" width="80%" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `variant` | `'text' \| 'rect' \| 'circle'` | `'text'` | Forma del placeholder. |
+| `width` | `string \| number` | — | Ancho CSS; un número se interpreta en px. |
+| `height` | `string \| number` | — | Alto CSS; un número se interpreta en px. |

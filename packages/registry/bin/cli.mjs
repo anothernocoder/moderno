@@ -54,10 +54,22 @@ async function exists(path) {
 async function cmdList() {
   const registry = await loadRegistry()
   console.log('\nBloques disponibles:\n')
+
+  const byDomain = new Map()
   for (const [name, block] of Object.entries(registry.blocks)) {
-    console.log(`  \x1b[1m${name}\x1b[0m — ${block.description}`)
+    const domain = block.domain ?? 'otros'
+    if (!byDomain.has(domain)) byDomain.set(domain, [])
+    byDomain.get(domain).push([name, block])
   }
-  console.log('\nUso: moderno add <block> --framework <react|vue|svelte|solid>\n')
+
+  for (const [domain, blocks] of byDomain) {
+    console.log(`  \x1b[2m${domain}\x1b[0m`)
+    for (const [name, block] of blocks) {
+      console.log(`    \x1b[1m${name}\x1b[0m — ${block.description}`)
+    }
+    console.log('')
+  }
+  console.log('Uso: moderno add <block> --framework <react|vue|svelte|solid>\n')
 }
 
 async function cmdAdd(positional, flags) {

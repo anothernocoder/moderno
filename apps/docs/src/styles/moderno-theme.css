@@ -75,3 +75,13 @@
   flex-direction: column;
   align-items: stretch;
 }
+/* Neutralize Starlight's markdown flow-spacing on the live components.
+   Astro's astro-island is display:contents, so the framework components lay
+   out as flex items of .md-demo; without this they inherit Starlight's
+   margin-top and render staggered/misaligned (and differently per framework,
+   depending on where Astro injects its client:only bootstrap nodes).
+   Specificity 0,1,1 beats Starlight's .sl-markdown-content rules (0,1,0). */
+.md-demo > *,
+.md-demo astro-island > * {
+  margin: 0;
+}

@@ -30,11 +30,31 @@ export default defineConfig({
           label: 'Componentes',
           items: [{ autogenerate: { directory: 'componentes' } }],
         },
+        {
+          label: 'Blocks',
+          items: [{ autogenerate: { directory: 'blocks' } }],
+        },
       ],
     }),
-    react({ include: ['**/packages/react/**', '**/@moderno/react/**', '**/demos/react/**'] }),
+    // Block sources live in @moderno/registry; route their .tsx to React and
+    // .solid.tsx to Solid. React must exclude the Solid variant since both
+    // integrations transform .tsx.
+    react({
+      include: [
+        '**/packages/react/**',
+        '**/@moderno/react/**',
+        '**/demos/react/**',
+        '**/registry/blocks/**/*.tsx',
+      ],
+      exclude: ['**/*.solid.tsx'],
+    }),
     solid({
-      include: ['**/packages/solid/**', '**/@moderno/solid/**', '**/demos/solid/**'],
+      include: [
+        '**/packages/solid/**',
+        '**/@moderno/solid/**',
+        '**/demos/solid/**',
+        '**/registry/blocks/**/*.solid.tsx',
+      ],
     }),
     vue(),
     svelte(),
@@ -59,6 +79,7 @@ export default defineConfig({
         '@moderno/vue',
         '@moderno/svelte',
         '@moderno/solid',
+        '@moderno/registry',
       ],
     },
   },

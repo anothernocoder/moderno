@@ -38,6 +38,9 @@ importers:
       '@moderno/react':
         specifier: workspace:*
         version: link:../../packages/react
+      '@moderno/registry':
+        specifier: workspace:*
+        version: link:../../packages/registry
       '@moderno/solid':
         specifier: workspace:*
         version: link:../../packages/solid
@@ -114,7 +117,20 @@ importers:
         specifier: '>=18'
         version: 19.2.7(react@19.2.7)
 
-  packages/registry: {}
+  packages/registry:
+    devDependencies:
+      '@moderno/react':
+        specifier: workspace:*
+        version: link:../react
+      '@moderno/solid':
+        specifier: workspace:*
+        version: link:../solid
+      '@moderno/svelte':
+        specifier: workspace:*
+        version: link:../svelte
+      '@moderno/vue':
+        specifier: workspace:*
+        version: link:../vue
 
   packages/solid:
     dependencies:

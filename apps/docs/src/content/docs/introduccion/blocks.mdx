@@ -3,8 +3,6 @@ title: Blocks y registry
 description: Cómo traer blocks (composiciones de layout) a tu repo con el CLI copy-paste de Moderno.
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components'
-
 Moderno distribuye en **dos canales** (ADR-0001):
 
 - **Primitives** → paquetes npm (`@moderno/react`, etc.). Versionados; los arreglos se
@@ -26,35 +24,16 @@ npx @moderno/registry add hero --framework react --dest ./src/blocks
 El comando copia el archivo del block (para el framework elegido) a `--dest`
 (por defecto `./src/blocks`). A partir de ahí el código es **tuyo**: edítalo a gusto.
 
-## Bloques disponibles
-
-### Hero
-
-Sección hero above-the-fold con kicker, título, subtítulo y CTA. Usa el primitive `Button`
-y los tokens `--md-*`.
-
-<Tabs syncKey="framework">
-<TabItem label="React">
-```sh
-npx @moderno/registry add hero --framework react
-```
-</TabItem>
-<TabItem label="Vue">
-```sh
-npx @moderno/registry add hero --framework vue
-```
-</TabItem>
-<TabItem label="Svelte">
-```sh
-npx @moderno/registry add hero --framework svelte
-```
-</TabItem>
-<TabItem label="Solid">
-```sh
-npx @moderno/registry add hero --framework solid
-```
-</TabItem>
-</Tabs>
-
 Tras copiarlo, asegúrate de tener instalado el paquete primitive correspondiente
 (`@moderno/<framework>`) y de [importar los estilos](/introduccion/instalacion/).
+
+## Bloques disponibles
+
+Cada block tiene su propia página con demo en vivo (los cuatro frameworks), comando de
+instalación y referencia de props en la sección **Blocks** del menú:
+
+- [Hero](/blocks/hero/) — marketing: hero above-the-fold.
+- [Stats](/blocks/stats/) — aplicación: fila de KPIs.
+- [Product Card](/blocks/product-card/) — ecommerce: tarjeta de producto.
+- [Portfolio Header](/blocks/portfolio-header/) — portafolio: encabezado de presentación.
+- [Story](/blocks/story/) — images-ads: plantilla vertical 9:16.

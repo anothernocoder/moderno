@@ -11,5 +11,11 @@
     "bin",
     "blocks",
     "registry.json"
-  ]
+  ],
+  "devDependencies": {
+    "@moderno/react": "workspace:*",
+    "@moderno/solid": "workspace:*",
+    "@moderno/svelte": "workspace:*",
+    "@moderno/vue": "workspace:*"
+  }
 }

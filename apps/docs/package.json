@@ -15,6 +15,7 @@
     "@astrojs/svelte": "^8.1.2",
     "@astrojs/vue": "^6.0.1",
     "@moderno/react": "workspace:*",
+    "@moderno/registry": "workspace:*",
     "@moderno/solid": "workspace:*",
     "@moderno/svelte": "workspace:*",
     "@moderno/tokens": "workspace:*",

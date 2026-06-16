@@ -1,0 +1,97 @@
+---
+title: Accordion
+description: Secciones colapsables que revelan contenido. Compositional, sobre la máquina accordion de Zag.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RAccordionDemo from '../../../demos/react/AccordionDemo.tsx'
+import VAccordionDemo from '../../../demos/vue/AccordionDemo.vue'
+import SAccordionDemo from '../../../demos/svelte/AccordionDemo.svelte'
+import OAccordionDemo from '../../../demos/solid/AccordionDemo.tsx'
+
+**Accordion** agrupa secciones colapsables que revelan su contenido al activarse. Primitive
+**compositional** (ADR-0003): expone partes que comparten una sola máquina de Zag —
+`Accordion.Root`, `Accordion.Item`, `Accordion.ItemTrigger`, `Accordion.ItemContent`. El
+comportamiento (teclado con flechas, `Home`/`End`, ARIA `region`, expandir/colapsar) viene
+de la máquina `accordion`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAccordionDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAccordionDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAccordionDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAccordionDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Accordion } from '@moderno/react'
+
+<Accordion.Root defaultValue={['envios']} collapsible>
+  <Accordion.Item value="envios">
+    <Accordion.ItemTrigger>¿Cuánto tarda el envío?</Accordion.ItemTrigger>
+    <Accordion.ItemContent>2–5 días hábiles.</Accordion.ItemContent>
+  </Accordion.Item>
+</Accordion.Root>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Accordion } from '@moderno/vue'
+</script>
+
+<template>
+  <Accordion.Root :defaultValue="['envios']" collapsible>
+    <Accordion.Item value="envios">
+      <Accordion.ItemTrigger>¿Cuánto tarda el envío?</Accordion.ItemTrigger>
+      <Accordion.ItemContent>2–5 días hábiles.</Accordion.ItemContent>
+    </Accordion.Item>
+  </Accordion.Root>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Accordion } from '@moderno/svelte'
+</script>
+
+<Accordion.Root defaultValue={['envios']} collapsible>
+  <Accordion.Item value="envios">
+    <Accordion.ItemTrigger>¿Cuánto tarda el envío?</Accordion.ItemTrigger>
+    <Accordion.ItemContent>2–5 días hábiles.</Accordion.ItemContent>
+  </Accordion.Item>
+</Accordion.Root>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Accordion } from '@moderno/solid'
+
+<Accordion.Root defaultValue={['envios']} collapsible>
+  <Accordion.Item value="envios">
+    <Accordion.ItemTrigger>¿Cuánto tarda el envío?</Accordion.ItemTrigger>
+    <Accordion.ItemContent>2–5 días hábiles.</Accordion.ItemContent>
+  </Accordion.Item>
+</Accordion.Root>
+```
+</TabItem>
+</Tabs>
+
+## Props (`Accordion.Root`)
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `defaultValue` | `string[]` | `[]` | Items expandidos inicialmente (no controlado). |
+| `value` / `v-model` / `bind:value` | `string[]` | — | Items expandidos (controlado). |
+| `multiple` | `boolean` | `false` | Permite varios items abiertos a la vez. |
+| `collapsible` | `boolean` | `false` | Permite cerrar un item ya abierto. |
+| `onValueChange` | `(value: string[]) => void` | — | Callback al expandir/colapsar. |
+
+`Accordion.Item` recibe `value: string` y `disabled?: boolean`. `Accordion.ItemTrigger` y
+`Accordion.ItemContent` no necesitan props: heredan el item por contexto.

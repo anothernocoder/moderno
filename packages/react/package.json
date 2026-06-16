@@ -17,10 +17,13 @@
   "dependencies": {
     "@moderno/styles": "workspace:*",
     "@moderno/tokens": "workspace:*",
+    "@zag-js/accordion": "^1.0.0",
     "@zag-js/checkbox": "^1.0.0",
     "@zag-js/dialog": "^1.0.0",
     "@zag-js/radio-group": "^1.0.0",
     "@zag-js/react": "^1.0.0",
+    "@zag-js/select": "^1.0.0",
+    "@zag-js/slider": "^1.0.0",
     "@zag-js/switch": "^1.0.0",
     "@zag-js/tabs": "^1.0.0",
     "@zag-js/tooltip": "^1.0.0"

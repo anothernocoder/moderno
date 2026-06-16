@@ -1,0 +1,102 @@
+---
+title: Slider
+description: Control deslizante de un valor numérico en un rango. Behavior core Zag (slider), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Slider as RSlider } from '@moderno/react'
+import { Slider as VSlider } from '@moderno/vue'
+import { Slider as SSlider } from '@moderno/svelte'
+import { Slider as OSlider } from '@moderno/solid'
+
+**Slider** ajusta un valor numérico dentro de un rango arrastrando el thumb o con el teclado. Primitive **closed-prop** (ADR-0003) sobre la máquina `slider` de Zag.js (un único thumb).
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <RSlider client:only="react" label="Volumen" defaultValue={60} />
+    <RSlider client:only="react" label="Brillo (paso 10)" defaultValue={40} step={10} />
+    <RSlider client:only="react" label="Bloqueado" defaultValue={30} disabled />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <VSlider client:only="vue" label="Volumen" defaultValue={60} />
+    <VSlider client:only="vue" label="Brillo (paso 10)" defaultValue={40} step={10} />
+    <VSlider client:only="vue" label="Bloqueado" defaultValue={30} disabled />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <SSlider client:only="svelte" label="Volumen" defaultValue={60} />
+    <SSlider client:only="svelte" label="Brillo (paso 10)" defaultValue={40} step={10} />
+    <SSlider client:only="svelte" label="Bloqueado" defaultValue={30} disabled />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <OSlider client:only="solid-js" label="Volumen" defaultValue={60} />
+    <OSlider client:only="solid-js" label="Brillo (paso 10)" defaultValue={40} step={10} />
+    <OSlider client:only="solid-js" label="Bloqueado" defaultValue={30} disabled />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Slider } from '@moderno/react'
+
+<Slider label="Volumen" defaultValue={60} onValueChange={(v) => console.log(v)} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Slider } from '@moderno/vue'
+import { ref } from 'vue'
+const volume = ref(60)
+</script>
+
+<template>
+  <Slider label="Volumen" v-model="volume" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Slider } from '@moderno/svelte'
+  let volume = $state(60)
+</script>
+
+<Slider label="Volumen" bind:value={volume} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Slider } from '@moderno/solid'
+
+<Slider label="Volumen" defaultValue={60} onValueChange={(v) => console.log(v)} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `label` | `string` | — | Etiqueta visible. |
+| `defaultValue` | `number` | `50` | Valor inicial no controlado. |
+| `value` / `v-model` / `bind:value` | `number` | — | Valor controlado. |
+| `onValueChange` | `(value: number) => void` | — | Callback al cambiar. |
+| `min` | `number` | `0` | Valor mínimo. |
+| `max` | `number` | `100` | Valor máximo. |
+| `step` | `number` | `1` | Incremento. |
+| `disabled` | `boolean` | `false` | Desactiva el control. |
+| `showValue` | `boolean` | `true` | Muestra el valor junto a la etiqueta. |
+| `name` | `string` | — | Para envío en formularios. |

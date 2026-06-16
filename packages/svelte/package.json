@@ -1,0 +1,30 @@
+{
+  "name": "@moderno/svelte",
+  "version": "0.1.0",
+  "description": "Moderno styled components for Svelte (Zag.js behavior core + Moderno tokens).",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "svelte": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "dependencies": {
+    "@moderno/styles": "workspace:*",
+    "@moderno/tokens": "workspace:*",
+    "@zag-js/dialog": "^1.0.0",
+    "@zag-js/svelte": "^1.0.0",
+    "@zag-js/tabs": "^1.0.0"
+  },
+  "peerDependencies": {
+    "svelte": ">=5"
+  }
+}

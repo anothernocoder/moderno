@@ -1,0 +1,22 @@
+{
+  "$schema": "./registry.schema.json",
+  "name": "moderno",
+  "blocks": {
+    "hero": {
+      "description": "Sección hero above-the-fold: kicker, título, subtítulo y CTA.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/hero/Hero.tsx",
+        "vue": "blocks/hero/Hero.vue",
+        "svelte": "blocks/hero/Hero.svelte",
+        "solid": "blocks/hero/Hero.solid.tsx"
+      },
+      "dest": {
+        "react": "Hero.tsx",
+        "vue": "Hero.vue",
+        "svelte": "Hero.svelte",
+        "solid": "Hero.tsx"
+      }
+    }
+  }
+}

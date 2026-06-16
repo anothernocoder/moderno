@@ -1,0 +1,109 @@
+---
+title: Dialog
+description: Diálogo modal centrado. Closed-prop, sobre la máquina dialog de Zag.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Dialog as RDialog } from '@moderno/react'
+import { Dialog as VDialog } from '@moderno/vue'
+import { Dialog as SDialog } from '@moderno/svelte'
+import { Dialog as ODialog } from '@moderno/solid'
+
+**Dialog** es un diálogo modal centrado. Es un primitive **closed-prop** (ADR-0003):
+se configura por props, no se compone. El comportamiento — foco atrapado, cierre con `Esc`,
+clic fuera, ARIA — viene de la máquina `dialog` de Zag; Moderno aporta el markup y las clases.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RDialog client:only="react" triggerLabel="Abrir dialog" title="Dialog · React" description="Foco atrapado, Esc cierra, ARIA correcto — vía la máquina dialog de Zag." />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VDialog client:only="vue" triggerLabel="Abrir dialog" title="Dialog · Vue" description="Foco atrapado, Esc cierra, ARIA correcto — vía la máquina dialog de Zag." />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SDialog client:only="svelte" triggerLabel="Abrir dialog" title="Dialog · Svelte" description="Foco atrapado, Esc cierra, ARIA correcto — vía la máquina dialog de Zag." />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <ODialog client:only="solid-js" triggerLabel="Abrir dialog" title="Dialog · Solid" description="Foco atrapado, Esc cierra, ARIA correcto — vía la máquina dialog de Zag." />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Dialog } from '@moderno/react'
+
+<Dialog
+  triggerLabel="Abrir dialog"
+  title="Confirmar acción"
+  description="Esta acción no se puede deshacer."
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Dialog } from '@moderno/vue'
+</script>
+
+<template>
+  <Dialog
+    trigger-label="Abrir dialog"
+    title="Confirmar acción"
+    description="Esta acción no se puede deshacer."
+  />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Dialog } from '@moderno/svelte'
+</script>
+
+<Dialog
+  triggerLabel="Abrir dialog"
+  title="Confirmar acción"
+  description="Esta acción no se puede deshacer."
+/>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Dialog } from '@moderno/solid'
+
+<Dialog
+  triggerLabel="Abrir dialog"
+  title="Confirmar acción"
+  description="Esta acción no se puede deshacer."
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `triggerLabel` | `string` | — | Texto del botón que abre el diálogo. |
+| `title` | `ReactNode` / texto | — | Título del diálogo. |
+| `description` | `ReactNode` / texto | — | Texto descriptivo opcional. |
+| `closeLabel` | `string` | `'Cerrar'` | Texto del botón de cierre. |
+
+## Accesibilidad
+
+- Foco atrapado dentro del diálogo mientras está abierto; al cerrar, el foco vuelve al trigger.
+- `Esc` y clic en el backdrop cierran el diálogo.
+- ARIA (`role="dialog"`, `aria-modal`, `aria-labelledby`, `aria-describedby`) provisto por Zag.

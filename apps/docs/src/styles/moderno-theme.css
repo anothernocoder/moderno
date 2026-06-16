@@ -1,0 +1,77 @@
+/* Moderno theme for Starlight.
+   Loads Moderno tokens + the md-* component CSS (so live demos render
+   with the real design system), then maps Starlight's CSS variables
+   onto Moderno semantic roles so the docs chrome matches the system. */
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&family=Hedvig+Letters+Serif&display=swap');
+/* Relative into the workspace sources: Starlight's customCss postcss pipeline
+   does not resolve bare package specifiers in @import. */
+@import '../../../../packages/tokens/src/tokens.css';
+@import '../../../../packages/styles/src/styles.css';
+
+:root {
+  --sl-font: 'Hedvig Letters Sans', system-ui, arial;
+  --sl-font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* Dark-first: Moderno's primary surface. */
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #1c1c1c;
+  --sl-color-accent: #6b6b6b;
+  --sl-color-accent-high: #fafafa;
+  --sl-color-white: var(--md-text-primary);
+  --sl-color-gray-1: #f4f4f4;
+  --sl-color-gray-2: #c7c7c7;
+  --sl-color-gray-3: #999999;
+  --sl-color-gray-4: #616161;
+  --sl-color-gray-5: #2e2e2e;
+  --sl-color-gray-6: #1c1c1c;
+  --sl-color-gray-7: #141414;
+  --sl-color-black: var(--md-surface-base);
+  --sl-color-bg: var(--md-surface-base);
+  --sl-color-bg-nav: var(--md-surface-muted);
+  --sl-color-bg-sidebar: var(--md-surface-muted);
+  --sl-color-hairline: var(--md-border-default);
+  --sl-color-hairline-light: var(--md-border-strong);
+  --sl-color-text-accent: var(--md-primary);
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #e5e5e5;
+  --sl-color-accent: #3f3f3f;
+  --sl-color-accent-high: #121212;
+  --sl-color-bg: var(--md-surface-base);
+  --sl-color-bg-nav: var(--md-surface-muted);
+  --sl-color-bg-sidebar: var(--md-surface-muted);
+  --sl-color-hairline: var(--md-border-default);
+}
+
+/* Headings use the Moderno serif display face. */
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.content-panel h1 {
+  font-family: var(--md-font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Square corners everywhere — Moderno's shape language. */
+:root {
+  --sl-shadow-sm: var(--md-shadow-small);
+  --sl-shadow-md: var(--md-shadow-medium);
+}
+
+/* Live-demo preview surface used by component pages. */
+.md-demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--md-spacing-4);
+  padding: var(--md-spacing-8);
+  background: var(--md-surface-muted);
+  border: 1px solid var(--md-border-default);
+  margin: var(--md-spacing-6) 0;
+}
+.md-demo--stack {
+  flex-direction: column;
+  align-items: stretch;
+}

@@ -1,0 +1,4 @@
+/* Re-export of the shared Moderno component CSS.
+   Single source lives in @moderno/styles; kept here so consumers can
+   keep importing "@moderno/react/styles.css". */
+@import "@moderno/styles/styles.css";

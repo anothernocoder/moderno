@@ -1,0 +1,14 @@
+{
+  "name": "@moderno/tokens",
+  "version": "0.1.0",
+  "description": "Moderno design tokens — framework-free CSS custom properties + W3C DTCG source.",
+  "type": "module",
+  "license": "MIT",
+  "files": ["src", "tokens.json"],
+  "exports": {
+    ".": "./tokens.json",
+    "./tokens.css": "./src/tokens.css",
+    "./tokens.json": "./tokens.json"
+  },
+  "sideEffects": ["*.css"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@moderno/registry",
+  "version": "0.1.0",
+  "description": "Moderno blocks registry — copy-paste CLI that pulls a block's per-framework source into your repo.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "moderno": "./bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "blocks",
+    "registry.json"
+  ]
+}

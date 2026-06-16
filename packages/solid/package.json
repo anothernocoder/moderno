@@ -1,0 +1,30 @@
+{
+  "name": "@moderno/solid",
+  "version": "0.1.0",
+  "description": "Moderno styled components for Solid (Zag.js behavior core + Moderno tokens).",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    "./styles.css": "./src/styles.css",
+    ".": {
+      "solid": "./src/index.tsx",
+      "default": "./src/index.tsx"
+    }
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "dependencies": {
+    "@moderno/styles": "workspace:*",
+    "@moderno/tokens": "workspace:*",
+    "@zag-js/dialog": "^1.0.0",
+    "@zag-js/solid": "^1.0.0",
+    "@zag-js/tabs": "^1.0.0"
+  },
+  "peerDependencies": {
+    "solid-js": ">=1.8"
+  }
+}

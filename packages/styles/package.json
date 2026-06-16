@@ -1,0 +1,19 @@
+{
+  "name": "@moderno/styles",
+  "version": "0.1.0",
+  "description": "Moderno compiled component CSS — the framework-agnostic md-* class contract. Consumes @moderno/tokens vars.",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    "./styles.css": "./src/styles.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "dependencies": {
+    "@moderno/tokens": "workspace:*"
+  }
+}

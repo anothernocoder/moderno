@@ -1,0 +1,103 @@
+---
+title: Instalación
+description: Instala Moderno en un proyecto React, Vue, Svelte o Solid.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+Moderno se instala como paquetes npm. Cada framework tiene su propio paquete; todos comparten
+`@moderno/tokens` (las variables CSS) y el CSS de componentes.
+
+## 1. Instala el paquete de tu framework
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npm install @moderno/react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npm install @moderno/vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npm install @moderno/svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npm install @moderno/solid
+```
+</TabItem>
+</Tabs>
+
+El paquete trae como dependencias `@moderno/tokens`, `@moderno/styles` y las máquinas de Zag
+que necesita. No instalas Zag por separado.
+
+## 2. Importa los estilos una vez
+
+En el punto de entrada de tu app, importa los tokens y el CSS de componentes. Los tokens
+definen las custom properties `--md-*`; el CSS de componentes define las clases `md-*`.
+
+```ts
+import '@moderno/tokens/tokens.css'
+import '@moderno/react/styles.css' // o /vue, /svelte, /solid — es el mismo CSS compartido
+```
+
+## 3. Elige el tema
+
+El tema se controla con el atributo `data-theme` en el `<html>` (o cualquier ancestro):
+
+```html
+<html data-theme="dark">
+  <!-- … -->
+</html>
+```
+
+Moderno es **dark-first**; `data-theme="light"` re-mapea los roles semánticos. Para re-skin
+total, sobrescribe las variables `--md-*` en tu propio CSS — los componentes no cambian.
+
+## 4. Usa un componente
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Button } from '@moderno/react'
+
+export function App() {
+  return <Button label="Guardar cambios" />
+}
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Button } from '@moderno/vue'
+</script>
+
+<template>
+  <Button label="Guardar cambios" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Button } from '@moderno/svelte'
+</script>
+
+<Button label="Guardar cambios" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Button } from '@moderno/solid'
+
+export function App() {
+  return <Button label="Guardar cambios" />
+}
+```
+</TabItem>
+</Tabs>

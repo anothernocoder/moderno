@@ -25,4 +25,7 @@ jobs:
       # either side of the seam.
       - run: pnpm test
 
-      - run: pnpm --filter @moderno/class-contract exec tsc --noEmit
+      # Per-framework typecheck (react/solid via tsc, vue via vue-tsc, svelte via
+      # svelte-check) + the contract — catches a wrong cx/parts/variant-type usage
+      # against the contract at the framework seam.
+      - run: pnpm check

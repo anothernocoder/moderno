@@ -1,0 +1,89 @@
+---
+title: Textarea
+description: Campo de texto multilínea con label, hint y error. Pura CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Textarea as RTextarea } from '@moderno/react'
+import { Textarea as VTextarea } from '@moderno/vue'
+import { Textarea as STextarea } from '@moderno/svelte'
+import { Textarea as OTextarea } from '@moderno/solid'
+
+**Textarea** es un campo de texto multilínea con label, hint y error. Primitive **closed-prop**, pura CSS. Reusa los estilos de campo de [Input](/es/components/input/) más `.md-textarea`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RTextarea client:only="react" label="Comentario" hint="Máximo 500 caracteres" rows={4} placeholder="Escribe aquí…" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VTextarea client:only="vue" label="Comentario" hint="Máximo 500 caracteres" rows={4} placeholder="Escribe aquí…" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <STextarea client:only="svelte" label="Comentario" hint="Máximo 500 caracteres" rows={4} placeholder="Escribe aquí…" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OTextarea client:only="solid-js" label="Comentario" hint="Máximo 500 caracteres" rows={4} placeholder="Escribe aquí…" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Textarea } from '@moderno/react'
+
+<Textarea label="Comentario" hint="Máximo 500 caracteres" rows={4} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Textarea } from '@moderno/vue'
+import { ref } from 'vue'
+const value = ref('')
+</script>
+
+<template>
+  <Textarea v-model="value" label="Comentario" :rows="4" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Textarea } from '@moderno/svelte'
+  let value = $state('')
+</script>
+
+<Textarea bind:value label="Comentario" rows={4} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Textarea } from '@moderno/solid'
+
+<Textarea label="Comentario" hint="Máximo 500 caracteres" rows={4} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `label` | `string` | — | Etiqueta encima del campo. |
+| `hint` | `string` | — | Texto de ayuda bajo el campo. |
+| `error` | `string` | — | Mensaje de error; reemplaza el hint y marca el campo inválido. |
+
+Acepta además todos los atributos nativos de `<textarea>` (`rows`, `placeholder`, `disabled`, `maxlength`…). El valor se enlaza con `v-model` (Vue) o `bind:value` (Svelte).

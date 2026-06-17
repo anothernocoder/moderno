@@ -1,0 +1,30 @@
+{
+  "name": "@moderno/docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.7",
+    "@astrojs/solid-js": "^6.0.1",
+    "@astrojs/starlight": "^0.40.0",
+    "@astrojs/svelte": "^8.1.2",
+    "@astrojs/vue": "^6.0.1",
+    "@moderno/react": "workspace:*",
+    "@moderno/registry": "workspace:*",
+    "@moderno/solid": "workspace:*",
+    "@moderno/svelte": "workspace:*",
+    "@moderno/tokens": "workspace:*",
+    "@moderno/vue": "workspace:*",
+    "astro": "^6.4.7",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "solid-js": "^1.9.13",
+    "svelte": "^5.56.3",
+    "vue": "^3.5.38"
+  }
+}

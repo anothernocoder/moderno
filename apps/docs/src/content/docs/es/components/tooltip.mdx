@@ -1,0 +1,85 @@
+---
+title: Tooltip
+description: Pista contextual mostrada al pasar el cursor o enfocar. Behavior core Zag (tooltip), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Tooltip as RTooltip } from '@moderno/react'
+import { Tooltip as VTooltip } from '@moderno/vue'
+import { Tooltip as STooltip } from '@moderno/svelte'
+import { Tooltip as OTooltip } from '@moderno/solid'
+
+**Tooltip** muestra una pista contextual al pasar el cursor o enfocar el disparador. Primitive **closed-prop** (ADR-0003) sobre la máquina `tooltip` de Zag.js, posicionada con popper. Igual que `Dialog`, recibe el disparador como `triggerLabel` (string) y renderiza su propio botón.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RTooltip client:only="react" triggerLabel="Pasa el cursor" content="Guarda los cambios" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VTooltip client:only="vue" triggerLabel="Pasa el cursor" content="Guarda los cambios" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <STooltip client:only="svelte" triggerLabel="Pasa el cursor" content="Guarda los cambios" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OTooltip client:only="solid-js" triggerLabel="Pasa el cursor" content="Guarda los cambios" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Tooltip } from '@moderno/react'
+
+<Tooltip triggerLabel="Guardar" content="Guarda los cambios" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Tooltip } from '@moderno/vue'
+</script>
+
+<template>
+  <Tooltip triggerLabel="Guardar" content="Guarda los cambios" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Tooltip } from '@moderno/svelte'
+</script>
+
+<Tooltip triggerLabel="Guardar" content="Guarda los cambios" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Tooltip } from '@moderno/solid'
+
+<Tooltip triggerLabel="Guardar" content="Guarda los cambios" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `triggerLabel` | `string` | — | Etiqueta del botón disparador. |
+| `content` | `string` | — | El texto de la pista. |
+| `openDelay` | `number` | `400` | Retardo de apertura en ms. |
+| `closeDelay` | `number` | `150` | Retardo de cierre en ms. |

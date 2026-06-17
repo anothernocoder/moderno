@@ -1,0 +1,96 @@
+---
+title: Chip
+description: Token compacto y opcionalmente eliminable. Pura CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Chip as RChip } from '@moderno/react'
+import { Chip as VChip } from '@moderno/vue'
+import { Chip as SChip } from '@moderno/svelte'
+import { Chip as OChip } from '@moderno/solid'
+
+**Chip** es un token compacto, opcionalmente eliminable. Primitive **closed-prop**, pura CSS. El evento de borrado sigue el idioma nativo: prop `onRemove` (React/Solid), `emit('remove')` (Vue), prop callback (Svelte).
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RChip client:only="react">Diseño</RChip>
+    <RChip client:only="react" variant="solid">Activo</RChip>
+    <RChip client:only="react" removable={true}>Filtro</RChip>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VChip client:only="vue">Diseño</VChip>
+    <VChip client:only="vue" variant="solid">Activo</VChip>
+    <VChip client:only="vue" removable={true}>Filtro</VChip>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SChip client:only="svelte">Diseño</SChip>
+    <SChip client:only="svelte" variant="solid">Activo</SChip>
+    <SChip client:only="svelte" removable={true}>Filtro</SChip>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OChip client:only="solid-js">Diseño</OChip>
+    <OChip client:only="solid-js" variant="solid">Activo</OChip>
+    <OChip client:only="solid-js" removable={true}>Filtro</OChip>
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Chip } from '@moderno/react'
+
+<Chip variant="solid">Activo</Chip>
+<Chip removable onRemove={() => quitar()}>Filtro</Chip>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Chip } from '@moderno/vue'
+</script>
+
+<template>
+  <Chip variant="solid">Activo</Chip>
+  <Chip removable @remove="quitar">Filtro</Chip>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Chip } from '@moderno/svelte'
+</script>
+
+<Chip variant="solid">Activo</Chip>
+<Chip removable onRemove={quitar}>Filtro</Chip>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Chip } from '@moderno/solid'
+
+<Chip variant="solid">Activo</Chip>
+<Chip removable onRemove={() => quitar()}>Filtro</Chip>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `variant` | `'neutral' \| 'solid'` | `'neutral'` | Estilo del chip. |
+| `removable` | `boolean` | `false` | Muestra el botón de borrado (×). |
+| `onRemove` / `@remove` | `() => void` | — | Se dispara al activar el botón de borrado. |

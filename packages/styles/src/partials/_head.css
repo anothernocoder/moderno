@@ -1,0 +1,8 @@
+/* ============================================================
+   Moderno component CSS — single shared source for all four
+   framework packages (React, Vue, Svelte, Solid). The md-* class
+   contract is framework-agnostic: every adapter renders the same
+   DOM + classes, so one stylesheet styles all of them.
+   Consumes the --md-* custom properties from @moderno/tokens.
+   ============================================================ */
+

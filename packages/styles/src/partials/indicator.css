@@ -1,0 +1,35 @@
+/* ---------- Indicator (status dot, pure CSS) ---------- */
+.md-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-spacing-2);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-label-md);
+  color: var(--md-text-secondary);
+}
+.md-indicator__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--md-radius-full);
+  background: currentColor;
+  flex-shrink: 0;
+}
+.md-indicator--neutral { color: var(--md-text-secondary); }
+.md-indicator--success { color: var(--md-success); }
+.md-indicator--warning { color: var(--md-warning); }
+.md-indicator--error { color: var(--md-error); }
+.md-indicator--info { color: var(--md-info); }
+.md-indicator--pulse .md-indicator__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--md-radius-full);
+  background: currentColor;
+  animation: md-ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes md-ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+

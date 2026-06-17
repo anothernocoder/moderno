@@ -1,0 +1,78 @@
+---
+title: Hero
+description: Above-the-fold hero section with kicker, title, subtitle, and CTA. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RHeroDemo from '../../../demos/react/blocks/HeroDemo.tsx'
+import VHeroDemo from '../../../demos/vue/blocks/HeroDemo.vue'
+import SHeroDemo from '../../../demos/svelte/blocks/HeroDemo.svelte'
+import OHeroDemo from '../../../demos/solid/blocks/HeroDemo.tsx'
+
+**Hero** is a marketing [block](/introduction/blocks/): an above-the-fold section with a
+kicker, title, subtitle, and a CTA. It composes the `Button` primitive and the `--md-*` tokens.
+You copy it into your repo with the CLI and edit it freely.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RHeroDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VHeroDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SHeroDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OHeroDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add hero --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add hero --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add hero --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add hero --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Moderno'` | Small text above the title |
+| `title` | `string` | `'Build products, not components.'` | Main headline |
+| `subtitle` | `string` | `'A design system…'` | Supporting text |
+| `ctaLabel` | `string` | `'Get started'` | CTA button text |
+| `onCta` | `() => void` | — | CTA click handler |
+
+## Usage
+
+```tsx
+import { Hero } from './blocks/Hero'
+
+<Hero
+  kicker="Launch"
+  title="Design faster"
+  subtitle="One look and one behavior across all four frameworks."
+  ctaLabel="Try it free"
+  onCta={() => navigate('/signup')}
+/>
+```
+
+The props API is identical across all four frameworks. In Vue, `onCta` is the `@cta`
+event; in the others it's a callback prop.

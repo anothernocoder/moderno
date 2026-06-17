@@ -1,0 +1,17 @@
+{
+  "name": "@moderno/class-contract",
+  "version": "0.1.0",
+  "description": "Moderno class contract — the single source for md-* class names, variant builders, and the legal-name set the CSS generator enforces.",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
+}

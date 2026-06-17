@@ -1,0 +1,85 @@
+---
+title: Tooltip
+description: Contextual hint shown on hover or focus. Zag behavior core (tooltip), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Tooltip as RTooltip } from '@moderno/react'
+import { Tooltip as VTooltip } from '@moderno/vue'
+import { Tooltip as STooltip } from '@moderno/svelte'
+import { Tooltip as OTooltip } from '@moderno/solid'
+
+**Tooltip** shows a contextual hint when you hover over or focus the trigger. A **closed-prop** primitive (ADR-0003) built on Zag.js's `tooltip` machine, positioned with popper. Like `Dialog`, it takes the trigger as `triggerLabel` (string) and renders its own button.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RTooltip client:only="react" triggerLabel="Hover me" content="Saves your changes" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VTooltip client:only="vue" triggerLabel="Hover me" content="Saves your changes" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <STooltip client:only="svelte" triggerLabel="Hover me" content="Saves your changes" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OTooltip client:only="solid-js" triggerLabel="Hover me" content="Saves your changes" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Tooltip } from '@moderno/react'
+
+<Tooltip triggerLabel="Save" content="Saves your changes" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Tooltip } from '@moderno/vue'
+</script>
+
+<template>
+  <Tooltip triggerLabel="Save" content="Saves your changes" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Tooltip } from '@moderno/svelte'
+</script>
+
+<Tooltip triggerLabel="Save" content="Saves your changes" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Tooltip } from '@moderno/solid'
+
+<Tooltip triggerLabel="Save" content="Saves your changes" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `triggerLabel` | `string` | — | Label of the trigger button. |
+| `content` | `string` | — | The hint text. |
+| `openDelay` | `number` | `400` | Open delay in ms. |
+| `closeDelay` | `number` | `150` | Close delay in ms. |

@@ -1,0 +1,103 @@
+---
+title: Badge
+description: Compact status or label token. Pure CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Badge as RBadge } from '@moderno/react'
+import { Badge as VBadge } from '@moderno/vue'
+import { Badge as SBadge } from '@moderno/svelte'
+import { Badge as OBadge } from '@moderno/solid'
+
+**Badge** is a compact status or label token. A **closed-prop** primitive, pure CSS.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RBadge client:only="react" variant="neutral">Draft</RBadge>
+    <RBadge client:only="react" variant="solid">New</RBadge>
+    <RBadge client:only="react" variant="success" dot={true}>Active</RBadge>
+    <RBadge client:only="react" variant="warning">Pending</RBadge>
+    <RBadge client:only="react" variant="error" dot={true}>Down</RBadge>
+    <RBadge client:only="react" variant="info">Beta</RBadge>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VBadge client:only="vue" variant="neutral">Draft</VBadge>
+    <VBadge client:only="vue" variant="solid">New</VBadge>
+    <VBadge client:only="vue" variant="success" dot={true}>Active</VBadge>
+    <VBadge client:only="vue" variant="warning">Pending</VBadge>
+    <VBadge client:only="vue" variant="error" dot={true}>Down</VBadge>
+    <VBadge client:only="vue" variant="info">Beta</VBadge>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SBadge client:only="svelte" variant="neutral">Draft</SBadge>
+    <SBadge client:only="svelte" variant="solid">New</SBadge>
+    <SBadge client:only="svelte" variant="success" dot={true}>Active</SBadge>
+    <SBadge client:only="svelte" variant="warning">Pending</SBadge>
+    <SBadge client:only="svelte" variant="error" dot={true}>Down</SBadge>
+    <SBadge client:only="svelte" variant="info">Beta</SBadge>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OBadge client:only="solid-js" variant="neutral">Draft</OBadge>
+    <OBadge client:only="solid-js" variant="solid">New</OBadge>
+    <OBadge client:only="solid-js" variant="success" dot={true}>Active</OBadge>
+    <OBadge client:only="solid-js" variant="warning">Pending</OBadge>
+    <OBadge client:only="solid-js" variant="error" dot={true}>Down</OBadge>
+    <OBadge client:only="solid-js" variant="info">Beta</OBadge>
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Badge } from '@moderno/react'
+
+<Badge variant="success" dot>Active</Badge>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Badge } from '@moderno/vue'
+</script>
+
+<template>
+  <Badge variant="success" dot>Active</Badge>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Badge } from '@moderno/svelte'
+</script>
+
+<Badge variant="success" dot>Active</Badge>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Badge } from '@moderno/solid'
+
+<Badge variant="success" dot>Active</Badge>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'neutral' \| 'solid' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'neutral'` | Color/intent. |
+| `dot` | `boolean` | `false` | Shows a status dot at the start. |

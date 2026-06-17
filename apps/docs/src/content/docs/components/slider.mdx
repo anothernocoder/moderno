@@ -1,0 +1,102 @@
+---
+title: Slider
+description: Slider control for a numeric value within a range. Zag behavior core (slider), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Slider as RSlider } from '@moderno/react'
+import { Slider as VSlider } from '@moderno/vue'
+import { Slider as SSlider } from '@moderno/svelte'
+import { Slider as OSlider } from '@moderno/solid'
+
+**Slider** adjusts a numeric value within a range by dragging the thumb or using the keyboard. A **closed-prop** primitive (ADR-0003) built on Zag.js's `slider` machine (single thumb).
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <RSlider client:only="react" label="Volume" defaultValue={60} />
+    <RSlider client:only="react" label="Brightness (step 10)" defaultValue={40} step={10} />
+    <RSlider client:only="react" label="Locked" defaultValue={30} disabled />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <VSlider client:only="vue" label="Volume" defaultValue={60} />
+    <VSlider client:only="vue" label="Brightness (step 10)" defaultValue={40} step={10} />
+    <VSlider client:only="vue" label="Locked" defaultValue={30} disabled />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <SSlider client:only="svelte" label="Volume" defaultValue={60} />
+    <SSlider client:only="svelte" label="Brightness (step 10)" defaultValue={40} step={10} />
+    <SSlider client:only="svelte" label="Locked" defaultValue={30} disabled />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <OSlider client:only="solid-js" label="Volume" defaultValue={60} />
+    <OSlider client:only="solid-js" label="Brightness (step 10)" defaultValue={40} step={10} />
+    <OSlider client:only="solid-js" label="Locked" defaultValue={30} disabled />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Slider } from '@moderno/react'
+
+<Slider label="Volume" defaultValue={60} onValueChange={(v) => console.log(v)} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Slider } from '@moderno/vue'
+import { ref } from 'vue'
+const volume = ref(60)
+</script>
+
+<template>
+  <Slider label="Volume" v-model="volume" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Slider } from '@moderno/svelte'
+  let volume = $state(60)
+</script>
+
+<Slider label="Volume" bind:value={volume} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Slider } from '@moderno/solid'
+
+<Slider label="Volume" defaultValue={60} onValueChange={(v) => console.log(v)} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Visible label. |
+| `defaultValue` | `number` | `50` | Initial uncontrolled value. |
+| `value` / `v-model` / `bind:value` | `number` | — | Controlled value. |
+| `onValueChange` | `(value: number) => void` | — | Callback when the value changes. |
+| `min` | `number` | `0` | Minimum value. |
+| `max` | `number` | `100` | Maximum value. |
+| `step` | `number` | `1` | Increment. |
+| `disabled` | `boolean` | `false` | Disables the control. |
+| `showValue` | `boolean` | `true` | Shows the value next to the label. |
+| `name` | `string` | — | For form submission. |

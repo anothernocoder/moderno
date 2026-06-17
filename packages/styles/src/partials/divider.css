@@ -1,0 +1,24 @@
+/* ---------- Divider (pure CSS, closed-prop) ---------- */
+.md-divider {
+  border: 0;
+  background: var(--md-border-default);
+}
+.md-divider--horizontal { width: 100%; height: 1px; margin: var(--md-spacing-6) 0; }
+.md-divider--vertical { width: 1px; align-self: stretch; min-height: 1em; margin: 0 var(--md-spacing-4); }
+.md-divider-group {
+  display: flex;
+  align-items: center;
+  gap: var(--md-spacing-4);
+  margin: var(--md-spacing-6) 0;
+  color: var(--md-text-secondary);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-label-md);
+}
+.md-divider-group::before,
+.md-divider-group::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--md-border-default);
+}
+

@@ -1,0 +1,105 @@
+---
+title: Checkbox
+description: Control booleano multi-selección, con estado indeterminado. Behavior core Zag (checkbox), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Checkbox as RCheckbox } from '@moderno/react'
+import { Checkbox as VCheckbox } from '@moderno/vue'
+import { Checkbox as SCheckbox } from '@moderno/svelte'
+import { Checkbox as OCheckbox } from '@moderno/solid'
+
+**Checkbox** es un control booleano de multi-selección que admite el estado **indeterminado** (mixto). Primitive **closed-prop** (ADR-0003) sobre la máquina `checkbox` de Zag.js.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RCheckbox client:only="react" label="Acepto los términos" />
+    <RCheckbox client:only="react" label="Marcado" defaultChecked />
+    <RCheckbox client:only="react" label="Indeterminado" defaultChecked="indeterminate" />
+    <RCheckbox client:only="react" label="Bloqueado" disabled />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VCheckbox client:only="vue" label="Acepto los términos" />
+    <VCheckbox client:only="vue" label="Marcado" defaultChecked />
+    <VCheckbox client:only="vue" label="Indeterminado" defaultChecked="indeterminate" />
+    <VCheckbox client:only="vue" label="Bloqueado" disabled />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SCheckbox client:only="svelte" label="Acepto los términos" />
+    <SCheckbox client:only="svelte" label="Marcado" defaultChecked />
+    <SCheckbox client:only="svelte" label="Indeterminado" defaultChecked="indeterminate" />
+    <SCheckbox client:only="svelte" label="Bloqueado" disabled />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OCheckbox client:only="solid-js" label="Acepto los términos" />
+    <OCheckbox client:only="solid-js" label="Marcado" defaultChecked />
+    <OCheckbox client:only="solid-js" label="Indeterminado" defaultChecked="indeterminate" />
+    <OCheckbox client:only="solid-js" label="Bloqueado" disabled />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Checkbox } from '@moderno/react'
+
+<Checkbox label="Acepto los términos" onCheckedChange={(c) => console.log(c)} />
+<Checkbox label="Mixto" defaultChecked="indeterminate" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Checkbox } from '@moderno/vue'
+import { ref } from 'vue'
+const checked = ref(false)
+</script>
+
+<template>
+  <Checkbox label="Acepto los términos" v-model="checked" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Checkbox } from '@moderno/svelte'
+  let checked = $state(false)
+</script>
+
+<Checkbox label="Acepto los términos" bind:checked />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Checkbox } from '@moderno/solid'
+
+<Checkbox label="Acepto los términos" onCheckedChange={(c) => console.log(c)} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `label` | `string` | — | Texto visible junto a la casilla. |
+| `defaultChecked` | `boolean \| 'indeterminate'` | `false` | Estado inicial no controlado. |
+| `checked` / `v-model` / `bind:checked` | `boolean \| 'indeterminate'` | — | Estado controlado. |
+| `onCheckedChange` | `(checked) => void` | — | Callback al cambiar. |
+| `disabled` | `boolean` | `false` | Desactiva el control. |
+| `invalid` | `boolean` | `false` | Marca la casilla como inválida. |
+| `required` | `boolean` | `false` | Marca el campo como requerido. |
+| `name` / `value` | `string` | — | Para envío en formularios. |

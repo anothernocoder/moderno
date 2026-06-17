@@ -1,0 +1,25 @@
+/* ---------- Card (pure CSS, closed-prop) ---------- */
+.md-card {
+  background: var(--md-surface-base);
+  border: 1px solid var(--md-border-default);
+  border-radius: var(--md-radius-none);
+  padding: var(--md-spacing-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-4);
+}
+.md-card__title {
+  margin: 0;
+  font-family: var(--md-font-serif);
+  font-size: var(--md-text-headline-md);
+  line-height: var(--md-text-headline-md-lh);
+  color: var(--md-text-primary);
+}
+.md-card__body { color: var(--md-text-secondary); font-size: var(--md-text-body-sm); line-height: var(--md-text-body-sm-lh); }
+.md-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--md-spacing-3);
+  margin-top: var(--md-spacing-2);
+}
+

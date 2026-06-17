@@ -1,0 +1,115 @@
+/* ============================================================
+   Moderno tokens — framework-free public contract.
+   Theme via CSS custom properties + [data-theme]. No Tailwind.
+   Components consume the --md-* variables; override them to re-skin.
+   ============================================================ */
+
+:root,
+[data-theme="dark"] {
+  /* Color — swap layer (semantic roles) */
+  --md-primary: #fafafa;
+  --md-primary-hover: #e5e5e5;
+  --md-on-primary: #18181b;
+  --md-text-primary: #fafafa;
+  --md-text-secondary: #616161;
+  --md-text-tertiary: #121212;
+  --md-text-inverse: #18181b;
+  --md-surface-base: #0d0d0d;
+  --md-surface-muted: #000000;
+  --md-surface-raised: #141414;
+  --md-border-default: #1c1c1c;
+  --md-border-strong: #2e2e2e;
+  --md-success: #34d399;
+  --md-warning: #fbbf24;
+  --md-error: #f87171;
+  --md-info: #60a5fa;
+  --md-shadow-ink: 0 0 0;
+
+  /* Type families */
+  --md-font-sans: "Hedvig Letters Sans", system-ui, arial;
+  --md-font-serif: "Hedvig Letters Serif", Georgia, "Times New Roman", serif;
+  --md-font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale */
+  --md-text-display: 96px;
+  --md-text-display-lh: 96px;
+  --md-text-display-ls: -0.02em;
+  --md-text-headline-lg: 24px;
+  --md-text-headline-lg-lh: 28px;
+  --md-text-headline-md: 20px;
+  --md-text-headline-md-lh: 24px;
+  --md-text-body-lg: 18px;
+  --md-text-body-lg-lh: 28px;
+  --md-text-body-md: 16px;
+  --md-text-body-md-lh: 24px;
+  --md-text-body-sm: 14px;
+  --md-text-body-sm-lh: 20px;
+  --md-text-label-md: 12px;
+  --md-text-label-md-lh: 16px;
+  --md-text-label-sm: 10px;
+  --md-text-label-sm-lh: 14px;
+
+  /* Spacing */
+  --md-spacing-1: 4px;
+  --md-spacing-2: 6px;
+  --md-spacing-3: 8px;
+  --md-spacing-4: 12px;
+  --md-spacing-5: 14px;
+  --md-spacing-6: 16px;
+  --md-spacing-7: 20px;
+  --md-spacing-8: 24px;
+
+  /* Radius */
+  --md-radius-none: 0px;
+  --md-radius-full: 9999px;
+
+  /* Elevation — 7 steps */
+  --md-shadow-xxsmall: 0 0 0 1px var(--md-border-default);
+  --md-shadow-xsmall: 0 0 0 1px var(--md-border-default), 0 1px 2px rgb(var(--md-shadow-ink) / 0.45);
+  --md-shadow-small: 0 0 0 1px var(--md-border-default), 0 2px 6px rgb(var(--md-shadow-ink) / 0.5);
+  --md-shadow-medium: 0 0 0 1px var(--md-border-default), 0 4px 12px rgb(var(--md-shadow-ink) / 0.55);
+  --md-shadow-large: 0 0 0 1px var(--md-border-default), 0 8px 24px rgb(var(--md-shadow-ink) / 0.6);
+  --md-shadow-xlarge: 0 0 0 1px var(--md-border-default), 0 16px 48px rgb(var(--md-shadow-ink) / 0.65);
+  --md-shadow-xxlarge: 0 0 0 1px var(--md-border-default), 0 24px 64px rgb(var(--md-shadow-ink) / 0.7);
+}
+
+[data-theme="light"] {
+  --md-primary: #121212;
+  --md-primary-hover: #2e2e2e;
+  --md-on-primary: #fafafa;
+  --md-text-primary: #121212;
+  --md-text-secondary: #616161;
+  --md-text-tertiary: #fafafa;
+  --md-text-inverse: #fafafa;
+  --md-surface-base: #fafafa;
+  --md-surface-muted: #ffffff;
+  --md-surface-raised: #f4f4f4;
+  --md-border-default: #e5e5e5;
+  --md-border-strong: #c7c7c7;
+  --md-success: #15803d;
+  --md-warning: #a16207;
+  --md-error: #b91c1c;
+  --md-info: #1d4ed8;
+  --md-shadow-ink: 18 18 18;
+}
+
+/* Base reset/typography — opt-in via importing this file. */
+@layer moderno-base {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--md-surface-base);
+    color: var(--md-text-primary);
+    font-family: var(--md-font-sans);
+    font-size: var(--md-text-body-md);
+    line-height: var(--md-text-body-md-lh);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1 { font-family: var(--md-font-serif); font-size: 24px; line-height: 1.1; letter-spacing: -0.01em; }
+  h2 { font-size: 20px; line-height: 1.15; letter-spacing: -0.01em; }
+  h3 { font-size: 18px; line-height: 1.2; }
+  h4 { font-size: 16px; line-height: 24px; }
+  h5 { font-size: 14px; line-height: 20px; }
+  h6 { font-size: 12px; line-height: 16px; letter-spacing: 0.04em; text-transform: uppercase; }
+  ::selection { background: var(--md-primary); color: var(--md-on-primary); }
+}

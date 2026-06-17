@@ -1,0 +1,121 @@
+---
+title: Tabs
+description: Switch between sibling views within the same context. Compositional, built on Zag's tabs machine.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RTabsDemo from '../../../demos/react/TabsDemo.tsx'
+import VTabsDemo from '../../../demos/vue/TabsDemo.vue'
+import STabsDemo from '../../../demos/svelte/TabsDemo.svelte'
+import OTabsDemo from '../../../demos/solid/TabsDemo.tsx'
+
+**Tabs** lets you switch between sibling views within the same context. It is a
+**compositional** primitive (ADR-0003): it exposes parts that share a single Zag state
+machine — `Tabs.Root`, `Tabs.List`, `Tabs.Trigger`, `Tabs.Content`. The behavior (arrow-key
+navigation, `Home`/`End`, focus, ARIA `role="tab"`/`tabpanel`) comes from Zag's `tabs` machine.
+
+## Live demo
+
+The same component, rendered from each framework. Switch tabs with the mouse or with
+the keyboard arrow keys.
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RTabsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VTabsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><STabsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OTabsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Tabs } from '@moderno/react'
+
+<Tabs.Root defaultValue="account">
+  <Tabs.List>
+    <Tabs.Trigger value="account">Account</Tabs.Trigger>
+    <Tabs.Trigger value="shipping">Shipping</Tabs.Trigger>
+    <Tabs.Trigger value="security">Security</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="account">Your account details and public profile.</Tabs.Content>
+  <Tabs.Content value="shipping">Saved addresses and shipping methods.</Tabs.Content>
+  <Tabs.Content value="security">Password, active sessions, and 2FA.</Tabs.Content>
+</Tabs.Root>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Tabs } from '@moderno/vue'
+</script>
+
+<template>
+  <Tabs.Root default-value="account">
+    <Tabs.List>
+      <Tabs.Trigger value="account">Account</Tabs.Trigger>
+      <Tabs.Trigger value="shipping">Shipping</Tabs.Trigger>
+      <Tabs.Trigger value="security">Security</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.Content value="account">Your account details and public profile.</Tabs.Content>
+    <Tabs.Content value="shipping">Saved addresses and shipping methods.</Tabs.Content>
+    <Tabs.Content value="security">Password, active sessions, and 2FA.</Tabs.Content>
+  </Tabs.Root>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Tabs } from '@moderno/svelte'
+</script>
+
+<Tabs.Root defaultValue="account">
+  <Tabs.List>
+    <Tabs.Trigger value="account">Account</Tabs.Trigger>
+    <Tabs.Trigger value="shipping">Shipping</Tabs.Trigger>
+    <Tabs.Trigger value="security">Security</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="account">Your account details and public profile.</Tabs.Content>
+  <Tabs.Content value="shipping">Saved addresses and shipping methods.</Tabs.Content>
+  <Tabs.Content value="security">Password, active sessions, and 2FA.</Tabs.Content>
+</Tabs.Root>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Tabs } from '@moderno/solid'
+
+<Tabs.Root defaultValue="account">
+  <Tabs.List>
+    <Tabs.Trigger value="account">Account</Tabs.Trigger>
+    <Tabs.Trigger value="shipping">Shipping</Tabs.Trigger>
+    <Tabs.Trigger value="security">Security</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="account">Your account details and public profile.</Tabs.Content>
+  <Tabs.Content value="shipping">Saved addresses and shipping methods.</Tabs.Content>
+  <Tabs.Content value="security">Password, active sessions, and 2FA.</Tabs.Content>
+</Tabs.Root>
+```
+</TabItem>
+</Tabs>
+
+## Anatomy and props
+
+| Part | Prop | Description |
+|-------|------|-------------|
+| `Tabs.Root` | `defaultValue` | Initially selected tab (uncontrolled). |
+| `Tabs.Root` | `value` | Selected tab (controlled). |
+| `Tabs.Root` | `onValueChange` | Callback `(value: string) => void` when the tab changes. |
+| `Tabs.Trigger` | `value`, `disabled` | Identifies the tab; `disabled` disables it. |
+| `Tabs.Content` | `value` | Associates the panel with the tab that has the same `value`. |
+
+In Vue, the controlled `value` is bound with `v-model`; in Svelte, with `bind:value`.
+
+## Accessibility
+
+- Full ARIA (`role="tablist"`/`tab"`/`tabpanel"`, `aria-selected`, `aria-controls`)
+  provided by Zag's `tabs` machine.
+- Keyboard navigation: arrow keys to move, `Home`/`End` to jump to the ends.
+- The active panel is focusable; the focus indicator uses `--md-primary`.

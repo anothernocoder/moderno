@@ -1,0 +1,91 @@
+---
+title: Spinner
+description: Indeterminate loading spinner. Pure CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Spinner as RSpinner } from '@moderno/react'
+import { Spinner as VSpinner } from '@moderno/vue'
+import { Spinner as SSpinner } from '@moderno/svelte'
+import { Spinner as OSpinner } from '@moderno/solid'
+
+**Spinner** indicates indeterminate loading. A **closed-prop** primitive, pure CSS. It carries `role="status"` and `aria-label`; the animation respects `prefers-reduced-motion`.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RSpinner client:only="react" size="sm" />
+    <RSpinner client:only="react" size="md" />
+    <RSpinner client:only="react" size="lg" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VSpinner client:only="vue" size="sm" />
+    <VSpinner client:only="vue" size="md" />
+    <VSpinner client:only="vue" size="lg" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SSpinner client:only="svelte" size="sm" />
+    <SSpinner client:only="svelte" size="md" />
+    <SSpinner client:only="svelte" size="lg" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OSpinner client:only="solid-js" size="sm" />
+    <OSpinner client:only="solid-js" size="md" />
+    <OSpinner client:only="solid-js" size="lg" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Spinner } from '@moderno/react'
+
+<Spinner size="lg" label="Loading data" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Spinner } from '@moderno/vue'
+</script>
+
+<template>
+  <Spinner size="lg" label="Loading data" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Spinner } from '@moderno/svelte'
+</script>
+
+<Spinner size="lg" label="Loading data" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Spinner } from '@moderno/solid'
+
+<Spinner size="lg" label="Loading data" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size (16 / 24 / 40 px). |
+| `label` | `string` | `'Loading'` | Accessible label announced by screen readers. |

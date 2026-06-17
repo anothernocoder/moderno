@@ -1,0 +1,96 @@
+---
+title: Indicator
+description: Punto de estado con pulso opcional y etiqueta. Pura CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Indicator as RIndicator } from '@moderno/react'
+import { Indicator as VIndicator } from '@moderno/vue'
+import { Indicator as SIndicator } from '@moderno/svelte'
+import { Indicator as OIndicator } from '@moderno/solid'
+
+**Indicator** es un punto de estado con pulso opcional y etiqueta. Primitive **closed-prop**, pura CSS. A diferencia del punto del [Badge](/es/components/badge/), puede animarse para señalar actividad en vivo.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RIndicator client:only="react" variant="success" pulse={true}>En línea</RIndicator>
+    <RIndicator client:only="react" variant="warning">Inactivo</RIndicator>
+    <RIndicator client:only="react" variant="error">Caído</RIndicator>
+    <RIndicator client:only="react" variant="neutral">Desconocido</RIndicator>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VIndicator client:only="vue" variant="success" pulse={true}>En línea</VIndicator>
+    <VIndicator client:only="vue" variant="warning">Inactivo</VIndicator>
+    <VIndicator client:only="vue" variant="error">Caído</VIndicator>
+    <VIndicator client:only="vue" variant="neutral">Desconocido</VIndicator>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SIndicator client:only="svelte" variant="success" pulse={true}>En línea</SIndicator>
+    <SIndicator client:only="svelte" variant="warning">Inactivo</SIndicator>
+    <SIndicator client:only="svelte" variant="error">Caído</SIndicator>
+    <SIndicator client:only="svelte" variant="neutral">Desconocido</SIndicator>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OIndicator client:only="solid-js" variant="success" pulse={true}>En línea</OIndicator>
+    <OIndicator client:only="solid-js" variant="warning">Inactivo</OIndicator>
+    <OIndicator client:only="solid-js" variant="error">Caído</OIndicator>
+    <OIndicator client:only="solid-js" variant="neutral">Desconocido</OIndicator>
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Indicator } from '@moderno/react'
+
+<Indicator variant="success" pulse>En línea</Indicator>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Indicator } from '@moderno/vue'
+</script>
+
+<template>
+  <Indicator variant="success" pulse>En línea</Indicator>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Indicator } from '@moderno/svelte'
+</script>
+
+<Indicator variant="success" pulse>En línea</Indicator>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Indicator } from '@moderno/solid'
+
+<Indicator variant="success" pulse>En línea</Indicator>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `variant` | `'neutral' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'neutral'` | Color/intención del punto. |
+| `pulse` | `boolean` | `false` | Anima un anillo pulsante (respeta `prefers-reduced-motion`). |
+| `children` | `ReactNode` | — | Etiqueta opcional tras el punto. |

@@ -1,0 +1,91 @@
+{
+  "$schema": "./registry.schema.json",
+  "name": "moderno",
+  "blocks": {
+    "hero": {
+      "domain": "marketing",
+      "description": "Sección hero above-the-fold: kicker, título, subtítulo y CTA.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/hero/Hero.tsx",
+        "vue": "blocks/marketing/hero/Hero.vue",
+        "svelte": "blocks/marketing/hero/Hero.svelte",
+        "solid": "blocks/marketing/hero/Hero.solid.tsx"
+      },
+      "dest": {
+        "react": "Hero.tsx",
+        "vue": "Hero.vue",
+        "svelte": "Hero.svelte",
+        "solid": "Hero.tsx"
+      }
+    },
+    "stats": {
+      "domain": "applications",
+      "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/stats/Stats.tsx",
+        "vue": "blocks/applications/stats/Stats.vue",
+        "svelte": "blocks/applications/stats/Stats.svelte",
+        "solid": "blocks/applications/stats/Stats.solid.tsx"
+      },
+      "dest": {
+        "react": "Stats.tsx",
+        "vue": "Stats.vue",
+        "svelte": "Stats.svelte",
+        "solid": "Stats.tsx"
+      }
+    },
+    "product-card": {
+      "domain": "ecommerce",
+      "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/product-card/ProductCard.tsx",
+        "vue": "blocks/ecommerce/product-card/ProductCard.vue",
+        "svelte": "blocks/ecommerce/product-card/ProductCard.svelte",
+        "solid": "blocks/ecommerce/product-card/ProductCard.solid.tsx"
+      },
+      "dest": {
+        "react": "ProductCard.tsx",
+        "vue": "ProductCard.vue",
+        "svelte": "ProductCard.svelte",
+        "solid": "ProductCard.tsx"
+      }
+    },
+    "portfolio-header": {
+      "domain": "portfolio",
+      "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/portfolio/portfolio-header/PortfolioHeader.tsx",
+        "vue": "blocks/portfolio/portfolio-header/PortfolioHeader.vue",
+        "svelte": "blocks/portfolio/portfolio-header/PortfolioHeader.svelte",
+        "solid": "blocks/portfolio/portfolio-header/PortfolioHeader.solid.tsx"
+      },
+      "dest": {
+        "react": "PortfolioHeader.tsx",
+        "vue": "PortfolioHeader.vue",
+        "svelte": "PortfolioHeader.svelte",
+        "solid": "PortfolioHeader.tsx"
+      }
+    },
+    "story": {
+      "domain": "images-ads",
+      "description": "Plantilla vertical 9:16 para ads / historias: kicker, título y CTA.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/images-ads/story/Story.tsx",
+        "vue": "blocks/images-ads/story/Story.vue",
+        "svelte": "blocks/images-ads/story/Story.svelte",
+        "solid": "blocks/images-ads/story/Story.solid.tsx"
+      },
+      "dest": {
+        "react": "Story.tsx",
+        "vue": "Story.vue",
+        "svelte": "Story.svelte",
+        "solid": "Story.tsx"
+      }
+    }
+  }
+}

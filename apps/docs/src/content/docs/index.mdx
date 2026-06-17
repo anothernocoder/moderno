@@ -1,0 +1,49 @@
+---
+title: About Moderno
+description: A framework-agnostic design system — one behavior and one look, defined once, usable from React, Vue, Svelte, and Solid.
+---
+
+Moderno is a **token-driven, framework-agnostic design system**. It defines a
+visual language (square corners, monochrome, Hedvig typography) and ships styled,
+accessible, interactive components consumable from **React, Vue, Svelte, and Solid**.
+
+## The idea in one sentence
+
+> One behavior + one look, defined once, usable from all four frameworks
+> — **not** four parallel implementations that happen to look alike.
+
+## How it's built
+
+Moderno cleanly separates two responsibilities:
+
+- **Behavior (Zag.js).** The interaction and accessibility logic — keyboard, focus,
+  ARIA, state machines — lives in [Zag.js](https://zagjs.com), consumed directly
+  through its per-framework adapters. It's the same core for all four.
+- **Look (tokens + compiled CSS).** The visual appearance is expressed as
+  [design tokens](https://www.w3.org/community/design-tokens/) (`@moderno/tokens`)
+  surfaced as CSS custom properties, and a compiled `md-*` class contract
+  (`@moderno/styles`). Re-theming means re-mapping semantic roles, without touching components.
+
+Each per-framework package (`@moderno/react`, `@moderno/vue`, `@moderno/svelte`,
+`@moderno/solid`) writes the component anatomy and wires Zag's _prop-getters_ to the
+`md-*` class contract.
+
+## Two delivery channels
+
+| Type | What it is | How it's delivered |
+|------|--------|-----------------|
+| **Primitive** | Interactive or display component (Button, Tabs, Dialog…) | Versioned npm packages — a11y/bug fixes propagate from the center |
+| **Block** | Composition of primitives + layout (Hero, Pricing, app shell) | **Copy-paste** registry via CLI — the consumer forks the layout to taste |
+
+## API shape
+
+Moderno uses a **hybrid API**:
+
+- **Closed-prop** by default — a component configured via props (`<Dialog title … />`).
+- **Compositional** where the anatomy genuinely varies — composable parts
+  (`<Tabs.Root>`, `<Tabs.List>`, `<Tabs.Trigger>`, `<Tabs.Content>`).
+
+## Next step
+
+Ready to install? Head to the [installation guide](/introduction/installation/), or explore
+the [components](/components/button/).

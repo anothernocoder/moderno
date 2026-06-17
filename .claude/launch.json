@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "styleguide",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "styleguide"],
-      "port": 5173,
+      "name": "moderno-docs",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "@moderno/docs", "dev"],
+      "port": 4321,
       "autoPort": true
     }
   ]

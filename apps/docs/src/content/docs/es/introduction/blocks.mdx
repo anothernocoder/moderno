@@ -1,0 +1,39 @@
+---
+title: Blocks y registry
+description: Cómo traer blocks (composiciones de layout) a tu repo con el CLI copy-paste de Moderno.
+---
+
+Moderno distribuye en **dos canales** (ADR-0001):
+
+- **Primitives** → paquetes npm (`@moderno/react`, etc.). Versionados; los arreglos se
+  propagan al centro. Son los [componentes](/es/components/button/).
+- **Blocks** → **registry copy-paste**. Composiciones de layout (Hero, Pricing, app shell)
+  que copias a tu repo y editas libremente. No se actualizan solos — ese es el trade por la
+  libertad de layout.
+
+## El CLI
+
+```sh
+# Ver los blocks disponibles
+npx @moderno/registry list
+
+# Copiar un block a tu proyecto, para tu framework
+npx @moderno/registry add hero --framework react --dest ./src/blocks
+```
+
+El comando copia el archivo del block (para el framework elegido) a `--dest`
+(por defecto `./src/blocks`). A partir de ahí el código es **tuyo**: edítalo a gusto.
+
+Tras copiarlo, asegúrate de tener instalado el paquete primitive correspondiente
+(`@moderno/<framework>`) y de [importar los estilos](/es/introduction/installation/).
+
+## Bloques disponibles
+
+Cada block tiene su propia página con demo en vivo (los cuatro frameworks), comando de
+instalación y referencia de props en la sección **Blocks** del menú:
+
+- [Hero](/es/blocks/hero/) — marketing: hero above-the-fold.
+- [Stats](/es/blocks/stats/) — aplicación: fila de KPIs.
+- [Product Card](/es/blocks/product-card/) — ecommerce: tarjeta de producto.
+- [Portfolio Header](/es/blocks/portfolio-header/) — portafolio: encabezado de presentación.
+- [Story](/es/blocks/story/) — images-ads: plantilla vertical 9:16.

@@ -1,0 +1,40 @@
+{
+  "name": "@moderno/react",
+  "version": "0.1.0",
+  "description": "Moderno styled components for React (Zag.js behavior core + Moderno tokens).",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "dependencies": {
+    "@moderno/class-contract": "workspace:*",
+    "@moderno/styles": "workspace:*",
+    "@moderno/tokens": "workspace:*",
+    "@zag-js/accordion": "^1.0.0",
+    "@zag-js/checkbox": "^1.0.0",
+    "@zag-js/dialog": "^1.0.0",
+    "@zag-js/menu": "^1.0.0",
+    "@zag-js/popover": "^1.0.0",
+    "@zag-js/progress": "^1.0.0",
+    "@zag-js/radio-group": "^1.0.0",
+    "@zag-js/react": "^1.0.0",
+    "@zag-js/select": "^1.0.0",
+    "@zag-js/slider": "^1.0.0",
+    "@zag-js/switch": "^1.0.0",
+    "@zag-js/tabs": "^1.0.0",
+    "@zag-js/toast": "^1.0.0",
+    "@zag-js/tooltip": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}

@@ -1,0 +1,99 @@
+---
+title: Callout
+description: Bloque destacado que llama la atención sobre un mensaje o consejo. Pura CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Callout as RCallout } from '@moderno/react'
+import { Callout as VCallout } from '@moderno/vue'
+import { Callout as SCallout } from '@moderno/svelte'
+import { Callout as OCallout } from '@moderno/solid'
+
+**Callout** resalta un mensaje o consejo. Primitive **closed-prop**, pura CSS.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo md-demo--stack">
+    <RCallout client:only="react" variant="info" title="Sugerencia">Puedes re-temar todo el sistema sobrescribiendo las variables --md-*.</RCallout>
+    <RCallout client:only="react" variant="warning" title="Atención">Esta acción afecta a todos los miembros del equipo.</RCallout>
+    <RCallout client:only="react" variant="error" title="Error">No se pudo procesar el pago. Verifica tu método.</RCallout>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo md-demo--stack">
+    <VCallout client:only="vue" variant="info" title="Sugerencia">Puedes re-temar todo el sistema sobrescribiendo las variables --md-*.</VCallout>
+    <VCallout client:only="vue" variant="warning" title="Atención">Esta acción afecta a todos los miembros del equipo.</VCallout>
+    <VCallout client:only="vue" variant="error" title="Error">No se pudo procesar el pago. Verifica tu método.</VCallout>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo md-demo--stack">
+    <SCallout client:only="svelte" variant="info" title="Sugerencia">Puedes re-temar todo el sistema sobrescribiendo las variables --md-*.</SCallout>
+    <SCallout client:only="svelte" variant="warning" title="Atención">Esta acción afecta a todos los miembros del equipo.</SCallout>
+    <SCallout client:only="svelte" variant="error" title="Error">No se pudo procesar el pago. Verifica tu método.</SCallout>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo md-demo--stack">
+    <OCallout client:only="solid-js" variant="info" title="Sugerencia">Puedes re-temar todo el sistema sobrescribiendo las variables --md-*.</OCallout>
+    <OCallout client:only="solid-js" variant="warning" title="Atención">Esta acción afecta a todos los miembros del equipo.</OCallout>
+    <OCallout client:only="solid-js" variant="error" title="Error">No se pudo procesar el pago. Verifica tu método.</OCallout>
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Callout } from '@moderno/react'
+
+<Callout variant="warning" title="Atención">
+  Esta acción afecta a todos los miembros del equipo.
+</Callout>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Callout } from '@moderno/vue'
+</script>
+
+<template>
+  <Callout variant="warning" title="Atención">
+    Esta acción afecta a todos los miembros del equipo.
+  </Callout>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Callout } from '@moderno/svelte'
+</script>
+
+<Callout variant="warning" title="Atención">
+  Esta acción afecta a todos los miembros del equipo.
+</Callout>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Callout } from '@moderno/solid'
+
+<Callout variant="warning" title="Atención">
+  Esta acción afecta a todos los miembros del equipo.
+</Callout>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Color del borde/intención. |
+| `title` | `string` | — | Título opcional en negrita. |

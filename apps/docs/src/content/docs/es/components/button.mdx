@@ -1,0 +1,109 @@
+---
+title: Button
+description: Control de acción primaria. Pura CSS, sin núcleo de comportamiento.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Button as RButton } from '@moderno/react'
+import { Button as VButton } from '@moderno/vue'
+import { Button as SButton } from '@moderno/svelte'
+import { Button as OButton } from '@moderno/solid'
+
+**Button** es el control de acción primaria. Es un primitive **closed-prop** y **pura CSS**:
+no usa máquina de Zag, solo el contrato de clases `md-*`. Una sola acción primaria por vista.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RButton client:only="react" label="Guardar cambios" />
+    <RButton client:only="react" variant="secondary" label="Cancelar" />
+    <RButton client:only="react" size="sm" label="Pequeño" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VButton client:only="vue" label="Guardar cambios" />
+    <VButton client:only="vue" variant="secondary" label="Cancelar" />
+    <VButton client:only="vue" size="sm" label="Pequeño" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SButton client:only="svelte" label="Guardar cambios" />
+    <SButton client:only="svelte" variant="secondary" label="Cancelar" />
+    <SButton client:only="svelte" size="sm" label="Pequeño" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OButton client:only="solid-js" label="Guardar cambios" />
+    <OButton client:only="solid-js" variant="secondary" label="Cancelar" />
+    <OButton client:only="solid-js" size="sm" label="Pequeño" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Button } from '@moderno/react'
+
+<Button label="Guardar cambios" />
+<Button variant="secondary" label="Cancelar" />
+<Button size="sm" label="Pequeño" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Button } from '@moderno/vue'
+</script>
+
+<template>
+  <Button label="Guardar cambios" />
+  <Button variant="secondary" label="Cancelar" />
+  <Button size="sm" label="Pequeño" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Button } from '@moderno/svelte'
+</script>
+
+<Button label="Guardar cambios" />
+<Button variant="secondary" label="Cancelar" />
+<Button size="sm" label="Pequeño" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Button } from '@moderno/solid'
+
+<Button label="Guardar cambios" />
+<Button variant="secondary" label="Cancelar" />
+<Button size="sm" label="Pequeño" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `variant` | `'primary' \| 'secondary'` | `'primary'` | Jerarquía visual. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Altura del control (32 / 40 / 48 px). |
+| `label` | `string` | — | Texto de conveniencia; si se omite, usa los children. |
+
+Acepta además todos los atributos nativos de `<button>` (`onClick`, `disabled`, `type`…).
+
+## Accesibilidad
+
+- Renderiza un `<button>` nativo: rol, foco y activación por teclado vienen gratis.
+- El foco visible usa un outline de 2px con el color `--md-primary`.
+- Para botones de solo ícono, provee siempre `aria-label`.

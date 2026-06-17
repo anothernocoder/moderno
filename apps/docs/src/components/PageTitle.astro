@@ -1,0 +1,169 @@
+---
+import fs from 'node:fs';
+
+// Starlight anchors the page-top "Skip to content" target to this id.
+const PAGE_TITLE_ID = '_top';
+
+const { entry } = Astro.locals.starlightRoute;
+
+// Build the raw markdown for this page from its source file. We strip the
+// frontmatter block and the MDX `import` lines so the clipboard gets clean,
+// portable markdown rather than build-time machinery.
+let markdown = '';
+try {
+  const raw = fs.readFileSync(entry.filePath, 'utf-8');
+  markdown = raw
+    .replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '') // drop frontmatter
+    .replace(/^import\s.*$/gm, '') // drop MDX imports
+    .replace(/\n{3,}/g, '\n\n') // collapse blank runs
+    .trim();
+} catch {
+  markdown = '';
+}
+
+const title = entry.data.title;
+
+// Starlight injects the locale-aware translation helper onto Astro.locals.
+const t = Astro.locals.t;
+const copyLabel = t('pageTitle.copyMarkdown');
+const copyAria = t('pageTitle.copyMarkdownAria');
+const copiedLabel = t('pageTitle.copied');
+---
+
+<div class="page-title-row">
+  <h1 id={PAGE_TITLE_ID}>{title}</h1>
+  {
+    markdown && (
+      <button
+        type="button"
+        class="copy-markdown"
+        data-markdown={markdown}
+        data-copy-label={copyLabel}
+        data-copied-label={copiedLabel}
+        aria-label={copyAria}
+        title={copyAria}
+      >
+        <svg
+          class="icon-copy"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+        <svg
+          class="icon-check"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        <span class="copy-label">{copyLabel}</span>
+      </button>
+    )
+  }
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-markdown').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const md = btn.dataset.markdown ?? '';
+      try {
+        await navigator.clipboard.writeText(md);
+      } catch {
+        // Fallback for non-secure contexts without the async clipboard API.
+        const ta = document.createElement('textarea');
+        ta.value = md;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      btn.classList.add('is-copied');
+      const label = btn.querySelector('.copy-label');
+      const copyText = btn.dataset.copyLabel ?? '';
+      const copiedText = btn.dataset.copiedLabel ?? '';
+      if (label) label.textContent = copiedText;
+      window.setTimeout(() => {
+        btn.classList.remove('is-copied');
+        if (label) label.textContent = copyText;
+      }, 2000);
+    });
+  });
+</script>
+
+<style>
+  @layer starlight.core {
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--md-spacing-4, 1rem);
+      flex-wrap: wrap;
+    }
+    h1 {
+      margin-top: 1rem;
+      font-size: var(--sl-text-h1);
+      line-height: var(--sl-line-height-headings);
+      font-weight: 600;
+      color: var(--sl-color-white);
+    }
+  }
+
+  .copy-markdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    margin-top: 1rem;
+    padding: 0.4rem 0.7rem;
+    font-size: var(--sl-text-xs);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--md-text-secondary, var(--sl-color-gray-2));
+    background: var(--md-surface-base, var(--sl-color-gray-6));
+    border: 1px solid var(--md-border-default, var(--sl-color-gray-5));
+    border-radius: var(--md-radius-md, 0.375rem);
+    cursor: pointer;
+    transition:
+      color 0.15s ease,
+      background 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .copy-markdown:hover {
+    color: var(--md-text-primary, var(--sl-color-white));
+    border-color: var(--md-border-strong, var(--sl-color-gray-4));
+    background: var(--md-surface-muted, var(--sl-color-gray-5));
+  }
+  .copy-markdown .icon-check {
+    display: none;
+  }
+  .copy-markdown.is-copied {
+    color: var(--md-text-success, #3fa45b);
+    border-color: currentColor;
+  }
+  .copy-markdown.is-copied .icon-copy {
+    display: none;
+  }
+  .copy-markdown.is-copied .icon-check {
+    display: inline-block;
+  }
+</style>

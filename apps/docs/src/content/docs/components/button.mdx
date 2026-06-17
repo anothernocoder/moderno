@@ -1,0 +1,109 @@
+---
+title: Button
+description: Primary action control. Pure CSS, no behavior core.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Button as RButton } from '@moderno/react'
+import { Button as VButton } from '@moderno/vue'
+import { Button as SButton } from '@moderno/svelte'
+import { Button as OButton } from '@moderno/solid'
+
+**Button** is the primary action control. It's a **closed-prop** and **pure CSS** primitive:
+it uses no Zag machine, only the `md-*` class contract. One primary action per view.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RButton client:only="react" label="Save changes" />
+    <RButton client:only="react" variant="secondary" label="Cancel" />
+    <RButton client:only="react" size="sm" label="Small" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VButton client:only="vue" label="Save changes" />
+    <VButton client:only="vue" variant="secondary" label="Cancel" />
+    <VButton client:only="vue" size="sm" label="Small" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SButton client:only="svelte" label="Save changes" />
+    <SButton client:only="svelte" variant="secondary" label="Cancel" />
+    <SButton client:only="svelte" size="sm" label="Small" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OButton client:only="solid-js" label="Save changes" />
+    <OButton client:only="solid-js" variant="secondary" label="Cancel" />
+    <OButton client:only="solid-js" size="sm" label="Small" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Button } from '@moderno/react'
+
+<Button label="Save changes" />
+<Button variant="secondary" label="Cancel" />
+<Button size="sm" label="Small" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Button } from '@moderno/vue'
+</script>
+
+<template>
+  <Button label="Save changes" />
+  <Button variant="secondary" label="Cancel" />
+  <Button size="sm" label="Small" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Button } from '@moderno/svelte'
+</script>
+
+<Button label="Save changes" />
+<Button variant="secondary" label="Cancel" />
+<Button size="sm" label="Small" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Button } from '@moderno/solid'
+
+<Button label="Save changes" />
+<Button variant="secondary" label="Cancel" />
+<Button size="sm" label="Small" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'primary' \| 'secondary'` | `'primary'` | Visual hierarchy. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Control height (32 / 40 / 48 px). |
+| `label` | `string` | — | Convenience text; if omitted, uses the children. |
+
+It also accepts all native `<button>` attributes (`onClick`, `disabled`, `type`…).
+
+## Accessibility
+
+- Renders a native `<button>`: role, focus, and keyboard activation come for free.
+- Visible focus uses a 2px outline in the `--md-primary` color.
+- For icon-only buttons, always provide `aria-label`.

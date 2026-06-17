@@ -1,0 +1,102 @@
+---
+title: Avatar
+description: Avatar de usuario o entidad con imagen o fallback de iniciales. Pura CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Avatar as RAvatar } from '@moderno/react'
+import { Avatar as VAvatar } from '@moderno/vue'
+import { Avatar as SAvatar } from '@moderno/svelte'
+import { Avatar as OAvatar } from '@moderno/solid'
+
+**Avatar** muestra una imagen de usuario o, en su ausencia, sus iniciales. Primitive **closed-prop**, pura CSS.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RAvatar client:only="react" initials="HS" size="sm" />
+    <RAvatar client:only="react" initials="HS" size="md" />
+    <RAvatar client:only="react" initials="HS" size="lg" />
+    <RAvatar client:only="react" initials="HS" shape="square" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VAvatar client:only="vue" initials="HS" size="sm" />
+    <VAvatar client:only="vue" initials="HS" size="md" />
+    <VAvatar client:only="vue" initials="HS" size="lg" />
+    <VAvatar client:only="vue" initials="HS" shape="square" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SAvatar client:only="svelte" initials="HS" size="sm" />
+    <SAvatar client:only="svelte" initials="HS" size="md" />
+    <SAvatar client:only="svelte" initials="HS" size="lg" />
+    <SAvatar client:only="svelte" initials="HS" shape="square" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OAvatar client:only="solid-js" initials="HS" size="sm" />
+    <OAvatar client:only="solid-js" initials="HS" size="md" />
+    <OAvatar client:only="solid-js" initials="HS" size="lg" />
+    <OAvatar client:only="solid-js" initials="HS" shape="square" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Avatar } from '@moderno/react'
+
+<Avatar src="/u/hector.jpg" alt="Héctor" size="lg" />
+<Avatar initials="HS" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Avatar } from '@moderno/vue'
+</script>
+
+<template>
+  <Avatar src="/u/hector.jpg" alt="Héctor" size="lg" />
+  <Avatar initials="HS" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Avatar } from '@moderno/svelte'
+</script>
+
+<Avatar src="/u/hector.jpg" alt="Héctor" size="lg" />
+<Avatar initials="HS" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Avatar } from '@moderno/solid'
+
+<Avatar src="/u/hector.jpg" alt="Héctor" size="lg" />
+<Avatar initials="HS" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `src` | `string` | — | URL de la imagen. Si falta, se muestran las iniciales. |
+| `alt` | `string` | `''` | Texto alternativo de la imagen. |
+| `initials` | `string` | — | Iniciales de fallback. |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Tamaño (28 / 40 / 56 px). |
+| `shape` | `'circle' \| 'square'` | `'circle'` | Forma del recorte. |

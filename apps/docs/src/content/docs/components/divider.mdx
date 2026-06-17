@@ -1,0 +1,103 @@
+---
+title: Divider
+description: Visual and semantic separator, optionally labeled. Pure CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Divider as RDivider } from '@moderno/react'
+import { Divider as VDivider } from '@moderno/vue'
+import { Divider as SDivider } from '@moderno/svelte'
+import { Divider as ODivider } from '@moderno/solid'
+
+**Divider** separates content with `role="separator"` semantics, optionally with a centered label. It's a **closed-prop** primitive, pure CSS.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Section A</span>
+    <RDivider client:only="react" />
+    <RDivider client:only="react" label="or" />
+    <span>Section B</span>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Section A</span>
+    <VDivider client:only="vue" />
+    <VDivider client:only="vue" label="or" />
+    <span>Section B</span>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Section A</span>
+    <SDivider client:only="svelte" />
+    <SDivider client:only="svelte" label="or" />
+    <span>Section B</span>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;width:100%">
+    <span>Section A</span>
+    <ODivider client:only="solid-js" />
+    <ODivider client:only="solid-js" label="or" />
+    <span>Section B</span>
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Divider } from '@moderno/react'
+
+<Divider />
+<Divider label="or" />
+<Divider orientation="vertical" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Divider } from '@moderno/vue'
+</script>
+
+<template>
+  <Divider />
+  <Divider label="or" />
+  <Divider orientation="vertical" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Divider } from '@moderno/svelte'
+</script>
+
+<Divider />
+<Divider label="or" />
+<Divider orientation="vertical" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Divider } from '@moderno/solid'
+
+<Divider />
+<Divider label="or" />
+<Divider orientation="vertical" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Axis of the separator. The label only applies in horizontal. |
+| `label` | `string` | — | Centered label (horizontal only). |

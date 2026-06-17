@@ -1,16 +1,15 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    variant?: 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
-    dot?: boolean
-  }>(),
-  { variant: 'neutral' },
-)
+import { cx, parts, type BadgeVariant } from '@moderno/class-contract'
+
+const props = defineProps<{
+  variant?: BadgeVariant
+  dot?: boolean
+}>()
 </script>
 
 <template>
-  <span :class="`md-badge md-badge--${variant}`">
-    <span v-if="dot" class="md-badge__dot" />
+  <span :class="cx.badge({ variant: props.variant })">
+    <span v-if="dot" :class="parts.badge.dot" />
     <slot />
   </span>
 </template>

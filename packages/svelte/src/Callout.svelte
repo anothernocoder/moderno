@@ -1,18 +1,19 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { cx, parts, type CalloutVariant } from '@moderno/class-contract'
 
   let {
-    variant = 'info',
+    variant,
     title,
     children,
   }: {
-    variant?: 'info' | 'success' | 'warning' | 'error'
+    variant?: CalloutVariant
     title?: string
     children?: Snippet
   } = $props()
 </script>
 
-<div class={`md-callout md-callout--${variant}`} role="note">
-  {#if title}<p class="md-callout__title">{title}</p>{/if}
-  <p class="md-callout__body">{@render children?.()}</p>
+<div class={cx.callout({ variant })} role="note">
+  {#if title}<p class={parts.callout.title}>{title}</p>{/if}
+  <p class={parts.callout.body}>{@render children?.()}</p>
 </div>

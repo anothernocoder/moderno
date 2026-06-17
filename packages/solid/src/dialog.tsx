@@ -2,6 +2,7 @@ import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as dialog from '@zag-js/dialog'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface DialogProps {
   triggerLabel: string
@@ -17,24 +18,24 @@ export function Dialog(props: DialogProps) {
 
   return (
     <>
-      <button {...api().getTriggerProps()} class="md-btn md-btn--primary">
+      <button {...api().getTriggerProps()} class={cx.button({ variant: 'primary' })}>
         {props.triggerLabel}
       </button>
       <Show when={api().open}>
         <Portal>
-          <div {...api().getBackdropProps()} class="md-dialog-backdrop" />
-          <div {...api().getPositionerProps()} class="md-dialog-positioner">
-            <div {...api().getContentProps()} class="md-dialog-content">
-              <h2 {...api().getTitleProps()} class="md-dialog-title">
+          <div {...api().getBackdropProps()} class={parts.dialog.backdrop} />
+          <div {...api().getPositionerProps()} class={parts.dialog.positioner}>
+            <div {...api().getContentProps()} class={parts.dialog.content}>
+              <h2 {...api().getTitleProps()} class={parts.dialog.title}>
                 {props.title}
               </h2>
               <Show when={props.description}>
-                <p {...api().getDescriptionProps()} class="md-dialog-desc">
+                <p {...api().getDescriptionProps()} class={parts.dialog.desc}>
                   {props.description}
                 </p>
               </Show>
-              <div class="md-dialog-actions">
-                <button {...api().getCloseTriggerProps()} class="md-btn md-btn--secondary">
+              <div class={parts.dialog.actions}>
+                <button {...api().getCloseTriggerProps()} class={cx.button({ variant: 'secondary' })}>
                   {props.closeLabel ?? 'Close'}
                 </button>
               </div>

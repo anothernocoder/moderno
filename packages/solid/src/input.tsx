@@ -1,4 +1,5 @@
 import { splitProps, createUniqueId, Show, type JSX } from 'solid-js'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface InputProps extends Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'children'> {
   label?: JSX.Element
@@ -12,11 +13,11 @@ export function Input(props: InputProps) {
   const fallbackId = createUniqueId()
   const inputId = () => local.id ?? fallbackId
   const msgId = () => `${inputId()}-msg`
-  const cls = () => ['md-input', local.error ? 'md-input--error' : '', local.class].filter(Boolean).join(' ')
+  const cls = () => [cx.input({ error: !!local.error }), local.class].filter(Boolean).join(' ')
   return (
     <div>
       <Show when={local.label}>
-        <label class="md-field-label" for={inputId()}>
+        <label class={parts.field.label} for={inputId()}>
           {local.label}
         </label>
       </Show>
@@ -27,8 +28,8 @@ export function Input(props: InputProps) {
         aria-describedby={local.error || local.hint ? msgId() : undefined}
         {...rest}
       />
-      <Show when={local.error} fallback={<Show when={local.hint}><p class="md-field-hint" id={msgId()}>{local.hint}</p></Show>}>
-        <p class="md-field-error" id={msgId()}>
+      <Show when={local.error} fallback={<Show when={local.hint}><p class={parts.field.hint} id={msgId()}>{local.hint}</p></Show>}>
+        <p class={parts.field.error} id={msgId()}>
           {local.error}
         </p>
       </Show>

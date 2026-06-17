@@ -1,23 +1,25 @@
 <script setup lang="ts">
-withDefaults(
+import { cx, parts, type ChipVariant } from '@moderno/class-contract'
+
+const props = withDefaults(
   defineProps<{
-    variant?: 'neutral' | 'solid'
+    variant?: ChipVariant
     removable?: boolean
     removeLabel?: string
   }>(),
-  { variant: 'neutral', removeLabel: 'Remove' },
+  { removeLabel: 'Remove' },
 )
 
 const emit = defineEmits<{ remove: [] }>()
 </script>
 
 <template>
-  <span :class="`md-chip md-chip--${variant}`">
+  <span :class="cx.chip({ variant: props.variant })">
     <slot />
     <button
       v-if="removable"
       type="button"
-      class="md-chip__remove"
+      :class="parts.chip.remove"
       :aria-label="removeLabel"
       @click="emit('remove')"
     >

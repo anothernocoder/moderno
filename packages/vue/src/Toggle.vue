@@ -2,6 +2,7 @@
 import { computed, useId } from 'vue'
 import * as zagSwitch from '@zag-js/switch'
 import { useMachine, normalizeProps } from '@zag-js/vue'
+import { parts } from '@moderno/class-contract'
 
 // Renders a control plus an optional label; no single host element for attrs.
 defineOptions({ inheritAttrs: false })
@@ -45,11 +46,11 @@ const api = computed(() => zagSwitch.connect(service, normalizeProps))
 </script>
 
 <template>
-  <label v-bind="api.getRootProps()" class="md-toggle">
+  <label v-bind="api.getRootProps()" :class="parts.toggle.root">
     <input v-bind="api.getHiddenInputProps()" />
-    <span v-bind="api.getControlProps()" class="md-toggle-control">
-      <span v-bind="api.getThumbProps()" class="md-toggle-thumb" />
+    <span v-bind="api.getControlProps()" :class="parts.toggle.control">
+      <span v-bind="api.getThumbProps()" :class="parts.toggle.thumb" />
     </span>
-    <span v-if="label != null" v-bind="api.getLabelProps()" class="md-toggle-label">{{ label }}</span>
+    <span v-if="label != null" v-bind="api.getLabelProps()" :class="parts.toggle.label">{{ label }}</span>
   </label>
 </template>

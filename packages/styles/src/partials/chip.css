@@ -1,0 +1,35 @@
+/* ---------- Chip (pure CSS, closed-prop) ---------- */
+.md-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-spacing-2);
+  height: 28px;
+  padding: 0 var(--md-spacing-3);
+  border-radius: var(--md-radius-none);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-label-md);
+  line-height: 1;
+  white-space: nowrap;
+}
+.md-chip--neutral { border: 1px solid var(--md-border-strong); color: var(--md-text-primary); background: var(--md-surface-base); }
+.md-chip--solid { background: var(--md-primary); color: var(--md-on-primary); }
+.md-chip__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: -4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: currentColor;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 150ms;
+}
+.md-chip__remove:hover { opacity: 1; }
+.md-chip__remove:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; }
+

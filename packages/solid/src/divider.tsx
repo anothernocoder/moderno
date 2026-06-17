@@ -1,7 +1,8 @@
 import { Show, type JSX } from 'solid-js'
+import { cx, parts, type DividerOrientation } from '@moderno/class-contract'
 
 export interface DividerProps {
-  orientation?: 'horizontal' | 'vertical'
+  orientation?: DividerOrientation
   label?: JSX.Element
 }
 
@@ -13,13 +14,13 @@ export function Divider(props: DividerProps) {
       when={props.label && orientation() === 'horizontal'}
       fallback={
         <div
-          class={`md-divider md-divider--${orientation()}`}
+          class={cx.divider({ orientation: orientation() })}
           role="separator"
           aria-orientation={orientation() === 'vertical' ? 'vertical' : undefined}
         />
       }
     >
-      <div class="md-divider-group" role="separator">
+      <div class={parts.divider.group} role="separator">
         {props.label}
       </div>
     </Show>

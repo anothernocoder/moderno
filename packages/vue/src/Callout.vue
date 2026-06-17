@@ -1,13 +1,12 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{ variant?: 'info' | 'success' | 'warning' | 'error'; title?: string }>(),
-  { variant: 'info' },
-)
+import { cx, parts, type CalloutVariant } from '@moderno/class-contract'
+
+const props = defineProps<{ variant?: CalloutVariant; title?: string }>()
 </script>
 
 <template>
-  <div :class="`md-callout md-callout--${variant}`" role="note">
-    <p v-if="title" class="md-callout__title">{{ title }}</p>
-    <p class="md-callout__body"><slot /></p>
+  <div :class="cx.callout({ variant: props.variant })" role="note">
+    <p v-if="title" :class="parts.callout.title">{{ title }}</p>
+    <p :class="parts.callout.body"><slot /></p>
   </div>
 </template>

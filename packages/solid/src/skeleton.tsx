@@ -1,7 +1,8 @@
 import type { JSX } from 'solid-js'
+import { cx, type SkeletonVariant } from '@moderno/class-contract'
 
 export interface SkeletonProps {
-  variant?: 'text' | 'rect' | 'circle'
+  variant?: SkeletonVariant
   width?: string | number
   height?: string | number
 }
@@ -9,5 +10,5 @@ export interface SkeletonProps {
 /** Loading placeholder with a shimmer. Decorative (aria-hidden). Pure CSS. */
 export function Skeleton(props: SkeletonProps) {
   const style = (): JSX.CSSProperties => ({ width: props.width, height: props.height })
-  return <span class={`md-skeleton md-skeleton--${props.variant ?? 'text'}`} style={style()} aria-hidden="true" />
+  return <span class={cx.skeleton({ variant: props.variant })} style={style()} aria-hidden="true" />
 }

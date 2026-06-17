@@ -1,17 +1,18 @@
 import type { ReactNode } from 'react'
+import { cx, parts, type BadgeVariant } from '@moderno/class-contract'
 
 export interface BadgeProps {
-  variant?: 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
+  variant?: BadgeVariant
   /** Show a leading status dot. */
   dot?: boolean
   children: ReactNode
 }
 
 /** Compact status/label token. Pure CSS, closed-prop. */
-export function Badge({ variant = 'neutral', dot, children }: BadgeProps) {
+export function Badge({ variant, dot, children }: BadgeProps) {
   return (
-    <span className={`md-badge md-badge--${variant}`}>
-      {dot ? <span className="md-badge__dot" /> : null}
+    <span className={cx.badge({ variant })}>
+      {dot ? <span className={parts.badge.dot} /> : null}
       {children}
     </span>
   )

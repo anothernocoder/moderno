@@ -1,19 +1,21 @@
 <script setup lang="ts">
-withDefaults(
+import { cx, parts, type AvatarSize, type AvatarShape } from '@moderno/class-contract'
+
+const props = withDefaults(
   defineProps<{
     src?: string
     alt?: string
     initials?: string
-    size?: 'sm' | 'md' | 'lg'
-    shape?: 'circle' | 'square'
+    size?: AvatarSize
+    shape?: AvatarShape
   }>(),
-  { size: 'md', shape: 'circle', alt: '' },
+  { alt: '' },
 )
 </script>
 
 <template>
-  <span :class="`md-avatar md-avatar--${size} md-avatar--${shape}`">
-    <img v-if="src" class="md-avatar__img" :src="src" :alt="alt" />
+  <span :class="cx.avatar({ size: props.size, shape: props.shape })">
+    <img v-if="src" :class="parts.avatar.img" :src="src" :alt="alt" />
     <template v-else>{{ initials }}</template>
   </span>
 </template>

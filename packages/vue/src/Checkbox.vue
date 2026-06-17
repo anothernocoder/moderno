@@ -2,6 +2,7 @@
 import { computed, useId } from 'vue'
 import * as checkbox from '@zag-js/checkbox'
 import { useMachine, normalizeProps } from '@zag-js/vue'
+import { parts } from '@moderno/class-contract'
 
 type CheckedState = boolean | 'indeterminate'
 
@@ -50,11 +51,11 @@ const api = computed(() => checkbox.connect(service, normalizeProps))
 </script>
 
 <template>
-  <label v-bind="api.getRootProps()" class="md-checkbox">
+  <label v-bind="api.getRootProps()" :class="parts.checkbox.root">
     <input v-bind="api.getHiddenInputProps()" />
-    <span v-bind="api.getControlProps()" class="md-checkbox-control">
-      <span v-bind="api.getIndicatorProps()" class="md-checkbox-indicator">{{ api.indeterminate ? '–' : '✓' }}</span>
+    <span v-bind="api.getControlProps()" :class="parts.checkbox.control">
+      <span v-bind="api.getIndicatorProps()" :class="parts.checkbox.indicator">{{ api.indeterminate ? '–' : '✓' }}</span>
     </span>
-    <span v-if="label != null" v-bind="api.getLabelProps()" class="md-checkbox-label">{{ label }}</span>
+    <span v-if="label != null" v-bind="api.getLabelProps()" :class="parts.checkbox.label">{{ label }}</span>
   </label>
 </template>

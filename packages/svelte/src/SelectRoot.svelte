@@ -3,6 +3,7 @@
   import * as select from '@zag-js/select'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setSelectContext, type SelectItem } from './select-context'
+  import { parts } from '@moderno/class-contract'
 
   let {
     items,
@@ -50,4 +51,4 @@
   setSelectContext(() => api)
 </script>
 
-<div {...api.getRootProps()} class="md-select">{@render children?.()}</div>
+<div {...api.getRootProps()} class={parts.select.root}>{@render children?.()}</div>

@@ -1,0 +1,35 @@
+/* ---------- Checkbox (Zag checkbox machine, closed-prop) ---------- */
+.md-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-spacing-3);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  line-height: var(--md-text-body-sm-lh);
+  color: var(--md-text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+.md-checkbox[data-disabled] { opacity: 0.4; cursor: not-allowed; }
+.md-checkbox-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  background: var(--md-surface-muted);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  transition: background-color 150ms, border-color 150ms;
+}
+.md-checkbox-control[data-focus] { outline: 2px solid var(--md-primary); outline-offset: 2px; }
+.md-checkbox-control[data-state="checked"],
+.md-checkbox-control[data-state="indeterminate"] { background: var(--md-primary); border-color: var(--md-primary); }
+.md-checkbox-control[data-invalid] { border-color: var(--md-error); }
+.md-checkbox-indicator {
+  color: var(--md-on-primary);
+  font-size: 14px;
+  line-height: 1;
+}
+

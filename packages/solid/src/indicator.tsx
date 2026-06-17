@@ -1,20 +1,18 @@
 import type { JSX } from 'solid-js'
+import { cx, parts, type IndicatorVariant } from '@moderno/class-contract'
 
 export interface IndicatorProps {
-  variant?: 'neutral' | 'success' | 'warning' | 'error' | 'info'
+  variant?: IndicatorVariant
   pulse?: boolean
   children?: JSX.Element
 }
 
 /** Status dot with optional pulse and label. Pure CSS, closed-prop. */
 export function Indicator(props: IndicatorProps) {
-  const cls = () =>
-    ['md-indicator', `md-indicator--${props.variant ?? 'neutral'}`, props.pulse ? 'md-indicator--pulse' : '']
-      .filter(Boolean)
-      .join(' ')
+  const cls = () => cx.indicator({ variant: props.variant, pulse: props.pulse })
   return (
     <span class={cls()}>
-      <span class="md-indicator__dot" />
+      <span class={parts.indicator.dot} />
       {props.children}
     </span>
   )

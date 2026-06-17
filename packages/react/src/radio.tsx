@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as radio from '@zag-js/radio-group'
 import { useMachine, normalizeProps } from '@zag-js/react'
+import { parts } from '@moderno/class-contract'
 
 export interface RadioOption {
   value: string
@@ -50,18 +51,18 @@ export function Radio({
   const api = radio.connect(service, normalizeProps)
 
   return (
-    <div {...api.getRootProps()} className="md-radio">
+    <div {...api.getRootProps()} className={parts.radio.root}>
       {label != null ? (
-        <span {...api.getLabelProps()} className="md-radio-label">
+        <span {...api.getLabelProps()} className={parts.radio.label}>
           {label}
         </span>
       ) : null}
       {options.map((opt) => {
         const item = { value: opt.value, disabled: opt.disabled }
         return (
-          <label key={opt.value} {...api.getItemProps(item)} className="md-radio-item">
-            <span {...api.getItemControlProps(item)} className="md-radio-control" />
-            <span {...api.getItemTextProps(item)} className="md-radio-item-text">
+          <label key={opt.value} {...api.getItemProps(item)} className={parts.radio.item}>
+            <span {...api.getItemControlProps(item)} className={parts.radio.control} />
+            <span {...api.getItemTextProps(item)} className={parts.radio.itemText}>
               {opt.label}
             </span>
             <input {...api.getItemHiddenInputProps(item)} />

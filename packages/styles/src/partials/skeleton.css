@@ -1,0 +1,20 @@
+/* ---------- Skeleton (loading placeholder, pure CSS) ---------- */
+.md-skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--md-surface-muted) 25%,
+    var(--md-border-default) 37%,
+    var(--md-surface-muted) 63%
+  );
+  background-size: 400% 100%;
+  animation: md-shimmer 1.4s ease infinite;
+}
+.md-skeleton--text { height: 0.8em; border-radius: var(--md-radius-none); }
+.md-skeleton--rect { border-radius: var(--md-radius-none); }
+.md-skeleton--circle { border-radius: var(--md-radius-full); }
+@keyframes md-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+

@@ -1,5 +1,7 @@
+import { cx, type SpinnerSize } from '@moderno/class-contract'
+
 export interface SpinnerProps {
-  size?: 'sm' | 'md' | 'lg'
+  size?: SpinnerSize
   label?: string
 }
 
@@ -7,7 +9,7 @@ export interface SpinnerProps {
 export function Spinner(props: SpinnerProps) {
   return (
     <span
-      class={`md-spinner md-spinner--${props.size ?? 'md'}`}
+      class={cx.spinner({ size: props.size })}
       role="status"
       aria-label={props.label ?? 'Loading'}
     />

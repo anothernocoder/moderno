@@ -1,0 +1,35 @@
+/* ---------- Input / Field (pure CSS) ---------- */
+.md-field-label {
+  display: block;
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  margin-bottom: var(--md-spacing-2);
+  color: var(--md-text-primary);
+}
+.md-field-hint { margin: var(--md-spacing-2) 0 0; font-size: var(--md-text-label-md); color: var(--md-text-secondary); }
+.md-field-error { margin: var(--md-spacing-2) 0 0; font-size: var(--md-text-label-md); color: var(--md-error); }
+.md-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--md-spacing-4);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  background: var(--md-surface-muted);
+  color: var(--md-text-primary);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  transition: border-color 150ms;
+}
+.md-input::placeholder { color: var(--md-text-secondary); }
+.md-input:focus { outline: none; border-color: var(--md-primary); }
+.md-input:disabled { background: var(--md-border-default); color: var(--md-text-secondary); cursor: not-allowed; }
+.md-input--error,
+.md-input--error:focus { border-color: var(--md-error); }
+.md-textarea {
+  height: auto;
+  min-height: 80px;
+  padding: var(--md-spacing-3) var(--md-spacing-4);
+  resize: vertical;
+  line-height: var(--md-text-body-sm-lh);
+}
+

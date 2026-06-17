@@ -1,6 +1,7 @@
 import { createContext, useContext, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { parts } from '@moderno/class-contract'
 
 type TabsApi = ReturnType<typeof tabs.connect>
 const TabsContext = createContext<() => TabsApi>()
@@ -32,7 +33,7 @@ function Root(props: TabsRootProps) {
   const api = createMemo(() => tabs.connect(service, normalizeProps))
   return (
     <TabsContext.Provider value={api}>
-      <div {...api().getRootProps()} class="md-tabs">
+      <div {...api().getRootProps()} class={parts.tabs.root}>
         {props.children}
       </div>
     </TabsContext.Provider>
@@ -42,7 +43,7 @@ function Root(props: TabsRootProps) {
 function List(props: { children: JSX.Element }) {
   const api = useTabs('List')
   return (
-    <div {...api().getListProps()} class="md-tabs-list">
+    <div {...api().getListProps()} class={parts.tabs.list}>
       {props.children}
     </div>
   )
@@ -51,7 +52,7 @@ function List(props: { children: JSX.Element }) {
 function Trigger(props: { value: string; disabled?: boolean; children: JSX.Element }) {
   const api = useTabs('Trigger')
   return (
-    <button {...api().getTriggerProps({ value: props.value, disabled: props.disabled })} class="md-tabs-trigger">
+    <button {...api().getTriggerProps({ value: props.value, disabled: props.disabled })} class={parts.tabs.trigger}>
       {props.children}
     </button>
   )
@@ -60,7 +61,7 @@ function Trigger(props: { value: string; disabled?: boolean; children: JSX.Eleme
 function Content(props: { value: string; children: JSX.Element }) {
   const api = useTabs('Content')
   return (
-    <div {...api().getContentProps({ value: props.value })} class="md-tabs-content">
+    <div {...api().getContentProps({ value: props.value })} class={parts.tabs.content}>
       {props.children}
     </div>
   )

@@ -1,4 +1,5 @@
 import { useId, type TextareaHTMLAttributes, type ReactNode } from 'react'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children'> {
   label?: ReactNode
@@ -12,11 +13,11 @@ export function Textarea({ label, hint, error, id, className, ...props }: Textar
   const autoId = useId()
   const fieldId = id ?? autoId
   const msgId = `${fieldId}-msg`
-  const cls = ['md-input', 'md-textarea', error && 'md-input--error', className].filter(Boolean).join(' ')
+  const cls = [cx.input({ error: !!error }), parts.field.textarea, className].filter(Boolean).join(' ')
   return (
     <div>
       {label ? (
-        <label className="md-field-label" htmlFor={fieldId}>
+        <label className={parts.field.label} htmlFor={fieldId}>
           {label}
         </label>
       ) : null}
@@ -28,11 +29,11 @@ export function Textarea({ label, hint, error, id, className, ...props }: Textar
         {...props}
       />
       {error ? (
-        <p className="md-field-error" id={msgId}>
+        <p className={parts.field.error} id={msgId}>
           {error}
         </p>
       ) : hint ? (
-        <p className="md-field-hint" id={msgId}>
+        <p className={parts.field.hint} id={msgId}>
           {hint}
         </p>
       ) : null}

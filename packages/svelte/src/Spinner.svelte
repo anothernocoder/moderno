@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { cx, type SpinnerSize } from '@moderno/class-contract'
+
   let {
-    size = 'md',
+    size,
     label = 'Loading',
   }: {
-    size?: 'sm' | 'md' | 'lg'
+    size?: SpinnerSize
     label?: string
   } = $props()
 </script>
 
-<span class={`md-spinner md-spinner--${size}`} role="status" aria-label={label}></span>
+<span class={cx.spinner({ size })} role="status" aria-label={label}></span>

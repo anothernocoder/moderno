@@ -1,4 +1,5 @@
 import { splitProps, createUniqueId, Show, type JSX } from 'solid-js'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface TextareaProps extends Omit<JSX.TextareaHTMLAttributes<HTMLTextAreaElement>, 'children'> {
   label?: JSX.Element
@@ -13,11 +14,11 @@ export function Textarea(props: TextareaProps) {
   const fieldId = () => local.id ?? fallbackId
   const msgId = () => `${fieldId()}-msg`
   const cls = () =>
-    ['md-input', 'md-textarea', local.error ? 'md-input--error' : '', local.class].filter(Boolean).join(' ')
+    [cx.input({ error: !!local.error }), parts.field.textarea, local.class].filter(Boolean).join(' ')
   return (
     <div>
       <Show when={local.label}>
-        <label class="md-field-label" for={fieldId()}>
+        <label class={parts.field.label} for={fieldId()}>
           {local.label}
         </label>
       </Show>
@@ -32,13 +33,13 @@ export function Textarea(props: TextareaProps) {
         when={local.error}
         fallback={
           <Show when={local.hint}>
-            <p class="md-field-hint" id={msgId()}>
+            <p class={parts.field.hint} id={msgId()}>
               {local.hint}
             </p>
           </Show>
         }
       >
-        <p class="md-field-error" id={msgId()}>
+        <p class={parts.field.error} id={msgId()}>
           {local.error}
         </p>
       </Show>

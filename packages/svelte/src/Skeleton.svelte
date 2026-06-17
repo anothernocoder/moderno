@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { cx, type SkeletonVariant } from '@moderno/class-contract'
+
   let {
-    variant = 'text',
+    variant,
     width,
     height,
   }: {
-    variant?: 'text' | 'rect' | 'circle'
+    variant?: SkeletonVariant
     width?: string | number
     height?: string | number
   } = $props()
@@ -15,4 +17,4 @@
   )
 </script>
 
-<span class={`md-skeleton md-skeleton--${variant}`} {style} aria-hidden="true"></span>
+<span class={cx.skeleton({ variant })} {style} aria-hidden="true"></span>

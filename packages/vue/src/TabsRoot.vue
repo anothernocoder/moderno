@@ -3,6 +3,7 @@ import { computed, provide, useId } from 'vue'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { TabsKey } from './tabs-context'
+import { parts } from '@moderno/class-contract'
 
 const props = defineProps<{ defaultValue?: string; modelValue?: string }>()
 const emit = defineEmits<{ 'update:modelValue': [string] }>()
@@ -24,5 +25,5 @@ provide(TabsKey, api)
 </script>
 
 <template>
-  <div v-bind="api.getRootProps()" class="md-tabs"><slot /></div>
+  <div v-bind="api.getRootProps()" :class="parts.tabs.root"><slot /></div>
 </template>

@@ -2,6 +2,7 @@
 import { computed, useId } from 'vue'
 import * as slider from '@zag-js/slider'
 import { useMachine, normalizeProps } from '@zag-js/vue'
+import { parts } from '@moderno/class-contract'
 
 const props = withDefaults(
   defineProps<{
@@ -50,17 +51,17 @@ const api = computed(() => slider.connect(service, normalizeProps))
 </script>
 
 <template>
-  <div v-bind="api.getRootProps()" class="md-slider">
-    <div v-if="label != null || showValue" class="md-slider-header">
-      <label v-if="label != null" v-bind="api.getLabelProps()" class="md-slider-label">{{ label }}</label>
+  <div v-bind="api.getRootProps()" :class="parts.slider.root">
+    <div v-if="label != null || showValue" :class="parts.slider.header">
+      <label v-if="label != null" v-bind="api.getLabelProps()" :class="parts.slider.label">{{ label }}</label>
       <span v-else />
-      <output v-if="showValue" v-bind="api.getValueTextProps()" class="md-slider-value">{{ api.value[0] }}</output>
+      <output v-if="showValue" v-bind="api.getValueTextProps()" :class="parts.slider.value">{{ api.value[0] }}</output>
     </div>
-    <div v-bind="api.getControlProps()" class="md-slider-control">
-      <div v-bind="api.getTrackProps()" class="md-slider-track">
-        <div v-bind="api.getRangeProps()" class="md-slider-range" />
+    <div v-bind="api.getControlProps()" :class="parts.slider.control">
+      <div v-bind="api.getTrackProps()" :class="parts.slider.track">
+        <div v-bind="api.getRangeProps()" :class="parts.slider.range" />
       </div>
-      <div v-bind="api.getThumbProps({ index: 0 })" class="md-slider-thumb">
+      <div v-bind="api.getThumbProps({ index: 0 })" :class="parts.slider.thumb">
         <input v-bind="api.getHiddenInputProps({ index: 0 })" />
       </div>
     </div>

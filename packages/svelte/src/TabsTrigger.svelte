@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { getTabsContext } from './tabs-context'
+  import { parts } from '@moderno/class-contract'
 
   let {
     value,
@@ -14,4 +15,4 @@
   const api = getTabsContext()
 </script>
 
-<button {...api().getTriggerProps({ value, disabled })} class="md-tabs-trigger">{@render children?.()}</button>
+<button {...api().getTriggerProps({ value, disabled })} class={parts.tabs.trigger}>{@render children?.()}</button>

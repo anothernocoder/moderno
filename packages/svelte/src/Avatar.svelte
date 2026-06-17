@@ -1,22 +1,24 @@
 <script lang="ts">
+  import { cx, parts, type AvatarSize, type AvatarShape } from '@moderno/class-contract'
+
   let {
     src,
     alt = '',
     initials,
-    size = 'md',
-    shape = 'circle',
+    size,
+    shape,
   }: {
     src?: string
     alt?: string
     initials?: string
-    size?: 'sm' | 'md' | 'lg'
-    shape?: 'circle' | 'square'
+    size?: AvatarSize
+    shape?: AvatarShape
   } = $props()
 </script>
 
-<span class={`md-avatar md-avatar--${size} md-avatar--${shape}`}>
+<span class={cx.avatar({ size, shape })}>
   {#if src}
-    <img class="md-avatar__img" {src} {alt} />
+    <img class={parts.avatar.img} {src} {alt} />
   {:else}
     {initials}
   {/if}

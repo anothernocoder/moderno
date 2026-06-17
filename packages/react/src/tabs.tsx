@@ -1,6 +1,7 @@
 import { createContext, useContext, useId, type ReactNode } from 'react'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/react'
+import { parts } from '@moderno/class-contract'
 
 type TabsApi = ReturnType<typeof tabs.connect>
 const TabsContext = createContext<TabsApi | null>(null)
@@ -30,7 +31,7 @@ function Root({ defaultValue, value, onValueChange, children }: TabsRootProps) {
   const api = tabs.connect(service, normalizeProps)
   return (
     <TabsContext.Provider value={api}>
-      <div {...api.getRootProps()} className="md-tabs">
+      <div {...api.getRootProps()} className={parts.tabs.root}>
         {children}
       </div>
     </TabsContext.Provider>
@@ -40,7 +41,7 @@ function Root({ defaultValue, value, onValueChange, children }: TabsRootProps) {
 function List({ children }: { children: ReactNode }) {
   const api = useTabs('List')
   return (
-    <div {...api.getListProps()} className="md-tabs-list">
+    <div {...api.getListProps()} className={parts.tabs.list}>
       {children}
     </div>
   )
@@ -49,7 +50,7 @@ function List({ children }: { children: ReactNode }) {
 function Trigger({ value, disabled, children }: { value: string; disabled?: boolean; children: ReactNode }) {
   const api = useTabs('Trigger')
   return (
-    <button {...api.getTriggerProps({ value, disabled })} className="md-tabs-trigger">
+    <button {...api.getTriggerProps({ value, disabled })} className={parts.tabs.trigger}>
       {children}
     </button>
   )
@@ -58,7 +59,7 @@ function Trigger({ value, disabled, children }: { value: string; disabled?: bool
 function Content({ value, children }: { value: string; children: ReactNode }) {
   const api = useTabs('Content')
   return (
-    <div {...api.getContentProps({ value })} className="md-tabs-content">
+    <div {...api.getContentProps({ value })} className={parts.tabs.content}>
       {children}
     </div>
   )

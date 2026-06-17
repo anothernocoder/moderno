@@ -1,6 +1,7 @@
 import { createContext, useContext, useId, type ReactNode } from 'react'
 import * as accordion from '@zag-js/accordion'
 import { useMachine, normalizeProps } from '@zag-js/react'
+import { parts } from '@moderno/class-contract'
 
 type AccordionApi = ReturnType<typeof accordion.connect>
 const AccordionContext = createContext<AccordionApi | null>(null)
@@ -48,7 +49,7 @@ function Root({ defaultValue, value, multiple, collapsible, onValueChange, child
   const api = accordion.connect(service, normalizeProps)
   return (
     <AccordionContext.Provider value={api}>
-      <div {...api.getRootProps()} className="md-accordion">
+      <div {...api.getRootProps()} className={parts.accordion.root}>
         {children}
       </div>
     </AccordionContext.Provider>
@@ -59,7 +60,7 @@ function Item({ value, disabled, children }: { value: string; disabled?: boolean
   const api = useAccordion('Item')
   return (
     <ItemContext.Provider value={{ value, disabled }}>
-      <div {...api.getItemProps({ value, disabled })} className="md-accordion-item">
+      <div {...api.getItemProps({ value, disabled })} className={parts.accordion.item}>
         {children}
       </div>
     </ItemContext.Provider>
@@ -70,10 +71,10 @@ function ItemTrigger({ children }: { children: ReactNode }) {
   const api = useAccordion('ItemTrigger')
   const item = useItem('ItemTrigger')
   return (
-    <h3 className="md-accordion-heading">
-      <button {...api.getItemTriggerProps(item)} className="md-accordion-trigger">
-        <span className="md-accordion-trigger-text">{children}</span>
-        <span {...api.getItemIndicatorProps(item)} className="md-accordion-indicator" aria-hidden="true">
+    <h3 className={parts.accordion.heading}>
+      <button {...api.getItemTriggerProps(item)} className={parts.accordion.trigger}>
+        <span className={parts.accordion.triggerText}>{children}</span>
+        <span {...api.getItemIndicatorProps(item)} className={parts.accordion.indicator} aria-hidden="true">
           ▾
         </span>
       </button>
@@ -85,7 +86,7 @@ function ItemContent({ children }: { children: ReactNode }) {
   const api = useAccordion('ItemContent')
   const item = useItem('ItemContent')
   return (
-    <div {...api.getItemContentProps(item)} className="md-accordion-content">
+    <div {...api.getItemContentProps(item)} className={parts.accordion.content}>
       {children}
     </div>
   )

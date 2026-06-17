@@ -1,6 +1,7 @@
 import { For, Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as radio from '@zag-js/radio-group'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { parts } from '@moderno/class-contract'
 
 export interface RadioOption {
   value: string
@@ -47,9 +48,9 @@ export function Radio(props: RadioProps) {
   const api = createMemo(() => radio.connect(service, normalizeProps))
 
   return (
-    <div {...api().getRootProps()} class="md-radio">
+    <div {...api().getRootProps()} class={parts.radio.root}>
       <Show when={props.label != null}>
-        <span {...api().getLabelProps()} class="md-radio-label">
+        <span {...api().getLabelProps()} class={parts.radio.label}>
           {props.label}
         </span>
       </Show>
@@ -57,9 +58,9 @@ export function Radio(props: RadioProps) {
         {(opt) => {
           const item = () => ({ value: opt.value, disabled: opt.disabled })
           return (
-            <label {...api().getItemProps(item())} class="md-radio-item">
-              <span {...api().getItemControlProps(item())} class="md-radio-control" />
-              <span {...api().getItemTextProps(item())} class="md-radio-item-text">
+            <label {...api().getItemProps(item())} class={parts.radio.item}>
+              <span {...api().getItemControlProps(item())} class={parts.radio.control} />
+              <span {...api().getItemTextProps(item())} class={parts.radio.itemText}>
                 {opt.label ?? opt.value}
               </span>
               <input {...api().getItemHiddenInputProps(item())} />

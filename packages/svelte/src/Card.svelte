@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { parts } from '@moderno/class-contract'
 
   let {
     title,
@@ -12,8 +13,8 @@
   } = $props()
 </script>
 
-<div class="md-card">
-  {#if title}<h3 class="md-card__title">{@render title()}</h3>{/if}
-  {#if children}<div class="md-card__body">{@render children()}</div>{/if}
-  {#if footer}<div class="md-card__footer">{@render footer()}</div>{/if}
+<div class={parts.card.root}>
+  {#if title}<h3 class={parts.card.title}>{@render title()}</h3>{/if}
+  {#if children}<div class={parts.card.body}>{@render children()}</div>{/if}
+  {#if footer}<div class={parts.card.footer}>{@render footer()}</div>{/if}
 </div>

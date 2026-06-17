@@ -1,13 +1,15 @@
 <script setup lang="ts">
-withDefaults(
+import { cx, type SpinnerSize } from '@moderno/class-contract'
+
+const props = withDefaults(
   defineProps<{
-    size?: 'sm' | 'md' | 'lg'
+    size?: SpinnerSize
     label?: string
   }>(),
-  { size: 'md', label: 'Loading' },
+  { label: 'Loading' },
 )
 </script>
 
 <template>
-  <span :class="`md-spinner md-spinner--${size}`" role="status" :aria-label="label" />
+  <span :class="cx.spinner({ size: props.size })" role="status" :aria-label="label" />
 </template>

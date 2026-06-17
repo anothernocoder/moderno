@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
+import { cx, parts } from '@moderno/class-contract'
 
 defineOptions({ inheritAttrs: false })
 
@@ -13,16 +14,16 @@ const msgId = computed(() => `${fieldId.value}-msg`)
 
 <template>
   <div>
-    <label v-if="label" class="md-field-label" :for="fieldId">{{ label }}</label>
+    <label v-if="label" :class="parts.field.label" :for="fieldId">{{ label }}</label>
     <textarea
       :id="fieldId"
       v-model="model"
-      :class="['md-input', 'md-textarea', error ? 'md-input--error' : '']"
+      :class="[cx.input({ error: !!error }), parts.field.textarea]"
       :aria-invalid="error ? true : undefined"
       :aria-describedby="error || hint ? msgId : undefined"
       v-bind="$attrs"
     />
-    <p v-if="error" class="md-field-error" :id="msgId">{{ error }}</p>
-    <p v-else-if="hint" class="md-field-hint" :id="msgId">{{ hint }}</p>
+    <p v-if="error" :class="parts.field.error" :id="msgId">{{ error }}</p>
+    <p v-else-if="hint" :class="parts.field.hint" :id="msgId">{{ hint }}</p>
   </div>
 </template>

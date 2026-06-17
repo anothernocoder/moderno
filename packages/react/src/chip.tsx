@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
+import { cx, parts, type ChipVariant } from '@moderno/class-contract'
 
 export interface ChipProps {
-  variant?: 'neutral' | 'solid'
+  variant?: ChipVariant
   /** Render a trailing remove (×) button. */
   removable?: boolean
   /** Called when the remove button is activated. */
@@ -12,12 +13,12 @@ export interface ChipProps {
 }
 
 /** Compact, optionally removable token. Pure CSS, closed-prop. */
-export function Chip({ variant = 'neutral', removable, onRemove, removeLabel = 'Remove', children }: ChipProps) {
+export function Chip({ variant, removable, onRemove, removeLabel = 'Remove', children }: ChipProps) {
   return (
-    <span className={`md-chip md-chip--${variant}`}>
+    <span className={cx.chip({ variant })}>
       {children}
       {removable ? (
-        <button type="button" className="md-chip__remove" aria-label={removeLabel} onClick={onRemove}>
+        <button type="button" className={parts.chip.remove} aria-label={removeLabel} onClick={onRemove}>
           ×
         </button>
       ) : null}

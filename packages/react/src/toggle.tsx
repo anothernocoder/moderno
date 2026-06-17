@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as zagSwitch from '@zag-js/switch'
 import { useMachine, normalizeProps } from '@zag-js/react'
+import { parts } from '@moderno/class-contract'
 
 export interface ToggleProps {
   /** Visible label next to the switch. */
@@ -32,13 +33,13 @@ export function Toggle({ label, defaultChecked, checked, onCheckedChange, disabl
   const api = zagSwitch.connect(service, normalizeProps)
 
   return (
-    <label {...api.getRootProps()} className="md-toggle">
+    <label {...api.getRootProps()} className={parts.toggle.root}>
       <input {...api.getHiddenInputProps()} />
-      <span {...api.getControlProps()} className="md-toggle-control">
-        <span {...api.getThumbProps()} className="md-toggle-thumb" />
+      <span {...api.getControlProps()} className={parts.toggle.control}>
+        <span {...api.getThumbProps()} className={parts.toggle.thumb} />
       </span>
       {label != null ? (
-        <span {...api.getLabelProps()} className="md-toggle-label">
+        <span {...api.getLabelProps()} className={parts.toggle.label}>
           {label}
         </span>
       ) : null}

@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as radio from '@zag-js/radio-group'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
+  import { parts } from '@moderno/class-contract'
 
   interface RadioOption {
     value: string
@@ -59,14 +60,14 @@
   const api = $derived(radio.connect(service, normalizeProps))
 </script>
 
-<div {...api.getRootProps()} class="md-radio">
+<div {...api.getRootProps()} class={parts.radio.root}>
   {#if label != null}
-    <span {...api.getLabelProps()} class="md-radio-label">{label}</span>
+    <span {...api.getLabelProps()} class={parts.radio.label}>{label}</span>
   {/if}
   {#each options as opt (opt.value)}
-    <label {...api.getItemProps({ value: opt.value, disabled: opt.disabled })} class="md-radio-item">
-      <span {...api.getItemControlProps({ value: opt.value, disabled: opt.disabled })} class="md-radio-control"></span>
-      <span {...api.getItemTextProps({ value: opt.value, disabled: opt.disabled })} class="md-radio-item-text"
+    <label {...api.getItemProps({ value: opt.value, disabled: opt.disabled })} class={parts.radio.item}>
+      <span {...api.getItemControlProps({ value: opt.value, disabled: opt.disabled })} class={parts.radio.control}></span>
+      <span {...api.getItemTextProps({ value: opt.value, disabled: opt.disabled })} class={parts.radio.itemText}
         >{opt.label ?? opt.value}</span
       >
       <input {...api.getItemHiddenInputProps({ value: opt.value, disabled: opt.disabled })} />

@@ -1,7 +1,9 @@
 <script setup lang="ts">
-withDefaults(
+import { cx, parts, type DividerOrientation } from '@moderno/class-contract'
+
+const props = withDefaults(
   defineProps<{
-    orientation?: 'horizontal' | 'vertical'
+    orientation?: DividerOrientation
     label?: string
   }>(),
   { orientation: 'horizontal' },
@@ -9,10 +11,10 @@ withDefaults(
 </script>
 
 <template>
-  <div v-if="label && orientation === 'horizontal'" class="md-divider-group" role="separator">{{ label }}</div>
+  <div v-if="label && orientation === 'horizontal'" :class="parts.divider.group" role="separator">{{ label }}</div>
   <div
     v-else
-    :class="`md-divider md-divider--${orientation}`"
+    :class="cx.divider({ orientation: props.orientation })"
     role="separator"
     :aria-orientation="orientation === 'vertical' ? 'vertical' : undefined"
   />

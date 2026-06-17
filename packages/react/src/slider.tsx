@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as slider from '@zag-js/slider'
 import { useMachine, normalizeProps } from '@zag-js/react'
+import { parts } from '@moderno/class-contract'
 
 export interface SliderProps {
   /** Visible label. */
@@ -47,28 +48,28 @@ export function Slider({
   const api = slider.connect(service, normalizeProps)
 
   return (
-    <div {...api.getRootProps()} className="md-slider">
+    <div {...api.getRootProps()} className={parts.slider.root}>
       {(label != null || showValue) && (
-        <div className="md-slider-header">
+        <div className={parts.slider.header}>
           {label != null ? (
-            <label {...api.getLabelProps()} className="md-slider-label">
+            <label {...api.getLabelProps()} className={parts.slider.label}>
               {label}
             </label>
           ) : (
             <span />
           )}
           {showValue ? (
-            <output {...api.getValueTextProps()} className="md-slider-value">
+            <output {...api.getValueTextProps()} className={parts.slider.value}>
               {api.value[0]}
             </output>
           ) : null}
         </div>
       )}
-      <div {...api.getControlProps()} className="md-slider-control">
-        <div {...api.getTrackProps()} className="md-slider-track">
-          <div {...api.getRangeProps()} className="md-slider-range" />
+      <div {...api.getControlProps()} className={parts.slider.control}>
+        <div {...api.getTrackProps()} className={parts.slider.track}>
+          <div {...api.getRangeProps()} className={parts.slider.range} />
         </div>
-        <div {...api.getThumbProps({ index: 0 })} className="md-slider-thumb">
+        <div {...api.getThumbProps({ index: 0 })} className={parts.slider.thumb}>
           <input {...api.getHiddenInputProps({ index: 0 })} />
         </div>
       </div>

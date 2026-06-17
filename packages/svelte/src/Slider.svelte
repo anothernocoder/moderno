@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as slider from '@zag-js/slider'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
+  import { parts } from '@moderno/class-contract'
 
   let {
     label,
@@ -58,24 +59,24 @@
   const api = $derived(slider.connect(service, normalizeProps))
 </script>
 
-<div {...api.getRootProps()} class="md-slider">
+<div {...api.getRootProps()} class={parts.slider.root}>
   {#if label != null || showValue}
-    <div class="md-slider-header">
+    <div class={parts.slider.header}>
       {#if label != null}
-        <label {...api.getLabelProps()} class="md-slider-label">{label}</label>
+        <label {...api.getLabelProps()} class={parts.slider.label}>{label}</label>
       {:else}
         <span></span>
       {/if}
       {#if showValue}
-        <output {...api.getValueTextProps()} class="md-slider-value">{api.value[0]}</output>
+        <output {...api.getValueTextProps()} class={parts.slider.value}>{api.value[0]}</output>
       {/if}
     </div>
   {/if}
-  <div {...api.getControlProps()} class="md-slider-control">
-    <div {...api.getTrackProps()} class="md-slider-track">
-      <div {...api.getRangeProps()} class="md-slider-range"></div>
+  <div {...api.getControlProps()} class={parts.slider.control}>
+    <div {...api.getTrackProps()} class={parts.slider.track}>
+      <div {...api.getRangeProps()} class={parts.slider.range}></div>
     </div>
-    <div {...api.getThumbProps({ index: 0 })} class="md-slider-thumb">
+    <div {...api.getThumbProps({ index: 0 })} class={parts.slider.thumb}>
       <input {...api.getHiddenInputProps({ index: 0 })} />
     </div>
   </div>

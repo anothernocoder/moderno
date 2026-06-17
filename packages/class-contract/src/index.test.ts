@@ -19,6 +19,28 @@ describe('cx.button — variant class builder', () => {
   })
 })
 
+describe('cx.avatar — two axes, one with a no-class default', () => {
+  it('emits size and shape classes', () => {
+    expect(cx.avatar({ size: 'sm', shape: 'circle' })).toBe('md-avatar md-avatar--sm md-avatar--circle')
+  })
+
+  it('emits no shape class for square (square has no CSS rule)', () => {
+    expect(cx.avatar({ shape: 'square' })).toBe('md-avatar md-avatar--md')
+  })
+})
+
+describe('cx.indicator — variant + boolean flag', () => {
+  it('applies the default variant and no flag', () => {
+    expect(cx.indicator()).toBe('md-indicator md-indicator--neutral')
+  })
+
+  it('appends the pulse flag class when pulse is true', () => {
+    expect(cx.indicator({ variant: 'success', pulse: true })).toBe(
+      'md-indicator md-indicator--success md-indicator--pulse',
+    )
+  })
+})
+
 describe('parts.popover — anatomy leaf names', () => {
   it('maps each leaf to its md-popover-* class', () => {
     expect(parts.popover).toEqual({
@@ -48,5 +70,18 @@ describe('legalNames — every class the contract may emit', () => {
     for (const leaf of Object.values(parts.popover)) {
       expect(names.has(leaf)).toBe(true)
     }
+  })
+
+  it('excludes unstyled hooks (in parts for framework use, but no CSS rule)', () => {
+    const names = legalNames()
+    // exposed for frameworks…
+    expect(parts.checkbox.label).toBe('md-checkbox-label')
+    expect(parts.select.control).toBe('md-select-control')
+    // …but not enforced against CSS
+    expect(names.has('md-checkbox-label')).toBe(false)
+    expect(names.has('md-radio-item-text')).toBe(false)
+    expect(names.has('md-select-control')).toBe(false)
+    expect(names.has('md-select-item-text')).toBe(false)
+    expect(names.has('md-toggle-label')).toBe(false)
   })
 })

@@ -1,6 +1,7 @@
 import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as zagSwitch from '@zag-js/switch'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { parts } from '@moderno/class-contract'
 
 export interface ToggleProps {
   label?: JSX.Element
@@ -40,13 +41,13 @@ export function Toggle(props: ToggleProps) {
   const api = createMemo(() => zagSwitch.connect(service, normalizeProps))
 
   return (
-    <label {...api().getRootProps()} class="md-toggle">
+    <label {...api().getRootProps()} class={parts.toggle.root}>
       <input {...api().getHiddenInputProps()} />
-      <span {...api().getControlProps()} class="md-toggle-control">
-        <span {...api().getThumbProps()} class="md-toggle-thumb" />
+      <span {...api().getControlProps()} class={parts.toggle.control}>
+        <span {...api().getThumbProps()} class={parts.toggle.thumb} />
       </span>
       <Show when={props.label != null}>
-        <span {...api().getLabelProps()} class="md-toggle-label">
+        <span {...api().getLabelProps()} class={parts.toggle.label}>
           {props.label}
         </span>
       </Show>

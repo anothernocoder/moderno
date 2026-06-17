@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
+import { cx, parts, type DividerOrientation } from '@moderno/class-contract'
 
 export interface DividerProps {
-  orientation?: 'horizontal' | 'vertical'
+  orientation?: DividerOrientation
   /** Optional centered label (horizontal only). */
   label?: ReactNode
 }
@@ -10,14 +11,14 @@ export interface DividerProps {
 export function Divider({ orientation = 'horizontal', label }: DividerProps) {
   if (label && orientation === 'horizontal') {
     return (
-      <div className="md-divider-group" role="separator">
+      <div className={parts.divider.group} role="separator">
         {label}
       </div>
     )
   }
   return (
     <div
-      className={`md-divider md-divider--${orientation}`}
+      className={cx.divider({ orientation })}
       role="separator"
       aria-orientation={orientation === 'vertical' ? 'vertical' : undefined}
     />

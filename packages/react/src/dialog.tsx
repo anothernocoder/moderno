@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as dialog from '@zag-js/dialog'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface DialogProps {
   triggerLabel: string
@@ -20,24 +21,24 @@ export function Dialog({ triggerLabel, title, description, closeLabel = 'Close' 
 
   return (
     <>
-      <button {...api.getTriggerProps()} className="md-btn md-btn--primary">
+      <button {...api.getTriggerProps()} className={cx.button({ variant: 'primary' })}>
         {triggerLabel}
       </button>
       {api.open && (
         <Portal>
-          <div {...api.getBackdropProps()} className="md-dialog-backdrop" />
-          <div {...api.getPositionerProps()} className="md-dialog-positioner">
-            <div {...api.getContentProps()} className="md-dialog-content">
-              <h2 {...api.getTitleProps()} className="md-dialog-title">
+          <div {...api.getBackdropProps()} className={parts.dialog.backdrop} />
+          <div {...api.getPositionerProps()} className={parts.dialog.positioner}>
+            <div {...api.getContentProps()} className={parts.dialog.content}>
+              <h2 {...api.getTitleProps()} className={parts.dialog.title}>
                 {title}
               </h2>
               {description ? (
-                <p {...api.getDescriptionProps()} className="md-dialog-desc">
+                <p {...api.getDescriptionProps()} className={parts.dialog.desc}>
                   {description}
                 </p>
               ) : null}
-              <div className="md-dialog-actions">
-                <button {...api.getCloseTriggerProps()} className="md-btn md-btn--secondary">
+              <div className={parts.dialog.actions}>
+                <button {...api.getCloseTriggerProps()} className={cx.button({ variant: 'secondary' })}>
                   {closeLabel}
                 </button>
               </div>

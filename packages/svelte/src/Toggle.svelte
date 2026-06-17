@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as zagSwitch from '@zag-js/switch'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
+  import { parts } from '@moderno/class-contract'
 
   let {
     label,
@@ -51,12 +52,12 @@
   const api = $derived(zagSwitch.connect(service, normalizeProps))
 </script>
 
-<label {...api.getRootProps()} class="md-toggle">
+<label {...api.getRootProps()} class={parts.toggle.root}>
   <input {...api.getHiddenInputProps()} />
-  <span {...api.getControlProps()} class="md-toggle-control">
-    <span {...api.getThumbProps()} class="md-toggle-thumb"></span>
+  <span {...api.getControlProps()} class={parts.toggle.control}>
+    <span {...api.getThumbProps()} class={parts.toggle.thumb}></span>
   </span>
   {#if label != null}
-    <span {...api.getLabelProps()} class="md-toggle-label">{label}</span>
+    <span {...api.getLabelProps()} class={parts.toggle.label}>{label}</span>
   {/if}
 </label>

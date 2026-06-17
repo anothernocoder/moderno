@@ -1,16 +1,15 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    variant?: 'neutral' | 'success' | 'warning' | 'error' | 'info'
-    pulse?: boolean
-  }>(),
-  { variant: 'neutral' },
-)
+import { cx, parts, type IndicatorVariant } from '@moderno/class-contract'
+
+const props = defineProps<{
+  variant?: IndicatorVariant
+  pulse?: boolean
+}>()
 </script>
 
 <template>
-  <span :class="['md-indicator', `md-indicator--${variant}`, pulse ? 'md-indicator--pulse' : '']">
-    <span class="md-indicator__dot" />
+  <span :class="cx.indicator({ variant: props.variant, pulse: props.pulse })">
+    <span :class="parts.indicator.dot" />
     <slot />
   </span>
 </template>

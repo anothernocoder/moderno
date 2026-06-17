@@ -3,6 +3,7 @@
   import * as accordion from '@zag-js/accordion'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setAccordionContext } from './accordion-context'
+  import { parts } from '@moderno/class-contract'
 
   let {
     defaultValue,
@@ -44,4 +45,4 @@
   setAccordionContext(() => api)
 </script>
 
-<div {...api.getRootProps()} class="md-accordion">{@render children?.()}</div>
+<div {...api.getRootProps()} class={parts.accordion.root}>{@render children?.()}</div>

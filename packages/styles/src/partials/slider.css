@@ -1,0 +1,53 @@
+/* ---------- Slider (Zag slider machine, closed-prop) ---------- */
+.md-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-3);
+  font-family: var(--md-font-sans);
+}
+.md-slider[data-disabled] { opacity: 0.4; }
+.md-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.md-slider-label {
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  color: var(--md-text-primary);
+}
+.md-slider-value {
+  font-size: var(--md-text-label-md);
+  color: var(--md-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.md-slider-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+.md-slider-track {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  background: var(--md-border-default);
+  border-radius: var(--md-radius-full);
+}
+.md-slider-range {
+  position: absolute;
+  height: 100%;
+  background: var(--md-primary);
+  border-radius: var(--md-radius-full);
+}
+.md-slider-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--md-primary);
+  border: 1px solid var(--md-primary);
+  border-radius: var(--md-radius-full);
+  outline: none;
+}
+.md-slider-thumb:focus-visible { outline: 2px solid var(--md-primary); outline-offset: 2px; }
+.md-slider-thumb[data-disabled] { cursor: not-allowed; }
+

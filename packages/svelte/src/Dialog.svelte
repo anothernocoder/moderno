@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as dialog from '@zag-js/dialog'
   import { useMachine, normalizeProps, portal } from '@zag-js/svelte'
+  import { cx, parts } from '@moderno/class-contract'
 
   let {
     triggerLabel,
@@ -19,17 +20,17 @@
   const api = $derived(dialog.connect(service, normalizeProps))
 </script>
 
-<button {...api.getTriggerProps()} class="md-btn md-btn--primary">{triggerLabel}</button>
+<button {...api.getTriggerProps()} class={cx.button({ variant: 'primary' })}>{triggerLabel}</button>
 {#if api.open}
-  <div use:portal {...api.getBackdropProps()} class="md-dialog-backdrop"></div>
-  <div use:portal {...api.getPositionerProps()} class="md-dialog-positioner">
-    <div {...api.getContentProps()} class="md-dialog-content">
-      <h2 {...api.getTitleProps()} class="md-dialog-title">{title}</h2>
+  <div use:portal {...api.getBackdropProps()} class={parts.dialog.backdrop}></div>
+  <div use:portal {...api.getPositionerProps()} class={parts.dialog.positioner}>
+    <div {...api.getContentProps()} class={parts.dialog.content}>
+      <h2 {...api.getTitleProps()} class={parts.dialog.title}>{title}</h2>
       {#if description}
-        <p {...api.getDescriptionProps()} class="md-dialog-desc">{description}</p>
+        <p {...api.getDescriptionProps()} class={parts.dialog.desc}>{description}</p>
       {/if}
-      <div class="md-dialog-actions">
-        <button {...api.getCloseTriggerProps()} class="md-btn md-btn--secondary">{closeLabel}</button>
+      <div class={parts.dialog.actions}>
+        <button {...api.getCloseTriggerProps()} class={cx.button({ variant: 'secondary' })}>{closeLabel}</button>
       </div>
     </div>
   </div>

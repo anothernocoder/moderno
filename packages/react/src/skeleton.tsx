@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react'
+import { cx, type SkeletonVariant } from '@moderno/class-contract'
 
 export interface SkeletonProps {
-  variant?: 'text' | 'rect' | 'circle'
+  variant?: SkeletonVariant
   /** CSS length; a number is treated as pixels. */
   width?: string | number
   /** CSS length; a number is treated as pixels. */
@@ -9,7 +10,7 @@ export interface SkeletonProps {
 }
 
 /** Loading placeholder with a shimmer. Decorative (aria-hidden). Pure CSS. */
-export function Skeleton({ variant = 'text', width, height }: SkeletonProps) {
+export function Skeleton({ variant, width, height }: SkeletonProps) {
   const style: CSSProperties = { width, height }
-  return <span className={`md-skeleton md-skeleton--${variant}`} style={style} aria-hidden="true" />
+  return <span className={cx.skeleton({ variant })} style={style} aria-hidden="true" />
 }

@@ -1,0 +1,23 @@
+/* ---------- Callout (pure CSS) ---------- */
+.md-callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-2);
+  padding: var(--md-spacing-6);
+  border: 1px solid var(--md-border-default);
+  border-left-width: 3px;
+  background: var(--md-surface-muted);
+  border-radius: var(--md-radius-none);
+}
+.md-callout__title {
+  margin: 0;
+  font-size: var(--md-text-body-sm);
+  font-weight: 600;
+  color: var(--md-text-primary);
+}
+.md-callout__body { margin: 0; font-size: var(--md-text-body-sm); line-height: var(--md-text-body-sm-lh); color: var(--md-text-secondary); }
+.md-callout--info { border-left-color: var(--md-info); }
+.md-callout--success { border-left-color: var(--md-success); }
+.md-callout--warning { border-left-color: var(--md-warning); }
+.md-callout--error { border-left-color: var(--md-error); }
+

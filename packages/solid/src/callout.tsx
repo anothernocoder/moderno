@@ -1,7 +1,8 @@
 import { Show, type JSX } from 'solid-js'
+import { cx, parts, type CalloutVariant } from '@moderno/class-contract'
 
 export interface CalloutProps {
-  variant?: 'info' | 'success' | 'warning' | 'error'
+  variant?: CalloutVariant
   title?: JSX.Element
   children: JSX.Element
 }
@@ -9,11 +10,11 @@ export interface CalloutProps {
 /** Highlighted block that draws attention to a message or tip. Closed-prop. */
 export function Callout(props: CalloutProps) {
   return (
-    <div class={`md-callout md-callout--${props.variant ?? 'info'}`} role="note">
+    <div class={cx.callout({ variant: props.variant })} role="note">
       <Show when={props.title}>
-        <p class="md-callout__title">{props.title}</p>
+        <p class={parts.callout.title}>{props.title}</p>
       </Show>
-      <p class="md-callout__body">{props.children}</p>
+      <p class={parts.callout.body}>{props.children}</p>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { createContext, useContext, useId, useMemo, type ReactNode } from 'react'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
+import { parts } from '@moderno/class-contract'
 
 export interface SelectItem {
   label: string
@@ -44,7 +45,7 @@ function Root({ items, defaultValue, value, multiple, disabled, onValueChange, c
   const api = select.connect(service, normalizeProps)
   return (
     <SelectContext.Provider value={api}>
-      <div {...api.getRootProps()} className="md-select">
+      <div {...api.getRootProps()} className={parts.select.root}>
         {children}
       </div>
     </SelectContext.Provider>
@@ -54,7 +55,7 @@ function Root({ items, defaultValue, value, multiple, disabled, onValueChange, c
 function Label({ children }: { children: ReactNode }) {
   const api = useSelect('Label')
   return (
-    <label {...api.getLabelProps()} className="md-select-label">
+    <label {...api.getLabelProps()} className={parts.select.label}>
       {children}
     </label>
   )
@@ -63,12 +64,12 @@ function Label({ children }: { children: ReactNode }) {
 function Trigger({ placeholder = 'Select…' }: { placeholder?: string }) {
   const api = useSelect('Trigger')
   return (
-    <div {...api.getControlProps()} className="md-select-control">
-      <button {...api.getTriggerProps()} className="md-select-trigger">
-        <span {...api.getValueTextProps()} className="md-select-value">
+    <div {...api.getControlProps()} className={parts.select.control}>
+      <button {...api.getTriggerProps()} className={parts.select.trigger}>
+        <span {...api.getValueTextProps()} className={parts.select.value}>
           {api.empty ? placeholder : api.valueAsString}
         </span>
-        <span {...api.getIndicatorProps()} className="md-select-indicator" aria-hidden="true">
+        <span {...api.getIndicatorProps()} className={parts.select.indicator} aria-hidden="true">
           ▾
         </span>
       </button>
@@ -81,8 +82,8 @@ function Content({ children }: { children: ReactNode }) {
   if (!api.open) return null
   return (
     <Portal>
-      <div {...api.getPositionerProps()} className="md-select-positioner">
-        <ul {...api.getContentProps()} className="md-select-content">
+      <div {...api.getPositionerProps()} className={parts.select.positioner}>
+        <ul {...api.getContentProps()} className={parts.select.content}>
           {children}
         </ul>
       </div>
@@ -93,11 +94,11 @@ function Content({ children }: { children: ReactNode }) {
 function Item({ item, children }: { item: SelectItem; children?: ReactNode }) {
   const api = useSelect('Item')
   return (
-    <li {...api.getItemProps({ item })} className="md-select-item">
-      <span {...api.getItemTextProps({ item })} className="md-select-item-text">
+    <li {...api.getItemProps({ item })} className={parts.select.item}>
+      <span {...api.getItemTextProps({ item })} className={parts.select.itemText}>
         {children ?? item.label}
       </span>
-      <span {...api.getItemIndicatorProps({ item })} className="md-select-item-indicator" aria-hidden="true">
+      <span {...api.getItemIndicatorProps({ item })} className={parts.select.itemIndicator} aria-hidden="true">
         ✓
       </span>
     </li>

@@ -1,4 +1,5 @@
 import { useId, type InputHTMLAttributes, type ReactNode } from 'react'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'children'> {
   label?: ReactNode
@@ -12,11 +13,11 @@ export function Input({ label, hint, error, id, className, ...props }: InputProp
   const autoId = useId()
   const inputId = id ?? autoId
   const msgId = `${inputId}-msg`
-  const cls = ['md-input', error && 'md-input--error', className].filter(Boolean).join(' ')
+  const cls = [cx.input({ error: !!error }), className].filter(Boolean).join(' ')
   return (
     <div>
       {label ? (
-        <label className="md-field-label" htmlFor={inputId}>
+        <label className={parts.field.label} htmlFor={inputId}>
           {label}
         </label>
       ) : null}
@@ -28,11 +29,11 @@ export function Input({ label, hint, error, id, className, ...props }: InputProp
         {...props}
       />
       {error ? (
-        <p className="md-field-error" id={msgId}>
+        <p className={parts.field.error} id={msgId}>
           {error}
         </p>
       ) : hint ? (
-        <p className="md-field-hint" id={msgId}>
+        <p className={parts.field.hint} id={msgId}>
           {hint}
         </p>
       ) : null}

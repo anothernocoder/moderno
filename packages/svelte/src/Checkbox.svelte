@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as checkbox from '@zag-js/checkbox'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
+  import { parts } from '@moderno/class-contract'
 
   type CheckedState = boolean | 'indeterminate'
 
@@ -58,12 +59,12 @@
   const api = $derived(checkbox.connect(service, normalizeProps))
 </script>
 
-<label {...api.getRootProps()} class="md-checkbox">
+<label {...api.getRootProps()} class={parts.checkbox.root}>
   <input {...api.getHiddenInputProps()} />
-  <span {...api.getControlProps()} class="md-checkbox-control">
-    <span {...api.getIndicatorProps()} class="md-checkbox-indicator">{api.indeterminate ? '–' : '✓'}</span>
+  <span {...api.getControlProps()} class={parts.checkbox.control}>
+    <span {...api.getIndicatorProps()} class={parts.checkbox.indicator}>{api.indeterminate ? '–' : '✓'}</span>
   </span>
   {#if label != null}
-    <span {...api.getLabelProps()} class="md-checkbox-label">{label}</span>
+    <span {...api.getLabelProps()} class={parts.checkbox.label}>{label}</span>
   {/if}
 </label>

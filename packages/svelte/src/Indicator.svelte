@@ -1,22 +1,19 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { cx, parts, type IndicatorVariant } from '@moderno/class-contract'
 
   let {
-    variant = 'neutral',
+    variant,
     pulse,
     children,
   }: {
-    variant?: 'neutral' | 'success' | 'warning' | 'error' | 'info'
+    variant?: IndicatorVariant
     pulse?: boolean
     children?: Snippet
   } = $props()
-
-  const cls = $derived(
-    ['md-indicator', `md-indicator--${variant}`, pulse ? 'md-indicator--pulse' : ''].filter(Boolean).join(' '),
-  )
 </script>
 
-<span class={cls}>
-  <span class="md-indicator__dot"></span>
+<span class={cx.indicator({ variant, pulse })}>
+  <span class={parts.indicator.dot}></span>
   {@render children?.()}
 </span>

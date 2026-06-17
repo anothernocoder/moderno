@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
+import { cx, parts, type IndicatorVariant } from '@moderno/class-contract'
 
 export interface IndicatorProps {
-  variant?: 'neutral' | 'success' | 'warning' | 'error' | 'info'
+  variant?: IndicatorVariant
   /** Animate the dot with a pulsing ring. */
   pulse?: boolean
   /** Optional label rendered after the dot. */
@@ -9,11 +10,10 @@ export interface IndicatorProps {
 }
 
 /** Status dot with optional pulse and label. Pure CSS, closed-prop. */
-export function Indicator({ variant = 'neutral', pulse, children }: IndicatorProps) {
-  const cls = ['md-indicator', `md-indicator--${variant}`, pulse && 'md-indicator--pulse'].filter(Boolean).join(' ')
+export function Indicator({ variant, pulse, children }: IndicatorProps) {
   return (
-    <span className={cls}>
-      <span className="md-indicator__dot" />
+    <span className={cx.indicator({ variant, pulse })}>
+      <span className={parts.indicator.dot} />
       {children}
     </span>
   )

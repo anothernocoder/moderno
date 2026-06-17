@@ -2,6 +2,7 @@ import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as tooltip from '@zag-js/tooltip'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface TooltipProps {
   /** Label of the trigger button. */
@@ -29,13 +30,13 @@ export function Tooltip(props: TooltipProps) {
 
   return (
     <>
-      <button {...api().getTriggerProps()} class="md-btn md-btn--secondary md-btn--sm">
+      <button {...api().getTriggerProps()} class={cx.button({ variant: 'secondary', size: 'sm' })}>
         {props.triggerLabel}
       </button>
       <Show when={api().open}>
         <Portal>
-          <div {...api().getPositionerProps()} class="md-tooltip-positioner">
-            <div {...api().getContentProps()} class="md-tooltip-content">
+          <div {...api().getPositionerProps()} class={parts.tooltip.positioner}>
+            <div {...api().getContentProps()} class={parts.tooltip.content}>
               {props.content}
             </div>
           </div>

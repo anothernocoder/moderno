@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as tooltip from '@zag-js/tooltip'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface TooltipProps {
   /** Label of the trigger button. */
@@ -20,13 +21,13 @@ export function Tooltip({ triggerLabel, content, openDelay, closeDelay }: Toolti
 
   return (
     <>
-      <button {...api.getTriggerProps()} className="md-btn md-btn--secondary md-btn--sm">
+      <button {...api.getTriggerProps()} className={cx.button({ variant: 'secondary', size: 'sm' })}>
         {triggerLabel}
       </button>
       {api.open && (
         <Portal>
-          <div {...api.getPositionerProps()} className="md-tooltip-positioner">
-            <div {...api.getContentProps()} className="md-tooltip-content">
+          <div {...api.getPositionerProps()} className={parts.tooltip.positioner}>
+            <div {...api.getContentProps()} className={parts.tooltip.content}>
               {content}
             </div>
           </div>

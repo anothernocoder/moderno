@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { getAccordionContext, setAccordionItemContext } from './accordion-context'
+  import { parts } from '@moderno/class-contract'
 
   let {
     value,
@@ -16,4 +17,4 @@
   setAccordionItemContext({ value, disabled })
 </script>
 
-<div {...api().getItemProps({ value, disabled })} class="md-accordion-item">{@render children?.()}</div>
+<div {...api().getItemProps({ value, disabled })} class={parts.accordion.item}>{@render children?.()}</div>

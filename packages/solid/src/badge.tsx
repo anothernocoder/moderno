@@ -1,7 +1,8 @@
 import type { JSX } from 'solid-js'
+import { cx, parts, type BadgeVariant } from '@moderno/class-contract'
 
 export interface BadgeProps {
-  variant?: 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
+  variant?: BadgeVariant
   dot?: boolean
   children: JSX.Element
 }
@@ -9,8 +10,8 @@ export interface BadgeProps {
 /** Compact status/label token. Pure CSS, closed-prop. */
 export function Badge(props: BadgeProps) {
   return (
-    <span class={`md-badge md-badge--${props.variant ?? 'neutral'}`}>
-      {props.dot ? <span class="md-badge__dot" /> : null}
+    <span class={cx.badge({ variant: props.variant })}>
+      {props.dot ? <span class={parts.badge.dot} /> : null}
       {props.children}
     </span>
   )

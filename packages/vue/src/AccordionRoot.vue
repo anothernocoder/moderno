@@ -3,6 +3,7 @@ import { computed, provide, useId } from 'vue'
 import * as accordion from '@zag-js/accordion'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { AccordionKey } from './accordion-context'
+import { parts } from '@moderno/class-contract'
 
 const props = defineProps<{
   defaultValue?: string[]
@@ -35,5 +36,5 @@ provide(AccordionKey, api)
 </script>
 
 <template>
-  <div v-bind="api.getRootProps()" class="md-accordion"><slot /></div>
+  <div v-bind="api.getRootProps()" :class="parts.accordion.root"><slot /></div>
 </template>

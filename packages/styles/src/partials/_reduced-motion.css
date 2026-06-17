@@ -1,0 +1,8 @@
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .md-skeleton,
+  .md-spinner,
+  .md-indicator--pulse .md-indicator__dot::after {
+    animation: none;
+  }
+}

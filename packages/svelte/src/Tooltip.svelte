@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as tooltip from '@zag-js/tooltip'
   import { useMachine, normalizeProps, portal } from '@zag-js/svelte'
+  import { cx, parts } from '@moderno/class-contract'
 
   let {
     triggerLabel,
@@ -27,9 +28,9 @@
   const api = $derived(tooltip.connect(service, normalizeProps))
 </script>
 
-<button {...api.getTriggerProps()} class="md-btn md-btn--secondary md-btn--sm">{triggerLabel}</button>
+<button {...api.getTriggerProps()} class={cx.button({ variant: 'secondary', size: 'sm' })}>{triggerLabel}</button>
 {#if api.open}
-  <div use:portal {...api.getPositionerProps()} class="md-tooltip-positioner">
-    <div {...api.getContentProps()} class="md-tooltip-content">{content}</div>
+  <div use:portal {...api.getPositionerProps()} class={parts.tooltip.positioner}>
+    <div {...api.getContentProps()} class={parts.tooltip.content}>{content}</div>
   </div>
 {/if}

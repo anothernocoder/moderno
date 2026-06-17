@@ -1,14 +1,15 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { cx, parts, type ChipVariant } from '@moderno/class-contract'
 
   let {
-    variant = 'neutral',
+    variant,
     removable,
     onRemove,
     removeLabel = 'Remove',
     children,
   }: {
-    variant?: 'neutral' | 'solid'
+    variant?: ChipVariant
     removable?: boolean
     onRemove?: () => void
     removeLabel?: string
@@ -16,9 +17,9 @@
   } = $props()
 </script>
 
-<span class={`md-chip md-chip--${variant}`}>
+<span class={cx.chip({ variant })}>
   {@render children?.()}
   {#if removable}
-    <button type="button" class="md-chip__remove" aria-label={removeLabel} onclick={onRemove}>×</button>
+    <button type="button" class={parts.chip.remove} aria-label={removeLabel} onclick={onRemove}>×</button>
   {/if}
 </span>

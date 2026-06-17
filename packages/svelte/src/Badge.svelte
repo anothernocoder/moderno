@@ -1,18 +1,19 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
+  import { cx, parts, type BadgeVariant } from '@moderno/class-contract'
 
   let {
-    variant = 'neutral',
+    variant,
     dot,
     children,
   }: {
-    variant?: 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
+    variant?: BadgeVariant
     dot?: boolean
     children?: Snippet
   } = $props()
 </script>
 
-<span class={`md-badge md-badge--${variant}`}>
-  {#if dot}<span class="md-badge__dot"></span>{/if}
+<span class={cx.badge({ variant })}>
+  {#if dot}<span class={parts.badge.dot}></span>{/if}
   {@render children?.()}
 </span>

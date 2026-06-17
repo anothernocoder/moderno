@@ -2,6 +2,7 @@ import { createContext, useContext, createMemo, createUniqueId, Show, type JSX }
 import { Portal } from 'solid-js/web'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { parts } from '@moderno/class-contract'
 
 export interface SelectItem {
   label: string
@@ -52,7 +53,7 @@ function Root(props: SelectRootProps) {
   const api = createMemo(() => select.connect(service, normalizeProps))
   return (
     <SelectContext.Provider value={api}>
-      <div {...api().getRootProps()} class="md-select">
+      <div {...api().getRootProps()} class={parts.select.root}>
         {props.children}
       </div>
     </SelectContext.Provider>
@@ -62,7 +63,7 @@ function Root(props: SelectRootProps) {
 function Label(props: { children: JSX.Element }) {
   const api = useSelect('Label')
   return (
-    <label {...api().getLabelProps()} class="md-select-label">
+    <label {...api().getLabelProps()} class={parts.select.label}>
       {props.children}
     </label>
   )
@@ -72,12 +73,12 @@ function Trigger(props: { placeholder?: string }) {
   const api = useSelect('Trigger')
   const placeholder = () => props.placeholder ?? 'Select…'
   return (
-    <div {...api().getControlProps()} class="md-select-control">
-      <button {...api().getTriggerProps()} class="md-select-trigger">
-        <span {...api().getValueTextProps()} class="md-select-value">
+    <div {...api().getControlProps()} class={parts.select.control}>
+      <button {...api().getTriggerProps()} class={parts.select.trigger}>
+        <span {...api().getValueTextProps()} class={parts.select.value}>
           {api().empty ? placeholder() : api().valueAsString}
         </span>
-        <span {...api().getIndicatorProps()} class="md-select-indicator" aria-hidden="true">
+        <span {...api().getIndicatorProps()} class={parts.select.indicator} aria-hidden="true">
           ▾
         </span>
       </button>
@@ -90,8 +91,8 @@ function Content(props: { children: JSX.Element }) {
   return (
     <Show when={api().open}>
       <Portal>
-        <div {...api().getPositionerProps()} class="md-select-positioner">
-          <ul {...api().getContentProps()} class="md-select-content">
+        <div {...api().getPositionerProps()} class={parts.select.positioner}>
+          <ul {...api().getContentProps()} class={parts.select.content}>
             {props.children}
           </ul>
         </div>
@@ -103,11 +104,11 @@ function Content(props: { children: JSX.Element }) {
 function Item(props: { item: SelectItem; children?: JSX.Element }) {
   const api = useSelect('Item')
   return (
-    <li {...api().getItemProps({ item: props.item })} class="md-select-item">
-      <span {...api().getItemTextProps({ item: props.item })} class="md-select-item-text">
+    <li {...api().getItemProps({ item: props.item })} class={parts.select.item}>
+      <span {...api().getItemTextProps({ item: props.item })} class={parts.select.itemText}>
         {props.children ?? props.item.label}
       </span>
-      <span {...api().getItemIndicatorProps({ item: props.item })} class="md-select-item-indicator" aria-hidden="true">
+      <span {...api().getItemIndicatorProps({ item: props.item })} class={parts.select.itemIndicator} aria-hidden="true">
         ✓
       </span>
     </li>

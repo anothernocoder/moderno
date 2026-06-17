@@ -1,6 +1,7 @@
 import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as slider from '@zag-js/slider'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { parts } from '@moderno/class-contract'
 
 export interface SliderProps {
   label?: JSX.Element
@@ -46,26 +47,26 @@ export function Slider(props: SliderProps) {
   const showValue = () => props.showValue !== false
 
   return (
-    <div {...api().getRootProps()} class="md-slider">
+    <div {...api().getRootProps()} class={parts.slider.root}>
       <Show when={props.label != null || showValue()}>
-        <div class="md-slider-header">
+        <div class={parts.slider.header}>
           <Show when={props.label != null} fallback={<span />}>
-            <label {...api().getLabelProps()} class="md-slider-label">
+            <label {...api().getLabelProps()} class={parts.slider.label}>
               {props.label}
             </label>
           </Show>
           <Show when={showValue()}>
-            <output {...api().getValueTextProps()} class="md-slider-value">
+            <output {...api().getValueTextProps()} class={parts.slider.value}>
               {api().value[0]}
             </output>
           </Show>
         </div>
       </Show>
-      <div {...api().getControlProps()} class="md-slider-control">
-        <div {...api().getTrackProps()} class="md-slider-track">
-          <div {...api().getRangeProps()} class="md-slider-range" />
+      <div {...api().getControlProps()} class={parts.slider.control}>
+        <div {...api().getTrackProps()} class={parts.slider.track}>
+          <div {...api().getRangeProps()} class={parts.slider.range} />
         </div>
-        <div {...api().getThumbProps({ index: 0 })} class="md-slider-thumb">
+        <div {...api().getThumbProps({ index: 0 })} class={parts.slider.thumb}>
           <input {...api().getHiddenInputProps({ index: 0 })} />
         </div>
       </div>

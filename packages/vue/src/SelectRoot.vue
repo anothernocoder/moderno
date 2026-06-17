@@ -3,6 +3,7 @@ import { computed, provide, useId } from 'vue'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { SelectKey, type SelectItem } from './select-context'
+import { parts } from '@moderno/class-contract'
 
 const props = defineProps<{
   items: SelectItem[]
@@ -40,5 +41,5 @@ provide(SelectKey, api)
 </script>
 
 <template>
-  <div v-bind="api.getRootProps()" class="md-select"><slot /></div>
+  <div v-bind="api.getRootProps()" :class="parts.select.root"><slot /></div>
 </template>

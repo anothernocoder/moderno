@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as checkbox from '@zag-js/checkbox'
 import { useMachine, normalizeProps } from '@zag-js/react'
+import { parts } from '@moderno/class-contract'
 
 export type CheckedState = boolean | 'indeterminate'
 
@@ -46,15 +47,15 @@ export function Checkbox({
   const api = checkbox.connect(service, normalizeProps)
 
   return (
-    <label {...api.getRootProps()} className="md-checkbox">
+    <label {...api.getRootProps()} className={parts.checkbox.root}>
       <input {...api.getHiddenInputProps()} />
-      <span {...api.getControlProps()} className="md-checkbox-control">
-        <span {...api.getIndicatorProps()} className="md-checkbox-indicator">
+      <span {...api.getControlProps()} className={parts.checkbox.control}>
+        <span {...api.getIndicatorProps()} className={parts.checkbox.indicator}>
           {api.indeterminate ? '–' : '✓'}
         </span>
       </span>
       {label != null ? (
-        <span {...api.getLabelProps()} className="md-checkbox-label">
+        <span {...api.getLabelProps()} className={parts.checkbox.label}>
           {label}
         </span>
       ) : null}

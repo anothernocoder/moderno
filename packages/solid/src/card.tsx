@@ -1,4 +1,5 @@
 import { Show, type JSX } from 'solid-js'
+import { parts } from '@moderno/class-contract'
 
 export interface CardProps {
   title?: JSX.Element
@@ -9,15 +10,15 @@ export interface CardProps {
 /** Container surface that groups related content and actions. Closed-prop. */
 export function Card(props: CardProps) {
   return (
-    <div class="md-card">
+    <div class={parts.card.root}>
       <Show when={props.title}>
-        <h3 class="md-card__title">{props.title}</h3>
+        <h3 class={parts.card.title}>{props.title}</h3>
       </Show>
       <Show when={props.children}>
-        <div class="md-card__body">{props.children}</div>
+        <div class={parts.card.body}>{props.children}</div>
       </Show>
       <Show when={props.footer}>
-        <div class="md-card__footer">{props.footer}</div>
+        <div class={parts.card.footer}>{props.footer}</div>
       </Show>
     </div>
   )

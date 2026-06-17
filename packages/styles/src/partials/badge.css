@@ -1,0 +1,21 @@
+/* ---------- Badge (pure CSS) ---------- */
+.md-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-spacing-2);
+  height: 22px;
+  padding: 0 10px;
+  border-radius: var(--md-radius-full);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-label-md);
+  line-height: 1;
+  white-space: nowrap;
+}
+.md-badge__dot { width: 6px; height: 6px; border-radius: var(--md-radius-full); background: currentColor; }
+.md-badge--neutral { border: 1px solid var(--md-border-strong); color: var(--md-text-secondary); }
+.md-badge--solid { background: var(--md-primary); color: var(--md-on-primary); }
+.md-badge--success { background: color-mix(in srgb, var(--md-success) 14%, transparent); color: var(--md-success); }
+.md-badge--warning { background: color-mix(in srgb, var(--md-warning) 14%, transparent); color: var(--md-warning); }
+.md-badge--error { background: color-mix(in srgb, var(--md-error) 14%, transparent); color: var(--md-error); }
+.md-badge--info { background: color-mix(in srgb, var(--md-info) 14%, transparent); color: var(--md-info); }
+

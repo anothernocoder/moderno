@@ -1,6 +1,7 @@
 import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as checkbox from '@zag-js/checkbox'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { parts } from '@moderno/class-contract'
 
 export type CheckedState = boolean | 'indeterminate'
 
@@ -46,15 +47,15 @@ export function Checkbox(props: CheckboxProps) {
   const api = createMemo(() => checkbox.connect(service, normalizeProps))
 
   return (
-    <label {...api().getRootProps()} class="md-checkbox">
+    <label {...api().getRootProps()} class={parts.checkbox.root}>
       <input {...api().getHiddenInputProps()} />
-      <span {...api().getControlProps()} class="md-checkbox-control">
-        <span {...api().getIndicatorProps()} class="md-checkbox-indicator">
+      <span {...api().getControlProps()} class={parts.checkbox.control}>
+        <span {...api().getIndicatorProps()} class={parts.checkbox.indicator}>
           {api().indeterminate ? '–' : '✓'}
         </span>
       </span>
       <Show when={props.label != null}>
-        <span {...api().getLabelProps()} class="md-checkbox-label">
+        <span {...api().getLabelProps()} class={parts.checkbox.label}>
           {props.label}
         </span>
       </Show>

@@ -3,6 +3,7 @@
   import * as tabs from '@zag-js/tabs'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setTabsContext } from './tabs-context'
+  import { parts } from '@moderno/class-contract'
 
   let {
     defaultValue,
@@ -34,4 +35,4 @@
   setTabsContext(() => api)
 </script>
 
-<div {...api.getRootProps()} class="md-tabs">{@render children?.()}</div>
+<div {...api.getRootProps()} class={parts.tabs.root}>{@render children?.()}</div>

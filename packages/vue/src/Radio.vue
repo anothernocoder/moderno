@@ -2,6 +2,7 @@
 import { computed, useId } from 'vue'
 import * as radio from '@zag-js/radio-group'
 import { useMachine, normalizeProps } from '@zag-js/vue'
+import { parts } from '@moderno/class-contract'
 
 interface RadioOption {
   value: string
@@ -49,16 +50,16 @@ const api = computed(() => radio.connect(service, normalizeProps))
 </script>
 
 <template>
-  <div v-bind="api.getRootProps()" class="md-radio">
-    <span v-if="label != null" v-bind="api.getLabelProps()" class="md-radio-label">{{ label }}</span>
+  <div v-bind="api.getRootProps()" :class="parts.radio.root">
+    <span v-if="label != null" v-bind="api.getLabelProps()" :class="parts.radio.label">{{ label }}</span>
     <label
       v-for="opt in options"
       :key="opt.value"
       v-bind="api.getItemProps({ value: opt.value, disabled: opt.disabled })"
-      class="md-radio-item"
+      :class="parts.radio.item"
     >
-      <span v-bind="api.getItemControlProps({ value: opt.value, disabled: opt.disabled })" class="md-radio-control" />
-      <span v-bind="api.getItemTextProps({ value: opt.value, disabled: opt.disabled })" class="md-radio-item-text">{{
+      <span v-bind="api.getItemControlProps({ value: opt.value, disabled: opt.disabled })" :class="parts.radio.control" />
+      <span v-bind="api.getItemTextProps({ value: opt.value, disabled: opt.disabled })" :class="parts.radio.itemText">{{
         opt.label ?? opt.value
       }}</span>
       <input v-bind="api.getItemHiddenInputProps({ value: opt.value, disabled: opt.disabled })" />

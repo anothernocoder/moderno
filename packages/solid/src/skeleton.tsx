@@ -9,6 +9,7 @@ export interface SkeletonProps {
 
 /** Loading placeholder with a shimmer. Decorative (aria-hidden). Pure CSS. */
 export function Skeleton(props: SkeletonProps) {
-  const style = (): JSX.CSSProperties => ({ width: props.width, height: props.height })
+  const len = (v: string | number | undefined) => (typeof v === 'number' ? `${v}px` : v)
+  const style = (): JSX.CSSProperties => ({ width: len(props.width), height: len(props.height) })
   return <span class={cx.skeleton({ variant: props.variant })} style={style()} aria-hidden="true" />
 }

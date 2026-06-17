@@ -14,6 +14,9 @@
   "sideEffects": [
     "*.css"
   ],
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
   "dependencies": {
     "@moderno/class-contract": "workspace:*",
     "@moderno/styles": "workspace:*",
@@ -36,5 +39,9 @@
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3"
   }
 }

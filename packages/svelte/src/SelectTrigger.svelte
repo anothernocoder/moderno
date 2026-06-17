@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getSelectContext } from './select-context'
 
-  let { placeholder = 'Selecciona…' }: { placeholder?: string } = $props()
+  let { placeholder = 'Select…' }: { placeholder?: string } = $props()
   const api = getSelectContext()
 </script>
 

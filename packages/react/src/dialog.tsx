@@ -14,7 +14,7 @@ export interface DialogProps {
  * Behavior + a11y come from the Zag dialog machine; Moderno owns the markup
  * and the md-* class contract.
  */
-export function Dialog({ triggerLabel, title, description, closeLabel = 'Cerrar' }: DialogProps) {
+export function Dialog({ triggerLabel, title, description, closeLabel = 'Close' }: DialogProps) {
   const service = useMachine(dialog.machine, { id: useId() })
   const api = dialog.connect(service, normalizeProps)
 

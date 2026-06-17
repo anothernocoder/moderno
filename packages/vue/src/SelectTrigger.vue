@@ -2,7 +2,7 @@
 import { inject } from 'vue'
 import { SelectKey } from './select-context'
 
-withDefaults(defineProps<{ placeholder?: string }>(), { placeholder: 'Selecciona…' })
+withDefaults(defineProps<{ placeholder?: string }>(), { placeholder: 'Select…' })
 const api = inject(SelectKey)!
 </script>
 

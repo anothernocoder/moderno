@@ -1,7 +1,7 @@
 <script lang="ts">
   let {
     size = 'md',
-    label = 'Cargando',
+    label = 'Loading',
   }: {
     size?: 'sm' | 'md' | 'lg'
     label?: string

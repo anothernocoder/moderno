@@ -6,7 +6,7 @@
     triggerLabel,
     title,
     description,
-    closeLabel = 'Cerrar',
+    closeLabel = 'Close',
   }: {
     triggerLabel: string
     title: string

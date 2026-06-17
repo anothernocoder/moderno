@@ -70,7 +70,7 @@ function Label(props: { children: JSX.Element }) {
 
 function Trigger(props: { placeholder?: string }) {
   const api = useSelect('Trigger')
-  const placeholder = () => props.placeholder ?? 'Selecciona…'
+  const placeholder = () => props.placeholder ?? 'Select…'
   return (
     <div {...api().getControlProps()} class="md-select-control">
       <button {...api().getTriggerProps()} class="md-select-trigger">

@@ -9,7 +9,7 @@ export function Spinner(props: SpinnerProps) {
     <span
       class={`md-spinner md-spinner--${props.size ?? 'md'}`}
       role="status"
-      aria-label={props.label ?? 'Cargando'}
+      aria-label={props.label ?? 'Loading'}
     />
   )
 }

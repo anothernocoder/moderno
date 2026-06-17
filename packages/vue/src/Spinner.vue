@@ -4,7 +4,7 @@ withDefaults(
     size?: 'sm' | 'md' | 'lg'
     label?: string
   }>(),
-  { size: 'md', label: 'Cargando' },
+  { size: 'md', label: 'Loading' },
 )
 </script>
 

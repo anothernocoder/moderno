@@ -60,7 +60,7 @@ function Label({ children }: { children: ReactNode }) {
   )
 }
 
-function Trigger({ placeholder = 'Selecciona…' }: { placeholder?: string }) {
+function Trigger({ placeholder = 'Select…' }: { placeholder?: string }) {
   const api = useSelect('Trigger')
   return (
     <div {...api.getControlProps()} className="md-select-control">

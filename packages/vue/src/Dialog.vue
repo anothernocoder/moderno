@@ -9,7 +9,7 @@ defineOptions({ inheritAttrs: false })
 
 withDefaults(
   defineProps<{ triggerLabel: string; title: string; description?: string; closeLabel?: string }>(),
-  { closeLabel: 'Cerrar' },
+  { closeLabel: 'Close' },
 )
 
 const service = useMachine(dialog.machine, { id: useId() })

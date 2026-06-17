@@ -35,7 +35,7 @@ export function Dialog(props: DialogProps) {
               </Show>
               <div class="md-dialog-actions">
                 <button {...api().getCloseTriggerProps()} class="md-btn md-btn--secondary">
-                  {props.closeLabel ?? 'Cerrar'}
+                  {props.closeLabel ?? 'Close'}
                 </button>
               </div>
             </div>

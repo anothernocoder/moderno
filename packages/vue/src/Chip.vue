@@ -3,8 +3,9 @@ withDefaults(
   defineProps<{
     variant?: 'neutral' | 'solid'
     removable?: boolean
+    removeLabel?: string
   }>(),
-  { variant: 'neutral' },
+  { variant: 'neutral', removeLabel: 'Remove' },
 )
 
 const emit = defineEmits<{ remove: [] }>()
@@ -17,7 +18,7 @@ const emit = defineEmits<{ remove: [] }>()
       v-if="removable"
       type="button"
       class="md-chip__remove"
-      aria-label="Quitar"
+      :aria-label="removeLabel"
       @click="emit('remove')"
     >
       ×

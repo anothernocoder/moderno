@@ -5,6 +5,6 @@ export interface SpinnerProps {
 }
 
 /** Indeterminate loading spinner. Pure CSS, closed-prop. */
-export function Spinner({ size = 'md', label = 'Cargando' }: SpinnerProps) {
+export function Spinner({ size = 'md', label = 'Loading' }: SpinnerProps) {
   return <span className={`md-spinner md-spinner--${size}`} role="status" aria-label={label} />
 }

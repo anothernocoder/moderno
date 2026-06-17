@@ -58,7 +58,27 @@ export const cx = {
   },
 }
 
+/**
+ * Anatomy leaves — the static class a primitive applies to each part of its
+ * markup (Zag primitives have no variants, just named parts). Typed as const so
+ * each leaf is a literal class name the framework packages import by role.
+ */
+export const parts = {
+  popover: {
+    positioner: 'md-popover-positioner',
+    content: 'md-popover-content',
+    arrow: 'md-popover-arrow',
+    title: 'md-popover-title',
+    body: 'md-popover-body',
+    close: 'md-popover-close',
+  },
+} as const
+
 /** The complete set of md-* class names the contract may emit. */
 export function legalNames(): Set<string> {
-  return new Set([...namesOf(buttonSpec)])
+  const names = new Set<string>(namesOf(buttonSpec))
+  for (const leaves of Object.values(parts)) {
+    for (const cls of Object.values(leaves)) names.add(cls)
+  }
+  return names
 }

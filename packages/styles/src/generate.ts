@@ -29,6 +29,8 @@ export const STYLE_SEGMENTS: SegmentSource[] = [
   { kind: 'legacy', name: 'head', file: './partials/_head.css' },
   { kind: 'enforced', name: 'button', file: './partials/button.css' },
   { kind: 'legacy', name: 'legacy', file: './partials/_legacy.css' },
+  { kind: 'enforced', name: 'popover', file: './partials/popover.css' },
+  { kind: 'legacy', name: 'legacy-2', file: './partials/_legacy-2.css' },
 ]
 
 /** Class selectors (`md-*`) referenced in a chunk of CSS. */

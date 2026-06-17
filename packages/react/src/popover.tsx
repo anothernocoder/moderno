@@ -1,6 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as popover from '@zag-js/popover'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface PopoverProps {
   /** Label of the trigger button. */
@@ -24,27 +25,27 @@ export function Popover({ triggerLabel, title, content, closeLabel = 'Close' }: 
 
   return (
     <>
-      <button {...api.getTriggerProps()} className="md-btn md-btn--secondary md-btn--sm">
+      <button {...api.getTriggerProps()} className={cx.button({ variant: 'secondary', size: 'sm' })}>
         {triggerLabel}
       </button>
       {api.open && (
         <Portal>
-          <div {...api.getPositionerProps()} className="md-popover-positioner">
-            <div {...api.getContentProps()} className="md-popover-content">
-              <div {...api.getArrowProps()} className="md-popover-arrow">
+          <div {...api.getPositionerProps()} className={parts.popover.positioner}>
+            <div {...api.getContentProps()} className={parts.popover.content}>
+              <div {...api.getArrowProps()} className={parts.popover.arrow}>
                 <div {...api.getArrowTipProps()} />
               </div>
               {title ? (
-                <p {...api.getTitleProps()} className="md-popover-title">
+                <p {...api.getTitleProps()} className={parts.popover.title}>
                   {title}
                 </p>
               ) : null}
-              <div {...api.getDescriptionProps()} className="md-popover-body">
+              <div {...api.getDescriptionProps()} className={parts.popover.body}>
                 {content}
               </div>
               <button
                 {...api.getCloseTriggerProps()}
-                className="md-popover-close"
+                className={parts.popover.close}
                 aria-label={closeLabel}
               >
                 ✕

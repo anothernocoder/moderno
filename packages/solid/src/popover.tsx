@@ -2,6 +2,7 @@ import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as popover from '@zag-js/popover'
 import { useMachine, normalizeProps } from '@zag-js/solid'
+import { cx, parts } from '@moderno/class-contract'
 
 export interface PopoverProps {
   /** Label of the trigger button. */
@@ -21,27 +22,27 @@ export function Popover(props: PopoverProps) {
 
   return (
     <>
-      <button {...api().getTriggerProps()} class="md-btn md-btn--secondary md-btn--sm">
+      <button {...api().getTriggerProps()} class={cx.button({ variant: 'secondary', size: 'sm' })}>
         {props.triggerLabel}
       </button>
       <Show when={api().open}>
         <Portal>
-          <div {...api().getPositionerProps()} class="md-popover-positioner">
-            <div {...api().getContentProps()} class="md-popover-content">
-              <div {...api().getArrowProps()} class="md-popover-arrow">
+          <div {...api().getPositionerProps()} class={parts.popover.positioner}>
+            <div {...api().getContentProps()} class={parts.popover.content}>
+              <div {...api().getArrowProps()} class={parts.popover.arrow}>
                 <div {...api().getArrowTipProps()} />
               </div>
               <Show when={props.title}>
-                <p {...api().getTitleProps()} class="md-popover-title">
+                <p {...api().getTitleProps()} class={parts.popover.title}>
                   {props.title}
                 </p>
               </Show>
-              <div {...api().getDescriptionProps()} class="md-popover-body">
+              <div {...api().getDescriptionProps()} class={parts.popover.body}>
                 {props.content}
               </div>
               <button
                 {...api().getCloseTriggerProps()}
-                class="md-popover-close"
+                class={parts.popover.close}
                 aria-label={props.closeLabel ?? 'Close'}
               >
                 ✕

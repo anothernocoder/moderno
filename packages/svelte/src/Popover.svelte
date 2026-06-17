@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as popover from '@zag-js/popover'
   import { useMachine, normalizeProps, portal } from '@zag-js/svelte'
+  import { cx, parts } from '@moderno/class-contract'
 
   let {
     triggerLabel,
@@ -19,18 +20,18 @@
   const api = $derived(popover.connect(service, normalizeProps))
 </script>
 
-<button {...api.getTriggerProps()} class="md-btn md-btn--secondary md-btn--sm">{triggerLabel}</button>
+<button {...api.getTriggerProps()} class={cx.button({ variant: 'secondary', size: 'sm' })}>{triggerLabel}</button>
 {#if api.open}
-  <div use:portal {...api.getPositionerProps()} class="md-popover-positioner">
-    <div {...api.getContentProps()} class="md-popover-content">
-      <div {...api.getArrowProps()} class="md-popover-arrow">
+  <div use:portal {...api.getPositionerProps()} class={parts.popover.positioner}>
+    <div {...api.getContentProps()} class={parts.popover.content}>
+      <div {...api.getArrowProps()} class={parts.popover.arrow}>
         <div {...api.getArrowTipProps()}></div>
       </div>
       {#if title}
-        <p {...api.getTitleProps()} class="md-popover-title">{title}</p>
+        <p {...api.getTitleProps()} class={parts.popover.title}>{title}</p>
       {/if}
-      <div {...api.getDescriptionProps()} class="md-popover-body">{content}</div>
-      <button {...api.getCloseTriggerProps()} class="md-popover-close" aria-label={closeLabel}>✕</button>
+      <div {...api.getDescriptionProps()} class={parts.popover.body}>{content}</div>
+      <button {...api.getCloseTriggerProps()} class={parts.popover.close} aria-label={closeLabel}>✕</button>
     </div>
   </div>
 {/if}

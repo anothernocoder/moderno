@@ -1,16 +1,15 @@
 import type { ButtonHTMLAttributes } from 'react'
+import { cx, type ButtonSize, type ButtonVariant } from '@moderno/class-contract'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary'
-  size?: 'sm' | 'md' | 'lg'
+  variant?: ButtonVariant
+  size?: ButtonSize
   /** Convenience text label; falls back to children. */
   label?: string
 }
 
-export function Button({ variant = 'primary', size = 'md', label, className, children, ...props }: ButtonProps) {
-  const cls = ['md-btn', `md-btn--${variant}`, size !== 'md' && `md-btn--${size}`, className]
-    .filter(Boolean)
-    .join(' ')
+export function Button({ variant, size, label, className, children, ...props }: ButtonProps) {
+  const cls = [cx.button({ variant, size }), className].filter(Boolean).join(' ')
   return (
     <button className={cls} {...props}>
       {label ?? children}

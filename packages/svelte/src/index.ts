@@ -29,6 +29,7 @@ export { default as Toggle } from './Toggle.svelte'
 export { default as Checkbox } from './Checkbox.svelte'
 export { default as Radio } from './Radio.svelte'
 export { default as Tooltip } from './Tooltip.svelte'
+export { default as Popover } from './Popover.svelte'
 export { default as Slider } from './Slider.svelte'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */

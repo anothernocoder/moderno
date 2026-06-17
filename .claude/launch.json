@@ -7,13 +7,6 @@
       "runtimeArgs": ["--filter", "@moderno/docs", "dev"],
       "port": 4321,
       "autoPort": true
-    },
-    {
-      "name": "styleguide",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 5173,
-      "autoPort": true
     }
   ]
 }

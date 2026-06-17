@@ -1,12 +1,11 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{ variant?: 'primary' | 'secondary'; size?: 'sm' | 'md' | 'lg'; label?: string }>(),
-  { variant: 'primary', size: 'md' },
-)
+import { cx, type ButtonSize, type ButtonVariant } from '@moderno/class-contract'
+
+const props = defineProps<{ variant?: ButtonVariant; size?: ButtonSize; label?: string }>()
 </script>
 
 <template>
-  <button :class="['md-btn', `md-btn--${variant}`, size !== 'md' ? `md-btn--${size}` : '']">
+  <button :class="cx.button({ variant: props.variant, size: props.size })">
     <template v-if="label">{{ label }}</template>
     <slot v-else />
   </button>

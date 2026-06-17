@@ -29,6 +29,7 @@ export { default as Toggle } from './Toggle.vue'
 export { default as Checkbox } from './Checkbox.vue'
 export { default as Radio } from './Radio.vue'
 export { default as Tooltip } from './Tooltip.vue'
+export { default as Popover } from './Popover.vue'
 export { default as Slider } from './Slider.vue'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */

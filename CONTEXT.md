@@ -25,6 +25,15 @@ An intent-based token name (`color/text/primary`, `border-default`) that compone
 consume; the swap layer for theming (light/dark, re-skin).
 _Avoid_: alias, mapping.
 
+**Class contract**:
+The machine-readable set of `md-*` class names — and the variant/size composition
+that builds them (`md-btn` + `md-btn--${variant}`) — that the [[styled-layer]] applies
+to markup and `styles.css` realizes as rules. The seam between the rendered DOM and the
+look. Owned once (`@moderno/class-contract`) so a rename is one edit, not five, and
+generated CSS selectors are guaranteed to match the names the frameworks emit. Distinct
+from [[semantic-role]], which names token values, not component classes.
+_Avoid_: classnames, BEM, css contract, stylesheet API.
+
 **Consumer**:
 A project (React/Vue/Svelte/Solid app) that installs and uses Moderno. The audience
 of the library.
@@ -46,6 +55,12 @@ _Avoid_: logic, headless, Ark.
 The thin, per-framework Moderno code that applies tokens/look to the behavior core
 and exposes a component to a consumer.
 _Avoid_: wrapper, adapter, skin.
+
+**Chart core**:
+The framework-neutral charting math (scales + shape/path generators, d3-scale +
+d3-shape) shared across frameworks, the charting analogue of the [[behavior-core]].
+Each framework renders its output as token-driven SVG. _Avoid_: chart library,
+plotting engine, viz lib.
 
 **Primitive**:
 A single interactive or display component (Button, Combobox, Dialog, Tabs…),

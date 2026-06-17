@@ -13,7 +13,14 @@
   "sideEffects": [
     "*.css"
   ],
+  "scripts": {
+    "build:css": "node scripts/generate-styles.mjs",
+    "test": "vitest run"
+  },
   "dependencies": {
     "@moderno/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@moderno/class-contract": "workspace:*"
   }
 }

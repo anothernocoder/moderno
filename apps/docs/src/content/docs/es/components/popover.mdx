@@ -1,0 +1,85 @@
+---
+title: Popover
+description: Panel anclado y no modal revelado desde un disparador. Behavior core Zag (popover), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Popover as RPopover } from '@moderno/react'
+import { Popover as VPopover } from '@moderno/vue'
+import { Popover as SPopover } from '@moderno/svelte'
+import { Popover as OPopover } from '@moderno/solid'
+
+**Popover** revela un panel anclado y no modal desde su disparador — más rico que un `Tooltip` (admite título, texto y botón de cierre) y más ligero que un `Dialog` (no bloquea la página tras un backdrop). Primitive **closed-prop** (ADR-0003) sobre la máquina `popover` de Zag.js, posicionada con popper. Igual que `Tooltip`, recibe el disparador como `triggerLabel` (string) y renderiza su propio botón.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RPopover client:only="react" triggerLabel="Detalles" title="Envío" content="Gratis desde $50. Llega en 2–4 días hábiles." />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VPopover client:only="vue" triggerLabel="Detalles" title="Envío" content="Gratis desde $50. Llega en 2–4 días hábiles." />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SPopover client:only="svelte" triggerLabel="Detalles" title="Envío" content="Gratis desde $50. Llega en 2–4 días hábiles." />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OPopover client:only="solid-js" triggerLabel="Detalles" title="Envío" content="Gratis desde $50. Llega en 2–4 días hábiles." />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Popover } from '@moderno/react'
+
+<Popover triggerLabel="Detalles" title="Envío" content="Gratis desde $50." />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Popover } from '@moderno/vue'
+</script>
+
+<template>
+  <Popover triggerLabel="Detalles" title="Envío" content="Gratis desde $50." />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Popover } from '@moderno/svelte'
+</script>
+
+<Popover triggerLabel="Detalles" title="Envío" content="Gratis desde $50." />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Popover } from '@moderno/solid'
+
+<Popover triggerLabel="Detalles" title="Envío" content="Gratis desde $50." />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Por defecto | Descripción |
+|------|------|-------------|-------------|
+| `triggerLabel` | `string` | — | Etiqueta del botón disparador. |
+| `title` | `string` | — | Encabezado opcional en la parte superior del panel. |
+| `content` | `string` | — | Contenido del cuerpo del panel. |
+| `closeLabel` | `string` | `'Close'` | Etiqueta accesible del botón de cierre. |

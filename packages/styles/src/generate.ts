@@ -26,7 +26,7 @@ export type SegmentSource = {
  * partial here.
  */
 export const STYLE_SEGMENTS: SegmentSource[] = [
-  { kind: 'legacy', name: 'head', file: './partials/_head.css' },
+  { kind: 'enforced', name: 'head', file: './partials/_head.css' },
   { kind: 'enforced', name: 'button', file: './partials/button.css' },
   { kind: 'enforced', name: 'dialog', file: './partials/dialog.css' },
   { kind: 'enforced', name: 'tabs', file: './partials/tabs.css' },
@@ -48,7 +48,7 @@ export const STYLE_SEGMENTS: SegmentSource[] = [
   { kind: 'enforced', name: 'slider', file: './partials/slider.css' },
   { kind: 'enforced', name: 'accordion', file: './partials/accordion.css' },
   { kind: 'enforced', name: 'select', file: './partials/select.css' },
-  { kind: 'legacy', name: 'reduced-motion', file: './partials/_reduced-motion.css' },
+  { kind: 'enforced', name: 'reduced-motion', file: './partials/_reduced-motion.css' },
 ]
 
 /** Class selectors (`md-*`) referenced in a chunk of CSS. */

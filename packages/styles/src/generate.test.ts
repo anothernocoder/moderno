@@ -38,6 +38,13 @@ describe('assembleStyles — concatenate partials + enforce the class contract',
   })
 })
 
+describe('no exemptions — every segment is under contract enforcement', () => {
+  it('has no legacy (unenforced) segments left', () => {
+    const exempt = STYLE_SEGMENTS.filter((s) => s.kind !== 'enforced').map((s) => s.name)
+    expect(exempt).toEqual([])
+  })
+})
+
 describe('golden — assembled output reproduces the committed styles.css', () => {
   const here = (rel: string) => fileURLToPath(new URL(rel, import.meta.url))
 

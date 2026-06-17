@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Class-contract enforcement: the golden + bidirectional checks fail loudly
+      # if any md-* selector drifts from the contract, or a class is renamed on
+      # either side of the seam.
+      - run: pnpm test
+
+      - run: pnpm --filter @moderno/class-contract exec tsc --noEmit

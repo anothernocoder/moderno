@@ -1,0 +1,105 @@
+---
+title: Input
+description: Single-line text field with label, hint, and error. Pure CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Input as RInput } from '@moderno/react'
+import { Input as VInput } from '@moderno/vue'
+import { Input as SInput } from '@moderno/svelte'
+import { Input as OInput } from '@moderno/solid'
+
+**Input** is a single-line text field with label, hint, and error. It's a **closed-prop**
+primitive, pure CSS. The label is always visible; the error replaces the hint and marks
+the field as invalid (`aria-invalid`).
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo md-demo--stack">
+    <RInput client:only="react" label="Product name" hint="Visible in the public catalog." placeholder="e.g. Roasted coffee 500 g" />
+    <RInput client:only="react" label="Billing email" error="Enter a valid email, for example sales@company.com." placeholder="sales@company.com" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo md-demo--stack">
+    <VInput client:only="vue" label="Product name" hint="Visible in the public catalog." placeholder="e.g. Roasted coffee 500 g" />
+    <VInput client:only="vue" label="Billing email" error="Enter a valid email, for example sales@company.com." placeholder="sales@company.com" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo md-demo--stack">
+    <SInput client:only="svelte" label="Product name" hint="Visible in the public catalog." placeholder="e.g. Roasted coffee 500 g" />
+    <SInput client:only="svelte" label="Billing email" error="Enter a valid email, for example sales@company.com." placeholder="sales@company.com" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo md-demo--stack">
+    <OInput client:only="solid-js" label="Product name" hint="Visible in the public catalog." placeholder="e.g. Roasted coffee 500 g" />
+    <OInput client:only="solid-js" label="Billing email" error="Enter a valid email, for example sales@company.com." placeholder="sales@company.com" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Input } from '@moderno/react'
+
+<Input
+  label="Billing email"
+  hint="Visible on your receipts."
+  placeholder="sales@company.com"
+/>
+<Input label="Email" error="Enter a valid email." />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Input } from '@moderno/vue'
+import { ref } from 'vue'
+const email = ref('')
+</script>
+
+<template>
+  <Input v-model="email" label="Billing email" hint="Visible on your receipts." />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Input } from '@moderno/svelte'
+  let email = $state('')
+</script>
+
+<Input bind:value={email} label="Billing email" hint="Visible on your receipts." />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Input } from '@moderno/solid'
+
+<Input
+  label="Billing email"
+  hint="Visible on your receipts."
+  placeholder="sales@company.com"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Visible label associated with the field. |
+| `hint` | `string` | — | Help text below the field. |
+| `error` | `string` | — | Error message; replaces the hint and sets `aria-invalid`. |
+
+It also accepts the native `<input>` attributes (`type`, `placeholder`, `disabled`…). The
+value is bound with `v-model` (Vue) or `bind:value` (Svelte).

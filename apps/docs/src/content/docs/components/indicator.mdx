@@ -1,0 +1,96 @@
+---
+title: Indicator
+description: Status dot with optional pulse and label. Pure CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Indicator as RIndicator } from '@moderno/react'
+import { Indicator as VIndicator } from '@moderno/vue'
+import { Indicator as SIndicator } from '@moderno/svelte'
+import { Indicator as OIndicator } from '@moderno/solid'
+
+**Indicator** is a status dot with an optional pulse and label. It's a **closed-prop** primitive, pure CSS. Unlike the [Badge](/components/badge/) dot, it can animate to signal live activity.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RIndicator client:only="react" variant="success" pulse={true}>Online</RIndicator>
+    <RIndicator client:only="react" variant="warning">Idle</RIndicator>
+    <RIndicator client:only="react" variant="error">Down</RIndicator>
+    <RIndicator client:only="react" variant="neutral">Unknown</RIndicator>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VIndicator client:only="vue" variant="success" pulse={true}>Online</VIndicator>
+    <VIndicator client:only="vue" variant="warning">Idle</VIndicator>
+    <VIndicator client:only="vue" variant="error">Down</VIndicator>
+    <VIndicator client:only="vue" variant="neutral">Unknown</VIndicator>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SIndicator client:only="svelte" variant="success" pulse={true}>Online</SIndicator>
+    <SIndicator client:only="svelte" variant="warning">Idle</SIndicator>
+    <SIndicator client:only="svelte" variant="error">Down</SIndicator>
+    <SIndicator client:only="svelte" variant="neutral">Unknown</SIndicator>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OIndicator client:only="solid-js" variant="success" pulse={true}>Online</OIndicator>
+    <OIndicator client:only="solid-js" variant="warning">Idle</OIndicator>
+    <OIndicator client:only="solid-js" variant="error">Down</OIndicator>
+    <OIndicator client:only="solid-js" variant="neutral">Unknown</OIndicator>
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Indicator } from '@moderno/react'
+
+<Indicator variant="success" pulse>Online</Indicator>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Indicator } from '@moderno/vue'
+</script>
+
+<template>
+  <Indicator variant="success" pulse>Online</Indicator>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Indicator } from '@moderno/svelte'
+</script>
+
+<Indicator variant="success" pulse>Online</Indicator>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Indicator } from '@moderno/solid'
+
+<Indicator variant="success" pulse>Online</Indicator>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'neutral' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'neutral'` | Color/intent of the dot. |
+| `pulse` | `boolean` | `false` | Animates a pulsing ring (respects `prefers-reduced-motion`). |
+| `children` | `ReactNode` | — | Optional label after the dot. |

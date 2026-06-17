@@ -22,6 +22,12 @@ try {
 }
 
 const title = entry.data.title;
+
+// Starlight injects the locale-aware translation helper onto Astro.locals.
+const t = Astro.locals.t;
+const copyLabel = t('pageTitle.copyMarkdown');
+const copyAria = t('pageTitle.copyMarkdownAria');
+const copiedLabel = t('pageTitle.copied');
 ---
 
 <div class="page-title-row">
@@ -32,8 +38,10 @@ const title = entry.data.title;
         type="button"
         class="copy-markdown"
         data-markdown={markdown}
-        aria-label="Copiar como Markdown"
-        title="Copiar como Markdown"
+        data-copy-label={copyLabel}
+        data-copied-label={copiedLabel}
+        aria-label={copyAria}
+        title={copyAria}
       >
         <svg
           class="icon-copy"
@@ -66,7 +74,7 @@ const title = entry.data.title;
         >
           <polyline points="20 6 9 17 4 12" />
         </svg>
-        <span class="copy-label">Copiar Markdown</span>
+        <span class="copy-label">{copyLabel}</span>
       </button>
     )
   }
@@ -91,10 +99,12 @@ const title = entry.data.title;
       }
       btn.classList.add('is-copied');
       const label = btn.querySelector('.copy-label');
-      if (label) label.textContent = 'Copiado';
+      const copyText = btn.dataset.copyLabel ?? '';
+      const copiedText = btn.dataset.copiedLabel ?? '';
+      if (label) label.textContent = copiedText;
       window.setTimeout(() => {
         btn.classList.remove('is-copied');
-        if (label) label.textContent = 'Copiar Markdown';
+        if (label) label.textContent = copyText;
       }, 2000);
     });
   });

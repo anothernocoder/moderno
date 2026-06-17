@@ -1,0 +1,109 @@
+---
+title: Dialog
+description: Centered modal dialog. Closed-prop, built on Zag's dialog machine.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Dialog as RDialog } from '@moderno/react'
+import { Dialog as VDialog } from '@moderno/vue'
+import { Dialog as SDialog } from '@moderno/svelte'
+import { Dialog as ODialog } from '@moderno/solid'
+
+**Dialog** is a centered modal dialog. It's a **closed-prop** primitive (ADR-0003):
+configured through props, not composed. The behavior — focus trapping, closing with `Esc`,
+click outside, ARIA — comes from Zag's `dialog` machine; Moderno provides the markup and the classes.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RDialog client:only="react" triggerLabel="Open dialog" title="Dialog · React" description="Focus trapped, Esc closes, correct ARIA — via Zag's dialog machine." />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VDialog client:only="vue" triggerLabel="Open dialog" title="Dialog · Vue" description="Focus trapped, Esc closes, correct ARIA — via Zag's dialog machine." />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SDialog client:only="svelte" triggerLabel="Open dialog" title="Dialog · Svelte" description="Focus trapped, Esc closes, correct ARIA — via Zag's dialog machine." />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <ODialog client:only="solid-js" triggerLabel="Open dialog" title="Dialog · Solid" description="Focus trapped, Esc closes, correct ARIA — via Zag's dialog machine." />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Dialog } from '@moderno/react'
+
+<Dialog
+  triggerLabel="Open dialog"
+  title="Confirm action"
+  description="This action cannot be undone."
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Dialog } from '@moderno/vue'
+</script>
+
+<template>
+  <Dialog
+    trigger-label="Open dialog"
+    title="Confirm action"
+    description="This action cannot be undone."
+  />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Dialog } from '@moderno/svelte'
+</script>
+
+<Dialog
+  triggerLabel="Open dialog"
+  title="Confirm action"
+  description="This action cannot be undone."
+/>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Dialog } from '@moderno/solid'
+
+<Dialog
+  triggerLabel="Open dialog"
+  title="Confirm action"
+  description="This action cannot be undone."
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `triggerLabel` | `string` | — | Text of the button that opens the dialog. |
+| `title` | `ReactNode` / text | — | Dialog title. |
+| `description` | `ReactNode` / text | — | Optional descriptive text. |
+| `closeLabel` | `string` | `'Close'` | Text of the close button. |
+
+## Accessibility
+
+- Focus is trapped inside the dialog while it's open; on close, focus returns to the trigger.
+- `Esc` and clicking the backdrop close the dialog.
+- ARIA (`role="dialog"`, `aria-modal`, `aria-labelledby`, `aria-describedby`) provided by Zag.

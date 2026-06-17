@@ -1,6 +1,6 @@
 ---
 title: Stats
-description: Fila de KPIs — tarjetas de métrica con valor, etiqueta y delta. Block copy-paste.
+description: KPI row — metric cards with value, label, and delta. Copy-paste block.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
@@ -9,11 +9,11 @@ import VStatsDemo from '../../../demos/vue/blocks/StatsDemo.vue'
 import SStatsDemo from '../../../demos/svelte/blocks/StatsDemo.svelte'
 import OStatsDemo from '../../../demos/solid/blocks/StatsDemo.tsx'
 
-**Stats** es un [block](/introduccion/blocks/) de aplicación: una fila de KPIs en grid
-responsivo, cada uno una tarjeta con etiqueta, valor y delta de tendencia. Compone los
-primitives `Card` y `Badge` y los tokens `--md-*`.
+**Stats** is an application [block](/introduction/blocks/): a row of KPIs in a responsive
+grid, each one a card with a label, value, and trend delta. It composes the
+`Card` and `Badge` primitives and the `--md-*` tokens.
 
-## Demo en vivo
+## Live demo
 
 <Tabs syncKey="framework">
 <TabItem label="React"><div class="md-demo md-demo--stack"><RStatsDemo client:only="react" /></div></TabItem>
@@ -22,7 +22,7 @@ primitives `Card` y `Badge` y los tokens `--md-*`.
 <TabItem label="Solid"><div class="md-demo md-demo--stack"><OStatsDemo client:only="solid-js" /></div></TabItem>
 </Tabs>
 
-## Instalación
+## Installation
 
 <Tabs syncKey="framework">
 <TabItem label="React">
@@ -47,35 +47,35 @@ npx @moderno/registry add stats --framework solid
 </TabItem>
 </Tabs>
 
-Tras copiarlo, instala el primitive `@moderno/<framework>` e
-[importa los estilos](/introduccion/instalacion/).
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/).
 
 ## Props
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `items` | `StatItem[]` | 4 KPIs de muestra | Métricas a renderizar |
+| `items` | `StatItem[]` | 4 sample KPIs | Metrics to render |
 
 ### `StatItem`
 
-| Campo | Tipo | Default | Descripción |
+| Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `label` | `string` | — | Nombre del KPI |
-| `value` | `string` | — | Valor ya formateado |
-| `delta` | `string` | — | Cambio vs. periodo anterior (oculto si se omite) |
-| `trend` | `'up' \| 'down'` | — | Color del badge: `up` → success, `down` → error |
+| `label` | `string` | — | KPI name |
+| `value` | `string` | — | Pre-formatted value |
+| `delta` | `string` | — | Change vs. previous period (hidden if omitted) |
+| `trend` | `'up' \| 'down'` | — | Badge color: `up` → success, `down` → error |
 
-## Uso
+## Usage
 
 ```tsx
 import { Stats } from './blocks/Stats'
 
 <Stats
   items={[
-    { label: 'Ingresos', value: '$48.2k', delta: '+12.4%', trend: 'up' },
-    { label: 'Cancelaciones', value: '38', delta: '-0.8%', trend: 'down' },
+    { label: 'Revenue', value: '$48.2k', delta: '+12.4%', trend: 'up' },
+    { label: 'Cancellations', value: '38', delta: '-0.8%', trend: 'down' },
   ]}
 />
 ```
 
-La API de props es idéntica en los cuatro frameworks.
+The props API is identical across all four frameworks.

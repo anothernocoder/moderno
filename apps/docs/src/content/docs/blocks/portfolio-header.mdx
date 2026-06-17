@@ -1,6 +1,6 @@
 ---
 title: Portfolio Header
-description: Encabezado de portafolio — avatar, nombre, rol, bio, enlaces y CTA. Block copy-paste.
+description: Portfolio header — avatar, name, role, bio, links, and CTA. Copy-paste block.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
@@ -9,11 +9,11 @@ import VPortfolioHeaderDemo from '../../../demos/vue/blocks/PortfolioHeaderDemo.
 import SPortfolioHeaderDemo from '../../../demos/svelte/blocks/PortfolioHeaderDemo.svelte'
 import OPortfolioHeaderDemo from '../../../demos/solid/blocks/PortfolioHeaderDemo.tsx'
 
-**Portfolio Header** es un [block](/introduccion/blocks/) de portafolio: un encabezado de
-presentación con avatar, nombre, rol, bio, enlaces sociales y un CTA de contacto. Compone
-los primitives `Avatar`, `Chip` y `Button` y los tokens `--md-*`.
+**Portfolio Header** is a portfolio [block](/introduction/blocks/): an introductory header
+with avatar, name, role, bio, social links, and a contact CTA. It composes the
+`Avatar`, `Chip`, and `Button` primitives and the `--md-*` tokens.
 
-## Demo en vivo
+## Live demo
 
 <Tabs syncKey="framework">
 <TabItem label="React"><div class="md-demo md-demo--stack"><RPortfolioHeaderDemo client:only="react" /></div></TabItem>
@@ -22,7 +22,7 @@ los primitives `Avatar`, `Chip` y `Button` y los tokens `--md-*`.
 <TabItem label="Solid"><div class="md-demo md-demo--stack"><OPortfolioHeaderDemo client:only="solid-js" /></div></TabItem>
 </Tabs>
 
-## Instalación
+## Installation
 
 <Tabs syncKey="framework">
 <TabItem label="React">
@@ -47,41 +47,41 @@ npx @moderno/registry add portfolio-header --framework solid
 </TabItem>
 </Tabs>
 
-Tras copiarlo, instala el primitive `@moderno/<framework>` e
-[importa los estilos](/introduccion/instalacion/).
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/).
 
 ## Props
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `name` | `string` | `'Ana Restrepo'` | Nombre mostrado |
-| `role` | `string` | `'Diseñadora de producto'` | Rol o título |
-| `bio` | `string` | `'Construyo interfaces…'` | Descripción corta |
-| `avatarSrc` | `string` | — | URL del avatar (usa iniciales si se omite) |
-| `initials` | `string` | `'AR'` | Fallback del avatar |
-| `links` | `PortfolioLink[]` | GitHub · Dribbble · LinkedIn | Enlaces sociales |
-| `onContact` | `() => void` | — | Handler del CTA de contacto |
+| `name` | `string` | `'Ana Restrepo'` | Displayed name |
+| `role` | `string` | `'Product designer'` | Role or title |
+| `bio` | `string` | `'I build interfaces…'` | Short description |
+| `avatarSrc` | `string` | — | Avatar URL (uses initials if omitted) |
+| `initials` | `string` | `'AR'` | Avatar fallback |
+| `links` | `PortfolioLink[]` | GitHub · Dribbble · LinkedIn | Social links |
+| `onContact` | `() => void` | — | Contact CTA handler |
 
 ### `PortfolioLink`
 
-| Campo | Tipo | Descripción |
+| Field | Type | Description |
 |-------|------|-------------|
-| `label` | `string` | Texto del enlace |
-| `href` | `string` | URL destino |
+| `label` | `string` | Link text |
+| `href` | `string` | Destination URL |
 
-## Uso
+## Usage
 
 ```tsx
 import { PortfolioHeader } from './blocks/PortfolioHeader'
 
 <PortfolioHeader
   name="Ana Restrepo"
-  role="Diseñadora de producto"
+  role="Product designer"
   initials="AR"
   links={[{ label: 'GitHub', href: 'https://github.com/ana' }]}
   onContact={() => openMailto()}
 />
 ```
 
-La API de props es idéntica en los cuatro frameworks. En Vue, `onContact` es el evento
-`@contact`; en los demás es una prop callback.
+The props API is identical across all four frameworks. In Vue, `onContact` is the
+`@contact` event; in the others it's a callback prop.

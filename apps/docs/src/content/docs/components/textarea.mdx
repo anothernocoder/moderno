@@ -1,0 +1,89 @@
+---
+title: Textarea
+description: Multi-line text field with label, hint, and error. Pure CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Textarea as RTextarea } from '@moderno/react'
+import { Textarea as VTextarea } from '@moderno/vue'
+import { Textarea as STextarea } from '@moderno/svelte'
+import { Textarea as OTextarea } from '@moderno/solid'
+
+**Textarea** is a multi-line text field with label, hint, and error. A **closed-prop** primitive, pure CSS. It reuses the field styles from [Input](/components/input/) plus `.md-textarea`.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RTextarea client:only="react" label="Comment" hint="500 characters max" rows={4} placeholder="Type here…" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VTextarea client:only="vue" label="Comment" hint="500 characters max" rows={4} placeholder="Type here…" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <STextarea client:only="svelte" label="Comment" hint="500 characters max" rows={4} placeholder="Type here…" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OTextarea client:only="solid-js" label="Comment" hint="500 characters max" rows={4} placeholder="Type here…" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Textarea } from '@moderno/react'
+
+<Textarea label="Comment" hint="500 characters max" rows={4} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Textarea } from '@moderno/vue'
+import { ref } from 'vue'
+const value = ref('')
+</script>
+
+<template>
+  <Textarea v-model="value" label="Comment" :rows="4" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Textarea } from '@moderno/svelte'
+  let value = $state('')
+</script>
+
+<Textarea bind:value label="Comment" rows={4} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Textarea } from '@moderno/solid'
+
+<Textarea label="Comment" hint="500 characters max" rows={4} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Label above the field. |
+| `hint` | `string` | — | Helper text below the field. |
+| `error` | `string` | — | Error message; replaces the hint and marks the field invalid. |
+
+It also accepts all native `<textarea>` attributes (`rows`, `placeholder`, `disabled`, `maxlength`…). The value is bound with `v-model` (Vue) or `bind:value` (Svelte).

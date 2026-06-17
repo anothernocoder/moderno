@@ -1,0 +1,49 @@
+---
+title: Acerca de Moderno
+description: Un sistema de diseño agnóstico al framework — un comportamiento y un look, definidos una sola vez, usables desde React, Vue, Svelte y Solid.
+---
+
+Moderno es un **sistema de diseño dirigido por tokens y agnóstico al framework**. Define un
+lenguaje visual (esquinas rectas, monocromo, tipografía Hedvig) y entrega componentes
+estilizados, accesibles e interactivos consumibles desde **React, Vue, Svelte y Solid**.
+
+## La idea en una frase
+
+> Un comportamiento + un look, definidos una sola vez, usables desde los cuatro frameworks
+> — **no** cuatro implementaciones paralelas que casualmente se parecen.
+
+## Cómo está construido
+
+Moderno separa con claridad dos responsabilidades:
+
+- **Comportamiento (Zag.js).** La lógica de interacción y accesibilidad — teclado, foco,
+  ARIA, máquinas de estado — vive en [Zag.js](https://zagjs.com), consumido directamente a
+  través de sus adaptadores por framework. Es el mismo núcleo para los cuatro.
+- **Look (tokens + CSS compilado).** El aspecto visual se expresa como
+  [tokens de diseño](https://www.w3.org/community/design-tokens/) (`@moderno/tokens`)
+  surfaceados como custom properties de CSS, y un contrato de clases `md-*` compilado
+  (`@moderno/styles`). Re-temar es re-mapear roles semánticos, sin tocar componentes.
+
+Cada paquete por framework (`@moderno/react`, `@moderno/vue`, `@moderno/svelte`,
+`@moderno/solid`) escribe la anatomía del componente y conecta los _prop-getters_ de Zag al
+contrato de clases `md-*`.
+
+## Dos canales de entrega
+
+| Tipo | Qué es | Cómo se entrega |
+|------|--------|-----------------|
+| **Primitive** | Componente interactivo o de display (Button, Tabs, Dialog…) | Paquetes npm versionados — los arreglos de a11y/bugs se propagan al centro |
+| **Block** | Composición de primitives + layout (Hero, Pricing, app shell) | Registry **copy-paste** vía CLI — el consumidor forkea el layout a su gusto |
+
+## Forma de la API
+
+Moderno usa una **API híbrida**:
+
+- **Closed-prop** por defecto — un componente configurado por props (`<Dialog title … />`).
+- **Compositional** donde la anatomía varía de verdad — partes componibles
+  (`<Tabs.Root>`, `<Tabs.List>`, `<Tabs.Trigger>`, `<Tabs.Content>`).
+
+## Siguiente paso
+
+¿Listo para instalar? Ve a la [guía de instalación](/es/introduction/installation/), o explora
+los [componentes](/es/components/button/).

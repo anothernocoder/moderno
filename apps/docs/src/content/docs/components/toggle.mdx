@@ -1,0 +1,99 @@
+---
+title: Toggle
+description: On/off switch for instant binary settings. Zag behavior core (switch), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Toggle as RToggle } from '@moderno/react'
+import { Toggle as VToggle } from '@moderno/vue'
+import { Toggle as SToggle } from '@moderno/svelte'
+import { Toggle as OToggle } from '@moderno/solid'
+
+**Toggle** is an on/off switch for binary settings that apply instantly. A **closed-prop** primitive (ADR-0003) built on Zag.js's `switch` machine: keyboard, focus, and ARIA come from the behavior core; Moderno provides the `md-*` class contract.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RToggle client:only="react" label="Notifications" />
+    <RToggle client:only="react" label="On" defaultChecked />
+    <RToggle client:only="react" label="Locked" disabled />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VToggle client:only="vue" label="Notifications" />
+    <VToggle client:only="vue" label="On" defaultChecked />
+    <VToggle client:only="vue" label="Locked" disabled />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SToggle client:only="svelte" label="Notifications" />
+    <SToggle client:only="svelte" label="On" defaultChecked />
+    <SToggle client:only="svelte" label="Locked" disabled />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OToggle client:only="solid-js" label="Notifications" />
+    <OToggle client:only="solid-js" label="On" defaultChecked />
+    <OToggle client:only="solid-js" label="Locked" disabled />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Toggle } from '@moderno/react'
+
+<Toggle label="Notifications" defaultChecked onCheckedChange={(c) => console.log(c)} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Toggle } from '@moderno/vue'
+import { ref } from 'vue'
+const on = ref(true)
+</script>
+
+<template>
+  <Toggle label="Notifications" v-model="on" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Toggle } from '@moderno/svelte'
+  let on = $state(true)
+</script>
+
+<Toggle label="Notifications" bind:checked={on} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Toggle } from '@moderno/solid'
+
+<Toggle label="Notifications" defaultChecked onCheckedChange={(c) => console.log(c)} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Visible text next to the switch. |
+| `defaultChecked` | `boolean` | `false` | Initial uncontrolled state. |
+| `checked` / `v-model` / `bind:checked` | `boolean` | — | Controlled state. |
+| `onCheckedChange` | `(checked: boolean) => void` | — | Callback on change (in Vue/Svelte use the binding). |
+| `disabled` | `boolean` | `false` | Disables the control. |
+| `invalid` | `boolean` | `false` | Marks the control as invalid. |
+| `name` / `value` | `string` | — | For form submission. |

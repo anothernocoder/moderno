@@ -1,0 +1,105 @@
+---
+title: Checkbox
+description: Boolean multi-select control, with indeterminate state. Zag (checkbox) behavior core, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Checkbox as RCheckbox } from '@moderno/react'
+import { Checkbox as VCheckbox } from '@moderno/vue'
+import { Checkbox as SCheckbox } from '@moderno/svelte'
+import { Checkbox as OCheckbox } from '@moderno/solid'
+
+**Checkbox** is a boolean multi-select control that supports the **indeterminate** (mixed) state. It's a **closed-prop** primitive (ADR-0003) built on Zag.js's `checkbox` machine.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RCheckbox client:only="react" label="I accept the terms" />
+    <RCheckbox client:only="react" label="Checked" defaultChecked />
+    <RCheckbox client:only="react" label="Indeterminate" defaultChecked="indeterminate" />
+    <RCheckbox client:only="react" label="Disabled" disabled />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VCheckbox client:only="vue" label="I accept the terms" />
+    <VCheckbox client:only="vue" label="Checked" defaultChecked />
+    <VCheckbox client:only="vue" label="Indeterminate" defaultChecked="indeterminate" />
+    <VCheckbox client:only="vue" label="Disabled" disabled />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SCheckbox client:only="svelte" label="I accept the terms" />
+    <SCheckbox client:only="svelte" label="Checked" defaultChecked />
+    <SCheckbox client:only="svelte" label="Indeterminate" defaultChecked="indeterminate" />
+    <SCheckbox client:only="svelte" label="Disabled" disabled />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OCheckbox client:only="solid-js" label="I accept the terms" />
+    <OCheckbox client:only="solid-js" label="Checked" defaultChecked />
+    <OCheckbox client:only="solid-js" label="Indeterminate" defaultChecked="indeterminate" />
+    <OCheckbox client:only="solid-js" label="Disabled" disabled />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Checkbox } from '@moderno/react'
+
+<Checkbox label="I accept the terms" onCheckedChange={(c) => console.log(c)} />
+<Checkbox label="Mixed" defaultChecked="indeterminate" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Checkbox } from '@moderno/vue'
+import { ref } from 'vue'
+const checked = ref(false)
+</script>
+
+<template>
+  <Checkbox label="I accept the terms" v-model="checked" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Checkbox } from '@moderno/svelte'
+  let checked = $state(false)
+</script>
+
+<Checkbox label="I accept the terms" bind:checked />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Checkbox } from '@moderno/solid'
+
+<Checkbox label="I accept the terms" onCheckedChange={(c) => console.log(c)} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Text shown next to the box. |
+| `defaultChecked` | `boolean \| 'indeterminate'` | `false` | Initial uncontrolled state. |
+| `checked` / `v-model` / `bind:checked` | `boolean \| 'indeterminate'` | — | Controlled state. |
+| `onCheckedChange` | `(checked) => void` | — | Callback fired on change. |
+| `disabled` | `boolean` | `false` | Disables the control. |
+| `invalid` | `boolean` | `false` | Marks the box as invalid. |
+| `required` | `boolean` | `false` | Marks the field as required. |
+| `name` / `value` | `string` | — | For form submission. |

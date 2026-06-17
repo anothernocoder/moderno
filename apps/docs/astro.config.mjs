@@ -12,26 +12,42 @@ export default defineConfig({
     starlight({
       title: 'Moderno',
       description:
-        'Sistema de diseño agnóstico al framework: un comportamiento (Zag.js) y un look (tokens) para React, Vue, Svelte y Solid.',
+        'Framework-agnostic design system: one behavior (Zag.js) and one look (tokens) for React, Vue, Svelte and Solid.',
       customCss: ['./src/styles/moderno-theme.css'],
       components: {
         PageTitle: './src/components/PageTitle.astro',
       },
+      defaultLocale: 'root',
+      locales: {
+        root: { label: 'English', lang: 'en' },
+        es: { label: 'Español', lang: 'es' },
+      },
       sidebar: [
         {
-          label: 'Introducción',
+          label: 'Introduction',
+          translations: { es: 'Introducción' },
           items: [
-            { label: 'Acerca de Moderno', link: '/' },
-            { label: 'Instalación', link: '/introduccion/instalacion/' },
-            { label: 'Blocks y registry', link: '/introduccion/blocks/' },
+            { label: 'About Moderno', translations: { es: 'Acerca de Moderno' }, link: '/' },
+            {
+              label: 'Installation',
+              translations: { es: 'Instalación' },
+              link: '/introduction/installation/',
+            },
+            {
+              label: 'Blocks & registry',
+              translations: { es: 'Blocks y registry' },
+              link: '/introduction/blocks/',
+            },
           ],
         },
         {
-          label: 'Componentes',
-          items: [{ autogenerate: { directory: 'componentes' } }],
+          label: 'Components',
+          translations: { es: 'Componentes' },
+          items: [{ autogenerate: { directory: 'components' } }],
         },
         {
           label: 'Blocks',
+          translations: { es: 'Blocks' },
           items: [{ autogenerate: { directory: 'blocks' } }],
         },
       ],

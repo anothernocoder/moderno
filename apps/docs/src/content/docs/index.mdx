@@ -1,49 +1,49 @@
 ---
-title: Acerca de Moderno
-description: Un sistema de diseño agnóstico al framework — un comportamiento y un look, definidos una sola vez, usables desde React, Vue, Svelte y Solid.
+title: About Moderno
+description: A framework-agnostic design system — one behavior and one look, defined once, usable from React, Vue, Svelte, and Solid.
 ---
 
-Moderno es un **sistema de diseño dirigido por tokens y agnóstico al framework**. Define un
-lenguaje visual (esquinas rectas, monocromo, tipografía Hedvig) y entrega componentes
-estilizados, accesibles e interactivos consumibles desde **React, Vue, Svelte y Solid**.
+Moderno is a **token-driven, framework-agnostic design system**. It defines a
+visual language (square corners, monochrome, Hedvig typography) and ships styled,
+accessible, interactive components consumable from **React, Vue, Svelte, and Solid**.
 
-## La idea en una frase
+## The idea in one sentence
 
-> Un comportamiento + un look, definidos una sola vez, usables desde los cuatro frameworks
-> — **no** cuatro implementaciones paralelas que casualmente se parecen.
+> One behavior + one look, defined once, usable from all four frameworks
+> — **not** four parallel implementations that happen to look alike.
 
-## Cómo está construido
+## How it's built
 
-Moderno separa con claridad dos responsabilidades:
+Moderno cleanly separates two responsibilities:
 
-- **Comportamiento (Zag.js).** La lógica de interacción y accesibilidad — teclado, foco,
-  ARIA, máquinas de estado — vive en [Zag.js](https://zagjs.com), consumido directamente a
-  través de sus adaptadores por framework. Es el mismo núcleo para los cuatro.
-- **Look (tokens + CSS compilado).** El aspecto visual se expresa como
-  [tokens de diseño](https://www.w3.org/community/design-tokens/) (`@moderno/tokens`)
-  surfaceados como custom properties de CSS, y un contrato de clases `md-*` compilado
-  (`@moderno/styles`). Re-temar es re-mapear roles semánticos, sin tocar componentes.
+- **Behavior (Zag.js).** The interaction and accessibility logic — keyboard, focus,
+  ARIA, state machines — lives in [Zag.js](https://zagjs.com), consumed directly
+  through its per-framework adapters. It's the same core for all four.
+- **Look (tokens + compiled CSS).** The visual appearance is expressed as
+  [design tokens](https://www.w3.org/community/design-tokens/) (`@moderno/tokens`)
+  surfaced as CSS custom properties, and a compiled `md-*` class contract
+  (`@moderno/styles`). Re-theming means re-mapping semantic roles, without touching components.
 
-Cada paquete por framework (`@moderno/react`, `@moderno/vue`, `@moderno/svelte`,
-`@moderno/solid`) escribe la anatomía del componente y conecta los _prop-getters_ de Zag al
-contrato de clases `md-*`.
+Each per-framework package (`@moderno/react`, `@moderno/vue`, `@moderno/svelte`,
+`@moderno/solid`) writes the component anatomy and wires Zag's _prop-getters_ to the
+`md-*` class contract.
 
-## Dos canales de entrega
+## Two delivery channels
 
-| Tipo | Qué es | Cómo se entrega |
+| Type | What it is | How it's delivered |
 |------|--------|-----------------|
-| **Primitive** | Componente interactivo o de display (Button, Tabs, Dialog…) | Paquetes npm versionados — los arreglos de a11y/bugs se propagan al centro |
-| **Block** | Composición de primitives + layout (Hero, Pricing, app shell) | Registry **copy-paste** vía CLI — el consumidor forkea el layout a su gusto |
+| **Primitive** | Interactive or display component (Button, Tabs, Dialog…) | Versioned npm packages — a11y/bug fixes propagate from the center |
+| **Block** | Composition of primitives + layout (Hero, Pricing, app shell) | **Copy-paste** registry via CLI — the consumer forks the layout to taste |
 
-## Forma de la API
+## API shape
 
-Moderno usa una **API híbrida**:
+Moderno uses a **hybrid API**:
 
-- **Closed-prop** por defecto — un componente configurado por props (`<Dialog title … />`).
-- **Compositional** donde la anatomía varía de verdad — partes componibles
+- **Closed-prop** by default — a component configured via props (`<Dialog title … />`).
+- **Compositional** where the anatomy genuinely varies — composable parts
   (`<Tabs.Root>`, `<Tabs.List>`, `<Tabs.Trigger>`, `<Tabs.Content>`).
 
-## Siguiente paso
+## Next step
 
-¿Listo para instalar? Ve a la [guía de instalación](/introduccion/instalacion/), o explora
-los [componentes](/componentes/button/).
+Ready to install? Head to the [installation guide](/introduction/installation/), or explore
+the [components](/components/button/).

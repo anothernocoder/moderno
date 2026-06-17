@@ -1,6 +1,6 @@
 ---
 title: Story
-description: Plantilla vertical 9:16 para ads e historias — kicker, título y CTA. Block copy-paste.
+description: Vertical 9:16 template for ads and stories — kicker, title, and CTA. Copy-paste block.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
@@ -9,11 +9,11 @@ import VStoryDemo from '../../../demos/vue/blocks/StoryDemo.vue'
 import SStoryDemo from '../../../demos/svelte/blocks/StoryDemo.svelte'
 import OStoryDemo from '../../../demos/solid/blocks/StoryDemo.tsx'
 
-**Story** es un [block](/introduccion/blocks/) de images-ads: una plantilla vertical 9:16
-para historias sociales y anuncios, con kicker, título y CTA. Compone el primitive `Button`
-y los tokens `--md-*`.
+**Story** is an images-ads [block](/introduction/blocks/): a vertical 9:16 template
+for social stories and ads, with a kicker, title, and CTA. It composes the `Button` primitive
+and the `--md-*` tokens.
 
-## Demo en vivo
+## Live demo
 
 <Tabs syncKey="framework">
 <TabItem label="React"><div class="md-demo md-demo--stack"><RStoryDemo client:only="react" /></div></TabItem>
@@ -22,7 +22,7 @@ y los tokens `--md-*`.
 <TabItem label="Solid"><div class="md-demo md-demo--stack"><OStoryDemo client:only="solid-js" /></div></TabItem>
 </Tabs>
 
-## Instalación
+## Installation
 
 <Tabs syncKey="framework">
 <TabItem label="React">
@@ -47,30 +47,30 @@ npx @moderno/registry add story --framework solid
 </TabItem>
 </Tabs>
 
-Tras copiarlo, instala el primitive `@moderno/<framework>` e
-[importa los estilos](/introduccion/instalacion/).
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/).
 
 ## Props
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `kicker` | `string` | `'Nueva colección'` | Texto pequeño superior |
-| `title` | `string` | `'Diseño que se siente moderno.'` | Titular |
-| `ctaLabel` | `string` | `'Comprar ahora'` | Texto del CTA |
-| `onCta` | `() => void` | — | Handler del CTA |
+| `kicker` | `string` | `'New collection'` | Small text on top |
+| `title` | `string` | `'Design that feels modern.'` | Headline |
+| `ctaLabel` | `string` | `'Shop now'` | CTA text |
+| `onCta` | `() => void` | — | CTA handler |
 
-## Uso
+## Usage
 
 ```tsx
 import { Story } from './blocks/Story'
 
 <Story
-  kicker="Nueva colección"
-  title="Diseño que se siente moderno."
-  ctaLabel="Comprar ahora"
+  kicker="New collection"
+  title="Design that feels modern."
+  ctaLabel="Shop now"
   onCta={() => navigate('/shop')}
 />
 ```
 
-La API de props es idéntica en los cuatro frameworks. En Vue, `onCta` es el evento
-`@cta`; en los demás es una prop callback.
+The props API is identical across all four frameworks. In Vue, `onCta` is the `@cta`
+event; in the others it's a callback prop.

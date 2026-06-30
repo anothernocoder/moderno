@@ -7,7 +7,15 @@ import solid from '@astrojs/solid-js'
 
 // React and Solid both compile .tsx — route each integration to its own
 // source globs via include so JSX is compiled with the right pragma.
+// Set by the GitHub Pages workflow so the site builds under its project
+// subpath (e.g. https://<user>.github.io/moderno/). Left undefined for local
+// dev, where the site is served from the root.
+const site = process.env.DOCS_SITE || undefined
+const base = process.env.DOCS_BASE || undefined
+
 export default defineConfig({
+  site,
+  base,
   integrations: [
     starlight({
       title: 'Moderno',

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture review — Moderno</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose", flowchart: { curve: "basis" } });
+    </script>
+    <style>
+      .seam { stroke-dasharray: 4 4; }
+      .mod { @apply text-[10px] uppercase tracking-[0.15em] font-medium; }
+      .deepbox { background: linear-gradient(135deg, #0f172a, #1e293b); }
+      .mermaid { display:flex; justify-content:center; }
+      .grain { background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0); background-size: 14px 14px; }
+    </style>
+  </head>
+  <body class="bg-stone-50 text-slate-900 font-sans antialiased">
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-14">
+
+      <!-- ─── Header ─────────────────────────────────────────────── -->
+      <header class="border-b border-slate-200 pb-8">
+        <p class="text-xs uppercase tracking-[0.25em] text-slate-400 mb-2">Architecture review</p>
+        <h1 class="font-serif text-4xl text-slate-900">Moderno — deepening opportunities</h1>
+        <p class="text-sm text-slate-500 mt-2">Token-driven, framework-agnostic design system · React · Vue · Svelte · Solid · 20 Jun 2026</p>
+
+        <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-600">
+          <span class="inline-flex items-center gap-2"><span class="inline-block w-4 h-4 border-2 border-slate-700 bg-white"></span> module</span>
+          <span class="inline-flex items-center gap-2"><svg width="28" height="8"><line x1="0" y1="4" x2="28" y2="4" stroke="#475569" stroke-width="2" class="seam"/></svg> seam</span>
+          <span class="inline-flex items-center gap-2"><svg width="28" height="8"><line x1="0" y1="4" x2="28" y2="4" stroke="#dc2626" stroke-width="2"/></svg> leakage / duplication</span>
+          <span class="inline-flex items-center gap-2"><span class="inline-block w-4 h-4 deepbox"></span> deep module</span>
+        </div>
+
+        <p class="mt-6 text-sm text-slate-600 leading-relaxed max-w-3xl">
+          Two modules already pull their weight: <code class="font-mono text-xs">@moderno/class-contract</code> and
+          <code class="font-mono text-xs">@moderno/styles</code> are <strong>deep</strong> and tested — a lot of behaviour (every
+          legal <code class="font-mono text-xs">md-*</code> name, the CSS contract check) behind a small interface. The friction
+          lives entirely in the <strong>styled layer</strong> — the per-framework code that wires Zag's prop-getters to the class
+          contract. The same binding recipe is hand-written four times, with no module owning it, and it is the one part of the
+          system with no test surface.
+        </p>
+      </header>
+
+      <section id="candidates" class="space-y-12">
+
+        <!-- ─── Candidate 1 ────────────────────────────────────────── -->
+        <article class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="p-6 border-b border-slate-100 grain">
+            <div class="flex items-center gap-3 flex-wrap mb-3">
+              <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Strong</span>
+              <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">in-process</span>
+            </div>
+            <h2 class="font-serif text-2xl">1 · Collapse the part-context triad into one helper</h2>
+          </div>
+
+          <div class="p-6 grid md:grid-cols-2 gap-6 items-stretch">
+            <div class="rounded-lg border border-slate-200 p-4">
+              <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-3">Before — shallow, repeated per primitive × per framework</p>
+              <pre class="mermaid">
+flowchart TB
+  subgraph one[" "]
+    direction TB
+    T1["Tabs: createContext + useTabs + throw"]
+    A1["Accordion: createContext + useAccordion + throw"]
+    S1["Select: createContext + useSelect + throw"]
+  end
+  T1 -.dup.-> A1
+  A1 -.dup.-> S1
+  classDef dup stroke:#dc2626,stroke-width:2px,fill:#fef2f2;
+  class T1,A1,S1 dup
+              </pre>
+              <p class="text-xs text-slate-500 mt-2">Same create / read / "must be used inside Root" throw, re-typed for each compositional primitive — and again in each of the four framework packages.</p>
+            </div>
+
+            <div class="rounded-lg border border-slate-200 p-4 deepbox text-slate-100">
+              <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-3">After — one deep helper per framework</p>
+              <div class="space-y-3 mt-6">
+                <div class="border-2 border-slate-400 rounded px-3 py-2 text-sm font-mono">createPartContext(name)</div>
+                <div class="flex justify-center text-slate-500">▼ one interface</div>
+                <div class="grid grid-cols-3 gap-2 text-[11px] text-center text-slate-300">
+                  <div class="border border-slate-600 rounded px-1 py-3 opacity-60">Tabs</div>
+                  <div class="border border-slate-600 rounded px-1 py-3 opacity-60">Accordion</div>
+                  <div class="border border-slate-600 rounded px-1 py-3 opacity-60">Select</div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-400 mt-4">Returns <code class="font-mono">{ Provider, usePart }</code>; the throw message is generated from <code class="font-mono">name</code>. Grows for free as ADR-0003's Date picker, Carousel, Sheet land.</p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 space-y-3">
+            <p class="text-sm"><span class="font-semibold">Problem.</span> The context create/read/throw triad is re-implemented for every compositional primitive — shallow code with no single home.</p>
+            <p class="text-sm"><span class="font-semibold">Solution.</span> One <code class="font-mono text-xs">createPartContext(name)</code> per framework; primitives call it instead of restating the triad.</p>
+            <ul class="text-sm text-slate-700 grid sm:grid-cols-2 gap-x-6 gap-y-1 list-disc list-inside">
+              <li>locality: the throw + null-guard live in one module</li>
+              <li>leverage: one interface, N compositional primitives</li>
+              <li>interface shrinks; implementation absorbs the triad</li>
+              <li>deletion test: passes — complexity reappears across callers</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ─── Candidate 2 ────────────────────────────────────────── -->
+        <article class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="p-6 border-b border-slate-100 grain">
+            <div class="flex items-center gap-3 flex-wrap mb-3">
+              <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Strong</span>
+              <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">local-substitutable</span>
+            </div>
+            <h2 class="font-serif text-2xl">2 · Give the styled layer a test surface at its interface</h2>
+          </div>
+
+          <div class="p-6">
+            <div class="rounded-lg border border-slate-200 p-4 mb-5">
+              <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-3">Interface = test surface — where it is asserted today</p>
+              <pre class="mermaid">
+flowchart LR
+  CC["class-contract\n(pure)"] --> T1{{"vitest ✓"}}
+  ST["styles\n(pure)"] --> T2{{"vitest ✓"}}
+  R["react styled layer"] --> X1["tsc only — DOM unasserted"]
+  V["vue styled layer"] --> X2["vue-tsc only"]
+  S["svelte styled layer"] --> X3["svelte-check only"]
+  SO["solid styled layer"] --> X4["tsc only"]
+  classDef ok stroke:#059669,stroke-width:2px,fill:#ecfdf5;
+  classDef gap stroke:#dc2626,stroke-width:2px,fill:#fef2f2;
+  class T1,T2 ok
+  class X1,X2,X3,X4 gap
+              </pre>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">The pure modules are tested. The hand-written Zag glue — the riskiest code, repeated four times — is checked only by the type-checker. Its <strong>interface is the rendered DOM</strong>: right class on right element, ARIA wired from Zag, the context throw firing. None of that is observable through <code class="font-mono text-xs">tsc</code>.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="rounded-lg border border-slate-200 p-4">
+                <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-2">Before</p>
+                <div class="space-y-2 text-xs">
+                  <div class="h-9 border-l-4 border-emerald-500 bg-emerald-50 flex items-center px-3">class-contract — tested</div>
+                  <div class="h-9 border-l-4 border-emerald-500 bg-emerald-50 flex items-center px-3">styles — tested</div>
+                  <div class="h-9 border-l-4 border-red-400 bg-red-50 flex items-center px-3">styled layer × 4 — type-checked only</div>
+                </div>
+              </div>
+              <div class="rounded-lg border border-slate-200 p-4">
+                <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-2">After</p>
+                <div class="space-y-2 text-xs">
+                  <div class="h-9 border-l-4 border-emerald-500 bg-emerald-50 flex items-center px-3">render Tabs → assert anatomy + classes</div>
+                  <div class="h-9 border-l-4 border-emerald-500 bg-emerald-50 flex items-center px-3">render Accordion → assert ARIA from Zag</div>
+                  <div class="h-9 border-l-4 border-emerald-500 bg-emerald-50 flex items-center px-3">render part outside Root → assert throw</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 space-y-3">
+            <p class="text-sm"><span class="font-semibold">Problem.</span> The styled layer's interface (rendered DOM + a11y) is never asserted; bugs in the ×4 glue surface only in the docs app or in a consumer.</p>
+            <p class="text-sm"><span class="font-semibold">Solution.</span> Add a Testing-Library render test per framework that asserts each primitive's anatomy through its interface — classes on the right elements, Zag's ARIA, the context throw.</p>
+            <ul class="text-sm text-slate-700 grid sm:grid-cols-2 gap-x-6 gap-y-1 list-disc list-inside">
+              <li>the interface becomes the test surface</li>
+              <li>locality: anatomy regressions caught at one seam</li>
+              <li>de-risks every later deepening (1 &amp; 3)</li>
+              <li>tests survive internal refactors — assert DOM, not state</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ─── Candidate 3 ────────────────────────────────────────── -->
+        <article class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="p-6 border-b border-slate-100 grain">
+            <div class="flex items-center gap-3 flex-wrap mb-3">
+              <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-100 text-amber-800">Worth exploring</span>
+              <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">in-process</span>
+            </div>
+            <h2 class="font-serif text-2xl">3 · Lift the anatomy recipe into a single declarative spec</h2>
+          </div>
+
+          <div class="p-6 grid md:grid-cols-2 gap-6">
+            <div class="rounded-lg border border-slate-200 p-4">
+              <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-3">Before — recipe re-encoded as prose, ×4</p>
+              <pre class="mermaid">
+flowchart TB
+  REC(["Tabs anatomy recipe:\nTrigger = button + getTriggerProps + md-tabs-trigger"])
+  REC -.-> RR["react/tabs.tsx"]
+  REC -.-> VV["vue/Tabs*.vue"]
+  REC -.-> SS["svelte/Tabs*.svelte"]
+  REC -.-> OO["solid/tabs.tsx"]
+  classDef ghost stroke-dasharray:5 5,fill:#fff,stroke:#94a3b8;
+  classDef dup stroke:#dc2626,fill:#fef2f2;
+  class REC ghost
+  class RR,VV,SS,OO dup
+              </pre>
+              <p class="text-xs text-slate-500 mt-2">The recipe is a real module with no file. <code class="font-mono">parts.*</code> owns the class names; element tag + prop-getter binding is still copied by hand.</p>
+            </div>
+
+            <div class="rounded-lg border border-slate-200 p-4">
+              <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400 mb-3">After — spec owns the binding; renderers interpret it</p>
+              <pre class="mermaid">
+flowchart TB
+  SPEC["anatomy spec\n(part → tag · getter · class)"]
+  SPEC --> RA["react leaf renderer"]
+  SPEC --> VA["vue leaf renderer"]
+  SPEC --> SA["svelte leaf renderer"]
+  SPEC --> OA["solid leaf renderer"]
+  classDef deep fill:#0f172a,color:#fff,stroke:#0f172a;
+  class SPEC deep
+              </pre>
+              <p class="text-xs text-slate-500 mt-2">Leaf parts genericize cleanly. <strong>Root stays hand-written</strong> — its controlled-prop wiring differs per machine and per framework reactivity model.</p>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 space-y-3">
+            <div class="rounded-md bg-amber-50 border border-amber-200 px-4 py-2 text-xs text-amber-900">
+              Scope guard: deepen the <strong>leaf parts only</strong>. A fully generic Root would leak the four reactivity models (Svelte runes, Solid getters, React/Vue context) through its interface — that is where this turns speculative.
+            </div>
+            <p class="text-sm"><span class="font-semibold">Problem.</span> The part→tag→getter→class binding is shallow and duplicated ×4 with no owning module; adding a primitive means four parallel edits.</p>
+            <p class="text-sm"><span class="font-semibold">Solution.</span> Extend <code class="font-mono text-xs">class-contract</code>'s <code class="font-mono text-xs">parts</code> into an anatomy spec naming each part's element + Zag getter; per-framework leaf renderers interpret it.</p>
+            <ul class="text-sm text-slate-700 grid sm:grid-cols-2 gap-x-6 gap-y-1 list-disc list-inside">
+              <li>leverage: one spec, four renderers, N primitives</li>
+              <li>locality: anatomy changes land in one module</li>
+              <li>pairs with candidate 2 — one conformance test per spec</li>
+              <li>extends the "one core, four adapters" shape already in use</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ─── Candidate 4 ────────────────────────────────────────── -->
+        <article class="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div class="p-6 border-b border-slate-100 grain">
+            <div class="flex items-center gap-3 flex-wrap mb-3">
+              <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-200 text-slate-700">Speculative</span>
+              <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">in-process</span>
+            </div>
+            <h2 class="font-serif text-2xl">4 · Deepen overlay glue (Portal + open guard)</h2>
+          </div>
+
+          <div class="p-6">
+            <div class="rounded-md bg-amber-50 border border-amber-300 px-4 py-3 text-sm text-amber-900 mb-5">
+              ⚠ <strong>Contradicts ADR-0002.</strong> The ADR explicitly accepts hand-written composition glue (Portal, presence/exit, open guard) per framework × 4 for Dialog, Tooltip, Toast, Popover, Select as the cost of dropping Ark. Surfaced only because the duplication is concrete — <em>not</em> recommended for action without reopening the ADR.
+            </div>
+            <div class="rounded-lg border border-slate-200 p-4">
+              <pre class="mermaid">
+flowchart LR
+  D["Dialog"] -.same open+portal.-> P["Popover"]
+  P -.same open+portal.-> Tt["Tooltip"]
+  Tt -.same open+portal.-> Sel["Select.Content"]
+  classDef dup stroke:#dc2626,stroke-width:2px,fill:#fef2f2;
+  class D,P,Tt,Sel dup
+              </pre>
+            </div>
+            <p class="text-sm text-slate-600 mt-4"><span class="font-semibold">If reopened:</span> a per-framework <code class="font-mono text-xs">&lt;Overlay&gt;</code> that owns the <code class="font-mono text-xs">api.open</code> guard + Portal wiring. Two real adapters justify it (prod Portal vs test inline), but ADR-0002 judged the glue cheaper than the abstraction. Revisit only if a presence/exit-animation bug shows up in three+ overlays at once.</p>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- ─── Top recommendation ─────────────────────────────────── -->
+      <section id="top-recommendation">
+        <div class="rounded-xl deepbox text-slate-100 p-8 shadow-md">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-slate-400 mb-3">Top recommendation</p>
+          <h2 class="font-serif text-3xl mb-3">Start with <a href="#candidates" class="underline decoration-emerald-400 underline-offset-4">candidate 2 — a test surface for the styled layer</a></h2>
+          <p class="text-sm text-slate-300 leading-relaxed max-w-3xl">
+            The styled layer is the only untested module and the only one written four times — the highest-risk code with the
+            weakest seam. Asserting each primitive through its interface (rendered DOM + Zag's ARIA) turns that interface into a
+            test surface and <strong>de-risks the two deepenings that follow</strong>: the part-context helper (1) and the
+            anatomy spec (3) both rewrite this code, and conformance tests are what let you collapse it without fear. Land tests
+            first, then deepen — in that order.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>

@@ -77,3 +77,23 @@ _Avoid_: section, template, pattern, module.
 The copy-paste delivery channel for blocks — a CLI pulls a block's per-framework
 source into the consumer's own repo to edit freely. Distinct from npm packages.
 _Avoid_: catalog, store, repo.
+
+**Screen**:
+A full single view composed of [[block]]s (a sign-in screen, a dashboard home, a
+cart screen). One step in a [[flow]]. Larger than a block, smaller than a flow.
+The structure doc's "example pages / example screens" are Screens.
+_Avoid_: page, view, layout, example.
+
+**Flow**:
+A connected set of [[screen]]s forming one user journey, with the navigation and
+shared state that links them (auth = sign-in + sign-up + forgot-password + verify;
+checkout = cart + shipping + payment + confirmation). The third delivery tier above
+[[block]]; cuts across [[domain]]s rather than living inside one. Delivered by
+copy-paste via the [[registry]].
+_Avoid_: funnel, wizard, journey, sequence, example page.
+
+**Domain**:
+A product-type grouping of [[block]]s and [[screen]]s — Marketing, Applications,
+E-Commerce, Portfolio, Images & Ads. The folder axis under the [[registry]]. A
+[[flow]] is NOT a domain; it is a cross-domain category alongside them.
+_Avoid_: category, group, kind, type.

@@ -1,0 +1,2 @@
+- Export each component to Figma
+- Make a version of the design system on Figma (with best practices)

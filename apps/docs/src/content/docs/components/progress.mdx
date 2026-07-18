@@ -1,0 +1,116 @@
+---
+title: Progress
+description: Linear and circular progress indicator, determinate and indeterminate. Zag behavior core (progress), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Progress as RProgress } from '@moderno/react'
+import { Progress as VProgress } from '@moderno/vue'
+import { Progress as SProgress } from '@moderno/svelte'
+import { Progress as OProgress } from '@moderno/solid'
+
+**Progress** shows the completion status of a task — linear bar or circular ring, determinate
+(a known percentage) or indeterminate (unknown duration). A **closed-prop** primitive
+(ADR-0003) built on Zag.js's `progress` machine.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <RProgress client:only="react" label="Uploading" value={40} />
+    <RProgress client:only="react" label="Connecting" value={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <RProgress client:only="react" label="Sync" value={70} variant="circular" />
+      <RProgress client:only="react" label="Loading" value={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <VProgress client:only="vue" label="Uploading" modelValue={40} />
+    <VProgress client:only="vue" label="Connecting" modelValue={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <VProgress client:only="vue" label="Sync" modelValue={70} variant="circular" />
+      <VProgress client:only="vue" label="Loading" modelValue={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <SProgress client:only="svelte" label="Uploading" value={40} />
+    <SProgress client:only="svelte" label="Connecting" value={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <SProgress client:only="svelte" label="Sync" value={70} variant="circular" />
+      <SProgress client:only="svelte" label="Loading" value={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <OProgress client:only="solid-js" label="Uploading" value={40} />
+    <OProgress client:only="solid-js" label="Connecting" value={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <OProgress client:only="solid-js" label="Sync" value={70} variant="circular" />
+      <OProgress client:only="solid-js" label="Loading" value={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Progress } from '@moderno/react'
+
+<Progress label="Uploading" value={40} />
+<Progress label="Connecting" value={null} variant="circular" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Progress } from '@moderno/vue'
+import { ref } from 'vue'
+const uploaded = ref(40)
+</script>
+
+<template>
+  <Progress label="Uploading" v-model="uploaded" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Progress } from '@moderno/svelte'
+  let uploaded = $state(40)
+</script>
+
+<Progress label="Uploading" bind:value={uploaded} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Progress } from '@moderno/solid'
+
+<Progress label="Uploading" value={40} />
+<Progress label="Connecting" value={null} variant="circular" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Visible label. |
+| `defaultValue` | `number \| null` | `50` | Initial uncontrolled value. `null` starts indeterminate. |
+| `value` / `v-model` / `bind:value` | `number \| null` | — | Controlled value. `null` renders an indeterminate bar/ring. |
+| `onValueChange` | `(value: number \| null) => void` | — | Callback when the value changes. |
+| `min` | `number` | `0` | Minimum value. |
+| `max` | `number` | `100` | Maximum value. |
+| `variant` | `'linear' \| 'circular'` | `'linear'` | Bar or ring rendering. |
+| `showValue` | `boolean` | `true` | Shows the formatted value text next to the label. |

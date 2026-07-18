@@ -118,6 +118,11 @@ const sheetSpec = {
   axes: { side: { values: ['right', 'left', 'top', 'bottom'], default: 'right', noClass: ['right'] } },
 } as const
 
+const progressSpec = {
+  base: 'md-progress',
+  axes: { variant: { values: ['linear', 'circular'], default: 'linear', noClass: ['linear'] } },
+} as const
+
 /** All variant specs — drives legalNames so adding a spec needs no other edit. */
 const VARIANT_SPECS: readonly VariantSpec[] = [
   buttonSpec,
@@ -132,6 +137,7 @@ const VARIANT_SPECS: readonly VariantSpec[] = [
   spinnerSpec,
   inputSpec,
   sheetSpec,
+  progressSpec,
 ]
 
 export type ButtonVariant = (typeof buttonSpec.axes.variant.values)[number]
@@ -147,6 +153,7 @@ export type IndicatorVariant = (typeof indicatorSpec.axes.variant.values)[number
 export type SkeletonVariant = (typeof skeletonSpec.axes.variant.values)[number]
 export type SpinnerSize = (typeof spinnerSpec.axes.size.values)[number]
 export type SheetSide = (typeof sheetSpec.axes.side.values)[number]
+export type ProgressVariant = (typeof progressSpec.axes.variant.values)[number]
 
 export const cx = {
   button(o: { variant?: ButtonVariant; size?: ButtonSize } = {}): string {
@@ -184,6 +191,9 @@ export const cx = {
   },
   sheet(o: { side?: SheetSide } = {}): string {
     return build(sheetSpec, o)
+  },
+  progress(o: { variant?: ProgressVariant } = {}): string {
+    return build(progressSpec, o)
   },
 }
 
@@ -292,6 +302,16 @@ export const parts = {
     title: 'md-toast-title',
     description: 'md-toast-description',
     closeTrigger: 'md-toast-close',
+  },
+  progress: {
+    header: 'md-progress-header',
+    label: 'md-progress-label',
+    valueText: 'md-progress-value-text',
+    track: 'md-progress-track',
+    range: 'md-progress-range',
+    circle: 'md-progress-circle',
+    circleTrack: 'md-progress-circle-track',
+    circleRange: 'md-progress-circle-range',
   },
 } as const
 

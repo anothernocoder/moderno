@@ -748,6 +748,83 @@
 .md-slider-thumb:focus-visible { outline: 2px solid var(--md-primary); outline-offset: 2px; }
 .md-slider-thumb[data-disabled] { cursor: not-allowed; }
 
+/* ---------- Progress (Zag progress machine, closed-prop) ---------- */
+.md-progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-2);
+  font-family: var(--md-font-sans);
+}
+.md-progress--circular {
+  align-items: center;
+}
+.md-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+.md-progress--circular .md-progress-header {
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  gap: var(--md-spacing-1);
+}
+.md-progress-label {
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  color: var(--md-text-primary);
+}
+.md-progress-value-text {
+  font-size: var(--md-text-label-md);
+  color: var(--md-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.md-progress-track {
+  position: relative;
+  height: 8px;
+  overflow: hidden;
+  background: var(--md-border-default);
+  border-radius: var(--md-radius-full);
+}
+.md-progress-range {
+  height: 100%;
+  background: var(--md-primary);
+  border-radius: var(--md-radius-full);
+  transition: width 300ms ease;
+}
+.md-progress-range[data-state='indeterminate'] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  animation: md-progress-indeterminate 1.4s ease-in-out infinite;
+}
+@keyframes md-progress-indeterminate {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+.md-progress-circle {
+  --size: 64px;
+  --thickness: 6px;
+}
+.md-progress-circle-track {
+  stroke: var(--md-border-default);
+}
+.md-progress-circle-range {
+  stroke: var(--md-primary);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 300ms ease;
+}
+.md-progress-circle-range[data-state='indeterminate'] {
+  stroke-dasharray: calc(var(--circumference) * 0.25) var(--circumference);
+}
+.md-progress-circle[data-state='indeterminate'] {
+  animation: md-progress-circle-spin 1.2s linear infinite;
+}
+@keyframes md-progress-circle-spin {
+  to { transform: rotate(360deg); }
+}
 /* ---------- Accordion (Zag accordion machine, compositional) ---------- */
 .md-accordion {
   display: flex;
@@ -1120,7 +1197,9 @@
 @media (prefers-reduced-motion: reduce) {
   .md-skeleton,
   .md-spinner,
-  .md-indicator--pulse .md-indicator__dot::after {
+  .md-indicator--pulse .md-indicator__dot::after,
+  .md-progress-range[data-state='indeterminate'],
+  .md-progress-circle[data-state='indeterminate'] {
     animation: none;
   }
 }

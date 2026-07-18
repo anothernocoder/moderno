@@ -1,0 +1,116 @@
+---
+title: Progress
+description: Indicador de progreso lineal y circular, determinado e indeterminado. Behavior core Zag (progress), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Progress as RProgress } from '@moderno/react'
+import { Progress as VProgress } from '@moderno/vue'
+import { Progress as SProgress } from '@moderno/svelte'
+import { Progress as OProgress } from '@moderno/solid'
+
+**Progress** muestra el estado de avance de una tarea — barra lineal o anillo circular,
+determinado (un porcentaje conocido) o indeterminado (duración desconocida). Primitive
+**closed-prop** (ADR-0003) sobre la máquina `progress` de Zag.js.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <RProgress client:only="react" label="Subiendo" value={40} />
+    <RProgress client:only="react" label="Conectando" value={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <RProgress client:only="react" label="Sincronizando" value={70} variant="circular" />
+      <RProgress client:only="react" label="Cargando" value={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <VProgress client:only="vue" label="Subiendo" modelValue={40} />
+    <VProgress client:only="vue" label="Conectando" modelValue={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <VProgress client:only="vue" label="Sincronizando" modelValue={70} variant="circular" />
+      <VProgress client:only="vue" label="Cargando" modelValue={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <SProgress client:only="svelte" label="Subiendo" value={40} />
+    <SProgress client:only="svelte" label="Conectando" value={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <SProgress client:only="svelte" label="Sincronizando" value={70} variant="circular" />
+      <SProgress client:only="svelte" label="Cargando" value={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo" style="flex-direction:column;align-items:stretch;gap:1.5rem;max-width:360px">
+    <OProgress client:only="solid-js" label="Subiendo" value={40} />
+    <OProgress client:only="solid-js" label="Conectando" value={null} />
+    <div style="display:flex;gap:2rem;align-items:flex-start">
+      <OProgress client:only="solid-js" label="Sincronizando" value={70} variant="circular" />
+      <OProgress client:only="solid-js" label="Cargando" value={null} variant="circular" />
+    </div>
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Progress } from '@moderno/react'
+
+<Progress label="Subiendo" value={40} />
+<Progress label="Conectando" value={null} variant="circular" />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Progress } from '@moderno/vue'
+import { ref } from 'vue'
+const subido = ref(40)
+</script>
+
+<template>
+  <Progress label="Subiendo" v-model="subido" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Progress } from '@moderno/svelte'
+  let subido = $state(40)
+</script>
+
+<Progress label="Subiendo" bind:value={subido} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Progress } from '@moderno/solid'
+
+<Progress label="Subiendo" value={40} />
+<Progress label="Conectando" value={null} variant="circular" />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `label` | `string` | — | Etiqueta visible. |
+| `defaultValue` | `number \| null` | `50` | Valor inicial no controlado. `null` inicia indeterminado. |
+| `value` / `v-model` / `bind:value` | `number \| null` | — | Valor controlado. `null` renderiza una barra/anillo indeterminado. |
+| `onValueChange` | `(value: number \| null) => void` | — | Callback al cambiar. |
+| `min` | `number` | `0` | Valor mínimo. |
+| `max` | `number` | `100` | Valor máximo. |
+| `variant` | `'linear' \| 'circular'` | `'linear'` | Renderiza como barra o anillo. |
+| `showValue` | `boolean` | `true` | Muestra el texto de valor formateado junto a la etiqueta. |

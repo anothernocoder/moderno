@@ -31,6 +31,11 @@ export { default as Radio } from './Radio.svelte'
 export { default as Tooltip } from './Tooltip.svelte'
 export { default as Popover } from './Popover.svelte'
 export { default as Slider } from './Slider.svelte'
+export { default as Combobox } from './Combobox.svelte'
+export type { ComboboxItem } from './Combobox.svelte'
+export { default as Menu } from './Menu.svelte'
+export type { MenuItem } from './Menu.svelte'
+export { default as NumberInput } from './NumberInput.svelte'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */
 export const Tabs = { Root: TabsRoot, List: TabsList, Trigger: TabsTrigger, Content: TabsContent }

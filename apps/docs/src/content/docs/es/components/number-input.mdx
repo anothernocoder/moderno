@@ -1,0 +1,100 @@
+---
+title: NumberInput
+description: Campo numérico con steppers de incremento/decremento. Behavior core de Zag (number-input), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { NumberInput as RNumberInput } from '@moderno/react'
+import { NumberInput as VNumberInput } from '@moderno/vue'
+import { NumberInput as SNumberInput } from '@moderno/svelte'
+import { NumberInput as ONumberInput } from '@moderno/solid'
+
+**NumberInput** es un campo numérico con steppers `−`/`+`. Primitive **closed-prop**
+(ADR-0003) sobre la máquina `number-input` de Zag.js — el paso con teclado (flechas), el
+clamping min/max, el spin al mantener presionado y el ARIA `spinbutton` vienen de Zag;
+Moderno es dueño del markup y del class contract `md-number-input-*`. El valor se expone
+como string para preservar el formato; `onValueChange` también entrega `valueAsNumber`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo md-demo--stack">
+    <RNumberInput client:only="react" label="Cantidad" defaultValue={2} min={0} max={10} />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo md-demo--stack">
+    <VNumberInput client:only="vue" label="Cantidad" defaultValue={2} min={0} max={10} />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo md-demo--stack">
+    <SNumberInput client:only="svelte" label="Cantidad" defaultValue={2} min={0} max={10} />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo md-demo--stack">
+    <ONumberInput client:only="solid-js" label="Cantidad" defaultValue={2} min={0} max={10} />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { NumberInput } from '@moderno/react'
+
+<NumberInput
+  label="Cantidad"
+  defaultValue={2}
+  min={0}
+  max={10}
+  onValueChange={(value, valueAsNumber) => console.log(value, valueAsNumber)}
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { NumberInput } from '@moderno/vue'
+</script>
+
+<template>
+  <NumberInput label="Cantidad" :default-value="2" :min="0" :max="10" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { NumberInput } from '@moderno/svelte'
+</script>
+
+<NumberInput label="Cantidad" defaultValue={2} min={0} max={10} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { NumberInput } from '@moderno/solid'
+
+<NumberInput label="Cantidad" defaultValue={2} min={0} max={10} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `label` | `string` | — | Label visible sobre el control. |
+| `defaultValue` | `number \| string` | — | Valor inicial (uncontrolled). |
+| `value` / `v-model` / `bind:value` | `number \| string` | — | Valor controlado (internamente string). |
+| `min` / `max` | `number` | — | Límites de clamping. |
+| `step` | `number` | `1` | Paso de incremento/decremento. |
+| `disabled` | `boolean` | `false` | Desactiva el control. |
+| `name` | `string` | — | Nombre del campo (para formularios). |
+| `placeholder` | `string` | — | Placeholder del input. |
+| `onValueChange` | `(value: string, valueAsNumber: number) => void` | — | Callback cuando cambia el valor. |

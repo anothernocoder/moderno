@@ -232,11 +232,38 @@ export const parts = {
     itemText: 'md-select-item-text',
     itemIndicator: 'md-select-item-indicator',
   },
+  combobox: {
+    root: 'md-combobox',
+    label: 'md-combobox-label',
+    control: 'md-combobox-control',
+    input: 'md-combobox-input',
+    trigger: 'md-combobox-trigger',
+    positioner: 'md-combobox-positioner',
+    content: 'md-combobox-content',
+    item: 'md-combobox-item',
+    itemText: 'md-combobox-item-text',
+    itemIndicator: 'md-combobox-item-indicator',
+  },
+  menu: {
+    indicator: 'md-menu-indicator',
+    positioner: 'md-menu-positioner',
+    content: 'md-menu-content',
+    item: 'md-menu-item',
+  },
+  numberInput: {
+    root: 'md-number-input',
+    label: 'md-number-input-label',
+    control: 'md-number-input-control',
+    field: 'md-number-input-field',
+    decrement: 'md-number-input-decrement',
+    increment: 'md-number-input-increment',
+  },
 } as const
 
 /** Leaves the frameworks apply but styles.css does not style — excluded from enforcement. */
 const UNSTYLED_HOOKS = new Set<string>([
   'md-checkbox-label',
+  'md-combobox-item-text',
   'md-radio-item-text',
   'md-select-control',
   'md-select-item-text',

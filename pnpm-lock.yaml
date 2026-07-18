@@ -94,10 +94,16 @@ importers:
       '@zag-js/checkbox':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/combobox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/menu':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/number-input':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/popover':
@@ -188,10 +194,16 @@ importers:
       '@zag-js/checkbox':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/combobox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/menu':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/number-input':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/popover':
@@ -271,10 +283,16 @@ importers:
       '@zag-js/checkbox':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/combobox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/menu':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/number-input':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/popover':
@@ -349,10 +367,16 @@ importers:
       '@zag-js/checkbox':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/combobox':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/dialog':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/menu':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/number-input':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/popover':
@@ -1245,6 +1269,9 @@ packages:
       '@types/node':
         optional: true
 
+  '@internationalized/number@3.6.6':
+    resolution: {integrity: sha512-iFgmQaXHE0vytNfpLZWOC2mEJCBRzcUxt53Xf/yCXG93lRvqas237i3r7X4RKMwO3txiyZD4mQjKAByFv6UGSQ==}
+
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
@@ -1561,6 +1588,9 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
       vite: ^6.3.0 || ^7.0.0
+
+  '@swc/helpers@0.5.23':
+    resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
 
   '@testing-library/dom@10.4.1':
     resolution: {integrity: sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==}
@@ -1884,6 +1914,9 @@ packages:
   '@zag-js/collection@1.41.2':
     resolution: {integrity: sha512-ZZWuvfPZI8ccWd4aLpuU47k1jSc9eO+F3FM3iBJuvgegCH6g3+HDEwGN6wdePHnYfv7zyIKCGKr816zXcIWQbw==}
 
+  '@zag-js/combobox@1.41.2':
+    resolution: {integrity: sha512-V9jQteyQHs8ZNQx/FcA98P1NVZas/yjiW1V7s4L+h8MnRS3AK97+FAHAT83KCiZ34/vkpLF6ZEHI2zkcQpNXcg==}
+
   '@zag-js/core@1.41.2':
     resolution: {integrity: sha512-xXTN3zKwOtMI4+5dG2cG+T1B4WR3X9alXiYaPJKaGd4N2eYRj9JEPte3Hv9gtFm+RM0b9VIwksHEg25rqE4apw==}
 
@@ -1905,8 +1938,14 @@ packages:
   '@zag-js/interact-outside@1.41.2':
     resolution: {integrity: sha512-dM4Fn9iyqQeqkCMRYZP+bAgWEPKRVQRqMmcPsN0OXBhhFKC31Em15LTIZXaOtVKAjH+iwx+UvSYFRiWwEjkOEA==}
 
+  '@zag-js/live-region@1.41.2':
+    resolution: {integrity: sha512-7ubIW5AQt1wx9S/gFN+rU4TyvuFWJrL/DhnDWPNlH5g3luDVHSNeYGeeqf4d4tkcibtpYZa0pg9CbXxRxrfwVA==}
+
   '@zag-js/menu@1.41.2':
     resolution: {integrity: sha512-wwix8hcAUSi0scpWXCiDppfdZV01Za8nN0gqLt9GdhCiVSlr0rs9pK1ROgPKJTyc43UZfyFPqtTWVHvEHMM70w==}
+
+  '@zag-js/number-input@1.41.2':
+    resolution: {integrity: sha512-QoQWCiVHO+ciUbq8uL8Kxhtk4o3UpwzYpJkfsOfitzsZoYpPc7V/A6+n5yABV2SOwpqBODwNASZdxiEa60kfow==}
 
   '@zag-js/popover@1.41.2':
     resolution: {integrity: sha512-h/LlVMIERM+NWzYV0ZHURlJuaqkT8XxwyEV96XfVzjknDRFNoPSl5IttVYtoaPoUqC0p/Y4oTSiee4mUZKOLHw==}
@@ -5230,6 +5269,10 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.13.2
 
+  '@internationalized/number@3.6.6':
+    dependencies:
+      '@swc/helpers': 0.5.23
+
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -5528,6 +5571,10 @@ snapshots:
       svelte: 5.56.3
       vite: 7.3.5(@types/node@24.13.2)
       vitefu: 1.1.3(vite@7.3.5(@types/node@24.13.2))
+
+  '@swc/helpers@0.5.23':
+    dependencies:
+      tslib: 2.8.1
 
   '@testing-library/dom@10.4.1':
     dependencies:
@@ -5950,6 +5997,19 @@ snapshots:
     dependencies:
       '@zag-js/utils': 1.41.2
 
+  '@zag-js/combobox@1.41.2':
+    dependencies:
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/collection': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dismissable': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/focus-visible': 1.41.2
+      '@zag-js/live-region': 1.41.2
+      '@zag-js/popper': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
+
   '@zag-js/core@1.41.2':
     dependencies:
       '@zag-js/dom-query': 1.41.2
@@ -5990,6 +6050,8 @@ snapshots:
       '@zag-js/dom-query': 1.41.2
       '@zag-js/utils': 1.41.2
 
+  '@zag-js/live-region@1.41.2': {}
+
   '@zag-js/menu@1.41.2':
     dependencies:
       '@zag-js/anatomy': 1.41.2
@@ -5999,6 +6061,15 @@ snapshots:
       '@zag-js/focus-visible': 1.41.2
       '@zag-js/popper': 1.41.2
       '@zag-js/rect-utils': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
+
+  '@zag-js/number-input@1.41.2':
+    dependencies:
+      '@internationalized/number': 3.6.6
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
       '@zag-js/types': 1.41.2
       '@zag-js/utils': 1.41.2
 
@@ -8704,8 +8775,7 @@ snapshots:
 
   trough@2.2.0: {}
 
-  tslib@2.8.1:
-    optional: true
+  tslib@2.8.1: {}
 
   turbo@2.9.18:
     optionalDependencies:

@@ -1,0 +1,113 @@
+---
+title: Menu
+description: Desplegable de acciones desde un botón trigger. Behavior core de Zag (menu), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Menu as RMenu } from '@moderno/react'
+import { Menu as VMenu } from '@moderno/vue'
+import { Menu as SMenu } from '@moderno/svelte'
+import { Menu as OMenu } from '@moderno/solid'
+
+export const acciones = [
+  { label: 'Editar', value: 'edit' },
+  { label: 'Duplicar', value: 'duplicate' },
+  { label: 'Archivar', value: 'archive' },
+  { label: 'Eliminar', value: 'delete' },
+]
+
+**Menu** es un desplegable de acciones: un botón trigger que abre una lista de items, cada
+uno dispara `onSelect` con su `value`. Primitive **closed-prop** (ADR-0003) sobre la máquina
+`menu` de Zag.js — abrir/cerrar, teclado, typeahead, retorno de foco y el ARIA
+`menu`/`menuitem` vienen de Zag; Moderno es dueño del markup y del class contract
+`md-menu-*`. Para elegir un valor de formulario usa `Select` o `Combobox`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RMenu client:only="react" triggerLabel="Acciones" items={acciones} />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VMenu client:only="vue" triggerLabel="Acciones" items={acciones} />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SMenu client:only="svelte" triggerLabel="Acciones" items={acciones} />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OMenu client:only="solid-js" triggerLabel="Acciones" items={acciones} />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Menu } from '@moderno/react'
+
+const acciones = [
+  { label: 'Editar', value: 'edit' },
+  { label: 'Eliminar', value: 'delete' },
+]
+
+<Menu triggerLabel="Acciones" items={acciones} onSelect={(value) => console.log(value)} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Menu } from '@moderno/vue'
+const acciones = [
+  { label: 'Editar', value: 'edit' },
+  { label: 'Eliminar', value: 'delete' },
+]
+</script>
+
+<template>
+  <Menu trigger-label="Acciones" :items="acciones" @select="(value) => console.log(value)" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Menu } from '@moderno/svelte'
+  const acciones = [
+    { label: 'Editar', value: 'edit' },
+    { label: 'Eliminar', value: 'delete' },
+  ]
+</script>
+
+<Menu triggerLabel="Acciones" items={acciones} onSelect={(value) => console.log(value)} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Menu } from '@moderno/solid'
+
+const acciones = [
+  { label: 'Editar', value: 'edit' },
+  { label: 'Eliminar', value: 'delete' },
+]
+
+<Menu triggerLabel="Acciones" items={acciones} onSelect={(value) => console.log(value)} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `triggerLabel` | `string` | — | Label del botón trigger. |
+| `items` | `{ label: string; value: string; disabled?: boolean }[]` | — | Las acciones que ofrece el menú. |
+| `onSelect` / `@select` | `(value: string) => void` | — | Se llama con el `value` del item al seleccionarlo. |

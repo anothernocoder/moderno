@@ -31,6 +31,11 @@ export { default as Radio } from './Radio.vue'
 export { default as Tooltip } from './Tooltip.vue'
 export { default as Popover } from './Popover.vue'
 export { default as Slider } from './Slider.vue'
+export { default as Combobox } from './Combobox.vue'
+export type { ComboboxItem } from './Combobox.vue'
+export { default as Menu } from './Menu.vue'
+export type { MenuItem } from './Menu.vue'
+export { default as NumberInput } from './NumberInput.vue'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */
 export const Tabs = { Root: TabsRoot, List: TabsList, Trigger: TabsTrigger, Content: TabsContent }

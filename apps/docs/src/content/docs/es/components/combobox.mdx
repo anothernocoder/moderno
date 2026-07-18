@@ -1,0 +1,123 @@
+---
+title: Combobox
+description: Selección única con búsqueda. Behavior core de Zag (combobox), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Combobox as RCombobox } from '@moderno/react'
+import { Combobox as VCombobox } from '@moderno/vue'
+import { Combobox as SCombobox } from '@moderno/svelte'
+import { Combobox as OCombobox } from '@moderno/solid'
+
+export const frutas = [
+  { label: 'Manzana', value: 'apple' },
+  { label: 'Banano', value: 'banana' },
+  { label: 'Naranja', value: 'orange' },
+  { label: 'Mango', value: 'mango' },
+  { label: 'Uva (agotada)', value: 'grape', disabled: true },
+]
+
+**Combobox** es una selección única con búsqueda: un input que filtra la lista de opciones
+mientras escribes (contiene, sin distinguir mayúsculas, sobre el label), con un botón para
+abrir la lista completa. Primitive **closed-prop** (ADR-0003) sobre la máquina `combobox`
+de Zag.js — la selección, el teclado y el ARIA `combobox`/`listbox`/`option` vienen de Zag;
+Moderno es dueño del markup y del class contract `md-combobox-*`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo md-demo--stack">
+    <RCombobox client:only="react" label="Fruta" placeholder="Busca una fruta…" items={frutas} />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo md-demo--stack">
+    <VCombobox client:only="vue" label="Fruta" placeholder="Busca una fruta…" items={frutas} />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo md-demo--stack">
+    <SCombobox client:only="svelte" label="Fruta" placeholder="Busca una fruta…" items={frutas} />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo md-demo--stack">
+    <OCombobox client:only="solid-js" label="Fruta" placeholder="Busca una fruta…" items={frutas} />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Combobox } from '@moderno/react'
+
+const frutas = [
+  { label: 'Manzana', value: 'apple' },
+  { label: 'Banano', value: 'banana' },
+]
+
+<Combobox
+  label="Fruta"
+  placeholder="Busca una fruta…"
+  items={frutas}
+  onValueChange={(value) => console.log(value)}
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Combobox } from '@moderno/vue'
+const frutas = [
+  { label: 'Manzana', value: 'apple' },
+  { label: 'Banano', value: 'banana' },
+]
+</script>
+
+<template>
+  <Combobox label="Fruta" placeholder="Busca una fruta…" :items="frutas" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Combobox } from '@moderno/svelte'
+  const frutas = [
+    { label: 'Manzana', value: 'apple' },
+    { label: 'Banano', value: 'banana' },
+  ]
+</script>
+
+<Combobox label="Fruta" placeholder="Busca una fruta…" items={frutas} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Combobox } from '@moderno/solid'
+
+const frutas = [
+  { label: 'Manzana', value: 'apple' },
+  { label: 'Banano', value: 'banana' },
+]
+
+<Combobox label="Fruta" placeholder="Busca una fruta…" items={frutas} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `label` | `string` | — | Label visible sobre el control. |
+| `items` | `{ label: string; value: string; disabled?: boolean }[]` | — | Opciones; escribir las filtra por label. |
+| `placeholder` | `string` | — | Placeholder del input. |
+| `defaultValue` | `string[]` | — | Claves seleccionadas al inicio (uncontrolled). |
+| `value` / `v-model` / `bind:value` | `string[]` | — | Claves seleccionadas (controlled). |
+| `disabled` | `boolean` | `false` | Desactiva el control. |
+| `onValueChange` | `(value: string[]) => void` | — | Callback cuando cambia la selección. |

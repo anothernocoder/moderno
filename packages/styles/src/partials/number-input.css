@@ -1,0 +1,61 @@
+/* ---------- NumberInput (Zag number-input machine, closed-prop) ---------- */
+.md-number-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-2);
+  font-family: var(--md-font-sans);
+}
+.md-number-input-label {
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  color: var(--md-text-primary);
+}
+.md-number-input-control {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 40px;
+  background: var(--md-surface-muted);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  transition: border-color 150ms;
+}
+.md-number-input-control:focus-within { border-color: var(--md-primary); }
+.md-number-input-control[data-disabled] { opacity: 0.4; }
+.md-number-input-field {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--md-spacing-4);
+  background: transparent;
+  border: 0;
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  color: var(--md-text-primary);
+  text-align: left;
+  -moz-appearance: textfield;
+}
+.md-number-input-field:focus-visible { outline: none; }
+.md-number-input-field::placeholder { color: var(--md-text-secondary); }
+.md-number-input-field[data-disabled] { cursor: not-allowed; }
+.md-number-input-decrement,
+.md-number-input-increment {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  background: transparent;
+  border: 0;
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-md);
+  color: var(--md-text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+.md-number-input-decrement { border-right: 1px solid var(--md-border-strong); }
+.md-number-input-increment { border-left: 1px solid var(--md-border-strong); }
+.md-number-input-decrement:hover,
+.md-number-input-increment:hover { color: var(--md-text-primary); background: var(--md-surface-base); }
+.md-number-input-decrement[data-disabled],
+.md-number-input-increment[data-disabled] { opacity: 0.4; cursor: not-allowed; }
+

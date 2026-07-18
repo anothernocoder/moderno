@@ -747,6 +747,190 @@
 .md-select-item-indicator { flex: none; color: var(--md-primary); }
 .md-select-item-indicator[hidden] { display: none; }
 
+/* ---------- Combobox (Zag combobox machine, closed-prop) ---------- */
+.md-combobox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-2);
+  font-family: var(--md-font-sans);
+}
+.md-combobox-label {
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  color: var(--md-text-primary);
+}
+.md-combobox-control {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 40px;
+  background: var(--md-surface-muted);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  transition: border-color 150ms;
+}
+.md-combobox-control:focus-within { border-color: var(--md-primary); }
+.md-combobox-control[data-state="open"] { border-color: var(--md-primary); }
+.md-combobox-control[data-disabled] { opacity: 0.4; }
+.md-combobox-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--md-spacing-4);
+  background: transparent;
+  border: 0;
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  color: var(--md-text-primary);
+}
+.md-combobox-input:focus-visible { outline: none; }
+.md-combobox-input::placeholder { color: var(--md-text-secondary); }
+.md-combobox-input[data-disabled] { cursor: not-allowed; }
+.md-combobox-trigger {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--md-spacing-3);
+  background: transparent;
+  border: 0;
+  color: var(--md-text-secondary);
+  cursor: pointer;
+  transition: transform 200ms;
+}
+.md-combobox-trigger[data-state="open"] { transform: rotate(180deg); }
+.md-combobox-trigger[data-disabled] { cursor: not-allowed; }
+.md-combobox-positioner { z-index: 55; }
+.md-combobox-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: var(--reference-width, 200px);
+  max-height: 280px;
+  margin: 0;
+  padding: var(--md-spacing-2);
+  list-style: none;
+  overflow-y: auto;
+  background: var(--md-surface-base);
+  border: 1px solid var(--md-border-strong);
+  box-shadow: var(--md-shadow-large);
+}
+.md-combobox-content:focus-visible { outline: none; }
+.md-combobox-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--md-spacing-4);
+  padding: var(--md-spacing-2) var(--md-spacing-3);
+  font-size: var(--md-text-body-sm);
+  line-height: var(--md-text-body-sm-lh);
+  color: var(--md-text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+.md-combobox-item[data-highlighted] { background: var(--md-surface-muted); }
+.md-combobox-item[data-state="checked"] { font-weight: 500; }
+.md-combobox-item[data-disabled] { opacity: 0.4; cursor: not-allowed; }
+.md-combobox-item-indicator { flex: none; color: var(--md-primary); }
+.md-combobox-item-indicator[hidden] { display: none; }
+
+/* ---------- Menu (Zag menu machine, closed-prop) ---------- */
+.md-menu-indicator {
+  margin-left: var(--md-spacing-2);
+  color: currentColor;
+  transition: transform 200ms;
+  display: inline-block;
+}
+[data-state="open"] > .md-menu-indicator { transform: rotate(180deg); }
+.md-menu-positioner { z-index: 55; }
+.md-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 180px;
+  margin: 0;
+  padding: var(--md-spacing-2);
+  list-style: none;
+  font-family: var(--md-font-sans);
+  background: var(--md-surface-base);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  box-shadow: var(--md-shadow-large);
+}
+.md-menu-content:focus-visible { outline: none; }
+.md-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--md-spacing-3);
+  padding: var(--md-spacing-2) var(--md-spacing-3);
+  font-size: var(--md-text-body-sm);
+  line-height: var(--md-text-body-sm-lh);
+  color: var(--md-text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+.md-menu-item[data-highlighted] { background: var(--md-surface-muted); }
+.md-menu-item[data-disabled] { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- NumberInput (Zag number-input machine, closed-prop) ---------- */
+.md-number-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-2);
+  font-family: var(--md-font-sans);
+}
+.md-number-input-label {
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  color: var(--md-text-primary);
+}
+.md-number-input-control {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 40px;
+  background: var(--md-surface-muted);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  transition: border-color 150ms;
+}
+.md-number-input-control:focus-within { border-color: var(--md-primary); }
+.md-number-input-control[data-disabled] { opacity: 0.4; }
+.md-number-input-field {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--md-spacing-4);
+  background: transparent;
+  border: 0;
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  color: var(--md-text-primary);
+  text-align: left;
+  -moz-appearance: textfield;
+}
+.md-number-input-field:focus-visible { outline: none; }
+.md-number-input-field::placeholder { color: var(--md-text-secondary); }
+.md-number-input-field[data-disabled] { cursor: not-allowed; }
+.md-number-input-decrement,
+.md-number-input-increment {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  background: transparent;
+  border: 0;
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-md);
+  color: var(--md-text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+.md-number-input-decrement { border-right: 1px solid var(--md-border-strong); }
+.md-number-input-increment { border-left: 1px solid var(--md-border-strong); }
+.md-number-input-decrement:hover,
+.md-number-input-increment:hover { color: var(--md-text-primary); background: var(--md-surface-base); }
+.md-number-input-decrement[data-disabled],
+.md-number-input-increment[data-disabled] { opacity: 0.4; cursor: not-allowed; }
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .md-skeleton,

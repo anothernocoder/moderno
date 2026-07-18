@@ -48,6 +48,9 @@ export const STYLE_SEGMENTS: SegmentSource[] = [
   { kind: 'enforced', name: 'slider', file: './partials/slider.css' },
   { kind: 'enforced', name: 'accordion', file: './partials/accordion.css' },
   { kind: 'enforced', name: 'select', file: './partials/select.css' },
+  { kind: 'enforced', name: 'combobox', file: './partials/combobox.css' },
+  { kind: 'enforced', name: 'menu', file: './partials/menu.css' },
+  { kind: 'enforced', name: 'number-input', file: './partials/number-input.css' },
   { kind: 'enforced', name: 'reduced-motion', file: './partials/_reduced-motion.css' },
 ]
 

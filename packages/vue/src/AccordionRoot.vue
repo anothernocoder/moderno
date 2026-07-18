@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, provide, useId } from 'vue'
+import { computed, useId } from 'vue'
 import * as accordion from '@zag-js/accordion'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { AccordionKey } from './accordion-context'
+import { provideAccordion } from './accordion-context'
 import { parts } from '@moderno/class-contract'
 
 const props = defineProps<{
@@ -32,7 +32,7 @@ const service = useMachine(accordion.machine, {
   },
 })
 const api = computed(() => accordion.connect(service, normalizeProps))
-provide(AccordionKey, api)
+provideAccordion(api)
 </script>
 
 <template>

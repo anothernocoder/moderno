@@ -1,28 +1,17 @@
-import { createContext, useContext, createMemo, createUniqueId, type JSX } from 'solid-js'
+import { createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as accordion from '@zag-js/accordion'
 import { useMachine, normalizeProps } from '@zag-js/solid'
 import { parts } from '@moderno/class-contract'
+import { createPartContext } from './create-part-context'
 
 type AccordionApi = ReturnType<typeof accordion.connect>
-const AccordionContext = createContext<() => AccordionApi>()
+const { Provider: AccordionProvider, usePart: useAccordion } = createPartContext<AccordionApi>('Accordion')
 
 interface ItemCtx {
   value: string
   disabled?: boolean
 }
-const ItemContext = createContext<() => ItemCtx>()
-
-function useAccordion(part: string): () => AccordionApi {
-  const api = useContext(AccordionContext)
-  if (!api) throw new Error(`Moderno: <Accordion.${part}> must be used inside <Accordion.Root>`)
-  return api
-}
-
-function useItem(part: string): () => ItemCtx {
-  const ctx = useContext(ItemContext)
-  if (!ctx) throw new Error(`Moderno: <Accordion.${part}> must be used inside <Accordion.Item>`)
-  return ctx
-}
+const { Provider: ItemProvider, usePart: useItem } = createPartContext<ItemCtx>('Accordion', 'Item')
 
 export interface AccordionRootProps {
   defaultValue?: string[]
@@ -52,11 +41,11 @@ function Root(props: AccordionRootProps) {
   })
   const api = createMemo(() => accordion.connect(service, normalizeProps))
   return (
-    <AccordionContext.Provider value={api}>
+    <AccordionProvider value={api}>
       <div {...api().getRootProps()} class={parts.accordion.root}>
         {props.children}
       </div>
-    </AccordionContext.Provider>
+    </AccordionProvider>
   )
 }
 
@@ -64,11 +53,11 @@ function Item(props: { value: string; disabled?: boolean; children: JSX.Element 
   const api = useAccordion('Item')
   const item = () => ({ value: props.value, disabled: props.disabled })
   return (
-    <ItemContext.Provider value={item}>
+    <ItemProvider value={item}>
       <div {...api().getItemProps(item())} class={parts.accordion.item}>
         {props.children}
       </div>
-    </ItemContext.Provider>
+    </ItemProvider>
   )
 }
 

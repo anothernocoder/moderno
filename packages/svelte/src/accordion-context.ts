@@ -1,9 +1,7 @@
-import { getContext, setContext } from 'svelte'
 import type * as accordion from '@zag-js/accordion'
+import { createPartContext } from './create-part-context'
 
 type AccordionApi = ReturnType<typeof accordion.connect>
-const API_KEY = Symbol('moderno-accordion')
-const ITEM_KEY = Symbol('moderno-accordion-item')
 
 export interface AccordionItemCtx {
   value: string
@@ -11,22 +9,9 @@ export interface AccordionItemCtx {
 }
 
 /** Root stores a getter so children read the live $derived api reactively. */
-export function setAccordionContext(getApi: () => AccordionApi): void {
-  setContext(API_KEY, getApi)
-}
+export const { set: setAccordionContext, get: getAccordionContext } = createPartContext<() => AccordionApi>('Accordion')
 
-export function getAccordionContext(): () => AccordionApi {
-  const ctx = getContext<() => AccordionApi>(API_KEY)
-  if (!ctx) throw new Error('Moderno: Accordion parts must be used inside <Accordion.Root>')
-  return ctx
-}
-
-export function setAccordionItemContext(ctx: AccordionItemCtx): void {
-  setContext(ITEM_KEY, ctx)
-}
-
-export function getAccordionItemContext(): AccordionItemCtx {
-  const ctx = getContext<AccordionItemCtx>(ITEM_KEY)
-  if (!ctx) throw new Error('Moderno: Accordion item parts must be used inside <Accordion.Item>')
-  return ctx
-}
+export const { set: setAccordionItemContext, get: getAccordionItemContext } = createPartContext<AccordionItemCtx>(
+  'Accordion',
+  'Item',
+)

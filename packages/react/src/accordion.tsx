@@ -1,28 +1,17 @@
-import { createContext, useContext, useId, type ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 import * as accordion from '@zag-js/accordion'
 import { useMachine, normalizeProps } from '@zag-js/react'
 import { parts } from '@moderno/class-contract'
+import { createPartContext } from './create-part-context'
 
 type AccordionApi = ReturnType<typeof accordion.connect>
-const AccordionContext = createContext<AccordionApi | null>(null)
+const { Provider: AccordionProvider, usePart: useAccordion } = createPartContext<AccordionApi>('Accordion')
 
 interface ItemCtx {
   value: string
   disabled?: boolean
 }
-const ItemContext = createContext<ItemCtx | null>(null)
-
-function useAccordion(part: string): AccordionApi {
-  const api = useContext(AccordionContext)
-  if (!api) throw new Error(`Moderno: <Accordion.${part}> must be used inside <Accordion.Root>`)
-  return api
-}
-
-function useItem(part: string): ItemCtx {
-  const ctx = useContext(ItemContext)
-  if (!ctx) throw new Error(`Moderno: <Accordion.${part}> must be used inside <Accordion.Item>`)
-  return ctx
-}
+const { Provider: ItemProvider, usePart: useItem } = createPartContext<ItemCtx>('Accordion', 'Item')
 
 export interface AccordionRootProps {
   /** Uncontrolled initial expanded items. */
@@ -48,22 +37,22 @@ function Root({ defaultValue, value, multiple, collapsible, onValueChange, child
   })
   const api = accordion.connect(service, normalizeProps)
   return (
-    <AccordionContext.Provider value={api}>
+    <AccordionProvider value={api}>
       <div {...api.getRootProps()} className={parts.accordion.root}>
         {children}
       </div>
-    </AccordionContext.Provider>
+    </AccordionProvider>
   )
 }
 
 function Item({ value, disabled, children }: { value: string; disabled?: boolean; children: ReactNode }) {
   const api = useAccordion('Item')
   return (
-    <ItemContext.Provider value={{ value, disabled }}>
+    <ItemProvider value={{ value, disabled }}>
       <div {...api.getItemProps({ value, disabled })} className={parts.accordion.item}>
         {children}
       </div>
-    </ItemContext.Provider>
+    </ItemProvider>
   )
 }
 

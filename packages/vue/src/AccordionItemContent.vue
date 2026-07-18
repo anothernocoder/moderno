@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { inject } from 'vue'
-import { AccordionKey, AccordionItemKey } from './accordion-context'
+import { useAccordion, useAccordionItem } from './accordion-context'
 import { parts } from '@moderno/class-contract'
 
-const api = inject(AccordionKey)!
-const item = inject(AccordionItemKey)!
+const api = useAccordion('ItemContent')
+const item = useAccordionItem('ItemContent')
 </script>
 
 <template>

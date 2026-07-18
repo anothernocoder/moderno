@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { inject } from 'vue'
-import { SelectKey, type SelectItem } from './select-context'
+import { useSelect, type SelectItem } from './select-context'
 import { parts } from '@moderno/class-contract'
 
 const props = defineProps<{ item: SelectItem }>()
-const api = inject(SelectKey)!
+const api = useSelect('Item')
 </script>
 
 <template>

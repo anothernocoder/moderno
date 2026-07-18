@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { inject } from 'vue'
-import { SelectKey } from './select-context'
+import { useSelect } from './select-context'
 import { parts } from '@moderno/class-contract'
 
 withDefaults(defineProps<{ placeholder?: string }>(), { placeholder: 'Select…' })
-const api = inject(SelectKey)!
+const api = useSelect('Trigger')
 </script>
 
 <template>

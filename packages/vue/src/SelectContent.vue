@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { inject } from 'vue'
-import { SelectKey } from './select-context'
+import { useSelect } from './select-context'
 import { parts } from '@moderno/class-contract'
 
 // Content is teleported to the body; trigger stays in flow.
 defineOptions({ inheritAttrs: false })
-const api = inject(SelectKey)!
+const api = useSelect('Content')
 </script>
 
 <template>

@@ -1,16 +1,11 @@
-import { createContext, useContext, createMemo, createUniqueId, type JSX } from 'solid-js'
+import { createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/solid'
 import { parts } from '@moderno/class-contract'
+import { createPartContext } from './create-part-context'
 
 type TabsApi = ReturnType<typeof tabs.connect>
-const TabsContext = createContext<() => TabsApi>()
-
-function useTabs(part: string): () => TabsApi {
-  const api = useContext(TabsContext)
-  if (!api) throw new Error(`Moderno: <Tabs.${part}> must be used inside <Tabs.Root>`)
-  return api
-}
+const { Provider: TabsProvider, usePart: useTabs } = createPartContext<TabsApi>('Tabs')
 
 export interface TabsRootProps {
   defaultValue?: string
@@ -32,11 +27,11 @@ function Root(props: TabsRootProps) {
   })
   const api = createMemo(() => tabs.connect(service, normalizeProps))
   return (
-    <TabsContext.Provider value={api}>
+    <TabsProvider value={api}>
       <div {...api().getRootProps()} class={parts.tabs.root}>
         {props.children}
       </div>
-    </TabsContext.Provider>
+    </TabsProvider>
   )
 }
 

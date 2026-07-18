@@ -18,7 +18,8 @@
     "*.css"
   ],
   "scripts": {
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run"
   },
   "dependencies": {
     "@moderno/class-contract": "workspace:*",
@@ -43,7 +44,12 @@
     "svelte": ">=5"
   },
   "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^4.0.4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/svelte": "^5.4.2",
+    "jsdom": "^29.1.1",
     "svelte": "^5.56.3",
-    "svelte-check": "^4.6.0"
+    "svelte-check": "^4.6.0",
+    "vite": "^5.4.20"
   }
 }

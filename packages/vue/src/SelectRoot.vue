@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, provide, useId } from 'vue'
+import { computed, useId } from 'vue'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { SelectKey, type SelectItem } from './select-context'
+import { provideSelect, type SelectItem } from './select-context'
 import { parts } from '@moderno/class-contract'
 
 const props = defineProps<{
@@ -37,7 +37,7 @@ const service = useMachine(select.machine, {
   },
 })
 const api = computed(() => select.connect(service, normalizeProps))
-provide(SelectKey, api)
+provideSelect(api)
 </script>
 
 <template>

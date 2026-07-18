@@ -1,7 +1,8 @@
-import { createContext, useContext, useId, useMemo, type ReactNode } from 'react'
+import { useId, useMemo, type ReactNode } from 'react'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
 import { parts } from '@moderno/class-contract'
+import { createPartContext } from './create-part-context'
 
 export interface SelectItem {
   label: string
@@ -10,13 +11,7 @@ export interface SelectItem {
 }
 
 type SelectApi = ReturnType<typeof select.connect>
-const SelectContext = createContext<SelectApi | null>(null)
-
-function useSelect(part: string): SelectApi {
-  const api = useContext(SelectContext)
-  if (!api) throw new Error(`Moderno: <Select.${part}> must be used inside <Select.Root>`)
-  return api
-}
+const { Provider: SelectProvider, usePart: useSelect } = createPartContext<SelectApi>('Select')
 
 export interface SelectRootProps {
   /** The options to choose from. */
@@ -44,11 +39,11 @@ function Root({ items, defaultValue, value, multiple, disabled, onValueChange, c
   })
   const api = select.connect(service, normalizeProps)
   return (
-    <SelectContext.Provider value={api}>
+    <SelectProvider value={api}>
       <div {...api.getRootProps()} className={parts.select.root}>
         {children}
       </div>
-    </SelectContext.Provider>
+    </SelectProvider>
   )
 }
 

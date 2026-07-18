@@ -1,0 +1,13 @@
+import { defineConfig } from 'vitest/config'
+import solid from 'vite-plugin-solid'
+
+export default defineConfig({
+  plugins: [solid()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./vitest-setup.ts'],
+  },
+  resolve: {
+    conditions: ['development', 'browser'],
+  },
+})

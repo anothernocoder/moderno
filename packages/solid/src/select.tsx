@@ -1,8 +1,9 @@
-import { createContext, useContext, createMemo, createUniqueId, Show, type JSX } from 'solid-js'
+import { createMemo, createUniqueId, Show, type JSX } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps } from '@zag-js/solid'
 import { parts } from '@moderno/class-contract'
+import { createPartContext } from './create-part-context'
 
 export interface SelectItem {
   label: string
@@ -11,13 +12,7 @@ export interface SelectItem {
 }
 
 type SelectApi = ReturnType<typeof select.connect>
-const SelectContext = createContext<() => SelectApi>()
-
-function useSelect(part: string): () => SelectApi {
-  const api = useContext(SelectContext)
-  if (!api) throw new Error(`Moderno: <Select.${part}> must be used inside <Select.Root>`)
-  return api
-}
+const { Provider: SelectProvider, usePart: useSelect } = createPartContext<SelectApi>('Select')
 
 export interface SelectRootProps {
   items: SelectItem[]
@@ -52,11 +47,11 @@ function Root(props: SelectRootProps) {
   })
   const api = createMemo(() => select.connect(service, normalizeProps))
   return (
-    <SelectContext.Provider value={api}>
+    <SelectProvider value={api}>
       <div {...api().getRootProps()} class={parts.select.root}>
         {props.children}
       </div>
-    </SelectContext.Provider>
+    </SelectProvider>
   )
 }
 

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { inject } from 'vue'
-import { TabsKey } from './tabs-context'
+import { useTabs } from './tabs-context'
 import { parts } from '@moderno/class-contract'
 
 const props = defineProps<{ value: string }>()
-const api = inject(TabsKey)!
+const api = useTabs('Content')
 </script>
 
 <template>

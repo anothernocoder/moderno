@@ -1,16 +1,11 @@
-import { createContext, useContext, useId, type ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/react'
 import { parts } from '@moderno/class-contract'
+import { createPartContext } from './create-part-context'
 
 type TabsApi = ReturnType<typeof tabs.connect>
-const TabsContext = createContext<TabsApi | null>(null)
-
-function useTabs(part: string): TabsApi {
-  const api = useContext(TabsContext)
-  if (!api) throw new Error(`Moderno: <Tabs.${part}> must be used inside <Tabs.Root>`)
-  return api
-}
+const { Provider: TabsProvider, usePart: useTabs } = createPartContext<TabsApi>('Tabs')
 
 export interface TabsRootProps {
   /** Uncontrolled initial selected tab. */
@@ -30,11 +25,11 @@ function Root({ defaultValue, value, onValueChange, children }: TabsRootProps) {
   })
   const api = tabs.connect(service, normalizeProps)
   return (
-    <TabsContext.Provider value={api}>
+    <TabsProvider value={api}>
       <div {...api.getRootProps()} className={parts.tabs.root}>
         {children}
       </div>
-    </TabsContext.Provider>
+    </TabsProvider>
   )
 }
 

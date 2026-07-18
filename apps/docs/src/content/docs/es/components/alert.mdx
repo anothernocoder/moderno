@@ -1,0 +1,104 @@
+---
+title: Alert
+description: Mensaje de feedback inline (info/éxito/advertencia/error). Pura CSS, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Alert as RAlert } from '@moderno/react'
+import { Alert as VAlert } from '@moderno/vue'
+import { Alert as SAlert } from '@moderno/svelte'
+import { Alert as OAlert } from '@moderno/solid'
+
+**Alert** muestra feedback inline para la vista actual. Primitive **closed-prop**, pura CSS
+— sin máquina de Zag, consistente con [Callout](/es/components/callout/).
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo md-demo--stack">
+    <RAlert client:only="react" variant="info">La sincronización con el POS corre cada 5 minutos.</RAlert>
+    <RAlert client:only="react" variant="success" title="Guardado">Tus cambios ya están visibles en el catálogo.</RAlert>
+    <RAlert client:only="react" variant="warning" title="Atención">Este SKU existe en otra bodega con costo distinto.</RAlert>
+    <RAlert client:only="react" variant="error" title="Error">No se pudo guardar: el stock mínimo no puede superar el punto de reorden.</RAlert>
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo md-demo--stack">
+    <VAlert client:only="vue" variant="info">La sincronización con el POS corre cada 5 minutos.</VAlert>
+    <VAlert client:only="vue" variant="success" title="Guardado">Tus cambios ya están visibles en el catálogo.</VAlert>
+    <VAlert client:only="vue" variant="warning" title="Atención">Este SKU existe en otra bodega con costo distinto.</VAlert>
+    <VAlert client:only="vue" variant="error" title="Error">No se pudo guardar: el stock mínimo no puede superar el punto de reorden.</VAlert>
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo md-demo--stack">
+    <SAlert client:only="svelte" variant="info">La sincronización con el POS corre cada 5 minutos.</SAlert>
+    <SAlert client:only="svelte" variant="success" title="Guardado">Tus cambios ya están visibles en el catálogo.</SAlert>
+    <SAlert client:only="svelte" variant="warning" title="Atención">Este SKU existe en otra bodega con costo distinto.</SAlert>
+    <SAlert client:only="svelte" variant="error" title="Error">No se pudo guardar: el stock mínimo no puede superar el punto de reorden.</SAlert>
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo md-demo--stack">
+    <OAlert client:only="solid-js" variant="info">La sincronización con el POS corre cada 5 minutos.</OAlert>
+    <OAlert client:only="solid-js" variant="success" title="Guardado">Tus cambios ya están visibles en el catálogo.</OAlert>
+    <OAlert client:only="solid-js" variant="warning" title="Atención">Este SKU existe en otra bodega con costo distinto.</OAlert>
+    <OAlert client:only="solid-js" variant="error" title="Error">No se pudo guardar: el stock mínimo no puede superar el punto de reorden.</OAlert>
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Alert } from '@moderno/react'
+
+<Alert variant="error" title="Error">
+  No se pudo guardar: el stock mínimo no puede superar el punto de reorden.
+</Alert>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Alert } from '@moderno/vue'
+</script>
+
+<template>
+  <Alert variant="error" title="Error">
+    No se pudo guardar: el stock mínimo no puede superar el punto de reorden.
+  </Alert>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Alert } from '@moderno/svelte'
+</script>
+
+<Alert variant="error" title="Error">
+  No se pudo guardar: el stock mínimo no puede superar el punto de reorden.
+</Alert>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Alert } from '@moderno/solid'
+
+<Alert variant="error" title="Error">
+  No se pudo guardar: el stock mínimo no puede superar el punto de reorden.
+</Alert>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Intención, define el color del borde. |
+| `title` | `string` | — | Título opcional en negrita. |

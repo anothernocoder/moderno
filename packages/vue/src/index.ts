@@ -41,6 +41,9 @@ export type { ComboboxItem } from './Combobox.vue'
 export { default as Menu } from './Menu.vue'
 export type { MenuItem } from './Menu.vue'
 export { default as NumberInput } from './NumberInput.vue'
+export { default as Toaster } from './Toaster.vue'
+export { createToaster } from './toast'
+export type { ToastOptions, Toaster as ToasterStore } from './toast'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */
 export const Tabs = { Root: TabsRoot, List: TabsList, Trigger: TabsTrigger, Content: TabsContent }

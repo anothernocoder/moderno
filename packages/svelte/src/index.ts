@@ -41,6 +41,9 @@ export type { ComboboxItem } from './Combobox.svelte'
 export { default as Menu } from './Menu.svelte'
 export type { MenuItem } from './Menu.svelte'
 export { default as NumberInput } from './NumberInput.svelte'
+export { default as Toaster } from './Toaster.svelte'
+export { createToaster } from './toast'
+export type { ToastOptions, Toaster as ToasterStore } from './toast'
 
 /** Compositional Tabs (ADR-0003): <Tabs.Root>/<Tabs.List>/<Tabs.Trigger>/<Tabs.Content>. */
 export const Tabs = { Root: TabsRoot, List: TabsList, Trigger: TabsTrigger, Content: TabsContent }

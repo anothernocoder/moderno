@@ -1,0 +1,128 @@
+---
+title: Toast
+description: Notificaciones transitorias y no bloqueantes con una API de toaster/región. Máquina toast de Zag, closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RToastDemo from '../../../../demos/react/ToastDemo.tsx'
+import VToastDemo from '../../../../demos/vue/ToastDemo.vue'
+import SToastDemo from '../../../../demos/svelte/ToastDemo.svelte'
+import OToastDemo from '../../../../demos/solid/ToastDemo.tsx'
+
+**Toast** es una notificación transitoria y no bloqueante. Primitive **closed-prop**
+(ADR-0003) sobre la máquina `toast` de Zag.js: creá un store **toaster** una vez con
+`createToaster`, montá un único `<Toaster>` para ese store, y llamá a `toaster.create(...)`
+desde donde sea para mostrar una notificación. El apilamiento, los timers de auto-cierre, la
+pausa al pasar el mouse y el ARIA (`role="status"`, una `region` viva) vienen de Zag; Moderno
+es dueño del markup y del class contract `md-toast-*`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo"><RToastDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo"><VToastDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo"><SToastDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo"><OToastDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { createToaster, Toaster } from '@moderno/react'
+
+// Singleton a nivel de módulo: creá una vez, montá un <Toaster>, llamá desde donde sea.
+export const toaster = createToaster({ placement: 'bottom-end' })
+
+function App() {
+  return (
+    <>
+      <Toaster toaster={toaster} />
+      <button onClick={() => toaster.create({ title: 'Guardado', type: 'success' })}>Guardar</button>
+    </>
+  )
+}
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { createToaster, Toaster } from '@moderno/vue'
+
+const toaster = createToaster({ placement: 'bottom-end' })
+</script>
+
+<template>
+  <Toaster :toaster="toaster" />
+  <button @click="toaster.create({ title: 'Guardado', type: 'success' })">Guardar</button>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { createToaster, Toaster } from '@moderno/svelte'
+
+  const toaster = createToaster({ placement: 'bottom-end' })
+</script>
+
+<Toaster {toaster} />
+<button onclick={() => toaster.create({ title: 'Guardado', type: 'success' })}>Guardar</button>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { createToaster, Toaster } from '@moderno/solid'
+
+const toaster = createToaster({ placement: 'bottom-end' })
+
+function App() {
+  return (
+    <>
+      <Toaster toaster={toaster} />
+      <button onClick={() => toaster.create({ title: 'Guardado', type: 'success' })}>Guardar</button>
+    </>
+  )
+}
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+**`createToaster(options?)`** — crea el store. Opciones:
+
+| Opción | Tipo | Default | Descripción |
+|--------|------|---------|-------------|
+| `placement` | `'top-start' \| 'top' \| 'top-end' \| 'bottom-start' \| 'bottom' \| 'bottom-end'` | `'bottom'` | Dónde se renderiza la región. |
+| `max` | `number` | `24` | Máximo de toasts en cola. |
+| `gap` | `number` | `16` | Espacio entre toasts apilados, en píxeles. |
+| `duration` | `number` | según `type` | Duración de auto-cierre por default, en ms. |
+| `pauseOnPageIdle` | `boolean` | `false` | Pausa los timers cuando la pestaña pierde foco. |
+
+**`<Toaster>`**
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `toaster` | valor de retorno de `createToaster` | — | El store a renderizar. |
+| `label` | `string` | `'Notifications'` | Label accesible para la región de notificaciones. |
+| `closeLabel` | `string` | `'Dismiss'` | Label accesible para el botón de cierre de cada toast. |
+
+**`toaster.create(options)`** — muestra un toast:
+
+| Opción | Tipo | Default | Descripción |
+|--------|------|---------|-------------|
+| `title` | `string` | — | Título del toast. |
+| `description` | `string` | — | Cuerpo del toast. |
+| `type` | `'info' \| 'success' \| 'warning' \| 'error' \| 'loading'` | `'info'` | Controla el color de acento y la duración por default. |
+| `action` | `{ label: string; onClick: () => void }` | — | Botón de acción opcional; al hacer click cierra el toast. |
+| `closable` | `boolean` | `true` | Si se renderiza un botón de cierre. |
+| `duration` | `number` | según `type` | Duración de auto-cierre, en ms; `Infinity` para que persista. |
+
+## Accesibilidad
+
+- La región tiene `role="region"` con un label accesible y `aria-live="polite"`, así los
+  lectores de pantalla anuncian los toasts nuevos sin interrumpir.
+- Cada toast tiene `role="status"`, es focuseable, y se cierra con `Esc`.
+- Pasar el mouse o enfocar la región pausa los timers de auto-cierre; al salir, se reanudan.

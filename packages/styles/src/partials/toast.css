@@ -1,0 +1,62 @@
+/* ---------- Toast (Zag toast group + item machines) ---------- */
+.md-toast-group {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  /* An explicit width, not just max-width: every toast is position: absolute
+     (set inline by Zag for stacking), so with no in-flow children the group
+     has nothing to shrink-wrap around and its own width would collapse to 0. */
+  width: min(360px, calc(100vw - 2rem));
+}
+.md-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--md-spacing-3);
+  width: 100%;
+  padding: var(--md-spacing-4) var(--md-spacing-5);
+  background: var(--md-surface-raised);
+  border: 1px solid var(--md-border-default);
+  border-left-width: 3px;
+  border-radius: var(--md-radius-none);
+  box-shadow: var(--md-shadow-large);
+  translate: var(--x) var(--y);
+  scale: var(--scale, 1);
+  z-index: var(--z-index);
+  opacity: var(--opacity);
+  transition:
+    translate 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 400ms ease;
+}
+.md-toast[data-type='success'] { border-left-color: var(--md-success); }
+.md-toast[data-type='warning'] { border-left-color: var(--md-warning); }
+.md-toast[data-type='error'] { border-left-color: var(--md-error); }
+.md-toast[data-type='info'],
+.md-toast[data-type='loading'] { border-left-color: var(--md-info); }
+.md-toast-title {
+  margin: 0;
+  font-size: var(--md-text-body-sm);
+  font-weight: 600;
+  color: var(--md-text-primary);
+}
+.md-toast-description {
+  margin: 0;
+  font-size: var(--md-text-body-sm);
+  line-height: var(--md-text-body-sm-lh);
+  color: var(--md-text-secondary);
+}
+.md-toast-close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--md-text-secondary);
+  font-size: var(--md-text-label-md);
+  line-height: 1;
+  padding: var(--md-spacing-1);
+  margin-inline-start: auto;
+  cursor: pointer;
+}
+.md-toast-close:hover { color: var(--md-text-primary); }

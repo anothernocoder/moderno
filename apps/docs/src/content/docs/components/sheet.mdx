@@ -1,0 +1,119 @@
+---
+title: Sheet
+description: Slide-in side/bottom drawer. Compositional, built on Zag's dialog machine.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RSheetDemo from '../../../demos/react/SheetDemo.tsx'
+import VSheetDemo from '../../../demos/vue/SheetDemo.vue'
+import SSheetDemo from '../../../demos/svelte/SheetDemo.svelte'
+import OSheetDemo from '../../../demos/solid/SheetDemo.tsx'
+
+**Sheet** is a slide-in drawer — a dialog variant (ADR-0003) for side or bottom panels
+whose internal layout varies per consumer. It's **compositional**: parts share a single
+Zag machine — `Sheet.Root`, `Sheet.Trigger`, `Sheet.Content`, `Sheet.Title`, `Sheet.Close`.
+Behavior and a11y (focus trapping, `Esc` closes, click outside, ARIA) come from the same
+`dialog` machine that powers [Dialog](/components/dialog/); Moderno only changes the
+anatomy and adds the slide-in placement.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo"><RSheetDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo"><VSheetDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo"><SSheetDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo"><OSheetDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Sheet } from '@moderno/react'
+
+<Sheet.Root>
+  <Sheet.Trigger>Open cart</Sheet.Trigger>
+  <Sheet.Content side="right">
+    <Sheet.Title>Your cart</Sheet.Title>
+    <p>1 item</p>
+    <Sheet.Close>Close</Sheet.Close>
+  </Sheet.Content>
+</Sheet.Root>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Sheet } from '@moderno/vue'
+</script>
+
+<template>
+  <Sheet.Root>
+    <Sheet.Trigger>Open cart</Sheet.Trigger>
+    <Sheet.Content side="right">
+      <Sheet.Title>Your cart</Sheet.Title>
+      <p>1 item</p>
+      <Sheet.Close>Close</Sheet.Close>
+    </Sheet.Content>
+  </Sheet.Root>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Sheet } from '@moderno/svelte'
+</script>
+
+<Sheet.Root>
+  <Sheet.Trigger>Open cart</Sheet.Trigger>
+  <Sheet.Content side="right">
+    <Sheet.Title>Your cart</Sheet.Title>
+    <p>1 item</p>
+    <Sheet.Close>Close</Sheet.Close>
+  </Sheet.Content>
+</Sheet.Root>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Sheet } from '@moderno/solid'
+
+<Sheet.Root>
+  <Sheet.Trigger>Open cart</Sheet.Trigger>
+  <Sheet.Content side="right">
+    <Sheet.Title>Your cart</Sheet.Title>
+    <p>1 item</p>
+    <Sheet.Close>Close</Sheet.Close>
+  </Sheet.Content>
+</Sheet.Root>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+**`Sheet.Root`**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultOpen` | `boolean` | `false` | Initial open state (uncontrolled). |
+| `open` / `v-model` / `bind:open` | `boolean` | — | Open state (controlled). |
+| `onOpenChange` | `(open: boolean) => void` | — | Callback on open/close. |
+
+**`Sheet.Content`**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `side` | `'right' \| 'left' \| 'top' \| 'bottom'` | `'right'` | Edge the sheet slides in from. |
+
+`Sheet.Trigger` and `Sheet.Title` need no props beyond children. `Sheet.Close` also takes
+an optional `closeLabel` (default `'Close'`) used as its `aria-label` when its children
+are an icon rather than text.
+
+## Accessibility
+
+- Focus is trapped inside the sheet while it's open; on close, focus returns to the trigger.
+- `Esc` and clicking the backdrop close the sheet.
+- ARIA (`role="dialog"`, `aria-modal`, `aria-labelledby`) provided by Zag's `dialog` machine.

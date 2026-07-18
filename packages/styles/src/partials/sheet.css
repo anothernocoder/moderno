@@ -1,0 +1,100 @@
+/* ---------- Sheet (Zag dialog machine, compositional slide-in drawer) ---------- */
+.md-sheet { display: contents; }
+.md-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 0.65);
+  z-index: 50;
+}
+.md-sheet-positioner {
+  position: fixed;
+  inset: 0;
+  z-index: 51;
+  pointer-events: none;
+}
+.md-sheet-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 100%);
+  pointer-events: auto;
+  background: var(--md-surface-base);
+  border-left: 1px solid var(--md-border-strong);
+  box-shadow: var(--md-shadow-xlarge);
+  padding: var(--md-spacing-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-4);
+  overflow-y: auto;
+}
+.md-sheet-content--left {
+  right: auto;
+  left: 0;
+  border-left: 0;
+  border-right: 1px solid var(--md-border-strong);
+}
+.md-sheet-content--top {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: auto;
+  width: 100%;
+  height: min(400px, 100%);
+  border-left: 0;
+  border-bottom: 1px solid var(--md-border-strong);
+}
+.md-sheet-content--bottom {
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: auto;
+  width: 100%;
+  height: min(400px, 100%);
+  border-left: 0;
+  border-top: 1px solid var(--md-border-strong);
+}
+.md-sheet-title {
+  margin: 0;
+  font-family: var(--md-font-serif);
+  font-size: var(--md-text-headline-lg);
+  line-height: var(--md-text-headline-lg-lh);
+  color: var(--md-text-primary);
+}
+.md-sheet-close {
+  position: absolute;
+  top: var(--md-spacing-2);
+  right: var(--md-spacing-2);
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--md-text-secondary);
+  font-size: var(--md-text-label-md);
+  line-height: 1;
+  padding: var(--md-spacing-1);
+  cursor: pointer;
+}
+.md-sheet-close:hover { color: var(--md-text-primary); }
+/* Zag open/closed state transitions (data-state on parts) */
+.md-sheet-backdrop[data-state="open"] { animation: md-fade-in 200ms ease-out; }
+.md-sheet-backdrop[data-state="closed"] { animation: md-fade-out 150ms ease-in; }
+.md-sheet-content[data-state="open"] { animation: md-slide-in-right 220ms ease-out; }
+.md-sheet-content[data-state="closed"] { animation: md-slide-out-right 180ms ease-in; }
+.md-sheet-content--left[data-state="open"] { animation-name: md-slide-in-left; }
+.md-sheet-content--left[data-state="closed"] { animation-name: md-slide-out-left; }
+.md-sheet-content--top[data-state="open"] { animation-name: md-slide-in-top; }
+.md-sheet-content--top[data-state="closed"] { animation-name: md-slide-out-top; }
+.md-sheet-content--bottom[data-state="open"] { animation-name: md-slide-in-bottom; }
+.md-sheet-content--bottom[data-state="closed"] { animation-name: md-slide-out-bottom; }
+@keyframes md-slide-in-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes md-slide-out-right { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes md-slide-in-left { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes md-slide-out-left { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes md-slide-in-top { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@keyframes md-slide-out-top { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+@keyframes md-slide-in-bottom { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes md-slide-out-bottom { from { transform: translateY(0); } to { transform: translateY(100%); } }
+/* Safety: respect [hidden] even though sheet parts set display. */
+.md-sheet-backdrop[hidden],
+.md-sheet-positioner[hidden],
+.md-sheet-content[hidden] { display: none !important; }

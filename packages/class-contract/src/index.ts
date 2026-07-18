@@ -275,6 +275,13 @@ export const parts = {
     decrement: 'md-number-input-decrement',
     increment: 'md-number-input-increment',
   },
+  toast: {
+    group: 'md-toast-group',
+    root: 'md-toast',
+    title: 'md-toast-title',
+    description: 'md-toast-description',
+    closeTrigger: 'md-toast-close',
+  },
 } as const
 
 /** Leaves the frameworks apply but styles.css does not style — excluded from enforcement. */

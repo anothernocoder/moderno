@@ -6,6 +6,11 @@ import AccordionRoot from './AccordionRoot.svelte'
 import AccordionItem from './AccordionItem.svelte'
 import AccordionItemTrigger from './AccordionItemTrigger.svelte'
 import AccordionItemContent from './AccordionItemContent.svelte'
+import SheetRoot from './SheetRoot.svelte'
+import SheetTrigger from './SheetTrigger.svelte'
+import SheetContent from './SheetContent.svelte'
+import SheetTitle from './SheetTitle.svelte'
+import SheetClose from './SheetClose.svelte'
 import SelectRoot from './SelectRoot.svelte'
 import SelectLabel from './SelectLabel.svelte'
 import SelectTrigger from './SelectTrigger.svelte'
@@ -55,4 +60,13 @@ export const Select = {
   Trigger: SelectTrigger,
   Content: SelectContent,
   Item: SelectItem,
+}
+
+/** Compositional Sheet (ADR-0003): <Sheet.Root>/<Sheet.Trigger>/<Sheet.Content>/<Sheet.Title>/<Sheet.Close>. */
+export const Sheet = {
+  Root: SheetRoot,
+  Trigger: SheetTrigger,
+  Content: SheetContent,
+  Title: SheetTitle,
+  Close: SheetClose,
 }

@@ -6,6 +6,11 @@ import AccordionRoot from './AccordionRoot.vue'
 import AccordionItem from './AccordionItem.vue'
 import AccordionItemTrigger from './AccordionItemTrigger.vue'
 import AccordionItemContent from './AccordionItemContent.vue'
+import SheetRoot from './SheetRoot.vue'
+import SheetTrigger from './SheetTrigger.vue'
+import SheetContent from './SheetContent.vue'
+import SheetTitle from './SheetTitle.vue'
+import SheetClose from './SheetClose.vue'
 import SelectRoot from './SelectRoot.vue'
 import SelectLabel from './SelectLabel.vue'
 import SelectTrigger from './SelectTrigger.vue'
@@ -55,4 +60,13 @@ export const Select = {
   Trigger: SelectTrigger,
   Content: SelectContent,
   Item: SelectItem,
+}
+
+/** Compositional Sheet (ADR-0003): <Sheet.Root>/<Sheet.Trigger>/<Sheet.Content>/<Sheet.Title>/<Sheet.Close>. */
+export const Sheet = {
+  Root: SheetRoot,
+  Trigger: SheetTrigger,
+  Content: SheetContent,
+  Title: SheetTitle,
+  Close: SheetClose,
 }

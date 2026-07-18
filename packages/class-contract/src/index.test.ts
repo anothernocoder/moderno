@@ -54,6 +54,30 @@ describe('parts.popover — anatomy leaf names', () => {
   })
 })
 
+describe('cx.sheet — side axis with a no-class default', () => {
+  it('emits no side modifier for the default right side', () => {
+    expect(cx.sheet()).toBe('md-sheet-content')
+  })
+
+  it('appends a side modifier for non-default sides', () => {
+    expect(cx.sheet({ side: 'left' })).toBe('md-sheet-content md-sheet-content--left')
+    expect(cx.sheet({ side: 'top' })).toBe('md-sheet-content md-sheet-content--top')
+    expect(cx.sheet({ side: 'bottom' })).toBe('md-sheet-content md-sheet-content--bottom')
+  })
+})
+
+describe('parts.sheet — anatomy leaf names', () => {
+  it('maps each leaf to its md-sheet-* class', () => {
+    expect(parts.sheet).toEqual({
+      root: 'md-sheet',
+      backdrop: 'md-sheet-backdrop',
+      positioner: 'md-sheet-positioner',
+      title: 'md-sheet-title',
+      close: 'md-sheet-close',
+    })
+  })
+})
+
 describe('legalNames — every class the contract may emit', () => {
   it('enumerates the button base and all modifier classes (md has no class)', () => {
     const names = legalNames()

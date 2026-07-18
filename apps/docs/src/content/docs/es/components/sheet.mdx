@@ -1,0 +1,120 @@
+---
+title: Sheet
+description: Panel deslizante lateral o inferior. Compositional, sobre la máquina dialog de Zag.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RSheetDemo from '../../../../demos/react/SheetDemo.tsx'
+import VSheetDemo from '../../../../demos/vue/SheetDemo.vue'
+import SSheetDemo from '../../../../demos/svelte/SheetDemo.svelte'
+import OSheetDemo from '../../../../demos/solid/SheetDemo.tsx'
+
+**Sheet** es un panel deslizante — una variante de Dialog (ADR-0003) para paneles laterales
+o inferiores cuyo layout interno varía según el consumidor. Es **compositional**: sus partes
+comparten una sola máquina de Zag — `Sheet.Root`, `Sheet.Trigger`, `Sheet.Content`,
+`Sheet.Title`, `Sheet.Close`. El comportamiento y la accesibilidad (foco atrapado, `Esc`
+cierra, click afuera, ARIA) vienen de la misma máquina `dialog` que usa
+[Dialog](/es/components/dialog/); Moderno solo cambia la anatomía y agrega la posición
+deslizante.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo"><RSheetDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo"><VSheetDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo"><SSheetDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo"><OSheetDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Sheet } from '@moderno/react'
+
+<Sheet.Root>
+  <Sheet.Trigger>Abrir carrito</Sheet.Trigger>
+  <Sheet.Content side="right">
+    <Sheet.Title>Tu carrito</Sheet.Title>
+    <p>1 artículo</p>
+    <Sheet.Close>Cerrar</Sheet.Close>
+  </Sheet.Content>
+</Sheet.Root>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Sheet } from '@moderno/vue'
+</script>
+
+<template>
+  <Sheet.Root>
+    <Sheet.Trigger>Abrir carrito</Sheet.Trigger>
+    <Sheet.Content side="right">
+      <Sheet.Title>Tu carrito</Sheet.Title>
+      <p>1 artículo</p>
+      <Sheet.Close>Cerrar</Sheet.Close>
+    </Sheet.Content>
+  </Sheet.Root>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Sheet } from '@moderno/svelte'
+</script>
+
+<Sheet.Root>
+  <Sheet.Trigger>Abrir carrito</Sheet.Trigger>
+  <Sheet.Content side="right">
+    <Sheet.Title>Tu carrito</Sheet.Title>
+    <p>1 artículo</p>
+    <Sheet.Close>Cerrar</Sheet.Close>
+  </Sheet.Content>
+</Sheet.Root>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Sheet } from '@moderno/solid'
+
+<Sheet.Root>
+  <Sheet.Trigger>Abrir carrito</Sheet.Trigger>
+  <Sheet.Content side="right">
+    <Sheet.Title>Tu carrito</Sheet.Title>
+    <p>1 artículo</p>
+    <Sheet.Close>Cerrar</Sheet.Close>
+  </Sheet.Content>
+</Sheet.Root>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+**`Sheet.Root`**
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `defaultOpen` | `boolean` | `false` | Estado inicial abierto (no controlado). |
+| `open` / `v-model` / `bind:open` | `boolean` | — | Estado abierto (controlado). |
+| `onOpenChange` | `(open: boolean) => void` | — | Callback al abrir/cerrar. |
+
+**`Sheet.Content`**
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `side` | `'right' \| 'left' \| 'top' \| 'bottom'` | `'right'` | Borde desde el cual se desliza el panel. |
+
+`Sheet.Trigger` y `Sheet.Title` no necesitan props además de sus hijos. `Sheet.Close`
+también acepta un `closeLabel` opcional (default `'Close'`) usado como `aria-label` cuando
+su contenido es un ícono en vez de texto.
+
+## Accesibilidad
+
+- El foco queda atrapado dentro del sheet mientras está abierto; al cerrar, vuelve al trigger.
+- `Esc` y hacer click en el backdrop cierran el sheet.
+- ARIA (`role="dialog"`, `aria-modal`, `aria-labelledby`) provisto por la máquina `dialog` de Zag.

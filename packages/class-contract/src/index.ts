@@ -108,6 +108,11 @@ const inputSpec = {
   flags: ['error'],
 } as const
 
+const sheetSpec = {
+  base: 'md-sheet-content',
+  axes: { side: { values: ['right', 'left', 'top', 'bottom'], default: 'right', noClass: ['right'] } },
+} as const
+
 /** All variant specs — drives legalNames so adding a spec needs no other edit. */
 const VARIANT_SPECS: readonly VariantSpec[] = [
   buttonSpec,
@@ -120,6 +125,7 @@ const VARIANT_SPECS: readonly VariantSpec[] = [
   skeletonSpec,
   spinnerSpec,
   inputSpec,
+  sheetSpec,
 ]
 
 export type ButtonVariant = (typeof buttonSpec.axes.variant.values)[number]
@@ -133,6 +139,7 @@ export type DividerOrientation = (typeof dividerSpec.axes.orientation.values)[nu
 export type IndicatorVariant = (typeof indicatorSpec.axes.variant.values)[number]
 export type SkeletonVariant = (typeof skeletonSpec.axes.variant.values)[number]
 export type SpinnerSize = (typeof spinnerSpec.axes.size.values)[number]
+export type SheetSide = (typeof sheetSpec.axes.side.values)[number]
 
 export const cx = {
   button(o: { variant?: ButtonVariant; size?: ButtonSize } = {}): string {
@@ -164,6 +171,9 @@ export const cx = {
   },
   input(o: { error?: boolean } = {}): string {
     return build(inputSpec, o)
+  },
+  sheet(o: { side?: SheetSide } = {}): string {
+    return build(sheetSpec, o)
   },
 }
 
@@ -198,6 +208,13 @@ export const parts = {
     title: 'md-dialog-title',
     desc: 'md-dialog-desc',
     actions: 'md-dialog-actions',
+  },
+  sheet: {
+    root: 'md-sheet',
+    backdrop: 'md-sheet-backdrop',
+    positioner: 'md-sheet-positioner',
+    title: 'md-sheet-title',
+    close: 'md-sheet-close',
   },
   tabs: { root: 'md-tabs', list: 'md-tabs-list', trigger: 'md-tabs-trigger', content: 'md-tabs-content' },
   accordion: {

@@ -35,6 +35,7 @@ export const STYLE_SEGMENTS: SegmentSource[] = [
   { kind: 'enforced', name: 'card', file: './partials/card.css' },
   { kind: 'enforced', name: 'badge', file: './partials/badge.css' },
   { kind: 'enforced', name: 'callout', file: './partials/callout.css' },
+  { kind: 'enforced', name: 'alert', file: './partials/alert.css' },
   { kind: 'enforced', name: 'avatar', file: './partials/avatar.css' },
   { kind: 'enforced', name: 'chip', file: './partials/chip.css' },
   { kind: 'enforced', name: 'indicator', file: './partials/indicator.css' },

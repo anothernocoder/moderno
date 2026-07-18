@@ -82,6 +82,11 @@ const calloutSpec = {
   axes: { variant: { values: ['info', 'success', 'warning', 'error'], default: 'info' } },
 } as const
 
+const alertSpec = {
+  base: 'md-alert',
+  axes: { variant: { values: ['info', 'success', 'warning', 'error'], default: 'info' } },
+} as const
+
 const dividerSpec = {
   base: 'md-divider',
   axes: { orientation: { values: ['horizontal', 'vertical'], default: 'horizontal' } },
@@ -120,6 +125,7 @@ const VARIANT_SPECS: readonly VariantSpec[] = [
   avatarSpec,
   chipSpec,
   calloutSpec,
+  alertSpec,
   dividerSpec,
   indicatorSpec,
   skeletonSpec,
@@ -135,6 +141,7 @@ export type AvatarSize = (typeof avatarSpec.axes.size.values)[number]
 export type AvatarShape = (typeof avatarSpec.axes.shape.values)[number]
 export type ChipVariant = (typeof chipSpec.axes.variant.values)[number]
 export type CalloutVariant = (typeof calloutSpec.axes.variant.values)[number]
+export type AlertVariant = (typeof alertSpec.axes.variant.values)[number]
 export type DividerOrientation = (typeof dividerSpec.axes.orientation.values)[number]
 export type IndicatorVariant = (typeof indicatorSpec.axes.variant.values)[number]
 export type SkeletonVariant = (typeof skeletonSpec.axes.variant.values)[number]
@@ -156,6 +163,9 @@ export const cx = {
   },
   callout(o: { variant?: CalloutVariant } = {}): string {
     return build(calloutSpec, o)
+  },
+  alert(o: { variant?: AlertVariant } = {}): string {
+    return build(alertSpec, o)
   },
   divider(o: { orientation?: DividerOrientation } = {}): string {
     return build(dividerSpec, o)
@@ -184,6 +194,7 @@ export const parts = {
   avatar: { img: 'md-avatar__img' },
   chip: { remove: 'md-chip__remove' },
   callout: { title: 'md-callout__title', body: 'md-callout__body' },
+  alert: { title: 'md-alert__title', body: 'md-alert__body' },
   divider: { group: 'md-divider-group' },
   indicator: { dot: 'md-indicator__dot' },
   field: { textarea: 'md-textarea', label: 'md-field-label', hint: 'md-field-hint', error: 'md-field-error' },

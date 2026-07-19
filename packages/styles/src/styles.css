@@ -1070,6 +1070,148 @@
 .md-menu-item[data-highlighted] { background: var(--md-surface-muted); }
 .md-menu-item[data-disabled] { opacity: 0.4; cursor: not-allowed; }
 
+/* ---------- Date picker (Zag date-picker machine, compositional) ---------- */
+.md-datepicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-2);
+  font-family: var(--md-font-sans);
+}
+.md-datepicker-label {
+  font-size: var(--md-text-label-md);
+  line-height: var(--md-text-label-md-lh);
+  color: var(--md-text-primary);
+}
+.md-datepicker-control {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 40px;
+  background: var(--md-surface-muted);
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  transition: border-color 150ms;
+}
+.md-datepicker-control:focus-within { border-color: var(--md-primary); }
+.md-datepicker-control[data-disabled] { opacity: 0.4; }
+.md-datepicker-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--md-spacing-4);
+  background: transparent;
+  border: 0;
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  color: var(--md-text-primary);
+}
+.md-datepicker-input:focus-visible { outline: none; }
+.md-datepicker-input::placeholder { color: var(--md-text-secondary); }
+.md-datepicker-input[data-disabled] { cursor: not-allowed; }
+.md-datepicker-clear-trigger {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--md-spacing-2);
+  background: transparent;
+  border: 0;
+  color: var(--md-text-secondary);
+  cursor: pointer;
+}
+.md-datepicker-clear-trigger[data-disabled] { cursor: not-allowed; }
+.md-datepicker-trigger {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--md-spacing-3);
+  background: transparent;
+  border: 0;
+  color: var(--md-text-secondary);
+  cursor: pointer;
+}
+.md-datepicker-trigger[data-state="open"] { color: var(--md-primary); }
+.md-datepicker-trigger[data-disabled] { cursor: not-allowed; }
+.md-datepicker-positioner { z-index: 55; }
+.md-datepicker-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-3);
+  padding: var(--md-spacing-4);
+  background: var(--md-surface-base);
+  border: 1px solid var(--md-border-strong);
+  box-shadow: var(--md-shadow-large);
+}
+.md-datepicker-content:focus-visible { outline: none; }
+.md-datepicker-view-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--md-spacing-2);
+}
+.md-datepicker-prev-trigger,
+.md-datepicker-next-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 0;
+  color: var(--md-text-secondary);
+  cursor: pointer;
+}
+.md-datepicker-prev-trigger[data-disabled],
+.md-datepicker-next-trigger[data-disabled] { opacity: 0.4; cursor: not-allowed; }
+.md-datepicker-view-trigger {
+  padding: var(--md-spacing-1) var(--md-spacing-2);
+  background: transparent;
+  border: 0;
+  font-size: var(--md-text-body-sm);
+  font-weight: 500;
+  color: var(--md-text-primary);
+  cursor: pointer;
+}
+.md-datepicker-table {
+  border-collapse: collapse;
+}
+.md-datepicker-table-head { text-align: center; }
+.md-datepicker-table-header {
+  padding-bottom: var(--md-spacing-2);
+  font-size: var(--md-text-label-sm);
+  font-weight: 500;
+  color: var(--md-text-secondary);
+}
+.md-datepicker-table-row { text-align: center; }
+.md-datepicker-table-cell { padding: 1px; text-align: center; }
+.md-datepicker-table-cell-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  background: transparent;
+  border: 0;
+  border-radius: var(--md-radius-none);
+  font-size: var(--md-text-body-sm);
+  color: var(--md-text-primary);
+  cursor: pointer;
+}
+.md-datepicker-table-cell-trigger:hover { background: var(--md-surface-muted); }
+.md-datepicker-table-cell-trigger[data-today] { font-weight: 700; }
+.md-datepicker-table-cell-trigger[data-focus] { outline: 2px solid var(--md-primary); outline-offset: -2px; }
+.md-datepicker-table-cell-trigger[data-selected] {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+.md-datepicker-table-cell-trigger[data-in-range] { background: var(--md-surface-muted); }
+.md-datepicker-table-cell-trigger[data-range-start],
+.md-datepicker-table-cell-trigger[data-range-end] {
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+.md-datepicker-table-cell-trigger[data-outside-range] { color: var(--md-text-secondary); opacity: 0.5; }
+.md-datepicker-table-cell-trigger[data-unavailable] { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; }
+.md-datepicker-table-cell-trigger[data-disabled] { opacity: 0.4; cursor: not-allowed; }
 /* ---------- NumberInput (Zag number-input machine, closed-prop) ---------- */
 .md-number-input {
   display: flex;

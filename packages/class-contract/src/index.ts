@@ -313,6 +313,26 @@ export const parts = {
     circleTrack: 'md-progress-circle-track',
     circleRange: 'md-progress-circle-range',
   },
+  datepicker: {
+    root: 'md-datepicker',
+    label: 'md-datepicker-label',
+    control: 'md-datepicker-control',
+    input: 'md-datepicker-input',
+    trigger: 'md-datepicker-trigger',
+    clearTrigger: 'md-datepicker-clear-trigger',
+    positioner: 'md-datepicker-positioner',
+    content: 'md-datepicker-content',
+    viewControl: 'md-datepicker-view-control',
+    prevTrigger: 'md-datepicker-prev-trigger',
+    viewTrigger: 'md-datepicker-view-trigger',
+    nextTrigger: 'md-datepicker-next-trigger',
+    table: 'md-datepicker-table',
+    tableHead: 'md-datepicker-table-head',
+    tableHeader: 'md-datepicker-table-header',
+    tableRow: 'md-datepicker-table-row',
+    tableCell: 'md-datepicker-table-cell',
+    tableCellTrigger: 'md-datepicker-table-cell-trigger',
+  },
 } as const
 
 /** Leaves the frameworks apply but styles.css does not style — excluded from enforcement. */

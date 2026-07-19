@@ -1,0 +1,99 @@
+---
+title: Pagination
+description: Navegación accesible página por página sobre conjuntos de resultados largos. Behavior core Zag (pagination), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import { Pagination as RPagination } from '@moderno/react'
+import { Pagination as VPagination } from '@moderno/vue'
+import { Pagination as SPagination } from '@moderno/svelte'
+import { Pagination as OPagination } from '@moderno/solid'
+
+**Pagination** navega un conjunto de resultados largo página por página — disparadores de
+anterior/siguiente, elementos de página numerados y una elipsis para rangos truncados.
+Primitive **closed-prop** (ADR-0003) sobre la máquina `pagination` de Zag.js.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RPagination client:only="react" count={95} defaultPageSize={10} defaultPage={4} translations={{ rootLabel: 'paginación', prevTriggerLabel: 'página anterior', nextTriggerLabel: 'página siguiente' }} />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VPagination client:only="vue" count={95} defaultPageSize={10} defaultPage={4} translations={{ rootLabel: 'paginación', prevTriggerLabel: 'página anterior', nextTriggerLabel: 'página siguiente' }} />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SPagination client:only="svelte" count={95} defaultPageSize={10} defaultPage={4} translations={{ rootLabel: 'paginación', prevTriggerLabel: 'página anterior', nextTriggerLabel: 'página siguiente' }} />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OPagination client:only="solid-js" count={95} defaultPageSize={10} defaultPage={4} translations={{ rootLabel: 'paginación', prevTriggerLabel: 'página anterior', nextTriggerLabel: 'página siguiente' }} />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Pagination } from '@moderno/react'
+
+<Pagination count={95} defaultPageSize={10} defaultPage={1} />
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Pagination } from '@moderno/vue'
+import { ref } from 'vue'
+const pagina = ref(1)
+</script>
+
+<template>
+  <Pagination :count="95" :default-page-size="10" v-model="pagina" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Pagination } from '@moderno/svelte'
+  let pagina = $state(1)
+</script>
+
+<Pagination count={95} defaultPageSize={10} bind:page={pagina} />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Pagination } from '@moderno/solid'
+import { createSignal } from 'solid-js'
+
+const [pagina, setPagina] = createSignal(1)
+
+<Pagination count={95} defaultPageSize={10} page={pagina()} onPageChange={setPagina} />
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `count` | `number` | — | Número total de elementos de datos. |
+| `defaultPageSize` | `number` | `10` | Número inicial no controlado de elementos por página. |
+| `pageSize` / `v-model:pageSize` | `number` | — | Número controlado de elementos por página. |
+| `onPageSizeChange` | `(pageSize: number) => void` | — | Callback al cambiar el tamaño de página (React, Svelte, Solid — Vue usa `v-model:pageSize`). |
+| `defaultPage` | `number` | `1` | Página activa inicial no controlada. |
+| `page` / `v-model` / `bind:page` | `number` | — | Página activa controlada. |
+| `onPageChange` | `(page: number) => void` | — | Callback al cambiar la página activa. |
+| `siblingCount` | `number` | `1` | Número de páginas a mostrar junto a la página activa. |
+| `boundaryCount` | `number` | `1` | Número de páginas a mostrar al inicio y al final. |
+| `translations` | `IntlTranslations` | — | Cadenas localizadas para las etiquetas de accesibilidad (raíz, disparadores anterior/siguiente, elemento). |

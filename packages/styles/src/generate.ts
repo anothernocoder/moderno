@@ -49,6 +49,7 @@ export const STYLE_SEGMENTS: SegmentSource[] = [
   { kind: 'enforced', name: 'popover', file: './partials/popover.css' },
   { kind: 'enforced', name: 'slider', file: './partials/slider.css' },
   { kind: 'enforced', name: 'progress', file: './partials/progress.css' },
+  { kind: 'enforced', name: 'pagination', file: './partials/pagination.css' },
   { kind: 'enforced', name: 'accordion', file: './partials/accordion.css' },
   { kind: 'enforced', name: 'select', file: './partials/select.css' },
   { kind: 'enforced', name: 'combobox', file: './partials/combobox.css' },

@@ -313,6 +313,13 @@ export const parts = {
     circleTrack: 'md-progress-circle-track',
     circleRange: 'md-progress-circle-range',
   },
+  pagination: {
+    root: 'md-pagination',
+    item: 'md-pagination-item',
+    ellipsis: 'md-pagination-ellipsis',
+    prevTrigger: 'md-pagination-prev',
+    nextTrigger: 'md-pagination-next',
+  },
   datepicker: {
     root: 'md-datepicker',
     label: 'md-datepicker-label',

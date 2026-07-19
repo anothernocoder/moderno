@@ -90,6 +90,18 @@ describe('parts.toast — anatomy leaf names', () => {
   })
 })
 
+describe('parts.pagination — anatomy leaf names', () => {
+  it('maps each leaf to its md-pagination-* class', () => {
+    expect(parts.pagination).toEqual({
+      root: 'md-pagination',
+      item: 'md-pagination-item',
+      ellipsis: 'md-pagination-ellipsis',
+      prevTrigger: 'md-pagination-prev',
+      nextTrigger: 'md-pagination-next',
+    })
+  })
+})
+
 describe('legalNames — every class the contract may emit', () => {
   it('enumerates the button base and all modifier classes (md has no class)', () => {
     const names = legalNames()

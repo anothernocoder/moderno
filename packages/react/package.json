@@ -29,6 +29,7 @@
     "@zag-js/dialog": "^1.0.0",
     "@zag-js/menu": "^1.0.0",
     "@zag-js/number-input": "^1.0.0",
+    "@zag-js/pagination": "^1.0.0",
     "@zag-js/popover": "^1.0.0",
     "@zag-js/progress": "^1.0.0",
     "@zag-js/radio-group": "^1.0.0",

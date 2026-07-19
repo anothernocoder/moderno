@@ -109,6 +109,9 @@ importers:
       '@zag-js/number-input':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/pagination':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/popover':
         specifier: ^1.0.0
         version: 1.41.2
@@ -212,6 +215,9 @@ importers:
       '@zag-js/number-input':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/pagination':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/popover':
         specifier: ^1.0.0
         version: 1.41.2
@@ -304,6 +310,9 @@ importers:
       '@zag-js/number-input':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/pagination':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/popover':
         specifier: ^1.0.0
         version: 1.41.2
@@ -389,6 +398,9 @@ importers:
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/number-input':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/pagination':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/popover':
@@ -2000,6 +2012,9 @@ packages:
 
   '@zag-js/number-input@1.41.2':
     resolution: {integrity: sha512-QoQWCiVHO+ciUbq8uL8Kxhtk4o3UpwzYpJkfsOfitzsZoYpPc7V/A6+n5yABV2SOwpqBODwNASZdxiEa60kfow==}
+
+  '@zag-js/pagination@1.41.2':
+    resolution: {integrity: sha512-vZTxz4DrIDfedMcTjDeEkOc1iXD9wkP8eKuEcDieHOodnjSnNNwtmoFw5DCWv+yEa/TByIamXBZ8ZxHY144JgA==}
 
   '@zag-js/popover@1.41.2':
     resolution: {integrity: sha512-h/LlVMIERM+NWzYV0ZHURlJuaqkT8XxwyEV96XfVzjknDRFNoPSl5IttVYtoaPoUqC0p/Y4oTSiee4mUZKOLHw==}
@@ -6142,6 +6157,14 @@ snapshots:
   '@zag-js/number-input@1.41.2':
     dependencies:
       '@internationalized/number': 3.6.6
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
+
+  '@zag-js/pagination@1.41.2':
+    dependencies:
       '@zag-js/anatomy': 1.41.2
       '@zag-js/core': 1.41.2
       '@zag-js/dom-query': 1.41.2

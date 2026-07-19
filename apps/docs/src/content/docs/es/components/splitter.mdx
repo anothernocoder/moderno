@@ -1,0 +1,112 @@
+---
+title: Splitter
+description: Paneles redimensionables con manijas de arrastre. Behavior core Zag (splitter), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RSplitterDemo from '../../../../demos/react/SplitterDemo.tsx'
+import VSplitterDemo from '../../../../demos/vue/SplitterDemo.vue'
+import SSplitterDemo from '../../../../demos/svelte/SplitterDemo.svelte'
+import OSplitterDemo from '../../../../demos/solid/SplitterDemo.tsx'
+
+**Splitter** organiza paneles a lo largo de un eje con un disparador de redimensionado
+arrastrable entre cada par de paneles adyacentes — paneles redimensionables, accesibles
+por teclado. Primitive **closed-prop** (ADR-0003) sobre la máquina `splitter` de Zag.js:
+se pasa un arreglo `panels` con ids y restricciones de tamaño, y se provee el contenido
+de cada panel de la forma idiomática de cada framework.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RSplitterDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VSplitterDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SSplitterDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OSplitterDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Splitter } from '@moderno/react'
+
+<Splitter
+  panels={[
+    { id: 'barraLateral', minSize: 20, maxSize: 50, children: <BarraLateral /> },
+    { id: 'principal', children: <Principal /> },
+  ]}
+  defaultSize={[30, 70]}
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Splitter } from '@moderno/vue'
+</script>
+
+<template>
+  <Splitter :panels="[{ id: 'barraLateral', minSize: 20, maxSize: 50 }, { id: 'principal' }]" :default-size="[30, 70]">
+    <template #barraLateral><BarraLateral /></template>
+    <template #principal><Principal /></template>
+  </Splitter>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Splitter } from '@moderno/svelte'
+</script>
+
+<Splitter panels={[{ id: 'barraLateral', minSize: 20, maxSize: 50 }, { id: 'principal' }]} defaultSize={[30, 70]}>
+  {#snippet barraLateral()}<BarraLateral />{/snippet}
+  {#snippet principal()}<Principal />{/snippet}
+</Splitter>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Splitter } from '@moderno/solid'
+
+<Splitter
+  panels={[
+    { id: 'barraLateral', minSize: 20, maxSize: 50, children: <BarraLateral /> },
+    { id: 'principal', children: <Principal /> },
+  ]}
+  defaultSize={[30, 70]}
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `panels` | `SplitterPanelDef[]` | — | Los paneles a renderizar, en orden. Cada uno tiene un `id`, `minSize`/`maxSize`/`collapsedSize` opcionales (porcentajes), `collapsible` y `resizeBehavior`. React/Solid agregan `children` a cada panel; Vue/Svelte proveen el contenido mediante un slot/snippet nombrado según el `id` del panel. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | El eje sobre el que se distribuyen los paneles. |
+| `size` | `number[]` | — | Tamaños controlados de los paneles, como porcentajes. |
+| `defaultSize` | `number[]` | — | Tamaños iniciales no controlados de los paneles, como porcentajes. |
+| `onResize` | `(size: number[]) => void` | — | Se llama mientras se redimensiona un panel. Vue expone el mismo valor con `v-model:size` (`update:size`). |
+| `onResizeStart` | `() => void` | — | Se llama al iniciar una interacción de redimensionado. Vue: evento `resizeStart`. |
+| `onResizeEnd` | `(size: number[]) => void` | — | Se llama al terminar una interacción de redimensionado. Vue: evento `resizeEnd`. |
+| `keyboardResizeBy` | `number` | — | Píxeles para redimensionar un panel al usar el teclado. |
+| `resizeTriggerLabel` | `(beforeId: string, afterId: string) => string` | `` `Resize ${beforeId} and ${afterId}` `` | Etiqueta accesible para el disparador de redimensionado entre dos paneles. |

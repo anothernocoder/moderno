@@ -320,6 +320,12 @@ export const parts = {
     prevTrigger: 'md-pagination-prev',
     nextTrigger: 'md-pagination-next',
   },
+  splitter: {
+    root: 'md-splitter',
+    panel: 'md-splitter-panel',
+    resizeTrigger: 'md-splitter-resize-trigger',
+    resizeTriggerIndicator: 'md-splitter-resize-trigger-indicator',
+  },
   datepicker: {
     root: 'md-datepicker',
     label: 'md-datepicker-label',

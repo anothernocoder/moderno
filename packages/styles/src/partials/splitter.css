@@ -1,0 +1,56 @@
+/* ---------- Splitter (Zag splitter machine, closed-prop) ---------- */
+.md-splitter {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--md-border-default);
+  border-radius: var(--md-radius-none);
+  background: var(--md-surface-base);
+  font-family: var(--md-font-sans);
+}
+.md-splitter-panel {
+  overflow: auto;
+  background: var(--md-surface-base);
+  color: var(--md-text-primary);
+}
+.md-splitter-resize-trigger {
+  flex: 0 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-border-default);
+  transition: background-color 150ms;
+}
+.md-splitter-resize-trigger[data-orientation='horizontal'] {
+  width: 4px;
+  cursor: col-resize;
+}
+.md-splitter-resize-trigger[data-orientation='vertical'] {
+  height: 4px;
+  cursor: row-resize;
+}
+.md-splitter-resize-trigger:hover,
+.md-splitter-resize-trigger[data-dragging] {
+  background: var(--md-primary);
+}
+.md-splitter-resize-trigger:focus-visible {
+  outline: none;
+  background: var(--md-primary);
+}
+.md-splitter-resize-trigger[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.md-splitter-resize-trigger-indicator {
+  background: var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+}
+.md-splitter-resize-trigger-indicator[data-orientation='horizontal'] {
+  width: 2px;
+  height: 24px;
+}
+.md-splitter-resize-trigger-indicator[data-orientation='vertical'] {
+  width: 24px;
+  height: 2px;
+}

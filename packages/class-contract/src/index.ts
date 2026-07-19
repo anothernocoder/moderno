@@ -326,6 +326,16 @@ export const parts = {
     resizeTrigger: 'md-splitter-resize-trigger',
     resizeTriggerIndicator: 'md-splitter-resize-trigger-indicator',
   },
+  carousel: {
+    root: 'md-carousel',
+    itemGroup: 'md-carousel-item-group',
+    item: 'md-carousel-item',
+    control: 'md-carousel-control',
+    prevTrigger: 'md-carousel-prev',
+    nextTrigger: 'md-carousel-next',
+    indicatorGroup: 'md-carousel-indicator-group',
+    indicator: 'md-carousel-indicator',
+  },
   datepicker: {
     root: 'md-datepicker',
     label: 'md-datepicker-label',

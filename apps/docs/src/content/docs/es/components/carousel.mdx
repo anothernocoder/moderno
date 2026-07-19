@@ -1,0 +1,169 @@
+---
+title: Carousel
+description: Galería deslizante horizontal. Compositional, sobre la máquina carousel de Zag.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RCarouselDemo from '../../../../demos/react/CarouselDemo.tsx'
+import VCarouselDemo from '../../../../demos/vue/CarouselDemo.vue'
+import SCarouselDemo from '../../../../demos/svelte/CarouselDemo.svelte'
+import OCarouselDemo from '../../../../demos/solid/CarouselDemo.tsx'
+
+**Carousel** desliza entre un conjunto de elementos a lo largo de un eje, usando CSS
+scroll-snap nativo internamente. Primitive **compositional** (ADR-0003): expone partes
+que comparten una sola máquina de Zag — `Carousel.Root`, `Carousel.ItemGroup`,
+`Carousel.Item`, `Carousel.Control`, `Carousel.PrevTrigger`, `Carousel.NextTrigger`,
+`Carousel.IndicatorGroup`, `Carousel.Indicator`. El comportamiento (paginación, loop,
+arrastre, autoplay, navegación por teclado, roles ARIA `region`/`group`) viene de la
+máquina `carousel`; `Carousel.Root` requiere un `slideCount` porque Zag lo necesita de
+antemano para calcular las posiciones de scroll-snap.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RCarouselDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VCarouselDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SCarouselDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OCarouselDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Carousel } from '@moderno/react'
+
+const slides = ['Uno', 'Dos', 'Tres']
+
+<Carousel.Root slideCount={slides.length}>
+  <Carousel.ItemGroup>
+    {slides.map((label, index) => (
+      <Carousel.Item key={label} index={index}>{label}</Carousel.Item>
+    ))}
+  </Carousel.ItemGroup>
+  <Carousel.Control>
+    <Carousel.PrevTrigger />
+    <Carousel.IndicatorGroup>
+      {(index) => <Carousel.Indicator key={index} index={index} />}
+    </Carousel.IndicatorGroup>
+    <Carousel.NextTrigger />
+  </Carousel.Control>
+</Carousel.Root>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Carousel } from '@moderno/vue'
+
+const slides = ['Uno', 'Dos', 'Tres']
+</script>
+
+<template>
+  <Carousel.Root :slide-count="slides.length">
+    <Carousel.ItemGroup>
+      <Carousel.Item v-for="(label, index) in slides" :key="label" :index="index">{{ label }}</Carousel.Item>
+    </Carousel.ItemGroup>
+    <Carousel.Control>
+      <Carousel.PrevTrigger />
+      <Carousel.IndicatorGroup v-slot="{ index }">
+        <Carousel.Indicator :index="index" />
+      </Carousel.IndicatorGroup>
+      <Carousel.NextTrigger />
+    </Carousel.Control>
+  </Carousel.Root>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Carousel } from '@moderno/svelte'
+
+  const slides = ['Uno', 'Dos', 'Tres']
+</script>
+
+<Carousel.Root slideCount={slides.length}>
+  <Carousel.ItemGroup>
+    {#each slides as label, index (label)}
+      <Carousel.Item {index}>{label}</Carousel.Item>
+    {/each}
+  </Carousel.ItemGroup>
+  <Carousel.Control>
+    <Carousel.PrevTrigger />
+    <Carousel.IndicatorGroup>
+      {#snippet children(index)}
+        <Carousel.Indicator {index} />
+      {/snippet}
+    </Carousel.IndicatorGroup>
+    <Carousel.NextTrigger />
+  </Carousel.Control>
+</Carousel.Root>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Carousel } from '@moderno/solid'
+
+const slides = ['Uno', 'Dos', 'Tres']
+
+<Carousel.Root slideCount={slides.length}>
+  <Carousel.ItemGroup>
+    {slides.map((label, index) => (
+      <Carousel.Item index={index}>{label}</Carousel.Item>
+    ))}
+  </Carousel.ItemGroup>
+  <Carousel.Control>
+    <Carousel.PrevTrigger />
+    <Carousel.IndicatorGroup>
+      {(index) => <Carousel.Indicator index={index} />}
+    </Carousel.IndicatorGroup>
+    <Carousel.NextTrigger />
+  </Carousel.Control>
+</Carousel.Root>
+```
+</TabItem>
+</Tabs>
+
+## Props (`Carousel.Root`)
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `slideCount` | `number` | — | Requerido. El número total de slides. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | El eje sobre el que se mueven los slides. |
+| `page` / `v-model:page` / `bind:page` | `number` | — | Página actual, controlada. |
+| `defaultPage` | `number` | `0` | Página inicial no controlada. |
+| `onPageChange` | `(page: number) => void` | — | Se llama cuando cambia la página. Vue: evento `update:page`. |
+| `loop` | `boolean` | `false` | Vuelve de la última página a la primera. |
+| `slidesPerPage` | `number` | `1` | Número de slides visibles a la vez. |
+| `slidesPerMove` | `number \| 'auto'` | `'auto'` | Número de slides que avanza cada next/prev. |
+| `autoSize` | `boolean` | `false` | Habilita slides de ancho variable. |
+| `allowMouseDrag` | `boolean` | `false` | Permite arrastrar con el mouse. |
+| `autoplay` | `boolean \| { delay: number }` | `false` | Avanza páginas automáticamente; el delay por default es 4000ms. |
+| `spacing` | `string` | `'0px'` | Espacio entre elementos. |
+| `padding` | `string` | — | Padding extra del viewport para que los slides vecinos queden parcialmente visibles. |
+| `translations` | `IntlTranslations` (de `@zag-js/carousel`) | — | Mensajes de accesibilidad localizados para triggers, items e indicadores. |
+
+`Carousel.Item` y `Carousel.Indicator` toman `index: number`. `Carousel.Control`,
+`Carousel.ItemGroup`, `Carousel.PrevTrigger`, `Carousel.NextTrigger` y
+`Carousel.IndicatorGroup` no necesitan props — leen la máquina compartida desde el
+contexto. El contenido de `Carousel.IndicatorGroup` es una función de render
+(React/Solid), un scoped slot (Vue), o un snippet parametrizado (Svelte) que se llama
+una vez por cada snap point con su `index`.

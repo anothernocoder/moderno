@@ -91,6 +91,9 @@ importers:
       '@zag-js/accordion':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/carousel':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/checkbox':
         specifier: ^1.0.0
         version: 1.41.2
@@ -200,6 +203,9 @@ importers:
       '@zag-js/accordion':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/carousel':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/checkbox':
         specifier: ^1.0.0
         version: 1.41.2
@@ -298,6 +304,9 @@ importers:
       '@zag-js/accordion':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/carousel':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/checkbox':
         specifier: ^1.0.0
         version: 1.41.2
@@ -389,6 +398,9 @@ importers:
         specifier: workspace:*
         version: link:../tokens
       '@zag-js/accordion':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/carousel':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/checkbox':
@@ -1976,6 +1988,9 @@ packages:
   '@zag-js/aria-hidden@1.41.2':
     resolution: {integrity: sha512-qEcYmwlQr3qjA0T/IZ5a/o7fRUxfQ14tXjAFhR3GXCtxBKaqS+wnq/LN09Xw4bin3QWTINU+Z0oXFs9spWtNwA==}
 
+  '@zag-js/carousel@1.41.2':
+    resolution: {integrity: sha512-H6sDxyWIzkvtHN4M/BYvFy7pi8j+kLEtfPZvgNl2+gRnfAHVK9/XqpoUsjw1DAo5Fh25pPuaTnh52Kml9OK0iA==}
+
   '@zag-js/checkbox@1.41.2':
     resolution: {integrity: sha512-aQ5dZWHUHRIw4cbLtzrR+dc8M0N6wSiiCml/zbU3ciHOTBXSrs2rKnp/L99xhi97Lj2uCEhpIZ704Ou/MjGuCg==}
 
@@ -2051,6 +2066,9 @@ packages:
 
   '@zag-js/remove-scroll@1.41.2':
     resolution: {integrity: sha512-ieIrOgPKlCikAGEBIboQJoU7oxrL5BEY670tDOu7Eg7rNOdAwGXLEKPX2A/q+lREhOiVYjx0D3//vHTvdte80Q==}
+
+  '@zag-js/scroll-snap@1.41.2':
+    resolution: {integrity: sha512-+70Al6LSASyEZtFyyffUJlDbE88KgYJDud05z8oZTqyEOLlTqnlSNkXq/P3siO7r3sNykg9H+TmAKn+/dVSKuw==}
 
   '@zag-js/select@1.41.2':
     resolution: {integrity: sha512-3wGaKABILexoNBJ1bJiHqLLTctR/VMZaNA4cyKiqZeBEWtAkdMhgyY2xKobrP6KtUTqAeUFNVSTu4yCDrAQnUw==}
@@ -6072,6 +6090,15 @@ snapshots:
     dependencies:
       '@zag-js/dom-query': 1.41.2
 
+  '@zag-js/carousel@1.41.2':
+    dependencies:
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/scroll-snap': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
+
   '@zag-js/checkbox@1.41.2':
     dependencies:
       '@zag-js/anatomy': 1.41.2
@@ -6234,6 +6261,10 @@ snapshots:
   '@zag-js/rect-utils@1.41.2': {}
 
   '@zag-js/remove-scroll@1.41.2':
+    dependencies:
+      '@zag-js/dom-query': 1.41.2
+
+  '@zag-js/scroll-snap@1.41.2':
     dependencies:
       '@zag-js/dom-query': 1.41.2
 

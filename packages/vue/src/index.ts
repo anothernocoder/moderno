@@ -23,6 +23,14 @@ import DatePickerInput from './DatePickerInput.vue'
 import DatePickerTrigger from './DatePickerTrigger.vue'
 import DatePickerClearTrigger from './DatePickerClearTrigger.vue'
 import DatePickerContent from './DatePickerContent.vue'
+import CarouselRoot from './CarouselRoot.vue'
+import CarouselControl from './CarouselControl.vue'
+import CarouselPrevTrigger from './CarouselPrevTrigger.vue'
+import CarouselNextTrigger from './CarouselNextTrigger.vue'
+import CarouselItemGroup from './CarouselItemGroup.vue'
+import CarouselItem from './CarouselItem.vue'
+import CarouselIndicatorGroup from './CarouselIndicatorGroup.vue'
+import CarouselIndicator from './CarouselIndicator.vue'
 
 export { default as Button } from './Button.vue'
 export { default as Dialog } from './Dialog.vue'
@@ -99,4 +107,21 @@ export const DatePicker = {
   Trigger: DatePickerTrigger,
   ClearTrigger: DatePickerClearTrigger,
   Content: DatePickerContent,
+}
+
+/**
+ * Compositional Carousel (ADR-0003): <Carousel.Root>/<Carousel.Control>/
+ * <Carousel.PrevTrigger>/<Carousel.NextTrigger>/<Carousel.ItemGroup>/<Carousel.Item>/
+ * <Carousel.IndicatorGroup>/<Carousel.Indicator>. `IndicatorGroup`'s default slot is
+ * scoped, yielding `{ index }` once per snap point.
+ */
+export const Carousel = {
+  Root: CarouselRoot,
+  Control: CarouselControl,
+  PrevTrigger: CarouselPrevTrigger,
+  NextTrigger: CarouselNextTrigger,
+  ItemGroup: CarouselItemGroup,
+  Item: CarouselItem,
+  IndicatorGroup: CarouselIndicatorGroup,
+  Indicator: CarouselIndicator,
 }

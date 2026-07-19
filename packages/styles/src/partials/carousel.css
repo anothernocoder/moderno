@@ -1,0 +1,100 @@
+/* ---------- Carousel (Zag carousel machine, compositional) ---------- */
+.md-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-spacing-4);
+  width: 100%;
+  font-family: var(--md-font-sans);
+}
+.md-carousel-item-group {
+  display: flex;
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border: 1px solid var(--md-border-default);
+  border-radius: var(--md-radius-none);
+  background: var(--md-surface-base);
+}
+.md-carousel-item-group::-webkit-scrollbar {
+  display: none;
+}
+.md-carousel-item-group[data-orientation='horizontal'] {
+  flex-direction: row;
+  scroll-snap-type: x mandatory;
+}
+.md-carousel-item-group[data-orientation='vertical'] {
+  flex-direction: column;
+  scroll-snap-type: y mandatory;
+}
+.md-carousel-item {
+  flex: none;
+  width: 100%;
+  scroll-snap-align: start;
+  color: var(--md-text-primary);
+}
+.md-carousel-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--md-spacing-2);
+}
+.md-carousel-prev,
+.md-carousel-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 var(--md-spacing-2);
+  background: transparent;
+  border: 1px solid var(--md-border-default);
+  border-radius: var(--md-radius-none);
+  font-family: var(--md-font-sans);
+  font-size: var(--md-text-body-sm);
+  color: var(--md-text-primary);
+  cursor: pointer;
+  transition: background-color 150ms, border-color 150ms, color 150ms;
+}
+.md-carousel-prev:hover,
+.md-carousel-next:hover {
+  background: var(--md-surface-muted);
+}
+.md-carousel-prev:focus-visible,
+.md-carousel-next:focus-visible {
+  outline: none;
+  border-color: var(--md-primary);
+}
+.md-carousel-prev:disabled,
+.md-carousel-next:disabled,
+.md-carousel-prev[data-disabled],
+.md-carousel-next[data-disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.md-carousel-indicator-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--md-spacing-2);
+}
+.md-carousel-indicator {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--md-border-strong);
+  border-radius: var(--md-radius-none);
+  cursor: pointer;
+  transition: background-color 150ms, border-color 150ms;
+}
+.md-carousel-indicator:hover {
+  background: var(--md-surface-muted);
+}
+.md-carousel-indicator:focus-visible {
+  outline: none;
+  border-color: var(--md-primary);
+}
+.md-carousel-indicator[data-current] {
+  background: var(--md-primary);
+  border-color: var(--md-primary);
+}

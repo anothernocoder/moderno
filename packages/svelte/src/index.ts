@@ -23,6 +23,14 @@ import DatePickerInput from './DatePickerInput.svelte'
 import DatePickerTrigger from './DatePickerTrigger.svelte'
 import DatePickerClearTrigger from './DatePickerClearTrigger.svelte'
 import DatePickerContent from './DatePickerContent.svelte'
+import CarouselRoot from './CarouselRoot.svelte'
+import CarouselControl from './CarouselControl.svelte'
+import CarouselPrevTrigger from './CarouselPrevTrigger.svelte'
+import CarouselNextTrigger from './CarouselNextTrigger.svelte'
+import CarouselItemGroup from './CarouselItemGroup.svelte'
+import CarouselItem from './CarouselItem.svelte'
+import CarouselIndicatorGroup from './CarouselIndicatorGroup.svelte'
+import CarouselIndicator from './CarouselIndicator.svelte'
 
 export { default as Button } from './Button.svelte'
 export { default as Dialog } from './Dialog.svelte'
@@ -99,4 +107,21 @@ export const DatePicker = {
   Trigger: DatePickerTrigger,
   ClearTrigger: DatePickerClearTrigger,
   Content: DatePickerContent,
+}
+
+/**
+ * Compositional Carousel (ADR-0003): <Carousel.Root>/<Carousel.Control>/
+ * <Carousel.PrevTrigger>/<Carousel.NextTrigger>/<Carousel.ItemGroup>/<Carousel.Item>/
+ * <Carousel.IndicatorGroup>/<Carousel.Indicator>. `IndicatorGroup`'s `children` snippet
+ * takes the slide index, called once per snap point.
+ */
+export const Carousel = {
+  Root: CarouselRoot,
+  Control: CarouselControl,
+  PrevTrigger: CarouselPrevTrigger,
+  NextTrigger: CarouselNextTrigger,
+  ItemGroup: CarouselItemGroup,
+  Item: CarouselItem,
+  IndicatorGroup: CarouselIndicatorGroup,
+  Indicator: CarouselIndicator,
 }

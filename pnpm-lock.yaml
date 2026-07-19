@@ -92,7 +92,7 @@ importers:
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/carousel':
-        specifier: 1.41.2
+        specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/checkbox':
         specifier: ^1.0.0
@@ -204,7 +204,7 @@ importers:
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/carousel':
-        specifier: 1.41.2
+        specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/checkbox':
         specifier: ^1.0.0
@@ -305,7 +305,7 @@ importers:
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/carousel':
-        specifier: 1.41.2
+        specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/checkbox':
         specifier: ^1.0.0
@@ -401,7 +401,7 @@ importers:
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/carousel':
-        specifier: 1.41.2
+        specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/checkbox':
         specifier: ^1.0.0

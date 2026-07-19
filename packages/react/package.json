@@ -25,6 +25,7 @@
     "@zag-js/accordion": "^1.0.0",
     "@zag-js/checkbox": "^1.0.0",
     "@zag-js/combobox": "^1.0.0",
+    "@zag-js/date-picker": "^1.0.0",
     "@zag-js/dialog": "^1.0.0",
     "@zag-js/menu": "^1.0.0",
     "@zag-js/number-input": "^1.0.0",

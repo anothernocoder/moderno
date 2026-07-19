@@ -1,0 +1,129 @@
+---
+title: Date picker
+description: Pick a single date or a range from a calendar. Compositional, built on Zag's date-picker machine.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RDatePickerDemo from '../../../demos/react/DatePickerDemo.tsx'
+import VDatePickerDemo from '../../../demos/vue/DatePickerDemo.vue'
+import SDatePickerDemo from '../../../demos/svelte/DatePickerDemo.svelte'
+import ODatePickerDemo from '../../../demos/solid/DatePickerDemo.tsx'
+
+**DatePicker** picks a single date or a date range from a calendar popover. A **compositional**
+primitive (ADR-0003): `DatePicker.Root`, `DatePicker.Label`, `DatePicker.Control`,
+`DatePicker.Input`, `DatePicker.Trigger`, `DatePicker.ClearTrigger`, `DatePicker.Content`.
+The behavior (keyboard navigation, day/month/year views, range selection, popper
+positioning, ARIA `grid`/`application`) comes from Zag's `date-picker` machine.
+`DatePicker.Content` renders the full day/month/year calendar internally — unlike
+`Select.Item`, its structure doesn't vary per consumer, so it isn't split into further
+public parts.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RDatePickerDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VDatePickerDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SDatePickerDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><ODatePickerDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { DatePicker } from '@moderno/react'
+
+<DatePicker.Root defaultValue={['2024-01-15']} onValueChange={(v) => console.log(v)}>
+  <DatePicker.Label>Date</DatePicker.Label>
+  <DatePicker.Control>
+    <DatePicker.Input />
+    <DatePicker.Trigger />
+  </DatePicker.Control>
+  <DatePicker.Content />
+</DatePicker.Root>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { DatePicker } from '@moderno/vue'
+</script>
+
+<template>
+  <DatePicker.Root :default-value="['2024-01-15']">
+    <DatePicker.Label>Date</DatePicker.Label>
+    <DatePicker.Control>
+      <DatePicker.Input />
+      <DatePicker.Trigger />
+    </DatePicker.Control>
+    <DatePicker.Content />
+  </DatePicker.Root>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { DatePicker } from '@moderno/svelte'
+</script>
+
+<DatePicker.Root defaultValue={['2024-01-15']}>
+  <DatePicker.Label>Date</DatePicker.Label>
+  <DatePicker.Control>
+    <DatePicker.Input />
+    <DatePicker.Trigger />
+  </DatePicker.Control>
+  <DatePicker.Content />
+</DatePicker.Root>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { DatePicker } from '@moderno/solid'
+
+<DatePicker.Root defaultValue={['2024-01-15']}>
+  <DatePicker.Label>Date</DatePicker.Label>
+  <DatePicker.Control>
+    <DatePicker.Input />
+    <DatePicker.Trigger />
+  </DatePicker.Control>
+  <DatePicker.Content />
+</DatePicker.Root>
+```
+</TabItem>
+</Tabs>
+
+## Selecting a range
+
+Set `selectionMode="range"` to select a start and end date. The calendar renders two
+selected endpoints and the days between them get `data-in-range`.
+
+```tsx
+<DatePicker.Root selectionMode="range">
+  <DatePicker.Control>
+    <DatePicker.Input index={0} />
+    <DatePicker.Input index={1} />
+    <DatePicker.Trigger />
+  </DatePicker.Control>
+  <DatePicker.Content />
+</DatePicker.Root>
+```
+
+## Props (`DatePicker.Root`)
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selectionMode` | `'single' \| 'range'` | `'single'` | Pick one date, or a start/end range. |
+| `defaultValue` | `string[]` | — | Initially selected date(s), as ISO 8601 strings (uncontrolled). |
+| `value` / `v-model` / `bind:value` | `string[]` | — | Selected date(s), as ISO 8601 strings (controlled). |
+| `min` | `string` | — | Earliest selectable date (ISO 8601). |
+| `max` | `string` | — | Latest selectable date (ISO 8601). |
+| `disabled` | `boolean` | `false` | Disables the control. |
+| `locale` | `string` | `'en-US'` | BCP 47 locale used to format and parse dates. |
+| `startOfWeek` | `number` | — | `0` (Sunday) through `6` (Saturday). |
+| `onValueChange` | `(value: string[]) => void` | — | Callback when the selection changes. |
+
+`DatePicker.Input` accepts an optional `index` (`0` or `1`), used in range mode to render
+separate start/end fields. `DatePicker.Trigger` and `DatePicker.ClearTrigger` accept custom
+children in place of their default icon.

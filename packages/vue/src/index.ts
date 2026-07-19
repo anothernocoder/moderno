@@ -16,6 +16,13 @@ import SelectLabel from './SelectLabel.vue'
 import SelectTrigger from './SelectTrigger.vue'
 import SelectContent from './SelectContent.vue'
 import SelectItem from './SelectItem.vue'
+import DatePickerRoot from './DatePickerRoot.vue'
+import DatePickerLabel from './DatePickerLabel.vue'
+import DatePickerControl from './DatePickerControl.vue'
+import DatePickerInput from './DatePickerInput.vue'
+import DatePickerTrigger from './DatePickerTrigger.vue'
+import DatePickerClearTrigger from './DatePickerClearTrigger.vue'
+import DatePickerContent from './DatePickerContent.vue'
 
 export { default as Button } from './Button.vue'
 export { default as Dialog } from './Dialog.vue'
@@ -75,4 +82,19 @@ export const Sheet = {
   Content: SheetContent,
   Title: SheetTitle,
   Close: SheetClose,
+}
+
+/**
+ * Compositional DatePicker (ADR-0003): <DatePicker.Root>/<DatePicker.Label>/
+ * <DatePicker.Control>/<DatePicker.Input>/<DatePicker.Trigger>/<DatePicker.ClearTrigger>/
+ * <DatePicker.Content>. `Content` renders the full day/month/year calendar internally.
+ */
+export const DatePicker = {
+  Root: DatePickerRoot,
+  Label: DatePickerLabel,
+  Control: DatePickerControl,
+  Input: DatePickerInput,
+  Trigger: DatePickerTrigger,
+  ClearTrigger: DatePickerClearTrigger,
+  Content: DatePickerContent,
 }

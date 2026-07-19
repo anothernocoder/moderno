@@ -16,6 +16,13 @@ import SelectLabel from './SelectLabel.svelte'
 import SelectTrigger from './SelectTrigger.svelte'
 import SelectContent from './SelectContent.svelte'
 import SelectItem from './SelectItem.svelte'
+import DatePickerRoot from './DatePickerRoot.svelte'
+import DatePickerLabel from './DatePickerLabel.svelte'
+import DatePickerControl from './DatePickerControl.svelte'
+import DatePickerInput from './DatePickerInput.svelte'
+import DatePickerTrigger from './DatePickerTrigger.svelte'
+import DatePickerClearTrigger from './DatePickerClearTrigger.svelte'
+import DatePickerContent from './DatePickerContent.svelte'
 
 export { default as Button } from './Button.svelte'
 export { default as Dialog } from './Dialog.svelte'
@@ -74,4 +81,19 @@ export const Sheet = {
   Content: SheetContent,
   Title: SheetTitle,
   Close: SheetClose,
+}
+
+/**
+ * Compositional DatePicker (ADR-0003): <DatePicker.Root>/<DatePicker.Label>/
+ * <DatePicker.Control>/<DatePicker.Input>/<DatePicker.Trigger>/<DatePicker.ClearTrigger>/
+ * <DatePicker.Content>. `Content` renders the full day/month/year calendar internally.
+ */
+export const DatePicker = {
+  Root: DatePickerRoot,
+  Label: DatePickerLabel,
+  Control: DatePickerControl,
+  Input: DatePickerInput,
+  Trigger: DatePickerTrigger,
+  ClearTrigger: DatePickerClearTrigger,
+  Content: DatePickerContent,
 }

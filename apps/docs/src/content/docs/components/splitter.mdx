@@ -1,0 +1,111 @@
+---
+title: Splitter
+description: Resizable panes with drag handles. Zag behavior core (splitter), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RSplitterDemo from '../../../demos/react/SplitterDemo.tsx'
+import VSplitterDemo from '../../../demos/vue/SplitterDemo.vue'
+import SSplitterDemo from '../../../demos/svelte/SplitterDemo.svelte'
+import OSplitterDemo from '../../../demos/solid/SplitterDemo.tsx'
+
+**Splitter** lays out panels along an axis with a draggable resize trigger between each
+adjacent pair — resizable panes, keyboard-accessible. A **closed-prop** primitive
+(ADR-0003) built on Zag.js's `splitter` machine: pass a `panels` array of ids and size
+constraints, and provide each panel's content the idiomatic way for your framework.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RSplitterDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VSplitterDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SSplitterDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OSplitterDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { Splitter } from '@moderno/react'
+
+<Splitter
+  panels={[
+    { id: 'sidebar', minSize: 20, maxSize: 50, children: <Sidebar /> },
+    { id: 'main', children: <Main /> },
+  ]}
+  defaultSize={[30, 70]}
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { Splitter } from '@moderno/vue'
+</script>
+
+<template>
+  <Splitter :panels="[{ id: 'sidebar', minSize: 20, maxSize: 50 }, { id: 'main' }]" :default-size="[30, 70]">
+    <template #sidebar><Sidebar /></template>
+    <template #main><Main /></template>
+  </Splitter>
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { Splitter } from '@moderno/svelte'
+</script>
+
+<Splitter panels={[{ id: 'sidebar', minSize: 20, maxSize: 50 }, { id: 'main' }]} defaultSize={[30, 70]}>
+  {#snippet sidebar()}<Sidebar />{/snippet}
+  {#snippet main()}<Main />{/snippet}
+</Splitter>
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { Splitter } from '@moderno/solid'
+
+<Splitter
+  panels={[
+    { id: 'sidebar', minSize: 20, maxSize: 50, children: <Sidebar /> },
+    { id: 'main', children: <Main /> },
+  ]}
+  defaultSize={[30, 70]}
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `panels` | `SplitterPanelDef[]` | — | The panels to render, in order. Each has an `id`, optional `minSize`/`maxSize`/`collapsedSize` (percentages), `collapsible`, and `resizeBehavior`. React/Solid add `children` to each panel; Vue/Svelte provide content via a slot/snippet named after the panel `id`. |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | The axis panels are laid out along. |
+| `size` | `number[]` | — | Controlled sizes of the panels, as percentages. |
+| `defaultSize` | `number[]` | — | Uncontrolled initial sizes of the panels, as percentages. |
+| `onResize` | `(size: number[]) => void` | — | Called while a panel is being resized. Vue exposes the same value via `v-model:size` (`update:size`). |
+| `onResizeStart` | `() => void` | — | Called when a resize interaction starts. Vue: `resizeStart` event. |
+| `onResizeEnd` | `(size: number[]) => void` | — | Called when a resize interaction ends. Vue: `resizeEnd` event. |
+| `keyboardResizeBy` | `number` | — | Pixels to resize a panel by when the keyboard is used. |
+| `resizeTriggerLabel` | `(beforeId: string, afterId: string) => string` | `` `Resize ${beforeId} and ${afterId}` `` | Accessible label for the resize trigger between two panels. |

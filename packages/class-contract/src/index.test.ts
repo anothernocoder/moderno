@@ -102,6 +102,17 @@ describe('parts.pagination — anatomy leaf names', () => {
   })
 })
 
+describe('parts.splitter — anatomy leaf names', () => {
+  it('maps each leaf to its md-splitter-* class', () => {
+    expect(parts.splitter).toEqual({
+      root: 'md-splitter',
+      panel: 'md-splitter-panel',
+      resizeTrigger: 'md-splitter-resize-trigger',
+      resizeTriggerIndicator: 'md-splitter-resize-trigger-indicator',
+    })
+  })
+})
+
 describe('legalNames — every class the contract may emit', () => {
   it('enumerates the button base and all modifier classes (md has no class)', () => {
     const names = legalNames()

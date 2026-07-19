@@ -130,6 +130,9 @@ importers:
       '@zag-js/slider':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/splitter':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/switch':
         specifier: ^1.0.0
         version: 1.41.2
@@ -236,6 +239,9 @@ importers:
       '@zag-js/solid':
         specifier: ^1.0.0
         version: 1.41.2(solid-js@1.9.13)
+      '@zag-js/splitter':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/switch':
         specifier: ^1.0.0
         version: 1.41.2
@@ -328,6 +334,9 @@ importers:
       '@zag-js/slider':
         specifier: ^1.0.0
         version: 1.41.2
+      '@zag-js/splitter':
+        specifier: ^1.0.0
+        version: 1.41.2
       '@zag-js/svelte':
         specifier: ^1.0.0
         version: 1.41.2(svelte@5.56.3)
@@ -416,6 +425,9 @@ importers:
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/slider':
+        specifier: ^1.0.0
+        version: 1.41.2
+      '@zag-js/splitter':
         specifier: ^1.0.0
         version: 1.41.2
       '@zag-js/switch':
@@ -2050,6 +2062,9 @@ packages:
     resolution: {integrity: sha512-EyHtNpnDcVveJIRiK9WXjGWBYBRozJUXMYmdm24mnuCgPaKgvkOEY42lEYqbgF+YgUJ8BjE67Mhby0EjcM1HEg==}
     peerDependencies:
       solid-js: '>=1.1.3'
+
+  '@zag-js/splitter@1.41.2':
+    resolution: {integrity: sha512-Ubp4hkmzvVysU31jCINYbBXVqruu7rEPGqugWMzeXC5Hwda648aHpbg4Jix/wRtaGLjsyh6KOVEwAmoJU9NwhQ==}
 
   '@zag-js/store@1.41.2':
     resolution: {integrity: sha512-dVZF7E1ezXzynrKhMH3rfSr2rBbCfvTjvXbXz7//1PNULuq58UU5dG93V+9l834npCZxI2+PrpY45wZLJPTsIA==}
@@ -6250,6 +6265,14 @@ snapshots:
       '@zag-js/types': 1.41.2
       '@zag-js/utils': 1.41.2
       solid-js: 1.9.13
+
+  '@zag-js/splitter@1.41.2':
+    dependencies:
+      '@zag-js/anatomy': 1.41.2
+      '@zag-js/core': 1.41.2
+      '@zag-js/dom-query': 1.41.2
+      '@zag-js/types': 1.41.2
+      '@zag-js/utils': 1.41.2
 
   '@zag-js/store@1.41.2':
     dependencies:

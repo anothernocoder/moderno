@@ -113,6 +113,21 @@ describe('parts.splitter — anatomy leaf names', () => {
   })
 })
 
+describe('parts.carousel — anatomy leaf names', () => {
+  it('maps each leaf to its md-carousel-* class', () => {
+    expect(parts.carousel).toEqual({
+      root: 'md-carousel',
+      itemGroup: 'md-carousel-item-group',
+      item: 'md-carousel-item',
+      control: 'md-carousel-control',
+      prevTrigger: 'md-carousel-prev',
+      nextTrigger: 'md-carousel-next',
+      indicatorGroup: 'md-carousel-indicator-group',
+      indicator: 'md-carousel-indicator',
+    })
+  })
+})
+
 describe('legalNames — every class the contract may emit', () => {
   it('enumerates the button base and all modifier classes (md has no class)', () => {
     const names = legalNames()

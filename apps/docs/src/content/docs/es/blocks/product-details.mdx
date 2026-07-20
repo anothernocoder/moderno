@@ -1,0 +1,92 @@
+---
+title: Product Details
+description: Página de detalle de producto de e-commerce con galería de imágenes, precio, badge de stock, selector de variante, contador de cantidad y agregar al carrito. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RProductDetailsDemo from '../../../../demos/react/blocks/ProductDetailsDemo.tsx'
+import VProductDetailsDemo from '../../../../demos/vue/blocks/ProductDetailsDemo.vue'
+import SProductDetailsDemo from '../../../../demos/svelte/blocks/ProductDetailsDemo.svelte'
+import OProductDetailsDemo from '../../../../demos/solid/blocks/ProductDetailsDemo.tsx'
+
+**Product Details** es un [block](/es/introduction/blocks/) de ecommerce: una página de
+detalle de producto con galería de imágenes, calificación, precio con precio de comparación
+opcional, badge de stock, selector de variante, contador de cantidad y un CTA "Agregar al
+carrito". Compone los primitives `Badge`, `Button` y `NumberInput`, y los tokens `--md-*`.
+Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RProductDetailsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VProductDetailsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SProductDetailsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OProductDetailsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add product-details --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add product-details --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add product-details --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add product-details --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `images` | `string[]` | 3 espacios de ejemplo | URLs de las imágenes de la galería; la primera se muestra en grande, todas como miniaturas |
+| `title` | `string` | `'Silla Roble Nórdica'` | Nombre del producto |
+| `rating` | `number` | `4.8` | Calificación sobre 5 |
+| `reviewCount` | `number` | `132` | Número de reseñas mostrado junto a la calificación |
+| `price` | `string` | `'$389.000'` | Precio actual, ya formateado |
+| `compareAtPrice` | `string` | `'$460.000'` | Precio original, ya formateado, mostrado tachado (oculto si se omite) |
+| `saleText` | `string` | `'-15%'` | Texto del badge de oferta (oculto si se omite) |
+| `stockLabel` | `string` | `'En stock'` | Etiqueta del estado de stock |
+| `stockVariant` | `'neutral' \| 'solid' \| 'success' \| 'warning' \| 'error' \| 'info'` | `'success'` | Variante de color del `Badge` para el estado de stock |
+| `description` | `string` | texto de ejemplo | Descripción del producto |
+| `variantLabel` | `string` | `'Acabado'` | Etiqueta sobre el selector de variante |
+| `variants` | `string[]` | 3 acabados de ejemplo | Opciones de variante seleccionables |
+| `defaultVariant` | `string` | primera de `variants` | Variante seleccionada inicialmente |
+| `defaultQuantity` | `number` | `1` | Cantidad inicial |
+| `onAddToCart` | `(payload: { variant?: string; quantity: number }) => void` | — | Se llama al hacer clic en "Agregar al carrito", con la variante y cantidad seleccionadas |
+
+## Uso
+
+```tsx
+import { ProductDetails } from './blocks/ProductDetails'
+
+<ProductDetails
+  images={['/img/silla-1.jpg', '/img/silla-2.jpg']}
+  title="Silla de Roble"
+  price="$389.000"
+  compareAtPrice="$460.000"
+  saleText="-15%"
+  variants={['Roble claro', 'Roble oscuro', 'Nogal']}
+  onAddToCart={({ variant, quantity }) => carrito.agregar({ variant, quantity })}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onAddToCart` es el evento
+`@add-to-cart`; en los demás es una prop callback.

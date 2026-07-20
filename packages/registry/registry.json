@@ -87,6 +87,23 @@
         "solid": "ProductCard.tsx"
       }
     },
+    "product-details": {
+      "domain": "ecommerce",
+      "description": "Página de detalle de producto: galería, precio, stock, variantes, cantidad y carrito.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/product-details/ProductDetails.tsx",
+        "vue": "blocks/ecommerce/product-details/ProductDetails.vue",
+        "svelte": "blocks/ecommerce/product-details/ProductDetails.svelte",
+        "solid": "blocks/ecommerce/product-details/ProductDetails.solid.tsx"
+      },
+      "dest": {
+        "react": "ProductDetails.tsx",
+        "vue": "ProductDetails.vue",
+        "svelte": "ProductDetails.svelte",
+        "solid": "ProductDetails.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

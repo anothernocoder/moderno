@@ -36,6 +36,27 @@ test('add copies a different framework variant of the same block', async (t) => 
   assert.match(copied, /Moderno block — Pricing \(Vue\)/)
 })
 
+test('add copies the table block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'table', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /table/)
+  const copied = await readFile(join(dest, 'Table.tsx'), 'utf8')
+  assert.match(copied, /export function Table/)
+})
+
+test('add copies a different framework variant of the table block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'table', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Table.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Table \(Svelte\)/)
+})
+
 test('add fails for an unknown block', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -56,4 +77,15 @@ test('list groups blocks by domain and includes the marketing pricing block', ()
   assert.ok(marketingSection, 'expected a "marketing" domain group in list output')
   assert.match(marketingSection, /hero/)
   assert.match(marketingSection, /pricing/)
+})
+
+test('list groups blocks by domain and includes the applications table block', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  const sections = output.split(/\n\s*\n/).filter((section) => section.trim().length > 0)
+  const applicationsSection = sections.find((section) => section.includes('applications'))
+
+  assert.ok(applicationsSection, 'expected an "applications" domain group in list output')
+  assert.match(applicationsSection, /stats/)
+  assert.match(applicationsSection, /table/)
 })

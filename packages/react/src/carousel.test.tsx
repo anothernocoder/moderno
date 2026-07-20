@@ -123,7 +123,7 @@ describe('Carousel', () => {
     fireEvent.click(indicators[2])
 
     await waitFor(() => expect(onPageChange).toHaveBeenCalledWith(2))
-    expect(screen.getByRole('button', { name: 'Next slide' })).toBeDisabled()
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Next slide' })).toBeDisabled())
 
     restoreLayout()
   })

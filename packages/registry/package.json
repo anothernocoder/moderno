@@ -12,6 +12,9 @@
     "blocks",
     "registry.json"
   ],
+  "scripts": {
+    "test": "node --test"
+  },
   "devDependencies": {
     "@moderno/react": "workspace:*",
     "@moderno/solid": "workspace:*",

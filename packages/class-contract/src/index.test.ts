@@ -128,6 +128,17 @@ describe('parts.carousel — anatomy leaf names', () => {
   })
 })
 
+describe('parts.chart — anatomy leaf names', () => {
+  it('maps each leaf to its md-chart-* class', () => {
+    expect(parts.chart).toEqual({
+      root: 'md-chart',
+      svg: 'md-chart-svg',
+      line: 'md-chart-line',
+      point: 'md-chart-point',
+    })
+  })
+})
+
 describe('legalNames — every class the contract may emit', () => {
   it('enumerates the button base and all modifier classes (md has no class)', () => {
     const names = legalNames()

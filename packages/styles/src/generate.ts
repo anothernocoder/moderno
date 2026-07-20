@@ -59,6 +59,7 @@ export const STYLE_SEGMENTS: SegmentSource[] = [
   { kind: 'enforced', name: 'date-picker', file: './partials/date-picker.css' },
   { kind: 'enforced', name: 'number-input', file: './partials/number-input.css' },
   { kind: 'enforced', name: 'toast', file: './partials/toast.css' },
+  { kind: 'enforced', name: 'chart', file: './partials/chart.css' },
   { kind: 'enforced', name: 'reduced-motion', file: './partials/_reduced-motion.css' },
 ]
 

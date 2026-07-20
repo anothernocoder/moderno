@@ -361,12 +361,22 @@ export const parts = {
     svg: 'md-chart-svg',
     line: 'md-chart-line',
     point: 'md-chart-point',
+    area: 'md-chart-area',
+    bar: 'md-chart-bar',
+    barListRow: 'md-chart-bar-list-row',
+    barListTrack: 'md-chart-bar-list-track',
+    barListFill: 'md-chart-bar-list-fill',
+    barListLabel: 'md-chart-bar-list-label',
+    barListValue: 'md-chart-bar-list-value',
+    donutSlice: 'md-chart-donut-slice',
+    spark: 'md-chart-spark',
   },
 } as const
 
 /** Leaves the frameworks apply but styles.css does not style — excluded from enforcement. */
 const UNSTYLED_HOOKS = new Set<string>([
   'md-checkbox-label',
+  'md-chart-bar-list-row',
   'md-combobox-item-text',
   'md-radio-item-text',
   'md-select-control',

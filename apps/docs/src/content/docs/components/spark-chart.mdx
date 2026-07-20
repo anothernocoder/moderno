@@ -1,0 +1,124 @@
+---
+title: Spark chart
+description: Token-styled SVG sparkline over the chart-core geometry (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RSparkChartDemo from '../../../demos/react/SparkChartDemo.tsx'
+import VSparkChartDemo from '../../../demos/vue/SparkChartDemo.vue'
+import SSparkChartDemo from '../../../demos/svelte/SparkChartDemo.svelte'
+import OSparkChartDemo from '../../../demos/solid/SparkChartDemo.tsx'
+
+**Spark chart** plots `{x, y}` data as a minimal SVG line, sized for small inline use
+(defaults to 120×32) and running edge to edge rather than with Line chart's 8px margin.
+It builds on the same **chart-core** geometry model as [Line chart](/components/line-chart/)
+(ADR-0004) — `@moderno/chart-core`, built on `d3-scale` + `d3-shape` — computed once
+and rendered as SVG by each framework package. Stroke color comes from `--md-*`
+tokens. A **closed-prop** primitive (ADR-0003) — pass `data` and size props, no
+compositional anatomy.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RSparkChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VSparkChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SSparkChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OSparkChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { SparkChart } from '@moderno/react'
+
+<SparkChart
+  data={[
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]}
+  width={120}
+  height={32}
+  showLastPoint
+  label="Monthly revenue trend"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { SparkChart } from '@moderno/vue'
+
+const data = [
+  { x: 0, y: 12 },
+  { x: 1, y: 28 },
+  { x: 2, y: 18 },
+]
+</script>
+
+<template>
+  <SparkChart :data="data" :width="120" :height="32" show-last-point label="Monthly revenue trend" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { SparkChart } from '@moderno/svelte'
+
+  const data = [
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]
+</script>
+
+<SparkChart {data} width={120} height={32} showLastPoint label="Monthly revenue trend" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { SparkChart } from '@moderno/solid'
+
+<SparkChart
+  data={[
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]}
+  width={120}
+  height={32}
+  showLastPoint
+  label="Monthly revenue trend"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `{ x: number; y: number }[]` | — | The points to plot, in x order. |
+| `width` | `number` | `120` | Intrinsic SVG width in px. The chart scales to 100% of its container via CSS; `width`/`height` set the aspect ratio (`viewBox`). |
+| `height` | `number` | `32` | Intrinsic SVG height in px. |
+| `showLastPoint` | `boolean` | `false` | Render a dot at the last data point, for highlighting the current value. |
+| `label` | `string` | — | Accessible label read by screen readers in place of the visual chart. |

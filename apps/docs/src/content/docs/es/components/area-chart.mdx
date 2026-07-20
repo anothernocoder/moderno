@@ -1,0 +1,126 @@
+---
+title: Area chart
+description: Gráfico de área SVG con tokens sobre la geometría de chart-core (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RAreaChartDemo from '../../../../demos/react/AreaChartDemo.tsx'
+import VAreaChartDemo from '../../../../demos/vue/AreaChartDemo.vue'
+import SAreaChartDemo from '../../../../demos/svelte/AreaChartDemo.svelte'
+import OAreaChartDemo from '../../../../demos/solid/AreaChartDemo.tsx'
+
+**Area chart** dibuja datos `{x, y}` como un área SVG rellena con una línea trazada
+sobre su borde superior, opcionalmente con un punto por dato. Construye sobre la misma
+geometría de **chart-core** que [Line chart](/es/components/line-chart/) (ADR-0004) —
+`@moderno/chart-core`, construido sobre `d3-scale` + `d3-shape` — calculada una sola
+vez y renderizada como SVG por cada paquete de framework. El relleno cierra hacia el
+fondo del gráfico (no hacia el y=0 de los datos), así que se lee correctamente incluso
+cuando todos los valores son positivos. El color de relleno y de trazo viene de tokens
+`--md-*`. Primitive **closed-prop** (ADR-0003) — se pasan `data` y props de tamaño, sin
+anatomía composicional.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RAreaChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VAreaChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SAreaChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OAreaChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { AreaChart } from '@moderno/react'
+
+<AreaChart
+  data={[
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]}
+  width={480}
+  height={220}
+  showPoints
+  label="Ingresos mensuales"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { AreaChart } from '@moderno/vue'
+
+const data = [
+  { x: 0, y: 12 },
+  { x: 1, y: 28 },
+  { x: 2, y: 18 },
+]
+</script>
+
+<template>
+  <AreaChart :data="data" :width="480" :height="220" show-points label="Ingresos mensuales" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { AreaChart } from '@moderno/svelte'
+
+  const data = [
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]
+</script>
+
+<AreaChart {data} width={480} height={220} showPoints label="Ingresos mensuales" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { AreaChart } from '@moderno/solid'
+
+<AreaChart
+  data={[
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]}
+  width={480}
+  height={220}
+  showPoints
+  label="Ingresos mensuales"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `data` | `{ x: number; y: number }[]` | — | Los puntos a graficar, en orden de x. |
+| `width` | `number` | `480` | Ancho intrínseco del SVG en px. El gráfico se escala al 100% de su contenedor vía CSS; `width`/`height` fijan la relación de aspecto (`viewBox`). |
+| `height` | `number` | `240` | Alto intrínseco del SVG en px. |
+| `showPoints` | `boolean` | `false` | Renderiza un punto en cada dato. |
+| `label` | `string` | — | Etiqueta accesible leída por lectores de pantalla en lugar del gráfico visual. |

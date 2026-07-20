@@ -1,0 +1,124 @@
+---
+title: Donut chart
+description: Token-styled SVG donut chart over the chart-core geometry (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RDonutChartDemo from '../../../demos/react/DonutChartDemo.tsx'
+import VDonutChartDemo from '../../../demos/vue/DonutChartDemo.vue'
+import SDonutChartDemo from '../../../demos/svelte/DonutChartDemo.svelte'
+import ODonutChartDemo from '../../../demos/solid/DonutChartDemo.tsx'
+
+**Donut chart** plots `{label, value}` data as one SVG arc per datum, sized
+proportionally to its share of the total — in input order, not re-sorted by size. It
+builds on the same **chart-core** geometry model as [Line chart](/components/line-chart/)
+(ADR-0004) — `@moderno/chart-core`, built on `d3-scale` + `d3-shape`'s `pie`/`arc`
+generators — computed once and rendered as SVG by each framework package. Slices cycle
+through five `--md-*` semantic color tokens (`primary`, `info`, `success`, `warning`,
+`error`) since the token set has no dedicated categorical chart palette. A
+**closed-prop** primitive (ADR-0003) — pass `data` and size props, no compositional
+anatomy.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RDonutChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VDonutChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SDonutChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <ODonutChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { DonutChart } from '@moderno/react'
+
+<DonutChart
+  data={[
+    { label: 'Direct', value: 456 },
+    { label: 'Organic search', value: 351 },
+    { label: 'Referral', value: 271 },
+  ]}
+  width={280}
+  height={280}
+  label="Traffic by source"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { DonutChart } from '@moderno/vue'
+
+const data = [
+  { label: 'Direct', value: 456 },
+  { label: 'Organic search', value: 351 },
+  { label: 'Referral', value: 271 },
+]
+</script>
+
+<template>
+  <DonutChart :data="data" :width="280" :height="280" label="Traffic by source" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { DonutChart } from '@moderno/svelte'
+
+  const data = [
+    { label: 'Direct', value: 456 },
+    { label: 'Organic search', value: 351 },
+    { label: 'Referral', value: 271 },
+  ]
+</script>
+
+<DonutChart {data} width={280} height={280} label="Traffic by source" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { DonutChart } from '@moderno/solid'
+
+<DonutChart
+  data={[
+    { label: 'Direct', value: 456 },
+    { label: 'Organic search', value: 351 },
+    { label: 'Referral', value: 271 },
+  ]}
+  width={280}
+  height={280}
+  label="Traffic by source"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `{ label: string; value: number }[]` | — | The slices to plot, in display order (not re-sorted). |
+| `width` | `number` | `480` | Intrinsic SVG width in px. The chart scales to 100% of its container via CSS; `width`/`height` set the aspect ratio (`viewBox`). |
+| `height` | `number` | `240` | Intrinsic SVG height in px. |
+| `innerRadiusRatio` | `number` | `0.6` | Donut hole radius as a ratio of the outer radius; `0` renders a full pie. |
+| `label` | `string` | — | Accessible label read by screen readers in place of the visual chart. |

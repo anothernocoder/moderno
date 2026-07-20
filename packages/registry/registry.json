@@ -19,6 +19,23 @@
         "solid": "Hero.tsx"
       }
     },
+    "pricing": {
+      "domain": "marketing",
+      "description": "Sección de precios: tabla comparativa de planes con features y CTA.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/pricing/Pricing.tsx",
+        "vue": "blocks/marketing/pricing/Pricing.vue",
+        "svelte": "blocks/marketing/pricing/Pricing.svelte",
+        "solid": "blocks/marketing/pricing/Pricing.solid.tsx"
+      },
+      "dest": {
+        "react": "Pricing.tsx",
+        "vue": "Pricing.vue",
+        "svelte": "Pricing.svelte",
+        "solid": "Pricing.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

@@ -1,0 +1,94 @@
+---
+title: Pricing
+description: Sección de comparación de planes con kicker, título, subtítulo y hasta N tarjetas de precio. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RPricingDemo from '../../../../demos/react/blocks/PricingDemo.tsx'
+import VPricingDemo from '../../../../demos/vue/blocks/PricingDemo.vue'
+import SPricingDemo from '../../../../demos/svelte/blocks/PricingDemo.svelte'
+import OPricingDemo from '../../../../demos/solid/blocks/PricingDemo.tsx'
+
+**Pricing** es un [block](/es/introduction/blocks/) de marketing: una sección de comparación
+de planes con kicker, título, subtítulo y una grilla de tarjetas de precio. Compone los
+primitives `Card`, `Badge`, `Button` y `Divider`, y los tokens `--md-*`. Lo copias a tu repo
+con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RPricingDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VPricingDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SPricingDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OPricingDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add pricing --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add pricing --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add pricing --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add pricing --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Precios'` | Texto pequeño sobre el título |
+| `title` | `string` | `'Un plan para cada etapa'` | Titular principal |
+| `subtitle` | `string` | `'Empieza gratis…'` | Texto de apoyo |
+| `plans` | `PricingPlan[]` | 3 planes de ejemplo | Las tarjetas a renderizar |
+| `onSelect` | `(plan: PricingPlan) => void` | — | Se llama al hacer clic en el CTA de un plan |
+
+Forma de `PricingPlan`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `name` | `string` | Nombre del plan (también el título de la `Card`) |
+| `price` | `string` | Precio principal, ej. `'$29'` |
+| `period` | `string?` | Periodo de facturación, ej. `'/mes'` |
+| `description` | `string?` | Resumen del plan en una línea |
+| `features` | `string[]` | Lista de features con viñetas |
+| `ctaLabel` | `string?` | Texto del botón (default `'Elegir plan'`) |
+| `featured` | `boolean?` | Resalta la tarjeta con badge "Popular" y CTA primario |
+
+## Uso
+
+```tsx
+import { Pricing } from './blocks/Pricing'
+
+<Pricing
+  kicker="Precios"
+  title="Elige tu plan"
+  subtitle="Cancela cuando quieras."
+  plans={[
+    { name: 'Starter', price: '$0', features: ['1 proyecto'] },
+    { name: 'Pro', price: '$29', period: '/mes', features: ['Proyectos ilimitados'], featured: true },
+  ]}
+  onSelect={(plan) => track('pricing_cta_click', { plan: plan.name })}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onSelect` es el evento
+`@select`; en los demás es una prop callback.

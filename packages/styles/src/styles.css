@@ -1571,6 +1571,61 @@
   stroke: var(--md-surface-base);
   stroke-width: 1;
 }
+.md-chart-area {
+  fill: var(--md-primary);
+  fill-opacity: 0.15;
+  stroke: none;
+}
+.md-chart-bar {
+  fill: var(--md-primary);
+}
+.md-chart-bar-list-track {
+  fill: var(--md-surface-muted);
+}
+.md-chart-bar-list-fill {
+  /* Translucent, not solid: the label/value text sits on top of it and needs the
+     track underneath to keep showing through for contrast (--md-primary and
+     --md-text-primary render at near-identical value in both themes). */
+  fill: var(--md-primary);
+  fill-opacity: 0.35;
+}
+.md-chart-bar-list-label {
+  fill: var(--md-text-primary);
+  font-size: var(--md-text-label-md);
+  dominant-baseline: middle;
+}
+.md-chart-bar-list-value {
+  fill: var(--md-text-secondary);
+  font-size: var(--md-text-label-sm);
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+.md-chart-donut-slice {
+  stroke: var(--md-surface-base);
+  stroke-width: 1;
+}
+.md-chart-donut-slice:nth-of-type(5n + 1) {
+  fill: var(--md-primary);
+}
+.md-chart-donut-slice:nth-of-type(5n + 2) {
+  fill: var(--md-info);
+}
+.md-chart-donut-slice:nth-of-type(5n + 3) {
+  fill: var(--md-success);
+}
+.md-chart-donut-slice:nth-of-type(5n + 4) {
+  fill: var(--md-warning);
+}
+.md-chart-donut-slice:nth-of-type(5n + 5) {
+  fill: var(--md-error);
+}
+.md-chart-spark {
+  fill: none;
+  stroke: var(--md-primary);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .md-skeleton,

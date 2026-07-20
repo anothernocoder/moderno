@@ -1,0 +1,121 @@
+---
+title: Bar chart
+description: Token-styled SVG bar chart over the chart-core geometry (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RBarChartDemo from '../../../demos/react/BarChartDemo.tsx'
+import VBarChartDemo from '../../../demos/vue/BarChartDemo.vue'
+import SBarChartDemo from '../../../demos/svelte/BarChartDemo.svelte'
+import OBarChartDemo from '../../../demos/solid/BarChartDemo.tsx'
+
+**Bar chart** plots `{label, value}` data as one SVG bar per datum, from a shared 0
+baseline — negative values grow downward from the baseline instead of clipping. It
+builds on the same **chart-core** geometry model as [Line chart](/components/line-chart/)
+(ADR-0004) — `@moderno/chart-core`, built on `d3-scale` + `d3-shape` — computed once and
+rendered as SVG by each framework package. Bar fill comes from `--md-*` tokens. A
+**closed-prop** primitive (ADR-0003) — pass `data` and size props, no compositional
+anatomy.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RBarChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VBarChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SBarChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OBarChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Usage
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { BarChart } from '@moderno/react'
+
+<BarChart
+  data={[
+    { label: 'Jan', value: 12 },
+    { label: 'Feb', value: 28 },
+    { label: 'Mar', value: 18 },
+  ]}
+  width={480}
+  height={220}
+  label="Monthly signups"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { BarChart } from '@moderno/vue'
+
+const data = [
+  { label: 'Jan', value: 12 },
+  { label: 'Feb', value: 28 },
+  { label: 'Mar', value: 18 },
+]
+</script>
+
+<template>
+  <BarChart :data="data" :width="480" :height="220" label="Monthly signups" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { BarChart } from '@moderno/svelte'
+
+  const data = [
+    { label: 'Jan', value: 12 },
+    { label: 'Feb', value: 28 },
+    { label: 'Mar', value: 18 },
+  ]
+</script>
+
+<BarChart {data} width={480} height={220} label="Monthly signups" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { BarChart } from '@moderno/solid'
+
+<BarChart
+  data={[
+    { label: 'Jan', value: 12 },
+    { label: 'Feb', value: 28 },
+    { label: 'Mar', value: 18 },
+  ]}
+  width={480}
+  height={220}
+  label="Monthly signups"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `{ label: string; value: number }[]` | — | The bars to plot, in display order. |
+| `width` | `number` | `480` | Intrinsic SVG width in px. The chart scales to 100% of its container via CSS; `width`/`height` set the aspect ratio (`viewBox`). |
+| `height` | `number` | `240` | Intrinsic SVG height in px. |
+| `label` | `string` | — | Accessible label read by screen readers in place of the visual chart. |

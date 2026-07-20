@@ -135,6 +135,15 @@ describe('parts.chart — anatomy leaf names', () => {
       svg: 'md-chart-svg',
       line: 'md-chart-line',
       point: 'md-chart-point',
+      area: 'md-chart-area',
+      bar: 'md-chart-bar',
+      barListRow: 'md-chart-bar-list-row',
+      barListTrack: 'md-chart-bar-list-track',
+      barListFill: 'md-chart-bar-list-fill',
+      barListLabel: 'md-chart-bar-list-label',
+      barListValue: 'md-chart-bar-list-value',
+      donutSlice: 'md-chart-donut-slice',
+      spark: 'md-chart-spark',
     })
   })
 })
@@ -162,11 +171,13 @@ describe('legalNames — every class the contract may emit', () => {
     // exposed for frameworks…
     expect(parts.checkbox.label).toBe('md-checkbox-label')
     expect(parts.select.control).toBe('md-select-control')
+    expect(parts.chart.barListRow).toBe('md-chart-bar-list-row')
     // …but not enforced against CSS
     expect(names.has('md-checkbox-label')).toBe(false)
     expect(names.has('md-radio-item-text')).toBe(false)
     expect(names.has('md-select-control')).toBe(false)
     expect(names.has('md-select-item-text')).toBe(false)
     expect(names.has('md-toggle-label')).toBe(false)
+    expect(names.has('md-chart-bar-list-row')).toBe(false)
   })
 })

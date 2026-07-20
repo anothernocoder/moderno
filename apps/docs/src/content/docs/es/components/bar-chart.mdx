@@ -1,0 +1,122 @@
+---
+title: Bar chart
+description: Gráfico de barras SVG con tokens sobre la geometría de chart-core (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RBarChartDemo from '../../../../demos/react/BarChartDemo.tsx'
+import VBarChartDemo from '../../../../demos/vue/BarChartDemo.vue'
+import SBarChartDemo from '../../../../demos/svelte/BarChartDemo.svelte'
+import OBarChartDemo from '../../../../demos/solid/BarChartDemo.tsx'
+
+**Bar chart** dibuja datos `{label, value}` como una barra SVG por dato, desde una
+línea base compartida en 0 — los valores negativos crecen hacia abajo desde la línea
+base en lugar de recortarse. Construye sobre el mismo modelo de geometría de
+**chart-core** que [Line chart](/es/components/line-chart/) (ADR-0004) —
+`@moderno/chart-core`, construido sobre `d3-scale` + `d3-shape` — calculada una sola
+vez y renderizada como SVG por cada paquete de framework. El relleno de las barras
+viene de tokens `--md-*`. Primitive **closed-prop** (ADR-0003) — se pasan `data` y
+props de tamaño, sin anatomía composicional.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RBarChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VBarChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SBarChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OBarChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { BarChart } from '@moderno/react'
+
+<BarChart
+  data={[
+    { label: 'Ene', value: 12 },
+    { label: 'Feb', value: 28 },
+    { label: 'Mar', value: 18 },
+  ]}
+  width={480}
+  height={220}
+  label="Altas mensuales"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { BarChart } from '@moderno/vue'
+
+const data = [
+  { label: 'Ene', value: 12 },
+  { label: 'Feb', value: 28 },
+  { label: 'Mar', value: 18 },
+]
+</script>
+
+<template>
+  <BarChart :data="data" :width="480" :height="220" label="Altas mensuales" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { BarChart } from '@moderno/svelte'
+
+  const data = [
+    { label: 'Ene', value: 12 },
+    { label: 'Feb', value: 28 },
+    { label: 'Mar', value: 18 },
+  ]
+</script>
+
+<BarChart {data} width={480} height={220} label="Altas mensuales" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { BarChart } from '@moderno/solid'
+
+<BarChart
+  data={[
+    { label: 'Ene', value: 12 },
+    { label: 'Feb', value: 28 },
+    { label: 'Mar', value: 18 },
+  ]}
+  width={480}
+  height={220}
+  label="Altas mensuales"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `data` | `{ label: string; value: number }[]` | — | Las barras a graficar, en orden de presentación. |
+| `width` | `number` | `480` | Ancho intrínseco del SVG en px. El gráfico se escala al 100% de su contenedor vía CSS; `width`/`height` fijan la relación de aspecto (`viewBox`). |
+| `height` | `number` | `240` | Alto intrínseco del SVG en px. |
+| `label` | `string` | — | Etiqueta accesible leída por lectores de pantalla en lugar del gráfico visual. |

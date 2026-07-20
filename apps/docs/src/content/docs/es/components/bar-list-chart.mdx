@@ -1,0 +1,124 @@
+---
+title: Bar list chart
+description: Lista de barras SVG con tokens sobre la geometría de chart-core (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RBarListChartDemo from '../../../../demos/react/BarListChartDemo.tsx'
+import VBarListChartDemo from '../../../../demos/vue/BarListChartDemo.vue'
+import SBarListChartDemo from '../../../../demos/svelte/BarListChartDemo.svelte'
+import OBarListChartDemo from '../../../../demos/solid/BarListChartDemo.tsx'
+
+**Bar list chart** clasifica datos `{label, value}` como filas horizontales, cada una
+una pista del ancho completo del gráfico con un relleno proporcional a su parte del
+valor más grande — la etiqueta y el valor se renderizan como texto SVG junto al
+relleno. Construye sobre el mismo modelo de geometría de **chart-core** que
+[Line chart](/es/components/line-chart/) (ADR-0004) — `@moderno/chart-core`,
+construido sobre `d3-scale` + `d3-shape` — calculada una sola vez y renderizada como
+SVG por cada paquete de framework. El color de la pista, el relleno y el texto viene
+de tokens `--md-*`. Primitive **closed-prop** (ADR-0003) — se pasan `data` y props de
+tamaño, sin anatomía composicional. `data` no se reordena, así que pásalo ya
+clasificado para una lista de barras convencional.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RBarListChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VBarListChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SBarListChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OBarListChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { BarListChart } from '@moderno/react'
+
+<BarListChart
+  data={[
+    { label: 'Directo', value: 456 },
+    { label: 'Búsqueda orgánica', value: 351 },
+    { label: 'Referencia', value: 271 },
+  ]}
+  width={480}
+  height={220}
+  label="Tráfico por fuente"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { BarListChart } from '@moderno/vue'
+
+const data = [
+  { label: 'Directo', value: 456 },
+  { label: 'Búsqueda orgánica', value: 351 },
+  { label: 'Referencia', value: 271 },
+]
+</script>
+
+<template>
+  <BarListChart :data="data" :width="480" :height="220" label="Tráfico por fuente" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { BarListChart } from '@moderno/svelte'
+
+  const data = [
+    { label: 'Directo', value: 456 },
+    { label: 'Búsqueda orgánica', value: 351 },
+    { label: 'Referencia', value: 271 },
+  ]
+</script>
+
+<BarListChart {data} width={480} height={220} label="Tráfico por fuente" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { BarListChart } from '@moderno/solid'
+
+<BarListChart
+  data={[
+    { label: 'Directo', value: 456 },
+    { label: 'Búsqueda orgánica', value: 351 },
+    { label: 'Referencia', value: 271 },
+  ]}
+  width={480}
+  height={220}
+  label="Tráfico por fuente"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `data` | `{ label: string; value: number }[]` | — | Las filas a graficar, en orden de presentación (no se reordenan). |
+| `width` | `number` | `480` | Ancho intrínseco del SVG en px. El gráfico se escala al 100% de su contenedor vía CSS; `width`/`height` fijan la relación de aspecto (`viewBox`). |
+| `height` | `number` | `240` | Alto intrínseco del SVG en px. |
+| `label` | `string` | — | Etiqueta accesible leída por lectores de pantalla en lugar del gráfico visual. |

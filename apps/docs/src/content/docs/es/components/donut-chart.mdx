@@ -1,0 +1,125 @@
+---
+title: Donut chart
+description: Gráfico de dona SVG con tokens sobre la geometría de chart-core (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RDonutChartDemo from '../../../../demos/react/DonutChartDemo.tsx'
+import VDonutChartDemo from '../../../../demos/vue/DonutChartDemo.vue'
+import SDonutChartDemo from '../../../../demos/svelte/DonutChartDemo.svelte'
+import ODonutChartDemo from '../../../../demos/solid/DonutChartDemo.tsx'
+
+**Donut chart** dibuja datos `{label, value}` como un arco SVG por dato, con tamaño
+proporcional a su parte del total — en el orden de entrada, sin reordenar por tamaño.
+Construye sobre el mismo modelo de geometría de **chart-core** que
+[Line chart](/es/components/line-chart/) (ADR-0004) — `@moderno/chart-core`,
+construido sobre los generadores `pie`/`arc` de `d3-scale` + `d3-shape` — calculada una
+sola vez y renderizada como SVG por cada paquete de framework. Los segmentos rotan
+entre cinco tokens de color semánticos `--md-*` (`primary`, `info`, `success`,
+`warning`, `error`), ya que el set de tokens no tiene una paleta categórica dedicada
+para gráficos. Primitive **closed-prop** (ADR-0003) — se pasan `data` y props de
+tamaño, sin anatomía composicional.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RDonutChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VDonutChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SDonutChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <ODonutChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { DonutChart } from '@moderno/react'
+
+<DonutChart
+  data={[
+    { label: 'Directo', value: 456 },
+    { label: 'Búsqueda orgánica', value: 351 },
+    { label: 'Referencia', value: 271 },
+  ]}
+  width={280}
+  height={280}
+  label="Tráfico por fuente"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { DonutChart } from '@moderno/vue'
+
+const data = [
+  { label: 'Directo', value: 456 },
+  { label: 'Búsqueda orgánica', value: 351 },
+  { label: 'Referencia', value: 271 },
+]
+</script>
+
+<template>
+  <DonutChart :data="data" :width="280" :height="280" label="Tráfico por fuente" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { DonutChart } from '@moderno/svelte'
+
+  const data = [
+    { label: 'Directo', value: 456 },
+    { label: 'Búsqueda orgánica', value: 351 },
+    { label: 'Referencia', value: 271 },
+  ]
+</script>
+
+<DonutChart {data} width={280} height={280} label="Tráfico por fuente" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { DonutChart } from '@moderno/solid'
+
+<DonutChart
+  data={[
+    { label: 'Directo', value: 456 },
+    { label: 'Búsqueda orgánica', value: 351 },
+    { label: 'Referencia', value: 271 },
+  ]}
+  width={280}
+  height={280}
+  label="Tráfico por fuente"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `data` | `{ label: string; value: number }[]` | — | Los segmentos a graficar, en orden de presentación (no se reordenan). |
+| `width` | `number` | `480` | Ancho intrínseco del SVG en px. El gráfico se escala al 100% de su contenedor vía CSS; `width`/`height` fijan la relación de aspecto (`viewBox`). |
+| `height` | `number` | `240` | Alto intrínseco del SVG en px. |
+| `innerRadiusRatio` | `number` | `0.6` | Radio del agujero de la dona como ratio del radio exterior; `0` renderiza un pie completo. |
+| `label` | `string` | — | Etiqueta accesible leída por lectores de pantalla en lugar del gráfico visual. |

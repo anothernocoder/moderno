@@ -121,6 +121,23 @@
         "solid": "PortfolioHeader.tsx"
       }
     },
+    "portfolio-sections": {
+      "domain": "portfolio",
+      "description": "Showcase de trabajo: grid de proyectos con imagen, categoría y enlace de caso de estudio.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/portfolio/portfolio-sections/PortfolioSections.tsx",
+        "vue": "blocks/portfolio/portfolio-sections/PortfolioSections.vue",
+        "svelte": "blocks/portfolio/portfolio-sections/PortfolioSections.svelte",
+        "solid": "blocks/portfolio/portfolio-sections/PortfolioSections.solid.tsx"
+      },
+      "dest": {
+        "react": "PortfolioSections.tsx",
+        "vue": "PortfolioSections.vue",
+        "svelte": "PortfolioSections.svelte",
+        "solid": "PortfolioSections.tsx"
+      }
+    },
     "story": {
       "domain": "images-ads",
       "description": "Plantilla vertical 9:16 para ads / historias: kicker, título y CTA.",

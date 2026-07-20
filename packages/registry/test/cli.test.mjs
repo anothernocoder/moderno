@@ -78,6 +78,33 @@ test('add copies a different framework variant of the product-details block', as
   assert.match(copied, /Moderno block — ProductDetails \(Vue\)/)
 })
 
+test('add copies the portfolio-sections block (portfolio domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync(
+    'node',
+    [CLI, 'add', 'portfolio-sections', '--framework', 'react', '--dest', dest],
+    { encoding: 'utf8' },
+  )
+
+  assert.match(output, /portfolio-sections/)
+  const copied = await readFile(join(dest, 'PortfolioSections.tsx'), 'utf8')
+  assert.match(copied, /export function PortfolioSections/)
+})
+
+test('add copies a different framework variant of the portfolio-sections block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync(
+    'node',
+    [CLI, 'add', 'portfolio-sections', '--framework', 'svelte', '--dest', dest],
+    { encoding: 'utf8' },
+  )
+
+  const copied = await readFile(join(dest, 'PortfolioSections.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — PortfolioSections \(Svelte\)/)
+})
+
 test('add fails for an unknown block', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -120,4 +147,15 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.ok(ecommerceSection, 'expected an "ecommerce" domain group in list output')
   assert.match(ecommerceSection, /product-card/)
   assert.match(ecommerceSection, /product-details/)
+})
+
+test('list groups blocks by domain and includes the portfolio-sections block', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  const sections = output.split(/\n\s*\n/).filter((section) => section.trim().length > 0)
+  const portfolioSection = sections.find((section) => section.includes('portfolio'))
+
+  assert.ok(portfolioSection, 'expected a "portfolio" domain group in list output')
+  assert.match(portfolioSection, /portfolio-header/)
+  assert.match(portfolioSection, /portfolio-sections/)
 })

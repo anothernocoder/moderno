@@ -1,0 +1,85 @@
+---
+title: Portfolio Sections
+description: Secciones de portafolio — grid de trabajo con tarjetas de proyecto. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RPortfolioSectionsDemo from '../../../../demos/react/blocks/PortfolioSectionsDemo.tsx'
+import VPortfolioSectionsDemo from '../../../../demos/vue/blocks/PortfolioSectionsDemo.vue'
+import SPortfolioSectionsDemo from '../../../../demos/svelte/blocks/PortfolioSectionsDemo.svelte'
+import OPortfolioSectionsDemo from '../../../../demos/solid/blocks/PortfolioSectionsDemo.tsx'
+
+**Portfolio Sections** es un [block](/es/introduction/blocks/) de portafolio: un grid de
+trabajo con tarjetas de proyecto que incluyen imagen, título, categoría/fecha y una flecha
+que aparece al pasar el mouse enlazando al caso de estudio. Está construido solo con los
+tokens `--md-*`, sin primitives.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RPortfolioSectionsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VPortfolioSectionsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SPortfolioSectionsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OPortfolioSectionsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add portfolio-sections --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add portfolio-sections --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add portfolio-sections --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add portfolio-sections --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/).
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `projects` | `PortfolioProject[]` | 4 proyectos de ejemplo | Proyectos a mostrar en el grid |
+| `onSelect` | `(project: PortfolioProject) => void` | — | Se llama al hacer click en una tarjeta |
+
+### `PortfolioProject`
+
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| `title` | `string` | Título del proyecto |
+| `meta` | `string` | Línea de categoría / fecha |
+| `image` | `string` | URL de la imagen de portada (placeholder si se omite) |
+| `href` | `string` | URL destino del caso de estudio |
+
+## Uso
+
+```tsx
+import { PortfolioSections } from './blocks/PortfolioSections'
+
+<PortfolioSections
+  projects={[
+    { title: 'Sistema de diseño Moderno', meta: 'Design systems · 2025', href: '/trabajo/moderno' },
+    { title: 'Checkout de Rappi Turbo', meta: 'Producto · 2024', href: '/trabajo/rappi-turbo' },
+  ]}
+  onSelect={(project) => track('portfolio_card_click', project)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onSelect` es el evento
+`@select`; en los demás es una prop callback.

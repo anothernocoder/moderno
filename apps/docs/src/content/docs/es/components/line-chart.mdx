@@ -1,0 +1,125 @@
+---
+title: Line chart
+description: Gráfico de líneas SVG con tokens sobre la geometría de chart-core (d3-scale + d3-shape), closed-prop.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RLineChartDemo from '../../../../demos/react/LineChartDemo.tsx'
+import VLineChartDemo from '../../../../demos/vue/LineChartDemo.vue'
+import SLineChartDemo from '../../../../demos/svelte/LineChartDemo.svelte'
+import OLineChartDemo from '../../../../demos/solid/LineChartDemo.tsx'
+
+**Line chart** dibuja datos `{x, y}` como un path SVG, opcionalmente con un punto por
+dato. Es la primitiva trazadora del chart core (ADR-0004): la geometría — escalas y el
+path de la línea — se calcula una sola vez en el **chart-core** framework-neutral
+(`@moderno/chart-core`, construido sobre `d3-scale` + `d3-shape`), y cada paquete de
+framework solo renderiza esa geometría como SVG. El color del trazo y de los puntos
+viene de tokens `--md-*`, así el theming (claro/oscuro) se hereda de CSS sin plomería
+de color en JS. Primitive **closed-prop** (ADR-0003) — se pasan `data` y props de
+tamaño, sin anatomía composicional.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+  <div class="md-demo">
+    <RLineChartDemo client:only="react" />
+  </div>
+</TabItem>
+<TabItem label="Vue">
+  <div class="md-demo">
+    <VLineChartDemo client:only="vue" />
+  </div>
+</TabItem>
+<TabItem label="Svelte">
+  <div class="md-demo">
+    <SLineChartDemo client:only="svelte" />
+  </div>
+</TabItem>
+<TabItem label="Solid">
+  <div class="md-demo">
+    <OLineChartDemo client:only="solid-js" />
+  </div>
+</TabItem>
+</Tabs>
+
+## Uso
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```tsx
+import { LineChart } from '@moderno/react'
+
+<LineChart
+  data={[
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]}
+  width={480}
+  height={220}
+  showPoints
+  label="Ingresos mensuales"
+/>
+```
+</TabItem>
+<TabItem label="Vue">
+```vue
+<script setup lang="ts">
+import { LineChart } from '@moderno/vue'
+
+const data = [
+  { x: 0, y: 12 },
+  { x: 1, y: 28 },
+  { x: 2, y: 18 },
+]
+</script>
+
+<template>
+  <LineChart :data="data" :width="480" :height="220" show-points label="Ingresos mensuales" />
+</template>
+```
+</TabItem>
+<TabItem label="Svelte">
+```svelte
+<script lang="ts">
+  import { LineChart } from '@moderno/svelte'
+
+  const data = [
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]
+</script>
+
+<LineChart {data} width={480} height={220} showPoints label="Ingresos mensuales" />
+```
+</TabItem>
+<TabItem label="Solid">
+```tsx
+import { LineChart } from '@moderno/solid'
+
+<LineChart
+  data={[
+    { x: 0, y: 12 },
+    { x: 1, y: 28 },
+    { x: 2, y: 18 },
+  ]}
+  width={480}
+  height={220}
+  showPoints
+  label="Ingresos mensuales"
+/>
+```
+</TabItem>
+</Tabs>
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `data` | `{ x: number; y: number }[]` | — | Los puntos a graficar, en orden de x. |
+| `width` | `number` | `480` | Ancho intrínseco del SVG en px. El gráfico se escala al 100% de su contenedor vía CSS; `width`/`height` fijan la relación de aspecto (`viewBox`). |
+| `height` | `number` | `240` | Alto intrínseco del SVG en px. |
+| `showPoints` | `boolean` | `false` | Renderiza un punto en cada dato. |
+| `label` | `string` | — | Etiqueta accesible leída por lectores de pantalla en lugar del gráfico visual. |

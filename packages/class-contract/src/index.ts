@@ -356,6 +356,12 @@ export const parts = {
     tableCell: 'md-datepicker-table-cell',
     tableCellTrigger: 'md-datepicker-table-cell-trigger',
   },
+  chart: {
+    root: 'md-chart',
+    svg: 'md-chart-svg',
+    line: 'md-chart-line',
+    point: 'md-chart-point',
+  },
 } as const
 
 /** Leaves the frameworks apply but styles.css does not style — excluded from enforcement. */

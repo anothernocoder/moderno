@@ -19,6 +19,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@moderno/chart-core": "workspace:*",
     "@moderno/class-contract": "workspace:*",
     "@moderno/styles": "workspace:*",
     "@moderno/tokens": "workspace:*",

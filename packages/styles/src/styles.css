@@ -1549,6 +1549,28 @@
   cursor: pointer;
 }
 .md-toast-close:hover { color: var(--md-text-primary); }
+/* ---------- Chart (chart-core geometry, closed-prop, SVG) ---------- */
+.md-chart {
+  display: block;
+  width: 100%;
+}
+.md-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.md-chart-line {
+  fill: none;
+  stroke: var(--md-primary);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.md-chart-point {
+  fill: var(--md-primary);
+  stroke: var(--md-surface-base);
+  stroke-width: 1;
+}
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .md-skeleton,

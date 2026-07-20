@@ -125,3 +125,5 @@ export const Carousel = {
   IndicatorGroup: CarouselIndicatorGroup,
   Indicator: CarouselIndicator,
 }
+
+export { default as LineChart } from './LineChart.svelte'

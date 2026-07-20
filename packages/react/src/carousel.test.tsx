@@ -104,6 +104,7 @@ describe('Carousel', () => {
     expect(indicators[0]).toHaveAttribute('data-current')
 
     fireEvent.click(screen.getByRole('button', { name: 'Next slide' }))
+    await settle()
 
     await waitFor(() => expect(onPageChange).toHaveBeenCalledWith(1))
     await waitFor(() => expect(indicators[1]).toHaveAttribute('data-current'))
@@ -121,8 +122,10 @@ describe('Carousel', () => {
 
     const indicators = screen.getAllByRole('button', { name: /Go to slide/ })
     fireEvent.click(indicators[2])
+    await settle()
 
     await waitFor(() => expect(onPageChange).toHaveBeenCalledWith(2))
+    await waitFor(() => expect(indicators[2]).toHaveAttribute('data-current'))
     await waitFor(() => expect(screen.getByRole('button', { name: 'Next slide' })).toBeDisabled())
 
     restoreLayout()

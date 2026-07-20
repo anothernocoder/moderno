@@ -53,6 +53,23 @@
         "solid": "Stats.tsx"
       }
     },
+    "table": {
+      "domain": "applications",
+      "description": "Tabla de datos de aplicación: orden, selección de filas y acciones en lote.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/table/Table.tsx",
+        "vue": "blocks/applications/table/Table.vue",
+        "svelte": "blocks/applications/table/Table.svelte",
+        "solid": "blocks/applications/table/Table.solid.tsx"
+      },
+      "dest": {
+        "react": "Table.tsx",
+        "vue": "Table.vue",
+        "svelte": "Table.svelte",
+        "solid": "Table.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",

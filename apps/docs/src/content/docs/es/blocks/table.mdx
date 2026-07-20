@@ -1,0 +1,93 @@
+---
+title: Table
+description: Tabla de datos de aplicación con columna de orden ordenable, selección de filas, badges de estado y acciones en lote en el footer. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RTableDemo from '../../../../demos/react/blocks/TableDemo.tsx'
+import VTableDemo from '../../../../demos/vue/blocks/TableDemo.vue'
+import STableDemo from '../../../../demos/svelte/blocks/TableDemo.svelte'
+import OTableDemo from '../../../../demos/solid/blocks/TableDemo.tsx'
+
+**Table** es un [block](/es/introduction/blocks/) de aplicaciones: una tabla de datos con
+columna de orden ordenable, selección por fila (con "seleccionar todo" indeterminado), badges
+de estado y un footer que muestra acciones en lote cuando hay filas seleccionadas. Compone los
+primitives `Checkbox`, `Badge` y `Button`, y los tokens `--md-*`. Lo copias a tu repo con el
+CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RTableDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VTableDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><STableDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OTableDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add table --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add table --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add table --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add table --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `rows` | `TableRow[]` | 3 pedidos de ejemplo | Las filas a renderizar |
+| `onExport` | `(selected: TableRow[]) => void` | — | Se llama al hacer clic en "Exportar", con las filas seleccionadas |
+| `onCancelSelected` | `(selected: TableRow[]) => void` | — | Se llama al hacer clic en "Cancelar pedidos", con las filas seleccionadas |
+| `onRowAction` | `(row: TableRow) => void` | — | Se llama al hacer clic en el botón `⋯` de una fila |
+
+Forma de `TableRow`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `id` | `string` | Id único de la fila, también usado como clave de selección |
+| `order` | `string` | Referencia del pedido, la columna ordenable |
+| `customer` | `string` | Nombre del cliente |
+| `status` | `string` | Etiqueta de estado mostrada en el `Badge` |
+| `statusVariant` | `'neutral' \| 'solid' \| 'success' \| 'warning' \| 'error' \| 'info'` | Variante de color del `Badge` para el estado |
+| `total` | `string` | Total del pedido formateado, alineado a la derecha |
+
+## Uso
+
+```tsx
+import { Table } from './blocks/Table'
+
+<Table
+  rows={[
+    { id: 'A-1', order: 'A-1', customer: 'Acme Co', status: 'Despachado', statusVariant: 'success', total: '$120' },
+    { id: 'A-2', order: 'A-2', customer: 'Globex', status: 'Pendiente', statusVariant: 'warning', total: '$40' },
+  ]}
+  onExport={(rows) => exportarPedidos(rows)}
+  onCancelSelected={(rows) => cancelarPedidos(rows)}
+  onRowAction={(row) => abrirMenuDePedido(row)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onExport`/`onCancelSelected`/
+`onRowAction` son los eventos `@export`/`@cancel-selected`/`@row-action`; en los demás son
+props callback.

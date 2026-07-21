@@ -34,14 +34,14 @@ const DEFAULT_FAQS: FaqItem[] = [
 
 const props = withDefaults(
   defineProps<{
-    eyebrow?: string
+    kicker?: string
     title?: string
     subtitle?: string
     items?: FaqItem[]
     defaultValue?: string[]
   }>(),
   {
-    eyebrow: 'Preguntas frecuentes',
+    kicker: 'Preguntas frecuentes',
     title: '¿Tienes dudas?',
     subtitle: 'Encuentra respuestas a las preguntas más frecuentes.',
   },
@@ -54,7 +54,7 @@ const defaultValue = props.defaultValue ?? (items[0] ? ['faq-0'] : [])
 <template>
   <section class="md-faq">
     <div class="md-faq__header">
-      <p class="md-faq__eyebrow">{{ eyebrow }}</p>
+      <p class="md-faq__kicker">{{ kicker }}</p>
       <h2 class="md-faq__title">{{ title }}</h2>
       <p class="md-faq__subtitle">{{ subtitle }}</p>
     </div>
@@ -79,7 +79,7 @@ const defaultValue = props.defaultValue ?? (items[0] ? ['faq-0'] : [])
   margin: 0 auto 56px;
   max-width: 640px;
 }
-.md-faq__eyebrow {
+.md-faq__kicker {
   font-size: var(--md-text-label-sm);
   letter-spacing: 0.14em;
   text-transform: uppercase;

@@ -10,7 +10,7 @@ import SFaqDemo from '../../../../demos/svelte/blocks/FaqDemo.svelte'
 import OFaqDemo from '../../../../demos/solid/blocks/FaqDemo.tsx'
 
 **Faq** es un [block](/es/introduction/blocks/) de marketing: una sección de preguntas frecuentes
-con un encabezado centrado (eyebrow/título/subtítulo) sobre una lista de preguntas y respuestas.
+con un encabezado centrado (kicker/título/subtítulo) sobre una lista de preguntas y respuestas.
 Compone el primitive `Accordion` y los tokens `--md-*`. Lo copias a tu repo con el CLI y lo editas
 libremente.
 
@@ -55,7 +55,7 @@ Tras copiarlo, instala el primitive `@moderno/<framework>` e
 
 | Prop | Tipo | Default | Descripción |
 |------|------|---------|-------------|
-| `eyebrow` | `string` | `'Preguntas frecuentes'` | Etiqueta pequeña sobre el título |
+| `kicker` | `string` | `'Preguntas frecuentes'` | Texto pequeño sobre el título |
 | `title` | `string` | `'¿Tienes dudas?'` | Título de la sección |
 | `subtitle` | `string` | `'Encuentra respuestas a las preguntas más frecuentes.'` | Texto de introducción corto |
 | `items` | `FaqItem[]` | Cinco preguntas de ejemplo | La lista de preguntas y respuestas |
@@ -70,7 +70,7 @@ Un `FaqItem` es `{ question: string; answer: string }`. Cada item se renderiza c
 import { Faq } from './blocks/Faq'
 
 <Faq
-  eyebrow="Preguntas frecuentes"
+  kicker="Preguntas frecuentes"
   title="¿Tienes dudas?"
   subtitle="Respuestas a las preguntas que más recibimos."
   items={[
@@ -82,7 +82,7 @@ import { Faq } from './blocks/Faq'
 
 La API de props es idéntica en los cuatro frameworks.
 
-El block renderiza un encabezado centrado (eyebrow, título, subtítulo) sobre un `Accordion.Root`
+El block renderiza un encabezado centrado (kicker, título, subtítulo) sobre un `Accordion.Root`
 construido a partir de `items`, un `Accordion.Item` por pregunta. Por defecto el primer item está
 expandido y el accordion es `collapsible`, así que cualquier item puede volver a cerrarse; pasa
 `defaultValue={[]}` para empezar con todo colapsado.

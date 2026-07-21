@@ -7,7 +7,7 @@ export interface FaqItem {
 }
 
 export interface FaqProps {
-  eyebrow?: string
+  kicker?: string
   title?: string
   subtitle?: string
   items?: FaqItem[]
@@ -39,7 +39,7 @@ const DEFAULT_FAQS: FaqItem[] = [
 
 const sectionStyle: CSSProperties = { padding: '96px 24px', background: 'var(--md-surface-base)' }
 const headerStyle: CSSProperties = { textAlign: 'center', margin: '0 auto 56px', maxWidth: '640px' }
-const eyebrowStyle: CSSProperties = {
+const kickerStyle: CSSProperties = {
   fontSize: 'var(--md-text-label-sm)',
   letterSpacing: '0.14em',
   textTransform: 'uppercase',
@@ -68,7 +68,7 @@ const accordionWrapStyle: CSSProperties = { maxWidth: '720px', margin: '0 auto' 
  * primitive + Moderno tokens.
  */
 export function Faq({
-  eyebrow = 'Preguntas frecuentes',
+  kicker = 'Preguntas frecuentes',
   title = '¿Tienes dudas?',
   subtitle = 'Encuentra respuestas a las preguntas más frecuentes.',
   items = DEFAULT_FAQS,
@@ -77,7 +77,7 @@ export function Faq({
   return (
     <section style={sectionStyle}>
       <div style={headerStyle}>
-        <p style={eyebrowStyle}>{eyebrow}</p>
+        <p style={kickerStyle}>{kicker}</p>
         <h2 style={titleStyle}>{title}</h2>
         <p style={subtitleStyle}>{subtitle}</p>
       </div>

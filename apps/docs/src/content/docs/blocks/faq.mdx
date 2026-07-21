@@ -10,7 +10,7 @@ import SFaqDemo from '../../../demos/svelte/blocks/FaqDemo.svelte'
 import OFaqDemo from '../../../demos/solid/blocks/FaqDemo.tsx'
 
 **Faq** is a marketing [block](/introduction/blocks/): a frequently-asked-questions section with a
-centered eyebrow/title/subtitle header above a Q&A list. It composes the `Accordion` primitive and
+centered kicker/title/subtitle header above a Q&A list. It composes the `Accordion` primitive and
 the `--md-*` tokens. You copy it into your repo with the CLI and edit it freely.
 
 ## Live demo
@@ -54,7 +54,7 @@ After copying it, install the `@moderno/<framework>` primitive and
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `eyebrow` | `string` | `'Preguntas frecuentes'` | Small label above the title |
+| `kicker` | `string` | `'Preguntas frecuentes'` | Small text above the title |
 | `title` | `string` | `'¿Tienes dudas?'` | Section title |
 | `subtitle` | `string` | `'Encuentra respuestas a las preguntas más frecuentes.'` | Short intro text |
 | `items` | `FaqItem[]` | Five sample questions | The Q&A list |
@@ -69,7 +69,7 @@ with a generated `value` of `faq-${index}`.
 import { Faq } from './blocks/Faq'
 
 <Faq
-  eyebrow="FAQ"
+  kicker="FAQ"
   title="Got questions?"
   subtitle="Answers to the questions we hear most often."
   items={[
@@ -81,7 +81,7 @@ import { Faq } from './blocks/Faq'
 
 The props API is identical across all four frameworks.
 
-The block renders a centered header (eyebrow, title, subtitle) above an `Accordion.Root` built
+The block renders a centered header (kicker, title, subtitle) above an `Accordion.Root` built
 from `items`, one `Accordion.Item` per question. By default the first item is expanded and the
 accordion is `collapsible`, so any item can be closed again; pass `defaultValue={[]}` to start with
 everything collapsed.

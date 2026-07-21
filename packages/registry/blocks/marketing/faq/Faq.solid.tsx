@@ -7,7 +7,7 @@ export interface FaqItem {
 }
 
 export interface FaqProps {
-  eyebrow?: string
+  kicker?: string
   title?: string
   subtitle?: string
   items?: FaqItem[]
@@ -39,7 +39,7 @@ const DEFAULT_FAQS: FaqItem[] = [
 
 const sectionStyle: JSX.CSSProperties = { padding: '96px 24px', background: 'var(--md-surface-base)' }
 const headerStyle: JSX.CSSProperties = { 'text-align': 'center', margin: '0 auto 56px', 'max-width': '640px' }
-const eyebrowStyle: JSX.CSSProperties = {
+const kickerStyle: JSX.CSSProperties = {
   'font-size': 'var(--md-text-label-sm)',
   'letter-spacing': '0.14em',
   'text-transform': 'uppercase',
@@ -68,7 +68,7 @@ const accordionWrapStyle: JSX.CSSProperties = { 'max-width': '720px', margin: '0
  * primitive + Moderno tokens.
  */
 export function Faq(props: FaqProps) {
-  const eyebrow = () => props.eyebrow ?? 'Preguntas frecuentes'
+  const kicker = () => props.kicker ?? 'Preguntas frecuentes'
   const title = () => props.title ?? '¿Tienes dudas?'
   const subtitle = () => props.subtitle ?? 'Encuentra respuestas a las preguntas más frecuentes.'
   const items = () => props.items ?? DEFAULT_FAQS
@@ -77,7 +77,7 @@ export function Faq(props: FaqProps) {
   return (
     <section style={sectionStyle}>
       <div style={headerStyle}>
-        <p style={eyebrowStyle}>{eyebrow()}</p>
+        <p style={kickerStyle}>{kicker()}</p>
         <h2 style={titleStyle}>{title()}</h2>
         <p style={subtitleStyle}>{subtitle()}</p>
       </div>

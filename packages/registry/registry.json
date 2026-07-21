@@ -19,6 +19,23 @@
         "solid": "Hero.tsx"
       }
     },
+    "banner": {
+      "domain": "marketing",
+      "description": "Franja de anuncio en la parte superior: copy, CTA opcional y cierre.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/banner/Banner.tsx",
+        "vue": "blocks/marketing/banner/Banner.vue",
+        "svelte": "blocks/marketing/banner/Banner.svelte",
+        "solid": "blocks/marketing/banner/Banner.solid.tsx"
+      },
+      "dest": {
+        "react": "Banner.tsx",
+        "vue": "Banner.vue",
+        "svelte": "Banner.svelte",
+        "solid": "Banner.tsx"
+      }
+    },
     "pricing": {
       "domain": "marketing",
       "description": "Sección de precios: tabla comparativa de planes con features y CTA.",

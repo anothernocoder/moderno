@@ -1,0 +1,85 @@
+---
+title: Banner
+description: Dismissible top-of-page promo/announcement strip with copy and an optional CTA/link. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RBannerDemo from '../../../demos/react/blocks/BannerDemo.tsx'
+import VBannerDemo from '../../../demos/vue/blocks/BannerDemo.vue'
+import SBannerDemo from '../../../demos/svelte/blocks/BannerDemo.svelte'
+import OBannerDemo from '../../../demos/solid/blocks/BannerDemo.tsx'
+
+**Banner** is a marketing [block](/introduction/blocks/): a dismissible top-of-page
+promo/announcement strip with copy and an optional CTA (as a button or a link). It composes
+the `Button` primitive and the `--md-*` tokens. You copy it into your repo with the CLI and
+edit it freely.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RBannerDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VBannerDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SBannerDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OBannerDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add banner --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add banner --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add banner --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add banner --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `message` | `string` | Sample announcement copy | The banner text |
+| `ctaLabel` | `string` | `'Ver blocks'` | Label for the optional CTA. Pass an empty string to hide the CTA entirely |
+| `ctaHref` | `string?` | — | Renders the CTA as a link instead of a button |
+| `onCtaClick` | `() => void` | — | Called when the CTA button is clicked (ignored when `ctaHref` is set) |
+| `dismissible` | `boolean` | `true` | Whether the close (×) button is shown |
+| `onDismiss` | `() => void` | — | Called when the banner is dismissed |
+| `closeLabel` | `string` | `'Cerrar'` | Accessible label for the close button |
+
+## Usage
+
+```tsx
+import { Banner } from './blocks/Banner'
+
+<Banner
+  message="New: blocks now ship for React, Vue, Svelte, and Solid."
+  ctaLabel="Read the docs"
+  ctaHref="/introduction/blocks/"
+  onDismiss={() => track('banner_dismissed')}
+/>
+```
+
+The props API is identical across all four frameworks. In Vue, `onCtaClick` and `onDismiss`
+are the `@cta` and `@dismiss` events; in the others they're callback props.
+
+Dismissal is local component state — the banner unmounts itself once closed. If you need it to
+stay dismissed across page loads, persist that in `onDismiss` (e.g. to `localStorage`) and pass
+a `dismissible={false}`-guarded initial render, or simply don't render the block when your own
+state says it was already dismissed.

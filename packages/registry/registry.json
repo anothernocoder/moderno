@@ -104,6 +104,23 @@
         "solid": "Content.tsx"
       }
     },
+    "careers": {
+      "domain": "marketing",
+      "description": "Sección de carreras/vacantes: lista de roles abiertos con título, ubicación y CTA de aplicar.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/careers/Careers.tsx",
+        "vue": "blocks/marketing/careers/Careers.vue",
+        "svelte": "blocks/marketing/careers/Careers.svelte",
+        "solid": "blocks/marketing/careers/Careers.solid.tsx"
+      },
+      "dest": {
+        "react": "Careers.tsx",
+        "vue": "Careers.vue",
+        "svelte": "Careers.svelte",
+        "solid": "Careers.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

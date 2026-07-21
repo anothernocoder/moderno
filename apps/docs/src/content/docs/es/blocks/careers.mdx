@@ -1,0 +1,92 @@
+---
+title: Careers
+description: Sección de carreras/vacantes — lista de roles abiertos con título, ubicación y CTA de aplicar. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RCareersDemo from '../../../../demos/react/blocks/CareersDemo.tsx'
+import VCareersDemo from '../../../../demos/vue/blocks/CareersDemo.vue'
+import SCareersDemo from '../../../../demos/svelte/blocks/CareersDemo.svelte'
+import OCareersDemo from '../../../../demos/solid/blocks/CareersDemo.tsx'
+
+**Careers** es un [block](/es/introduction/blocks/) de marketing: una sección de
+carreras/vacantes para páginas de empleo — una lista de roles abiertos con título, ubicación y
+un CTA de aplicar. Compone los primitives `Badge`, `Button` y `Divider` y los tokens `--md-*`.
+Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCareersDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCareersDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCareersDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCareersDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add careers --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add careers --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add careers --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add careers --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Carreras'` | Texto pequeño sobre el título |
+| `title` | `string` | `'Construye el futuro de Moderno con nosotros'` | Titular principal |
+| `subtitle` | `string` | `'Buscamos personas curiosas para un equipo pequeño y remoto.'` | Texto de apoyo |
+| `roles` | `CareerRole[]` | Cuatro roles de ejemplo | La lista de roles abiertos |
+
+Un `CareerRole` es `{ title: string; location: string; department?: string; type?: string; applyLabel?: string }`.
+
+React, Svelte y Solid también aceptan un callback `onApply?: (role: CareerRole) => void` que se
+dispara al hacer clic en el botón de aplicar de una fila. Vue en cambio emite un evento `apply`
+con el mismo payload (`@apply="..."`), siguiendo la convención de eventos de Vue.
+
+## Uso
+
+```tsx
+import { Careers } from './blocks/Careers'
+
+<Careers
+  kicker="Carreras"
+  title="Ven a construir con nosotros"
+  subtitle="Somos un equipo pequeño y remoto contratando en todo el stack."
+  roles={[
+    { title: 'Ingeniera/o de Producto Senior', location: 'Remoto', department: 'Ingeniería', type: 'Tiempo completo' },
+    { title: 'Diseñadora/or de Producto', location: 'Remoto', department: 'Diseño', type: 'Tiempo completo' },
+  ]}
+  onApply={(role) => console.log('aplicar', role.title)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks (React/Svelte/Solid usan `onApply`; Vue usa
+el emit `apply`).
+
+Los roles se renderizan como filas en una sola lista bordeada (max-width `760px`), cada una con
+un título, una fila de badges para ubicación/departamento/tipo, y un botón de aplicar a la
+derecha. Un `Divider` separa las filas a partir de la segunda. Omite `department` o `type` por
+rol para mostrar menos badges.

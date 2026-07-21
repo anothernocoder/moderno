@@ -121,6 +121,23 @@
         "solid": "Careers.tsx"
       }
     },
+    "footer": {
+      "domain": "marketing",
+      "description": "Pie de sitio: navegación, enlaces legales y enlaces sociales.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/footer/Footer.tsx",
+        "vue": "blocks/marketing/footer/Footer.vue",
+        "svelte": "blocks/marketing/footer/Footer.svelte",
+        "solid": "blocks/marketing/footer/Footer.solid.tsx"
+      },
+      "dest": {
+        "react": "Footer.tsx",
+        "vue": "Footer.vue",
+        "svelte": "Footer.svelte",
+        "solid": "Footer.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

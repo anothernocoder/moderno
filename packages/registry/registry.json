@@ -138,6 +138,23 @@
         "solid": "Footer.tsx"
       }
     },
+    "contact": {
+      "domain": "marketing",
+      "description": "Sección de contacto: información de contacto y formulario de nombre/correo/asunto/mensaje.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/contact/Contact.tsx",
+        "vue": "blocks/marketing/contact/Contact.vue",
+        "svelte": "blocks/marketing/contact/Contact.svelte",
+        "solid": "blocks/marketing/contact/Contact.solid.tsx"
+      },
+      "dest": {
+        "react": "Contact.tsx",
+        "vue": "Contact.vue",
+        "svelte": "Contact.svelte",
+        "solid": "Contact.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

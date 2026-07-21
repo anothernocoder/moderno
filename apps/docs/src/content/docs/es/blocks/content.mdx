@@ -1,0 +1,92 @@
+---
+title: Content
+description: Sección de contenido/prosa general — encabezados y copy largo. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RContentDemo from '../../../../demos/react/blocks/ContentDemo.tsx'
+import VContentDemo from '../../../../demos/vue/blocks/ContentDemo.vue'
+import SContentDemo from '../../../../demos/svelte/blocks/ContentDemo.svelte'
+import OContentDemo from '../../../../demos/solid/blocks/ContentDemo.tsx'
+
+**Content** es un [block](/es/introduction/blocks/) de marketing: una sección de
+contenido/prosa general para copy largo, dividido en secciones con encabezado y párrafos.
+Compone el primitive `Divider` y los tokens `--md-*`. Lo copias a tu repo con el CLI y lo
+editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RContentDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VContentDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SContentDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OContentDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add content --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add content --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add content --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add content --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Contenido'` | Texto pequeño sobre el título |
+| `title` | `string` | `'Escrito para durar, no solo para lanzar'` | Titular principal |
+| `subtitle` | `string` | `'Secciones de contenido largo con jerarquía tipográfica clara, listas para copiar en tu repo.'` | Texto de apoyo |
+| `sections` | `{ heading?: string; body: string[] }[]` | Tres secciones de ejemplo | Las secciones de prosa. `heading` es opcional; `body` es una lista de párrafos |
+
+## Uso
+
+```tsx
+import { Content } from './blocks/Content'
+
+<Content
+  kicker="Acerca de"
+  title="Por qué construimos esto"
+  subtitle="Una lectura corta sobre el problema y el enfoque."
+  sections={[
+    {
+      heading: 'El problema',
+      body: [
+        'Un párrafo de copy.',
+        'Un segundo párrafo, si la sección necesita más de uno.',
+      ],
+    },
+    {
+      heading: 'El enfoque',
+      body: ['Un solo párrafo también está bien.'],
+    },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+Las secciones se renderizan en una sola columna centrada (max-width `720px`), cada una con un
+encabezado `h3` opcional seguido de sus párrafos. Un `Divider` separa las secciones a partir de
+la segunda. Omite `heading` por sección para copy plano sin sub-encabezado.

@@ -1,0 +1,90 @@
+---
+title: Marketing Stats
+description: Metric / number highlight section for marketing pages — a centered header above a row of big numbers with labels. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RMarketingStatsDemo from '../../../demos/react/blocks/MarketingStatsDemo.tsx'
+import VMarketingStatsDemo from '../../../demos/vue/blocks/MarketingStatsDemo.vue'
+import SMarketingStatsDemo from '../../../demos/svelte/blocks/MarketingStatsDemo.svelte'
+import OMarketingStatsDemo from '../../../demos/solid/blocks/MarketingStatsDemo.tsx'
+
+**Marketing Stats** is a marketing [block](/introduction/blocks/): a metric/number highlight
+section with a centered kicker/title/subtitle header above a row of big numbers and labels. It's
+the marketing variant of a stats block — distinct from the applications [`Stats`](/blocks/stats/)
+block, which is a `Card`+`Badge` KPI dashboard widget. This one has no cards or badges: it's a
+bigger, editorial "brag row" meant for a landing page, composed purely from the `--md-*` tokens.
+You copy it into your repo with the CLI and edit it freely.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RMarketingStatsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VMarketingStatsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SMarketingStatsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OMarketingStatsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add marketing-stats --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add marketing-stats --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add marketing-stats --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add marketing-stats --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'En números'` | Small text above the title |
+| `title` | `string` | `'El impacto de Moderno'` | Section title |
+| `subtitle` | `string` | `'Un solo design system, cuatro frameworks, resultados medibles.'` | Short intro text |
+| `items` | `StatItem[]` | Four sample stats | The metric items |
+
+A `StatItem` is `{ value: string; label: string }`. Each item renders as a big serif number above
+a smaller uppercase label, centered, with no `Card` or `Badge` wrapper.
+
+## Usage
+
+```tsx
+import { MarketingStats } from './blocks/MarketingStats'
+
+<MarketingStats
+  kicker="By the numbers"
+  title="Moderno's impact"
+  subtitle="One design system, four frameworks, measurable results."
+  items={[
+    { value: '4', label: 'Frameworks supported' },
+    { value: '30+', label: 'Components' },
+    { value: '100%', label: 'Shared tokens' },
+    { value: '0', label: 'Extra UI dependencies' },
+  ]}
+/>
+```
+
+The props API is identical across all four frameworks.
+
+The block renders a centered header (kicker, title, subtitle) above a centered, wrapping row of
+stat items built from `items`, capped at a max-width of `960px`. Items use `flex-wrap` with a
+`48px` gap, so they reflow onto multiple lines as the viewport narrows.

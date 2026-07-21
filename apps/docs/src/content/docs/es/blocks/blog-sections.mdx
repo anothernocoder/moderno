@@ -1,0 +1,96 @@
+---
+title: Blog Sections
+description: Sección de listado/preview de posts — un encabezado centrado sobre una grilla responsiva de tarjetas de preview. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RBlogSectionsDemo from '../../../../demos/react/blocks/BlogSectionsDemo.tsx'
+import VBlogSectionsDemo from '../../../../demos/vue/blocks/BlogSectionsDemo.vue'
+import SBlogSectionsDemo from '../../../../demos/svelte/blocks/BlogSectionsDemo.svelte'
+import OBlogSectionsDemo from '../../../../demos/solid/blocks/BlogSectionsDemo.tsx'
+
+**Blog Sections** es un [block](/es/introduction/blocks/) de marketing: una sección de
+listado/preview de posts con un encabezado centrado (kicker/título/subtítulo) sobre una grilla
+responsiva de tarjetas de post, cada una con badge de categoría opcional, título, extracto y
+autor. Compone los primitives `Card`, `Avatar` y `Badge` y los tokens `--md-*`. Lo copias a tu
+repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RBlogSectionsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VBlogSectionsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SBlogSectionsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OBlogSectionsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add blog-sections --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add blog-sections --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add blog-sections --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add blog-sections --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Blog'` | Texto pequeño sobre el título |
+| `title` | `string` | `'Últimas publicaciones'` | Título de la sección |
+| `subtitle` | `string` | `'Notas del equipo sobre diseño, ingeniería y producto.'` | Texto de introducción corto |
+| `posts` | `BlogPostPreview[]` | Tres posts de ejemplo | Las tarjetas de preview |
+
+Un `BlogPostPreview` es `{ title: string; excerpt: string; author: string; date: string; avatarSrc?: string; initials?: string; category?: string }`.
+Cada item se renderiza como un `Card`: un `Badge` opcional para `category` arriba, el título del
+post como `<h3>`, el extracto como párrafo, y un footer con `Avatar` + nombre del autor + fecha.
+Cuando falta `avatarSrc`, `Avatar` recurre a `initials`.
+
+## Uso
+
+```tsx
+import { BlogSections } from './blocks/BlogSections'
+
+<BlogSections
+  kicker="Blog"
+  title="Últimas publicaciones"
+  subtitle="Notas del equipo sobre diseño, ingeniería y producto."
+  posts={[
+    {
+      title: 'Cómo escalamos nuestro sistema de diseño a cuatro frameworks',
+      excerpt: 'Componentes headless, una sola API, estilos compartidos.',
+      author: 'Jamie Chen',
+      date: '12 mar 2025',
+      initials: 'JC',
+      category: 'Ingeniería',
+    },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+El block renderiza un encabezado centrado (kicker, título, subtítulo) sobre una grilla responsiva
+de `Card`s construida a partir de `posts`, una tarjeta por post. La grilla usa
+`repeat(auto-fit, minmax(280px, 1fr))`, así que las tarjetas se reacomodan de tres columnas a una
+sola a medida que el viewport se angosta.

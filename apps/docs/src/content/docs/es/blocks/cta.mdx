@@ -1,0 +1,86 @@
+---
+title: CTA
+description: Una sección de titular + botón de llamado a la acción — plana y directa, sin kicker ni énfasis de subtítulo. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RCtaDemo from '../../../../demos/react/blocks/CtaDemo.tsx'
+import VCtaDemo from '../../../../demos/vue/blocks/CtaDemo.vue'
+import SCtaDemo from '../../../../demos/svelte/blocks/CtaDemo.svelte'
+import OCtaDemo from '../../../../demos/solid/blocks/CtaDemo.tsx'
+
+**Cta** es un [block](/es/introduction/blocks/) de marketing: una sección de llamado a la acción
+enfocada — un título, una descripción corta opcional y uno o dos botones. Es intencionalmente más
+simple que [Hero](/es/blocks/hero/): sin kicker eyebrow, sin tratamiento de subtítulo como énfasis
+secundario, solo un título directo, una descripción y botón(es). Compone el primitive `Button` y
+los tokens `--md-*`. Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCtaDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCtaDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCtaDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCtaDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add cta --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add cta --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add cta --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add cta --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `title` | `string` | `'¿Listo para construir con Moderno?'` | Título de la sección |
+| `description` | `string` | Una oración corta | Copy de apoyo opcional |
+| `ctaLabel` | `string` | `'Empezar ahora'` | Label del botón primario |
+| `onCta` | `() => void` | — | Handler de click del botón primario |
+| `secondaryLabel` | `string` | `undefined` | Label del botón secundario; solo se renderiza si está definido |
+| `onSecondary` | `() => void` | — | Handler de click del botón secundario |
+
+## Uso
+
+```tsx
+import { Cta } from './blocks/Cta'
+
+<Cta
+  title="¿Listo para construir con Moderno?"
+  description="Copia el block, instala el primitive y hazlo tuyo."
+  ctaLabel="Empezar ahora"
+  onCta={() => console.log('cta')}
+  secondaryLabel="Hablar con ventas"
+  onSecondary={() => console.log('secondary')}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+El block renderiza un panel centrado — título, descripción opcional y una fila de uno o dos
+`Button`s — sobre `var(--md-surface-raised)` con esquinas redondeadas, lo que lo distingue
+visualmente de la banda plana `--md-surface-base` de Hero. Por defecto solo se muestra el botón
+primario; pasa `secondaryLabel` para mostrar un segundo botón, de variante secundaria, junto a él.

@@ -1,0 +1,106 @@
+---
+title: Contact Modal
+description: Captura de contacto/leads basada en modal — un formulario compacto de nombre/correo/mensaje con un trigger secundario basado en Dialog para contacto directo. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RContactModalDemo from '../../../../demos/react/blocks/ContactModalDemo.tsx'
+import VContactModalDemo from '../../../../demos/vue/blocks/ContactModalDemo.vue'
+import SContactModalDemo from '../../../../demos/svelte/blocks/ContactModalDemo.svelte'
+import OContactModalDemo from '../../../../demos/solid/blocks/ContactModalDemo.tsx'
+
+**Contact Modal** es un [block](/es/introduction/blocks/) de marketing: un encabezado centrado
+(kicker/título/subtítulo) sobre un formulario compacto de una sola columna con nombre, correo y
+mensaje. Debajo del formulario compone el primitive `Dialog` como un trigger secundario real y
+funcional: un botón "¿prefieres escribirnos o llamarnos directo?" que abre un diálogo con tu
+información de contacto directo. Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RContactModalDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VContactModalDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SContactModalDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OContactModalDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add contact-modal --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add contact-modal --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add contact-modal --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add contact-modal --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Contacto'` | Texto pequeño sobre el título |
+| `title` | `string` | `'¿Hablamos?'` | Título de la sección |
+| `subtitle` | `string` | `'Cuéntanos en qué podemos ayudarte y te respondemos en menos de 24 horas.'` | Texto de introducción corto |
+| `nameLabel` | `string` | `'Nombre'` | Etiqueta del campo de nombre |
+| `emailLabel` | `string` | `'Correo'` | Etiqueta del campo de correo |
+| `messageLabel` | `string` | `'Mensaje'` | Etiqueta del campo de mensaje |
+| `submitLabel` | `string` | `'Enviar mensaje'` | Etiqueta del botón de envío |
+| `dialogTriggerLabel` | `string` | `'¿Prefieres escribirnos directo?'` | Etiqueta del botón trigger del `Dialog` |
+| `dialogTitle` | `string` | `'Contáctanos directamente'` | Título mostrado dentro del diálogo |
+| `dialogDescription` | `string` | `'Escríbenos a hola@acme.com o llámanos al +57 300 123 4567.'` | Descripción mostrada dentro del diálogo |
+| `dialogCloseLabel` | `string` | `'Cerrar'` | Etiqueta del botón de cierre del diálogo |
+| `defaultValues` | `Partial<{ name; email; message }>` | `undefined` | Valores iniciales del formulario |
+| `onSubmit` | `(values) => void` | `undefined` | Se llama con `{ name, email, message }` al enviar |
+
+El formulario es completamente controlado internamente; `onSubmit` solo se llama al enviar (el
+block no realiza validación ni llamadas de red). El `Dialog` al final de la sección es el mismo
+primitive `Dialog` de prop cerrada usado en el resto de Moderno: renderiza su propio botón trigger
+y controla su propio estado de apertura/cierre; este block solo le provee `triggerLabel`, `title`,
+`description` y `closeLabel`.
+
+## Uso
+
+```tsx
+import { ContactModal } from './blocks/ContactModal'
+
+<ContactModal
+  kicker="Contacto"
+  title="¿Hablamos?"
+  subtitle="Cuéntanos qué necesitas y te respondemos en un día."
+  nameLabel="Nombre"
+  emailLabel="Correo"
+  messageLabel="Mensaje"
+  submitLabel="Enviar mensaje"
+  dialogTriggerLabel="¿Prefieres contactarnos directo?"
+  dialogTitle="Contáctanos directamente"
+  dialogDescription="Escríbenos a hola@acme.com o llámanos al +57 300 123 4567."
+  dialogCloseLabel="Cerrar"
+  onSubmit={(values) => console.log(values)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+El block renderiza un encabezado centrado (kicker, título, subtítulo) sobre un formulario de una
+sola columna (`Input` nombre, `Input` correo, `Textarea` mensaje, `Button` de envío) con un ancho
+máximo de 480px y centrado. Debajo del formulario, un divisor lo separa del trigger del `Dialog`,
+de modo que la sección ofrece tanto un formulario de captura de leads en línea como una alternativa
+real basada en modal para el contacto directo.

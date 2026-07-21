@@ -1,0 +1,87 @@
+---
+title: Logos
+description: Franja de logos de confianza — un kicker centrado sobre una fila de logos de socios o clientes. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RLogosDemo from '../../../../demos/react/blocks/LogosDemo.tsx'
+import VLogosDemo from '../../../../demos/vue/blocks/LogosDemo.vue'
+import SLogosDemo from '../../../../demos/svelte/blocks/LogosDemo.svelte'
+import OLogosDemo from '../../../../demos/solid/blocks/LogosDemo.tsx'
+
+**Logos** es un [block](/es/introduction/blocks/) de marketing: una franja "con la confianza de"
+con una pequeña línea kicker centrada sobre una fila de logos de socios o clientes que se ajusta y
+centra automáticamente. Es composición simple sobre los tokens `--md-*`, sin primitives. Lo copias
+a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RLogosDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VLogosDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SLogosDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OLogosDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add logos --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add logos --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add logos --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add logos --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Con la confianza de equipos de todos los tamaños'` | Texto pequeño sobre la fila de logos |
+| `items` | `LogoItem[]` | Seis empresas de ejemplo | Los espacios de logo |
+
+Un `LogoItem` es `{ name: string; src?: string; href?: string }`. Cuando `item.href` está
+presente, el espacio se envuelve en un `<a>`. Cuando `item.src` está presente, se renderiza un
+`<img>` (atenuado con `grayscale(1)` y opacidad reducida); si no, el espacio recurre a `item.name`
+renderizado como un placeholder de wordmark en mayúsculas, en negrita, atenuado y con letter-spacing.
+
+## Uso
+
+```tsx
+import { Logos } from './blocks/Logos'
+
+<Logos
+  kicker="Con la confianza de equipos de todos los tamaños"
+  items={[
+    { name: 'Nimbus' },
+    { name: 'Kairos' },
+    { name: 'Vela', href: 'https://example.com' },
+    { name: 'Orbit', src: '/logos/orbit.svg' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+El block renderiza un párrafo kicker centrado sobre una fila `flex-wrap` de espacios de logo,
+limitada a un ancho máximo de 960px y centrada con margin auto. La fila se mantiene centrada y se
+ajusta en líneas adicionales a medida que el viewport se angosta, así que funciona con cualquier
+cantidad de logos.

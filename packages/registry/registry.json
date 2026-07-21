@@ -155,6 +155,23 @@
         "solid": "Contact.tsx"
       }
     },
+    "faq": {
+      "domain": "marketing",
+      "description": "Sección de preguntas frecuentes: lista de preguntas y respuestas usando el primitive Accordion.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/faq/Faq.tsx",
+        "vue": "blocks/marketing/faq/Faq.vue",
+        "svelte": "blocks/marketing/faq/Faq.svelte",
+        "solid": "blocks/marketing/faq/Faq.solid.tsx"
+      },
+      "dest": {
+        "react": "Faq.tsx",
+        "vue": "Faq.vue",
+        "svelte": "Faq.svelte",
+        "solid": "Faq.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

@@ -172,6 +172,23 @@
         "solid": "Faq.tsx"
       }
     },
+    "testimonials": {
+      "domain": "marketing",
+      "description": "Sección de prueba social: cita, autor y avatar en una grilla de tarjetas.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/testimonials/Testimonials.tsx",
+        "vue": "blocks/marketing/testimonials/Testimonials.vue",
+        "svelte": "blocks/marketing/testimonials/Testimonials.svelte",
+        "solid": "blocks/marketing/testimonials/Testimonials.solid.tsx"
+      },
+      "dest": {
+        "react": "Testimonials.tsx",
+        "vue": "Testimonials.vue",
+        "svelte": "Testimonials.svelte",
+        "solid": "Testimonials.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

@@ -1,0 +1,89 @@
+---
+title: Blog Post Header
+description: Encabezado de artículo individual — badge de categoría, título grande, subtítulo y una fila de meta con autor/fecha/tiempo de lectura. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RBlogPostHeaderDemo from '../../../../demos/react/blocks/BlogPostHeaderDemo.tsx'
+import VBlogPostHeaderDemo from '../../../../demos/vue/blocks/BlogPostHeaderDemo.vue'
+import SBlogPostHeaderDemo from '../../../../demos/svelte/blocks/BlogPostHeaderDemo.svelte'
+import OBlogPostHeaderDemo from '../../../../demos/solid/blocks/BlogPostHeaderDemo.tsx'
+
+**Blog Post Header** es un [block](/es/introduction/blocks/) de marketing: un encabezado de
+artículo individual con un badge de categoría opcional, un título grande en serif, un subtítulo y
+una fila de meta centrada con avatar del autor, nombre, fecha y tiempo de lectura. Compone los
+primitives `Avatar` y `Badge` y los tokens `--md-*`. Lo copias a tu repo con el CLI y lo editas
+libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RBlogPostHeaderDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VBlogPostHeaderDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SBlogPostHeaderDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OBlogPostHeaderDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add blog-post-header --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add blog-post-header --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add blog-post-header --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add blog-post-header --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `category` | `string` | `'Ingeniería'` | Badge de categoría sobre el título |
+| `title` | `string` | `'Cómo escalamos nuestro sistema de diseño a cuatro frameworks'` | Título del artículo |
+| `subtitle` | `string` | `'Una mirada al proceso detrás de construir Moderno…'` | Texto de introducción corto |
+| `author` | `string` | `'Marta Gómez'` | Nombre del autor |
+| `date` | `string` | `'12 mar 2025'` | Fecha de publicación |
+| `readTime` | `string` | `'6 min de lectura'` | Tiempo estimado de lectura |
+| `avatarSrc` | `string` | — | URL del avatar del autor (usa iniciales si se omite) |
+| `initials` | `string` | `'MG'` | Fallback del avatar |
+
+## Uso
+
+```tsx
+import { BlogPostHeader } from './blocks/BlogPostHeader'
+
+<BlogPostHeader
+  category="Ingeniería"
+  title="Cómo escalamos nuestro sistema de diseño a cuatro frameworks"
+  subtitle="Una mirada al proceso detrás de construir Moderno."
+  author="Jamie Chen"
+  date="12 mar 2025"
+  readTime="6 min de lectura"
+  initials="JC"
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+El block renderiza un `Badge` centrado para `category` (si está presente) sobre un `<h1>` grande
+en serif con título y subtítulo, seguido de una fila de meta centrada: `Avatar` + nombre del
+autor, luego la fecha y el tiempo de lectura, cada uno separado por un middot y renderizado solo
+cuando su dato está presente.

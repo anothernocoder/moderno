@@ -1,0 +1,98 @@
+---
+title: Team
+description: Sección de equipo — un encabezado centrado sobre una grilla de tarjetas de perfil de integrantes con avatar, nombre, rol y bio. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RTeamDemo from '../../../../demos/react/blocks/TeamDemo.tsx'
+import VTeamDemo from '../../../../demos/vue/blocks/TeamDemo.vue'
+import STeamDemo from '../../../../demos/svelte/blocks/TeamDemo.svelte'
+import OTeamDemo from '../../../../demos/solid/blocks/TeamDemo.tsx'
+
+**Team** es un [block](/es/introduction/blocks/) de marketing: una sección de equipo con un
+encabezado centrado (kicker/título/subtítulo) sobre una grilla responsiva de tarjetas de perfil,
+cada una con avatar, nombre, rol y una bio corta. Compone los primitives `Card` y `Avatar` y los
+tokens `--md-*`. Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RTeamDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VTeamDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><STeamDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OTeamDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add team --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add team --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add team --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add team --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Nuestro equipo'` | Texto pequeño sobre el título |
+| `title` | `string` | `'Conoce al equipo'` | Título de la sección |
+| `subtitle` | `string` | `'Las personas que diseñan y construyen Moderno todos los días.'` | Texto de introducción corto |
+| `members` | `TeamMember[]` | Cuatro integrantes de ejemplo | Las tarjetas de perfil |
+
+Un `TeamMember` es `{ name: string; role?: string; bio?: string; avatarSrc?: string; initials?: string }`.
+Cada integrante se renderiza como un `Card` cuyo cuerpo contiene un `Avatar` centrado, el nombre,
+el rol y la bio. Cuando falta `avatarSrc`, `Avatar` recurre a `initials`.
+
+## Uso
+
+```tsx
+import { Team } from './blocks/Team'
+
+<Team
+  kicker="Equipo"
+  title="Conoce al equipo"
+  subtitle="Las personas que diseñan y construyen nuestro producto todos los días."
+  members={[
+    {
+      name: 'Jamie Chen',
+      role: 'Head of Design',
+      bio: 'Lidera el lenguaje visual y cuida su consistencia en cada superficie.',
+      initials: 'JC',
+    },
+    {
+      name: 'Alex Rivera',
+      role: 'Frontend Lead',
+      bio: 'Es dueño de la arquitectura de componentes y la paridad de API entre frameworks.',
+      initials: 'AR',
+    },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+El block renderiza un encabezado centrado (kicker, título, subtítulo) sobre una grilla responsiva
+de `Card`s construida a partir de `members`, una tarjeta por integrante. La grilla usa
+`repeat(auto-fit, minmax(240px, 1fr))`, así que las tarjetas se reacomodan de varias columnas a una
+sola a medida que el viewport se angosta.

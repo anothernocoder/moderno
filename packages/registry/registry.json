@@ -189,6 +189,176 @@
         "solid": "Testimonials.tsx"
       }
     },
+    "logos": {
+      "domain": "marketing",
+      "description": "Franja de logos de confianza: fila centrada de logos de socios o clientes con kicker opcional.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/logos/Logos.tsx",
+        "vue": "blocks/marketing/logos/Logos.vue",
+        "svelte": "blocks/marketing/logos/Logos.svelte",
+        "solid": "blocks/marketing/logos/Logos.solid.tsx"
+      },
+      "dest": {
+        "react": "Logos.tsx",
+        "vue": "Logos.vue",
+        "svelte": "Logos.svelte",
+        "solid": "Logos.tsx"
+      }
+    },
+    "team": {
+      "domain": "marketing",
+      "description": "Sección de equipo: avatar, nombre, rol y bio en una grilla de tarjetas de perfil.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/team/Team.tsx",
+        "vue": "blocks/marketing/team/Team.vue",
+        "svelte": "blocks/marketing/team/Team.svelte",
+        "solid": "blocks/marketing/team/Team.solid.tsx"
+      },
+      "dest": {
+        "react": "Team.tsx",
+        "vue": "Team.vue",
+        "svelte": "Team.svelte",
+        "solid": "Team.tsx"
+      }
+    },
+    "cta": {
+      "domain": "marketing",
+      "description": "Sección de llamado a la acción: título, descripción opcional y botón(es).",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/cta/Cta.tsx",
+        "vue": "blocks/marketing/cta/Cta.vue",
+        "svelte": "blocks/marketing/cta/Cta.svelte",
+        "solid": "blocks/marketing/cta/Cta.solid.tsx"
+      },
+      "dest": {
+        "react": "Cta.tsx",
+        "vue": "Cta.vue",
+        "svelte": "Cta.svelte",
+        "solid": "Cta.tsx"
+      }
+    },
+    "blog-header": {
+      "domain": "marketing",
+      "description": "Encabezado de blog: kicker, título, subtítulo y chips de categoría.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/blog-header/BlogHeader.tsx",
+        "vue": "blocks/marketing/blog-header/BlogHeader.vue",
+        "svelte": "blocks/marketing/blog-header/BlogHeader.svelte",
+        "solid": "blocks/marketing/blog-header/BlogHeader.solid.tsx"
+      },
+      "dest": {
+        "react": "BlogHeader.tsx",
+        "vue": "BlogHeader.vue",
+        "svelte": "BlogHeader.svelte",
+        "solid": "BlogHeader.tsx"
+      }
+    },
+    "blog-sections": {
+      "domain": "marketing",
+      "description": "Listado de posts: grilla de tarjetas con categoría, título, extracto y autor.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/blog-sections/BlogSections.tsx",
+        "vue": "blocks/marketing/blog-sections/BlogSections.vue",
+        "svelte": "blocks/marketing/blog-sections/BlogSections.svelte",
+        "solid": "blocks/marketing/blog-sections/BlogSections.solid.tsx"
+      },
+      "dest": {
+        "react": "BlogSections.tsx",
+        "vue": "BlogSections.vue",
+        "svelte": "BlogSections.svelte",
+        "solid": "BlogSections.tsx"
+      }
+    },
+    "blog-post-header": {
+      "domain": "marketing",
+      "description": "Encabezado de artículo: categoría, título, subtítulo y meta de autor/fecha/lectura.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/blog-post-header/BlogPostHeader.tsx",
+        "vue": "blocks/marketing/blog-post-header/BlogPostHeader.vue",
+        "svelte": "blocks/marketing/blog-post-header/BlogPostHeader.svelte",
+        "solid": "blocks/marketing/blog-post-header/BlogPostHeader.solid.tsx"
+      },
+      "dest": {
+        "react": "BlogPostHeader.tsx",
+        "vue": "BlogPostHeader.vue",
+        "svelte": "BlogPostHeader.svelte",
+        "solid": "BlogPostHeader.tsx"
+      }
+    },
+    "newsletter": {
+      "domain": "marketing",
+      "description": "Sección de suscripción por correo con encabezado centrado y formulario en línea.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/newsletter/Newsletter.tsx",
+        "vue": "blocks/marketing/newsletter/Newsletter.vue",
+        "svelte": "blocks/marketing/newsletter/Newsletter.svelte",
+        "solid": "blocks/marketing/newsletter/Newsletter.solid.tsx"
+      },
+      "dest": {
+        "react": "Newsletter.tsx",
+        "vue": "Newsletter.vue",
+        "svelte": "Newsletter.svelte",
+        "solid": "Newsletter.tsx"
+      }
+    },
+    "marketing-stats": {
+      "domain": "marketing",
+      "description": "Fila de métricas destacadas para páginas de marketing (variante editorial, distinta del dashboard KPI de aplicaciones — bloque \"stats\").",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/marketing-stats/MarketingStats.tsx",
+        "vue": "blocks/marketing/marketing-stats/MarketingStats.vue",
+        "svelte": "blocks/marketing/marketing-stats/MarketingStats.svelte",
+        "solid": "blocks/marketing/marketing-stats/MarketingStats.solid.tsx"
+      },
+      "dest": {
+        "react": "MarketingStats.tsx",
+        "vue": "MarketingStats.vue",
+        "svelte": "MarketingStats.svelte",
+        "solid": "MarketingStats.tsx"
+      }
+    },
+    "contact-modal": {
+      "domain": "marketing",
+      "description": "Captura de contacto/leads basada en modal: formulario compacto + Dialog para contacto directo.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/contact-modal/ContactModal.tsx",
+        "vue": "blocks/marketing/contact-modal/ContactModal.vue",
+        "svelte": "blocks/marketing/contact-modal/ContactModal.svelte",
+        "solid": "blocks/marketing/contact-modal/ContactModal.solid.tsx"
+      },
+      "dest": {
+        "react": "ContactModal.tsx",
+        "vue": "ContactModal.vue",
+        "svelte": "ContactModal.svelte",
+        "solid": "ContactModal.tsx"
+      }
+    },
+    "not-found": {
+      "domain": "marketing",
+      "description": "Sección de error 404: numeral grande, mensaje y CTA de vuelta al sitio.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/not-found/NotFound.tsx",
+        "vue": "blocks/marketing/not-found/NotFound.vue",
+        "svelte": "blocks/marketing/not-found/NotFound.svelte",
+        "solid": "blocks/marketing/not-found/NotFound.solid.tsx"
+      },
+      "dest": {
+        "react": "NotFound.tsx",
+        "vue": "NotFound.vue",
+        "svelte": "NotFound.svelte",
+        "solid": "NotFound.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

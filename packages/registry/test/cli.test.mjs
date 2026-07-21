@@ -294,6 +294,220 @@ test('add copies a different framework variant of the testimonials block', async
   assert.match(copied, /Moderno block — Testimonials \(Svelte\)/)
 })
 
+test('add copies the logos block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'logos', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /logos/)
+  const copied = await readFile(join(dest, 'Logos.tsx'), 'utf8')
+  assert.match(copied, /export function Logos/)
+})
+
+test('add copies a different framework variant of the logos block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'logos', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Logos.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Logos \(Svelte\)/)
+})
+
+test('add copies the team block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'team', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /team/)
+  const copied = await readFile(join(dest, 'Team.tsx'), 'utf8')
+  assert.match(copied, /export function Team/)
+})
+
+test('add copies a different framework variant of the team block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'team', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Team.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Team \(Svelte\)/)
+})
+
+test('add copies the cta block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'cta', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /cta/)
+  const copied = await readFile(join(dest, 'Cta.tsx'), 'utf8')
+  assert.match(copied, /export function Cta/)
+})
+
+test('add copies a different framework variant of the cta block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'cta', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Cta.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Cta \(Svelte\)/)
+})
+
+test('add copies the blog-header block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'blog-header', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /blog-header/)
+  const copied = await readFile(join(dest, 'BlogHeader.tsx'), 'utf8')
+  assert.match(copied, /export function BlogHeader/)
+})
+
+test('add copies a different framework variant of the blog-header block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'blog-header', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'BlogHeader.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — BlogHeader \(Svelte\)/)
+})
+
+test('add copies the blog-sections block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'blog-sections', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /blog-sections/)
+  const copied = await readFile(join(dest, 'BlogSections.tsx'), 'utf8')
+  assert.match(copied, /export function BlogSections/)
+})
+
+test('add copies a different framework variant of the blog-sections block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'blog-sections', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'BlogSections.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — BlogSections \(Svelte\)/)
+})
+
+test('add copies the blog-post-header block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'blog-post-header', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /blog-post-header/)
+  const copied = await readFile(join(dest, 'BlogPostHeader.tsx'), 'utf8')
+  assert.match(copied, /export function BlogPostHeader/)
+})
+
+test('add copies a different framework variant of the blog-post-header block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'blog-post-header', '--framework', 'svelte', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  const copied = await readFile(join(dest, 'BlogPostHeader.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — BlogPostHeader \(Svelte\)/)
+})
+
+test('add copies the newsletter block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'newsletter', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /newsletter/)
+  const copied = await readFile(join(dest, 'Newsletter.tsx'), 'utf8')
+  assert.match(copied, /export function Newsletter/)
+})
+
+test('add copies a different framework variant of the newsletter block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'newsletter', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Newsletter.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Newsletter \(Svelte\)/)
+})
+
+test('add copies the marketing-stats block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'marketing-stats', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /marketing-stats/)
+  const copied = await readFile(join(dest, 'MarketingStats.tsx'), 'utf8')
+  assert.match(copied, /export function MarketingStats/)
+})
+
+test('add copies a different framework variant of the marketing-stats block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'marketing-stats', '--framework', 'svelte', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  const copied = await readFile(join(dest, 'MarketingStats.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — MarketingStats \(Svelte\)/)
+})
+
+test('add copies the contact-modal block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'contact-modal', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /contact-modal/)
+  const copied = await readFile(join(dest, 'ContactModal.tsx'), 'utf8')
+  assert.match(copied, /export function ContactModal/)
+})
+
+test('add copies a different framework variant of the contact-modal block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'contact-modal', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ContactModal.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — ContactModal \(Svelte\)/)
+})
+
+test('add copies the not-found block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'not-found', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /not-found/)
+  const copied = await readFile(join(dest, 'NotFound.tsx'), 'utf8')
+  assert.match(copied, /export function NotFound/)
+})
+
+test('add copies a different framework variant of the not-found block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'not-found', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'NotFound.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — NotFound \(Svelte\)/)
+})
+
 test('add fails for an unknown block', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -323,6 +537,16 @@ test('list groups blocks by domain and includes the marketing pricing block', ()
   assert.match(marketingSection, /contact/)
   assert.match(marketingSection, /faq/)
   assert.match(marketingSection, /testimonials/)
+  assert.match(marketingSection, /logos/)
+  assert.match(marketingSection, /team/)
+  assert.match(marketingSection, /cta/)
+  assert.match(marketingSection, /blog-header/)
+  assert.match(marketingSection, /blog-sections/)
+  assert.match(marketingSection, /blog-post-header/)
+  assert.match(marketingSection, /newsletter/)
+  assert.match(marketingSection, /marketing-stats/)
+  assert.match(marketingSection, /contact-modal/)
+  assert.match(marketingSection, /not-found/)
 })
 
 test('list groups blocks by domain and includes the applications table block', () => {

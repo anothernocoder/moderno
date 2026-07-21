@@ -70,6 +70,23 @@
         "solid": "Header.tsx"
       }
     },
+    "features": {
+      "domain": "marketing",
+      "description": "Grid de características: icono, título y descripción por ítem.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/features/Features.tsx",
+        "vue": "blocks/marketing/features/Features.vue",
+        "svelte": "blocks/marketing/features/Features.svelte",
+        "solid": "blocks/marketing/features/Features.solid.tsx"
+      },
+      "dest": {
+        "react": "Features.tsx",
+        "vue": "Features.vue",
+        "svelte": "Features.svelte",
+        "solid": "Features.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

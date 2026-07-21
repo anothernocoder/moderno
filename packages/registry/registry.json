@@ -87,6 +87,23 @@
         "solid": "Features.tsx"
       }
     },
+    "content": {
+      "domain": "marketing",
+      "description": "Sección de contenido/prosa general: copy largo con jerarquía de encabezados y párrafos.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/content/Content.tsx",
+        "vue": "blocks/marketing/content/Content.vue",
+        "svelte": "blocks/marketing/content/Content.svelte",
+        "solid": "blocks/marketing/content/Content.solid.tsx"
+      },
+      "dest": {
+        "react": "Content.tsx",
+        "vue": "Content.vue",
+        "svelte": "Content.svelte",
+        "solid": "Content.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

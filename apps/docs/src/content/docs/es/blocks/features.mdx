@@ -1,0 +1,82 @@
+---
+title: Features
+description: Grid de características — icono, título y descripción por ítem. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RFeaturesDemo from '../../../../demos/react/blocks/FeaturesDemo.tsx'
+import VFeaturesDemo from '../../../../demos/vue/blocks/FeaturesDemo.vue'
+import SFeaturesDemo from '../../../../demos/svelte/blocks/FeaturesDemo.svelte'
+import OFeaturesDemo from '../../../../demos/solid/blocks/FeaturesDemo.tsx'
+
+**Features** es un [block](/es/introduction/blocks/) de marketing: un grid de
+características con icono, título y descripción por ítem. Compone el primitive `Card` y los
+tokens `--md-*`. Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RFeaturesDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VFeaturesDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SFeaturesDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OFeaturesDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add features --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add features --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add features --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add features --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Características'` | Texto pequeño sobre el título |
+| `title` | `string` | `'Todo lo que necesitas para construir rápido'` | Titular principal |
+| `subtitle` | `string` | `'Primitives, blocks y tokens que funcionan igual en los cuatro frameworks.'` | Texto de apoyo |
+| `features` | `{ icon?: string; title: string; description: string }[]` | Seis características de ejemplo | Los ítems del grid de características. `icon` se renderiza tal cual (un emoji o glifo corto) |
+
+## Uso
+
+```tsx
+import { Features } from './blocks/Features'
+
+<Features
+  kicker="Características"
+  title="Todo lo que necesitas para lanzar rápido"
+  subtitle="Primitives, blocks y tokens que funcionan igual en los cuatro frameworks."
+  features={[
+    { icon: '⚡', title: 'Rápido por defecto', description: 'Sin CSS-in-JS en runtime, sin theming en el cliente.' },
+    { icon: '🔒', title: 'Type-safe', description: 'Cada prop y slot está tipado de punta a punta.' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.
+
+Cada ítem se renderiza en un `Card`, dispuesto en un grid responsive
+(`repeat(auto-fit, minmax(240px, 1fr))`) que pasa de varias columnas a una sola en viewports
+angostos. `icon` es opcional — omítelo por ítem para una tarjeta simple de título/descripción.

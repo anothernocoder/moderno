@@ -53,6 +53,23 @@
         "solid": "Pricing.tsx"
       }
     },
+    "header": {
+      "domain": "marketing",
+      "description": "Encabezado de sitio / navegación de marketing: logo, enlaces de navegación y CTA.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/header/Header.tsx",
+        "vue": "blocks/marketing/header/Header.vue",
+        "svelte": "blocks/marketing/header/Header.svelte",
+        "solid": "blocks/marketing/header/Header.solid.tsx"
+      },
+      "dest": {
+        "react": "Header.tsx",
+        "vue": "Header.vue",
+        "svelte": "Header.svelte",
+        "solid": "Header.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

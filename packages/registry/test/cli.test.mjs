@@ -126,6 +126,27 @@ test('add copies a different framework variant of the banner block', async (t) =
   assert.match(copied, /Moderno block — Banner \(Svelte\)/)
 })
 
+test('add copies the header block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'header', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /header/)
+  const copied = await readFile(join(dest, 'Header.tsx'), 'utf8')
+  assert.match(copied, /export function Header/)
+})
+
+test('add copies a different framework variant of the header block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'header', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Header.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Header \(Svelte\)/)
+})
+
 test('add fails for an unknown block', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -147,6 +168,7 @@ test('list groups blocks by domain and includes the marketing pricing block', ()
   assert.match(marketingSection, /hero/)
   assert.match(marketingSection, /banner/)
   assert.match(marketingSection, /pricing/)
+  assert.match(marketingSection, /header/)
 })
 
 test('list groups blocks by domain and includes the applications table block', () => {

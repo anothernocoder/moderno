@@ -1,0 +1,91 @@
+---
+title: Header
+description: Site header / marketing navigation — logo, nav links, and CTA button(s) in a top bar. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RHeaderDemo from '../../../demos/react/blocks/HeaderDemo.tsx'
+import VHeaderDemo from '../../../demos/vue/blocks/HeaderDemo.vue'
+import SHeaderDemo from '../../../demos/svelte/blocks/HeaderDemo.svelte'
+import OHeaderDemo from '../../../demos/solid/blocks/HeaderDemo.tsx'
+
+**Header** is a marketing [block](/introduction/blocks/): a site header / marketing
+navigation bar with a logo, nav links, and CTA button(s). It composes the `Button`
+primitive and the `--md-*` tokens. You copy it into your repo with the CLI and edit it
+freely.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RHeaderDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VHeaderDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SHeaderDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OHeaderDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add header --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add header --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add header --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add header --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `logoLabel` | `string` | `'Moderno'` | The logo text |
+| `logoHref` | `string` | `'#'` | Where the logo links to |
+| `navItems` | `{ label: string; href: string }[]` | Three sample links | The nav links shown in the top bar |
+| `secondaryLabel` | `string` | `'Iniciar sesión'` | Label for the secondary text link. Pass an empty string to hide it |
+| `secondaryHref` | `string` | `'#'` | Where the secondary link points to |
+| `ctaLabel` | `string` | `'Empezar ahora'` | Label for the primary CTA. Pass an empty string to hide the CTA entirely |
+| `ctaHref` | `string?` | — | Renders the CTA as a link instead of a button |
+| `onCtaClick` | `() => void` | — | Called when the CTA button is clicked (ignored when `ctaHref` is set) |
+
+## Usage
+
+```tsx
+import { Header } from './blocks/Header'
+
+<Header
+  logoLabel="Acme"
+  navItems={[
+    { label: 'Product', href: '/product' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Docs', href: '/docs' },
+  ]}
+  secondaryLabel="Sign in"
+  secondaryHref="/sign-in"
+  ctaLabel="Get started"
+  ctaHref="/sign-up"
+/>
+```
+
+The props API is identical across all four frameworks. In Vue, `onCtaClick` is the `@cta`
+event; in the others it's a callback prop.
+
+The bar itself wraps to a second line on narrow viewports (`flex-wrap`) rather than
+collapsing into a hamburger menu — add a disclosure/menu primitive around the nav if you
+need one.

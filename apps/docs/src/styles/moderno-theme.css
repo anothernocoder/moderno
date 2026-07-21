@@ -70,6 +70,13 @@
   background: var(--md-surface-muted);
   border: 1px solid var(--md-border-default);
   margin: var(--md-spacing-6) 0;
+  /* Containment net: flex items default to min-width:auto, so a demo whose
+     internal layout (e.g. a fixed-column card grid) can't shrink to fit would
+     otherwise push its content past this box's edges — over the TOC or off
+     the viewport — instead of scrolling inside it. Same story vertically for
+     anything with an intrinsic min-height. */
+  max-width: 100%;
+  overflow: auto;
 }
 .md-demo--stack {
   flex-direction: column;
@@ -84,6 +91,12 @@
 .md-demo > *,
 .md-demo astro-island * {
   margin: 0;
+}
+/* Let the actual demo root (the astro-island's rendered child) shrink below
+   its content's intrinsic width instead of forcing .md-demo to overflow —
+   flex items ignore their container's width unless min-width is relaxed. */
+.md-demo astro-island > * {
+  min-width: 0;
 }
 
 /* Minimalist Moderno pagination (Previous / Next links).
@@ -120,4 +133,28 @@ nav.sidebar a[aria-current="page"] {
   background: var(--md-border-default);
   color: var(--md-text-primary);
   font-weight: 600;
+}
+
+/* Right sidebar ("On this page" TOC): Starlight grows this column's width
+   together with the viewport (it claims half of whatever space is left over
+   past --sl-content-width + --sl-sidebar-width), which just piles up empty
+   space next to a short link list on wide screens. Cap it to the sidebar
+   width instead, and let the main content column claim all of the freed
+   space dynamically — this is also what gives live demos more room before
+   .md-demo has to fall back to scrolling. Unlayered rules always beat
+   Starlight's @layer starlight.core, so no !important is needed. */
+@media (min-width: 72rem) {
+  .right-sidebar-container {
+    width: var(--sl-sidebar-width);
+  }
+  [data-has-sidebar][data-has-toc] .main-pane {
+    width: auto;
+    flex: 1;
+    /* Starlight sets this to `auto 0` (flush against the TOC) since it
+       normally has almost no slack to distribute. Now that main-pane can be
+       much wider than --sl-content-width, that pushed all the freed space
+       into the left margin instead. Centering it is what "dynamic middle
+       column" should look like. */
+    --sl-content-margin-inline: auto;
+  }
 }

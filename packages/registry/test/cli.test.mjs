@@ -714,6 +714,30 @@ test('add copies a different framework variant of the order-summaries block', as
   assert.match(copied, /Divider/)
 })
 
+test('add copies the order-history block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'order-history', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /order-history/)
+  const copied = await readFile(join(dest, 'OrderHistory.tsx'), 'utf8')
+  assert.match(copied, /export function OrderHistory/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Badge/)
+})
+
+test('add copies a different framework variant of the order-history block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'order-history', '--framework', 'solid', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'OrderHistory.tsx'), 'utf8')
+  assert.match(copied, /Moderno block — OrderHistory \(Solid\)/)
+  assert.match(copied, /Badge/)
+})
+
 test('add copies the portfolio-sections block (portfolio domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1278,6 +1302,7 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.match(ecommerceSection, /shopping-cart/)
   assert.match(ecommerceSection, /checkout-forms/)
   assert.match(ecommerceSection, /order-summaries/)
+  assert.match(ecommerceSection, /order-history/)
 })
 
 test('list groups blocks by domain and includes the portfolio-sections block', () => {

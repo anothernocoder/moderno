@@ -954,6 +954,23 @@
         "solid": "OrderSummaries.tsx"
       }
     },
+    "order-history": {
+      "domain": "ecommerce",
+      "description": "Historial de pedidos: lista de pedidos anteriores con estado, fecha y total, cada uno enlazando a su detalle.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/order-history/OrderHistory.tsx",
+        "vue": "blocks/ecommerce/order-history/OrderHistory.vue",
+        "svelte": "blocks/ecommerce/order-history/OrderHistory.svelte",
+        "solid": "blocks/ecommerce/order-history/OrderHistory.solid.tsx"
+      },
+      "dest": {
+        "react": "OrderHistory.tsx",
+        "vue": "OrderHistory.vue",
+        "svelte": "OrderHistory.svelte",
+        "solid": "OrderHistory.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

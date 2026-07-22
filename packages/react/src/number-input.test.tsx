@@ -27,9 +27,20 @@ describe('NumberInput', () => {
 
     ;(input as HTMLInputElement).focus()
     fireEvent.keyDown(input, { key: 'ArrowUp' })
-    await waitFor(() => expect(onValueChange).toHaveBeenLastCalledWith('6', 6))
+    // Wait for the rendered value, not just the onValueChange call: @zag-js/react's
+    // useMachine defers transition processing into a queueMicrotask and invokes
+    // onValueChange synchronously inside it, *ahead of* the React state commit
+    // that updates the value the machine reads for the *next* keyboard event
+    // (only the FSM state bindable is flushSync'd in send(); the numeric value
+    // context isn't). Under CI load waitFor can observe the callback before that
+    // commit lands, so the following ArrowDown decrements from a stale value.
+    // Waiting on the settled DOM value forces the commit (and hence the
+    // machine's internal context) to catch up before the next key is dispatched.
+    await waitFor(() => expect(input).toHaveValue('6'))
+    expect(onValueChange).toHaveBeenLastCalledWith('6', 6)
 
     fireEvent.keyDown(input, { key: 'ArrowDown' })
-    await waitFor(() => expect(onValueChange).toHaveBeenLastCalledWith('5', 5))
+    await waitFor(() => expect(input).toHaveValue('5'))
+    expect(onValueChange).toHaveBeenLastCalledWith('5', 5)
   })
 })

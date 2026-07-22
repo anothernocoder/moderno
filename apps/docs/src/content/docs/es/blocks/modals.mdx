@@ -1,0 +1,119 @@
+---
+title: Modals
+description: Panel de acciones de cuenta donde cada fila abre un Dialog centrado — variantes informativa, de confirmación y destructiva. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RModalsDemo from '../../../../demos/react/blocks/ModalsDemo.tsx'
+import VModalsDemo from '../../../../demos/vue/blocks/ModalsDemo.vue'
+import SModalsDemo from '../../../../demos/svelte/blocks/ModalsDemo.svelte'
+import OModalsDemo from '../../../../demos/solid/blocks/ModalsDemo.tsx'
+
+**Modals** es un [block](/es/introduction/blocks/) de aplicaciones: un panel de acciones de
+cuenta — una lista de filas, cada una con una etiqueta/descripción y un trigger que abre un
+[`Dialog`](/es/components/dialog/) centrado. Los datos de ejemplo muestran tres patrones
+comunes: un diálogo informativo de "editar perfil", un diálogo de confirmación de "exportar
+datos" y una advertencia destructiva de "eliminar cuenta". Compone los primitives `Badge` y
+`Dialog`, y los tokens `--md-*`.
+
+`Dialog` es un primitive **closed-prop** (ADR-0003): su trigger, título, descripción y única
+acción de cierre son todo lo que expone — no hay lógica de interacción a medida por encima
+acá, solo varias instancias de `Dialog` organizadas en un layout de panel de configuración.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RModalsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VModalsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SModalsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OModalsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add modals --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add modals --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add modals --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add modals --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `title` | `string` | `'Gestión de cuenta'` | Encabezado del panel |
+| `description` | `string` | Texto de ejemplo | Subtítulo del panel (se oculta si está vacío) |
+| `actions` | `ModalAction[]` | 3 acciones de ejemplo | Las filas a renderizar, cada una respaldada por su propio `Dialog` |
+
+Forma de `ModalAction`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `id` | `string` | Id único de la fila / key de React |
+| `label` | `string` | Etiqueta de la fila |
+| `description` | `string` | Descripción de la fila |
+| `tone` | `'default' \| 'danger'` | `'danger'` tiñe la etiqueta y agrega un `Badge` de "Irreversible" |
+| `triggerLabel` | `string` | `triggerLabel` del `Dialog` |
+| `dialogTitle` | `string` | `title` del `Dialog` |
+| `dialogDescription` | `string` | `description` del `Dialog` |
+| `closeLabel` | `string` | `closeLabel` del `Dialog` |
+
+## Uso
+
+```tsx
+import { Modals } from './blocks/Modals'
+
+<Modals
+  title="Cuenta"
+  actions={[
+    {
+      id: 'edit-profile',
+      label: 'Editar perfil',
+      description: 'Actualiza tu nombre, correo y datos de contacto.',
+      triggerLabel: 'Editar perfil',
+      dialogTitle: 'Editar perfil',
+      dialogDescription: 'Actualiza tu nombre, correo y datos de contacto desde el formulario de configuración.',
+      closeLabel: 'Listo',
+    },
+    {
+      id: 'delete-account',
+      label: 'Eliminar cuenta',
+      description: 'Esta acción es permanente y no se puede deshacer.',
+      tone: 'danger',
+      triggerLabel: 'Eliminar cuenta',
+      dialogTitle: '¿Eliminar tu cuenta?',
+      dialogDescription: 'Se eliminarán todos tus datos, pedidos e historial de forma permanente. No se puede deshacer.',
+      closeLabel: 'Cancelar',
+    },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. Como `Dialog` solo expone un único
+trigger de cierre (sin `onClose` ni un segundo botón de acción), el diálogo de una fila
+"danger" puede advertir y dejar que el usuario se eche para atrás — no puede ejecutar por sí
+mismo la acción destructiva. Si necesitas un paso de confirmación real, eso implica componer
+un flujo distinto al que un `Dialog` closed-prop puede darte por sí solo: por ejemplo, un
+trigger de dos pasos (al hacer clic en "Eliminar cuenta" se revela un botón de confirmación
+en línea, con `Dialog` encargándose solo del texto de advertencia), que es exactamente el
+tipo de decisión de layout que este block te deja a ti una vez que lo copiaste a tu repo.

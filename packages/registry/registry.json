@@ -512,6 +512,23 @@
         "solid": "Table.tsx"
       }
     },
+    "modals": {
+      "domain": "applications",
+      "description": "Panel de acciones de cuenta: fila de acciones que abren diálogos centrados (Dialog).",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/modals/Modals.tsx",
+        "vue": "blocks/applications/modals/Modals.vue",
+        "svelte": "blocks/applications/modals/Modals.svelte",
+        "solid": "blocks/applications/modals/Modals.solid.tsx"
+      },
+      "dest": {
+        "react": "Modals.tsx",
+        "vue": "Modals.vue",
+        "svelte": "Modals.svelte",
+        "solid": "Modals.tsx"
+      }
+    },
     "empty-states": {
       "domain": "applications",
       "description": "Estado vacío de aplicación: icono, título, descripción y CTA para crear el primer elemento.",

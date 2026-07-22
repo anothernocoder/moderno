@@ -1,0 +1,88 @@
+---
+title: Store Nav
+description: E-commerce storefront header navigation with logo, category links, search, and a cart icon with an item-count badge. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RStoreNavDemo from '../../../demos/react/blocks/StoreNavDemo.tsx'
+import VStoreNavDemo from '../../../demos/vue/blocks/StoreNavDemo.vue'
+import SStoreNavDemo from '../../../demos/svelte/blocks/StoreNavDemo.svelte'
+import OStoreNavDemo from '../../../demos/solid/blocks/StoreNavDemo.tsx'
+
+**Store Nav** is an ecommerce [block](/introduction/blocks/): a storefront header
+navigation bar with a logo, category links, a search field, and a cart icon carrying
+an item-count badge. It composes the `Badge` and `Input` primitives and the `--md-*`
+tokens. You copy it into your repo with the CLI and edit it freely.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RStoreNavDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VStoreNavDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SStoreNavDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OStoreNavDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add store-nav --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add store-nav --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add store-nav --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add store-nav --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `logoLabel` | `string` | `'Moderno Store'` | Store name shown as the logo link |
+| `logoHref` | `string` | `'#'` | Logo link target |
+| `categories` | `{ label: string; href: string }[]` | 4 sample categories | Category navigation links |
+| `searchPlaceholder` | `string` | `'Buscar productos...'` | Placeholder text for the search field |
+| `defaultSearchQuery` | `string` | `''` | Initial value of the search field |
+| `onSearch` | `(query: string) => void` | — | Called when the search form is submitted, with the current query |
+| `cartCount` | `number` | `3` | Item count shown in the cart badge (badge is hidden when `0`) |
+| `onCartClick` | `() => void` | — | Called when the cart icon is clicked |
+
+## Usage
+
+```tsx
+import { StoreNav } from './blocks/StoreNav'
+
+<StoreNav
+  logoLabel="Nordic Goods"
+  categories={[
+    { label: 'New', href: '/new' },
+    { label: 'Women', href: '/women' },
+    { label: 'Men', href: '/men' },
+    { label: 'Sale', href: '/sale' },
+  ]}
+  cartCount={cart.items.length}
+  onSearch={(query) => router.push(`/search?q=${query}`)}
+  onCartClick={() => cart.open()}
+/>
+```
+
+The props API is identical across all four frameworks. In Vue, `onSearch` and
+`onCartClick` are the `@search` and `@cart-click` events; in the others they're
+callback props.

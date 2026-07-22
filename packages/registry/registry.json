@@ -784,6 +784,23 @@
         "solid": "ProductDetails.tsx"
       }
     },
+    "store-nav": {
+      "domain": "ecommerce",
+      "description": "Navegación de tienda: logo, enlaces de categorías, buscador y carrito con contador.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/store-nav/StoreNav.tsx",
+        "vue": "blocks/ecommerce/store-nav/StoreNav.vue",
+        "svelte": "blocks/ecommerce/store-nav/StoreNav.svelte",
+        "solid": "blocks/ecommerce/store-nav/StoreNav.solid.tsx"
+      },
+      "dest": {
+        "react": "StoreNav.tsx",
+        "vue": "StoreNav.vue",
+        "svelte": "StoreNav.svelte",
+        "solid": "StoreNav.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

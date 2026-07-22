@@ -376,6 +376,23 @@
         "solid": "Stats.tsx"
       }
     },
+    "slide-overs": {
+      "domain": "applications",
+      "description": "Slide-over de detalle/edición: panel lateral con Sheet, formulario compacto y acciones Cancelar/Guardar.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/slide-overs/SlideOvers.tsx",
+        "vue": "blocks/applications/slide-overs/SlideOvers.vue",
+        "svelte": "blocks/applications/slide-overs/SlideOvers.svelte",
+        "solid": "blocks/applications/slide-overs/SlideOvers.solid.tsx"
+      },
+      "dest": {
+        "react": "SlideOvers.tsx",
+        "vue": "SlideOvers.vue",
+        "svelte": "SlideOvers.svelte",
+        "solid": "SlideOvers.tsx"
+      }
+    },
     "table": {
       "domain": "applications",
       "description": "Tabla de datos de aplicación: orden, selección de filas y acciones en lote.",

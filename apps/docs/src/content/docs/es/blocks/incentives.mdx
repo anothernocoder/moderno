@@ -1,0 +1,88 @@
+---
+title: Incentives
+description: Franja de incentivos de confianza sitewide — envío gratis, cambios y devoluciones fáciles, pago seguro — cada uno con icono y copy breve. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RIncentivesDemo from '../../../../demos/react/blocks/IncentivesDemo.tsx'
+import VIncentivesDemo from '../../../../demos/vue/blocks/IncentivesDemo.vue'
+import SIncentivesDemo from '../../../../demos/svelte/blocks/IncentivesDemo.svelte'
+import OIncentivesDemo from '../../../../demos/solid/blocks/IncentivesDemo.tsx'
+
+**Incentives** es un [block](/es/introduction/blocks/) de ecommerce: una franja de
+incentivos de confianza sitewide, combinando un icono con una etiqueta y una
+descripción corta por cada incentivo (envío gratis, cambios y devoluciones fáciles,
+pago seguro). Compone el primitive `Card` y los tokens `--md-*`. Lo copias a tu repo con
+el CLI y lo editas libremente.
+
+A diferencia de [Product Features](/es/blocks/product-features/), que destaca las
+especificaciones de un solo producto, Incentives está pensado para usarse en toda la
+tienda — debajo de un hero, sobre el footer, o en una página de categoría/checkout —
+para reforzar la confianza del comprador sobre envío, devoluciones y seguridad de pago.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RIncentivesDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VIncentivesDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SIncentivesDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OIncentivesDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add incentives --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add incentives --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add incentives --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add incentives --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Compra con confianza'` | Encabezado sobre el grid (omítelo para ocultarlo) |
+| `items` | `IncentiveItem[]` | 3 incentivos de ejemplo | Incentivos a renderizar — cada uno con `label`, `description` e `icon` opcional (`'shipping' \| 'returns' \| 'payment'`, por defecto `'shipping'`) |
+
+## Uso
+
+```tsx
+import { Incentives } from './blocks/Incentives'
+
+<Incentives
+  heading="Compra con confianza"
+  items={[
+    { icon: 'shipping', label: 'Envío gratis', description: 'Envío sin costo a todo el país en compras desde $250.000.' },
+    { icon: 'returns', label: 'Cambios y devoluciones fáciles', description: '30 días desde la entrega para cambiar o devolver sin costo.' },
+    { icon: 'payment', label: 'Pago 100% seguro', description: 'Tus datos están protegidos con cifrado en cada transacción.' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. Cada incentivo se renderiza como
+un `Card` cuyo slot `title` contiene un pequeño icono inline más la etiqueta, y cuyo
+cuerpo contiene la descripción — los tres iconos de línea (envío, devoluciones, pago) se
+dibujan inline como formas SVG `path`/`circle`, siguiendo la misma convención de icono
+inline usada por los blocks [Product Features](/es/blocks/product-features/) y
+[Store Nav](/es/blocks/store-nav/). Sin primitives nuevos, sin lógica de interacción a
+medida — este block es puramente presentacional.

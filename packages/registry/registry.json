@@ -971,6 +971,23 @@
         "solid": "OrderHistory.tsx"
       }
     },
+    "incentives": {
+      "domain": "ecommerce",
+      "description": "Franja de incentivos de confianza: envío gratis, cambios y devoluciones fáciles, y pago seguro, cada uno con icono y descripción breve.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/incentives/Incentives.tsx",
+        "vue": "blocks/ecommerce/incentives/Incentives.vue",
+        "svelte": "blocks/ecommerce/incentives/Incentives.svelte",
+        "solid": "blocks/ecommerce/incentives/Incentives.solid.tsx"
+      },
+      "dest": {
+        "react": "Incentives.tsx",
+        "vue": "Incentives.vue",
+        "svelte": "Incentives.svelte",
+        "solid": "Incentives.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

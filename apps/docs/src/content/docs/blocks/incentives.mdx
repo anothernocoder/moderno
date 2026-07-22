@@ -1,0 +1,88 @@
+---
+title: Incentives
+description: Storefront-wide trust/incentive strip — free shipping, easy returns, secure payment — each with an icon and short copy. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RIncentivesDemo from '../../../demos/react/blocks/IncentivesDemo.tsx'
+import VIncentivesDemo from '../../../demos/vue/blocks/IncentivesDemo.vue'
+import SIncentivesDemo from '../../../demos/svelte/blocks/IncentivesDemo.svelte'
+import OIncentivesDemo from '../../../demos/solid/blocks/IncentivesDemo.tsx'
+
+**Incentives** is an ecommerce [block](/introduction/blocks/): a storefront-wide
+trust/incentive strip, pairing an icon with a label and a short description for each
+incentive (free shipping, easy returns, secure payment). It composes the `Card`
+primitive and the `--md-*` tokens. You copy it into your repo with the CLI and edit it
+freely.
+
+Unlike [Product Features](/blocks/product-features/), which highlights a single
+product's specs, Incentives is meant to run sitewide — under a hero, above a footer, or
+on a category/checkout page — to reassure shoppers about shipping, returns, and payment
+security.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RIncentivesDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VIncentivesDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SIncentivesDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OIncentivesDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add incentives --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add incentives --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add incentives --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add incentives --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Compra con confianza'` | Heading above the grid (omit to hide it) |
+| `items` | `IncentiveItem[]` | 3 sample incentives | Incentives to render — each with a `label`, a `description`, and an optional `icon` (`'shipping' \| 'returns' \| 'payment'`, defaults to `'shipping'`) |
+
+## Usage
+
+```tsx
+import { Incentives } from './blocks/Incentives'
+
+<Incentives
+  heading="Shop with confidence"
+  items={[
+    { icon: 'shipping', label: 'Free shipping', description: 'Free nationwide shipping on orders over $250,000.' },
+    { icon: 'returns', label: 'Easy returns', description: '30 days from delivery to exchange or return, at no cost.' },
+    { icon: 'payment', label: '100% secure payment', description: 'Your data is protected with encryption on every transaction.' },
+  ]}
+/>
+```
+
+The props API is identical across all four frameworks. Each incentive renders as a
+`Card` whose `title` slot holds a small inline icon plus the label, and whose body
+holds the description — the three line icons (shipping, returns, payment) are drawn
+inline as SVG `path`/`circle` shapes, matching the inline-icon convention used by the
+[Product Features](/blocks/product-features/) and [Store Nav](/blocks/store-nav/)
+blocks. No new primitives, no bespoke interaction logic — this block is purely
+presentational.

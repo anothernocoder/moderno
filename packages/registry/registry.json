@@ -818,6 +818,23 @@
         "solid": "Promo.tsx"
       }
     },
+    "category-preview": {
+      "domain": "ecommerce",
+      "description": "Grid de tiles de categoría: imagen y etiqueta enlazando a las páginas de categoría.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/category-preview/CategoryPreview.tsx",
+        "vue": "blocks/ecommerce/category-preview/CategoryPreview.vue",
+        "svelte": "blocks/ecommerce/category-preview/CategoryPreview.svelte",
+        "solid": "blocks/ecommerce/category-preview/CategoryPreview.solid.tsx"
+      },
+      "dest": {
+        "react": "CategoryPreview.tsx",
+        "vue": "CategoryPreview.vue",
+        "svelte": "CategoryPreview.svelte",
+        "solid": "CategoryPreview.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

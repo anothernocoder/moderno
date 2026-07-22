@@ -699,6 +699,23 @@
         "solid": "Containers.tsx"
       }
     },
+    "list-containers": {
+      "domain": "applications",
+      "description": "Contenedor especializado para listas: encabezado, cuerpo con scroll (overflow-y: auto) y footer con resumen + acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/list-containers/ListContainers.tsx",
+        "vue": "blocks/applications/list-containers/ListContainers.vue",
+        "svelte": "blocks/applications/list-containers/ListContainers.svelte",
+        "solid": "blocks/applications/list-containers/ListContainers.solid.tsx"
+      },
+      "dest": {
+        "react": "ListContainers.tsx",
+        "vue": "ListContainers.vue",
+        "svelte": "ListContainers.svelte",
+        "solid": "ListContainers.tsx"
+      }
+    },
     "media-objects": {
       "domain": "applications",
       "description": "Media + texto: fila con avatar (imagen o iniciales), encabezado, cuerpo y meta opcional — el patrón clásico de 'media object' para comentarios o actividad.",

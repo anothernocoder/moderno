@@ -789,6 +789,33 @@ test('add copies a different framework variant of the portfolio-sections block',
   assert.match(copied, /Moderno block — PortfolioSections \(Svelte\)/)
 })
 
+test('add copies the long-form-content block (portfolio domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync(
+    'node',
+    [CLI, 'add', 'long-form-content', '--framework', 'react', '--dest', dest],
+    { encoding: 'utf8' },
+  )
+
+  assert.match(output, /long-form-content/)
+  const copied = await readFile(join(dest, 'LongFormContent.tsx'), 'utf8')
+  assert.match(copied, /export function LongFormContent/)
+})
+
+test('add copies a different framework variant of the long-form-content block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync(
+    'node',
+    [CLI, 'add', 'long-form-content', '--framework', 'vue', '--dest', dest],
+    { encoding: 'utf8' },
+  )
+
+  const copied = await readFile(join(dest, 'LongFormContent.vue'), 'utf8')
+  assert.match(copied, /Moderno block — LongFormContent \(Vue\)/)
+})
+
 test('add copies the banner block (marketing domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1330,7 +1357,7 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.match(ecommerceSection, /incentives/)
 })
 
-test('list groups blocks by domain and includes the portfolio-sections block', () => {
+test('list groups blocks by domain and includes the portfolio blocks', () => {
   const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
 
   const sections = output.split(/\n\s*\n/).filter((section) => section.trim().length > 0)
@@ -1339,4 +1366,5 @@ test('list groups blocks by domain and includes the portfolio-sections block', (
   assert.ok(portfolioSection, 'expected a "portfolio" domain group in list output')
   assert.match(portfolioSection, /portfolio-header/)
   assert.match(portfolioSection, /portfolio-sections/)
+  assert.match(portfolioSection, /long-form-content/)
 })

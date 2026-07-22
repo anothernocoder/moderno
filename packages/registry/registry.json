@@ -1022,6 +1022,23 @@
         "solid": "PortfolioSections.tsx"
       }
     },
+    "long-form-content": {
+      "domain": "portfolio",
+      "description": "Layout de caso de estudio / lectura larga: kicker, headline, dek, imagen de portada y secciones de prosa con pull-quote.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/portfolio/long-form-content/LongFormContent.tsx",
+        "vue": "blocks/portfolio/long-form-content/LongFormContent.vue",
+        "svelte": "blocks/portfolio/long-form-content/LongFormContent.svelte",
+        "solid": "blocks/portfolio/long-form-content/LongFormContent.solid.tsx"
+      },
+      "dest": {
+        "react": "LongFormContent.tsx",
+        "vue": "LongFormContent.vue",
+        "svelte": "LongFormContent.svelte",
+        "solid": "LongFormContent.tsx"
+      }
+    },
     "story": {
       "domain": "images-ads",
       "description": "Plantilla vertical 9:16 para ads / historias: kicker, título y CTA.",

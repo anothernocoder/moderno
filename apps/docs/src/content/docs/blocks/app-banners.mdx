@@ -1,0 +1,113 @@
+---
+title: App Banners
+description: Application-level system notification banners — impersonation, trial-ending, and incident notices. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RAppBannersDemo from '../../../demos/react/blocks/AppBannersDemo.tsx'
+import VAppBannersDemo from '../../../demos/vue/blocks/AppBannersDemo.vue'
+import SAppBannersDemo from '../../../demos/svelte/blocks/AppBannersDemo.svelte'
+import OAppBannersDemo from '../../../demos/solid/blocks/AppBannersDemo.tsx'
+
+**App Banners** is an application [block](/introduction/blocks/): a stack of full-width
+system notification bars, typically shown at the top of an authenticated app shell — an
+impersonation warning, a trial-ending countdown, a degraded-service notice. Each banner has a
+semantic-colored background, a leading icon, a message, an optional action, and an optional
+dismiss control. It composes the `Button` primitive and the `--md-*` tokens.
+
+This is a different block from [Banner](/blocks/banner/), which is a marketing top-of-page
+promo/announcement strip.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAppBannersDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAppBannersDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAppBannersDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAppBannersDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add app-banners --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add app-banners --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add app-banners --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add app-banners --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `AppBannerItem[]` | 3 sample notices | The banners to render, stacked top to bottom |
+| `onDismiss` | `(id: string) => void` | — | Called with the item's `id` when its close button is clicked |
+
+`AppBannerItem` shape:
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `id` | `string` | — | Unique id; also passed to `onDismiss` |
+| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | `'info'` | Semantic color of the bar and icon |
+| `icon` | `string` | — | Leading icon (emoji or short glyph), hidden if omitted |
+| `message` | `string` | — | Banner text |
+| `actionLabel` | `string` | — | Label for the optional trailing action, hidden if omitted |
+| `actionHref` | `string` | — | If set, the action renders as a link instead of a `Button` |
+| `onAction` | `() => void` | — | Called when the action `Button` is clicked (ignored if `actionHref` is set) |
+| `dismissible` | `boolean` | `true` | Set `false` for persistent notices (e.g. impersonation) that can't be closed |
+| `closeLabel` | `string` | `'Cerrar'` | Accessible label for the close button |
+
+## Usage
+
+```tsx
+import { AppBanners } from './blocks/AppBanners'
+
+<AppBanners
+  items={[
+    {
+      id: 'impersonation',
+      variant: 'warning',
+      icon: '🕵️',
+      message: 'You are impersonating Jane Doe.',
+      actionLabel: 'Exit',
+      dismissible: false,
+    },
+    {
+      id: 'trial',
+      variant: 'info',
+      icon: '⏳',
+      message: 'Your trial ends in 3 days.',
+      actionLabel: 'Upgrade plan',
+    },
+    {
+      id: 'incident',
+      variant: 'error',
+      icon: '⚠️',
+      message: 'Service is currently degraded.',
+    },
+  ]}
+  onDismiss={(id) => dismissBanner(id)}
+/>
+```
+
+The props API is identical across all four frameworks. In Vue, `onDismiss` is the `@dismiss`
+event; in React, Svelte, and Solid it's the `onDismiss` callback prop.

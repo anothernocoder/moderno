@@ -1,0 +1,85 @@
+---
+title: Feeds
+description: Feed de actividad / timeline — avatar, actor/acción y timestamp conectados por un riel vertical. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RFeedsDemo from '../../../../demos/react/blocks/FeedsDemo.tsx'
+import VFeedsDemo from '../../../../demos/vue/blocks/FeedsDemo.vue'
+import SFeedsDemo from '../../../../demos/svelte/blocks/FeedsDemo.svelte'
+import OFeedsDemo from '../../../../demos/solid/blocks/FeedsDemo.tsx'
+
+**Feeds** es un [block](/es/introduction/blocks/) de aplicación: un timeline vertical de
+actividad. Cada entrada muestra un avatar conectado con el siguiente por una línea de
+riel, una oración de actor + acción, un tag de estado opcional y un timestamp. Compone
+los primitives `Avatar` y `Badge` y los tokens `--md-*`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RFeedsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VFeedsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SFeedsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OFeedsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add feeds --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add feeds --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add feeds --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add feeds --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/).
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `items` | `FeedItem[]` | 4 entradas de muestra | Entradas de actividad a renderizar |
+
+### `FeedItem`
+
+| Campo | Tipo | Default | Descripción |
+|-------|------|---------|-------------|
+| `id` | `string` | — | Clave única |
+| `actor` | `string` | — | Quién realizó la acción |
+| `initials` | `string` | — | Iniciales de respaldo mostradas en el `Avatar` |
+| `action` | `string` | — | Oración de la acción, renderizada después del nombre del actor |
+| `timestamp` | `string` | — | Tiempo relativo/absoluto ya formateado |
+| `tag` | `string` | — | Etiqueta de estado opcional (oculta si se omite) |
+| `tagVariant` | `'neutral' \| 'solid' \| 'success' \| 'warning' \| 'error' \| 'info'` | — | Color del `Badge` para `tag` |
+
+## Uso
+
+```tsx
+import { Feeds } from './blocks/Feeds'
+
+<Feeds
+  items={[
+    { id: '1', actor: 'Ada Lovelace', initials: 'AL', action: 'fusionó un pull request', tag: 'Fusionado', tagVariant: 'success', timestamp: 'Hace 5 min' },
+    { id: '2', actor: 'Grace Hopper', initials: 'GH', action: 'comentó en un issue', timestamp: 'Hace 32 min' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.

@@ -937,6 +937,23 @@
         "solid": "CheckoutForms.tsx"
       }
     },
+    "order-summaries": {
+      "domain": "ecommerce",
+      "description": "Resumen del pedido: línea de productos con cantidad, subtotal, envío, impuestos y total. Solo lectura.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/order-summaries/OrderSummaries.tsx",
+        "vue": "blocks/ecommerce/order-summaries/OrderSummaries.vue",
+        "svelte": "blocks/ecommerce/order-summaries/OrderSummaries.svelte",
+        "solid": "blocks/ecommerce/order-summaries/OrderSummaries.solid.tsx"
+      },
+      "dest": {
+        "react": "OrderSummaries.tsx",
+        "vue": "OrderSummaries.vue",
+        "svelte": "OrderSummaries.svelte",
+        "solid": "OrderSummaries.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

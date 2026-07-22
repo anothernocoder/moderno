@@ -690,6 +690,30 @@ test('add copies a different framework variant of the checkout-forms block', asy
   assert.match(copied, /Select/)
 })
 
+test('add copies the order-summaries block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'order-summaries', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /order-summaries/)
+  const copied = await readFile(join(dest, 'OrderSummaries.tsx'), 'utf8')
+  assert.match(copied, /export function OrderSummaries/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Divider/)
+})
+
+test('add copies a different framework variant of the order-summaries block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'order-summaries', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'OrderSummaries.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — OrderSummaries \(Svelte\)/)
+  assert.match(copied, /Divider/)
+})
+
 test('add copies the portfolio-sections block (portfolio domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1253,6 +1277,7 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.match(ecommerceSection, /reviews/)
   assert.match(ecommerceSection, /shopping-cart/)
   assert.match(ecommerceSection, /checkout-forms/)
+  assert.match(ecommerceSection, /order-summaries/)
 })
 
 test('list groups blocks by domain and includes the portfolio-sections block', () => {

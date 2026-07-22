@@ -359,6 +359,23 @@
         "solid": "NotFound.tsx"
       }
     },
+    "feeds": {
+      "domain": "applications",
+      "description": "Feed de actividad: timeline vertical con avatar, actor/acción y timestamp.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/feeds/Feeds.tsx",
+        "vue": "blocks/applications/feeds/Feeds.vue",
+        "svelte": "blocks/applications/feeds/Feeds.svelte",
+        "solid": "blocks/applications/feeds/Feeds.solid.tsx"
+      },
+      "dest": {
+        "react": "Feeds.tsx",
+        "vue": "Feeds.vue",
+        "svelte": "Feeds.svelte",
+        "solid": "Feeds.tsx"
+      }
+    },
     "stacked-list": {
       "domain": "applications",
       "description": "Lista apilada de registros: tarjetas verticales con avatar, badge de estado y acción.",

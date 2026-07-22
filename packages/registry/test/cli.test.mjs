@@ -57,6 +57,29 @@ test('add copies a different framework variant of the table block', async (t) =>
   assert.match(copied, /Moderno block — Table \(Svelte\)/)
 })
 
+test('add copies the description-list block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'description-list', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /description-list/)
+  const copied = await readFile(join(dest, 'DescriptionList.tsx'), 'utf8')
+  assert.match(copied, /export function DescriptionList/)
+})
+
+test('add copies a different framework variant of the description-list block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'description-list', '--framework', 'svelte', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  const copied = await readFile(join(dest, 'DescriptionList.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — DescriptionList \(Svelte\)/)
+})
+
 test('add copies the list block (applications domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -579,6 +602,7 @@ test('list groups blocks by domain and includes the applications table block', (
   assert.ok(applicationsSection, 'expected an "applications" domain group in list output')
   assert.match(applicationsSection, /stats/)
   assert.match(applicationsSection, /table/)
+  assert.match(applicationsSection, /description-list/)
   assert.match(applicationsSection, /list/)
 })
 

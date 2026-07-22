@@ -393,6 +393,23 @@
         "solid": "Table.tsx"
       }
     },
+    "status-monitoring": {
+      "domain": "applications",
+      "description": "Panel de estado de servicios: banner general, indicador y badge por servicio, uptime y último incidente.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/status-monitoring/StatusMonitoring.tsx",
+        "vue": "blocks/applications/status-monitoring/StatusMonitoring.vue",
+        "svelte": "blocks/applications/status-monitoring/StatusMonitoring.svelte",
+        "solid": "blocks/applications/status-monitoring/StatusMonitoring.solid.tsx"
+      },
+      "dest": {
+        "react": "StatusMonitoring.tsx",
+        "vue": "StatusMonitoring.vue",
+        "svelte": "StatusMonitoring.svelte",
+        "solid": "StatusMonitoring.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",

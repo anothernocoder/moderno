@@ -903,6 +903,23 @@
         "solid": "Reviews.tsx"
       }
     },
+    "shopping-cart": {
+      "domain": "ecommerce",
+      "description": "Carrito de compras: línea de productos con imagen, cantidad y opción de quitar, subtotal y CTA de checkout.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/shopping-cart/ShoppingCart.tsx",
+        "vue": "blocks/ecommerce/shopping-cart/ShoppingCart.vue",
+        "svelte": "blocks/ecommerce/shopping-cart/ShoppingCart.svelte",
+        "solid": "blocks/ecommerce/shopping-cart/ShoppingCart.solid.tsx"
+      },
+      "dest": {
+        "react": "ShoppingCart.tsx",
+        "vue": "ShoppingCart.vue",
+        "svelte": "ShoppingCart.svelte",
+        "solid": "ShoppingCart.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

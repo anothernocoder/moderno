@@ -1,0 +1,85 @@
+---
+title: Alerts
+description: Application alerts area — info/success/warning/error message patterns with dismiss and action. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RAlertsDemo from '../../../demos/react/blocks/AlertsDemo.tsx'
+import VAlertsDemo from '../../../demos/vue/blocks/AlertsDemo.vue'
+import SAlertsDemo from '../../../demos/svelte/blocks/AlertsDemo.svelte'
+import OAlertsDemo from '../../../demos/solid/blocks/AlertsDemo.tsx'
+
+**Alerts** is an application [block](/introduction/blocks/): a stacked group of inline
+info/success/warning/error messages composed into a realistic dashboard/form alerts area,
+with dismiss and inline-action affordances. It composes the `Alert` and `Button`
+[primitives](/components/alert/) and the `--md-*` tokens — it does not reimplement the
+alert itself, only the surrounding layout and interaction.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAlertsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAlertsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAlertsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAlertsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add alerts --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add alerts --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add alerts --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add alerts --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/).
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `AlertItem[]` | 4 sample alerts (info/success/warning/error) | Messages to render |
+
+### `AlertItem`
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `id` | `string` | — | Stable key, used to track dismissal |
+| `variant` | `'info' \| 'success' \| 'warning' \| 'error'` | — | Passed straight through to `Alert` |
+| `title` | `string` | — | Optional bold title |
+| `description` | `string` | — | Message body |
+| `dismissible` | `boolean` | `false` | Shows a close button that removes the alert from local state |
+| `actionLabel` | `string` | — | Shows an inline `Button` (e.g. "Retry payment") next to the message |
+
+## Usage
+
+```tsx
+import { Alerts } from './blocks/Alerts'
+
+<Alerts
+  items={[
+    { id: 'saved', variant: 'success', title: 'Saved', description: 'Your changes are live.', dismissible: true },
+    { id: 'failed', variant: 'error', title: 'Payment failed', description: 'Check your card details.', actionLabel: 'Retry payment' },
+  ]}
+/>
+```
+
+The props API is identical across all four frameworks.

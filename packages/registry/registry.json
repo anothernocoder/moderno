@@ -359,6 +359,23 @@
         "solid": "NotFound.tsx"
       }
     },
+    "alerts": {
+      "domain": "applications",
+      "description": "Área de alertas de aplicación: mensajes info/success/warning/error, con opciones de cierre y acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/alerts/Alerts.tsx",
+        "vue": "blocks/applications/alerts/Alerts.vue",
+        "svelte": "blocks/applications/alerts/Alerts.svelte",
+        "solid": "blocks/applications/alerts/Alerts.solid.tsx"
+      },
+      "dest": {
+        "react": "Alerts.tsx",
+        "vue": "Alerts.vue",
+        "svelte": "Alerts.svelte",
+        "solid": "Alerts.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

@@ -716,6 +716,23 @@
         "solid": "ListContainers.tsx"
       }
     },
+    "panels": {
+      "domain": "applications",
+      "description": "Superficies de panel genéricas para agrupar contenido: encabezado y una grilla responsiva de paneles con título, cuerpo y acción de footer opcional.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/panels/Panels.tsx",
+        "vue": "blocks/applications/panels/Panels.vue",
+        "svelte": "blocks/applications/panels/Panels.svelte",
+        "solid": "blocks/applications/panels/Panels.solid.tsx"
+      },
+      "dest": {
+        "react": "Panels.tsx",
+        "vue": "Panels.vue",
+        "svelte": "Panels.svelte",
+        "solid": "Panels.tsx"
+      }
+    },
     "media-objects": {
       "domain": "applications",
       "description": "Media + texto: fila con avatar (imagen o iniciales), encabezado, cuerpo y meta opcional — el patrón clásico de 'media object' para comentarios o actividad.",

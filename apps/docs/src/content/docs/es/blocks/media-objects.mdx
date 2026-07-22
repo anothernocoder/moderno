@@ -1,0 +1,106 @@
+---
+title: Media objects
+description: Layout media + texto que combina un Avatar (imagen o iniciales) con un encabezado, cuerpo y una línea meta opcional — el patrón clásico de "media object" para comentarios o actividad. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RMediaObjectsDemo from '../../../../demos/react/blocks/MediaObjectsDemo.tsx'
+import VMediaObjectsDemo from '../../../../demos/vue/blocks/MediaObjectsDemo.vue'
+import SMediaObjectsDemo from '../../../../demos/svelte/blocks/MediaObjectsDemo.svelte'
+import OMediaObjectsDemo from '../../../../demos/solid/blocks/MediaObjectsDemo.tsx'
+
+**Media objects** es un [block](/es/introduction/blocks/) de aplicaciones: una lista de filas,
+cada una combinando un [`Avatar`](/es/components/avatar/) — imagen o iniciales de respaldo —
+con un bloque de texto (encabezado, cuerpo y una línea meta opcional). Este es el patrón de
+layout clásico "media object", ideal para hilos de comentarios, digests de actividad o listas
+de contactos. Compone el primitive `Avatar` y los tokens `--md-*` — sin lógica de interacción
+a medida, solo un layout copy-paste.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RMediaObjectsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VMediaObjectsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SMediaObjectsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OMediaObjectsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add media-objects --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add media-objects --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add media-objects --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add media-objects --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `title` | `string` | `'Comentarios'` | Encabezado del panel |
+| `description` | `string` | Texto de ejemplo | Subtítulo del panel (se oculta si está vacío) |
+| `items` | `MediaObjectItem[]` | 3 comentarios de ejemplo | Las filas a renderizar, cada una combinando un `Avatar` con un bloque de texto |
+
+Forma de `MediaObjectItem`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `id` | `string` | Id único de la fila / key de React |
+| `heading` | `string` | Encabezado de la fila (p. ej. nombre del autor) |
+| `body` | `string` | Cuerpo de texto de la fila |
+| `meta` | `string?` | Línea meta final opcional (p. ej. timestamp) |
+| `avatarSrc` | `string?` | `src` de imagen del `Avatar` |
+| `avatarAlt` | `string?` | `alt` de imagen del `Avatar` |
+| `initials` | `string` | Iniciales de respaldo del `Avatar`, se muestran cuando falta `avatarSrc` |
+
+## Uso
+
+```tsx
+import { MediaObjects } from './blocks/MediaObjects'
+
+<MediaObjects
+  title="Comentarios"
+  items={[
+    {
+      id: 'valentina-rios',
+      heading: 'Valentina Ríos',
+      body: 'El nuevo flujo de checkout se ve mucho más claro. ¿Podemos aplicar el mismo patrón en el panel de pedidos?',
+      meta: 'Hace 10 min',
+      initials: 'VR',
+    },
+    {
+      id: 'mateo-fernandez',
+      heading: 'Mateo Fernández',
+      body: 'Buen trabajo con los estados vacíos. Sugiero agregar un ícono ilustrativo para reforzar el mensaje.',
+      meta: 'Hace 1 h',
+      initials: 'MF',
+    },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. `Avatar` es un primitive puro-CSS,
+closed-prop (ADR-0003): pasa `avatarSrc`/`avatarAlt` para una imagen, o omítelos y recae en
+`initials`. Este block solo organiza instancias de `Avatar` junto a un bloque de texto — no hay
+estado de selección, respuestas expandibles ni otra lógica de interacción por encima; agrégala
+una vez que lo hayas copiado a tu repo.

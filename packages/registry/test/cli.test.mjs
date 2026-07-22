@@ -120,6 +120,27 @@ test('add copies a different framework variant of the modals block', async (t) =
   assert.match(copied, /Moderno block — Modals \(Svelte\)/)
 })
 
+test('add copies the media-objects block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'media-objects', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /media-objects/)
+  const copied = await readFile(join(dest, 'MediaObjects.tsx'), 'utf8')
+  assert.match(copied, /export function MediaObjects/)
+})
+
+test('add copies a different framework variant of the media-objects block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'media-objects', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'MediaObjects.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Media objects \(Svelte\)/)
+})
+
 test('add copies the slide-overs block (applications domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -937,6 +958,7 @@ test('list groups blocks by domain and includes the applications table block', (
   assert.match(applicationsSection, /status-monitoring/)
   assert.match(applicationsSection, /kpi-cards/)
   assert.match(applicationsSection, /description-list/)
+  assert.match(applicationsSection, /media-objects/)
   assert.match(applicationsSection, /list/)
 })
 

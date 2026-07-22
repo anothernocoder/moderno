@@ -682,6 +682,23 @@
         "solid": "List.tsx"
       }
     },
+    "media-objects": {
+      "domain": "applications",
+      "description": "Media + texto: fila con avatar (imagen o iniciales), encabezado, cuerpo y meta opcional — el patrón clásico de 'media object' para comentarios o actividad.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/media-objects/MediaObjects.tsx",
+        "vue": "blocks/applications/media-objects/MediaObjects.vue",
+        "svelte": "blocks/applications/media-objects/MediaObjects.svelte",
+        "solid": "blocks/applications/media-objects/MediaObjects.solid.tsx"
+      },
+      "dest": {
+        "react": "MediaObjects.tsx",
+        "vue": "MediaObjects.vue",
+        "svelte": "MediaObjects.svelte",
+        "solid": "MediaObjects.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",

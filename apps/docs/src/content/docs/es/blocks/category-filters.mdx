@@ -1,0 +1,100 @@
+---
+title: Category Filters
+description: Filtros facetados de barra lateral para una página de listado de productos — combobox de categoría, grupo de tallas y rango de precio. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RCategoryFiltersDemo from '../../../../demos/react/blocks/CategoryFiltersDemo.tsx'
+import VCategoryFiltersDemo from '../../../../demos/vue/blocks/CategoryFiltersDemo.vue'
+import SCategoryFiltersDemo from '../../../../demos/svelte/blocks/CategoryFiltersDemo.svelte'
+import OCategoryFiltersDemo from '../../../../demos/solid/blocks/CategoryFiltersDemo.tsx'
+
+**Category Filters** es un [block](/es/introduction/blocks/) de ecommerce: filtros
+facetados de barra lateral para una página de listado de productos — un combobox de
+categoría con búsqueda, un grupo de tallas seleccionables y un rango de precio
+mínimo/máximo, con acciones "Aplicar" y "Limpiar". Compone los primitives `Combobox`,
+`Button` y `NumberInput`, y los tokens `--md-*`. Lo copias a tu repo con el CLI y lo
+editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCategoryFiltersDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCategoryFiltersDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCategoryFiltersDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCategoryFiltersDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add category-filters --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add category-filters --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add category-filters --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add category-filters --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Filtros'` | Encabezado sobre los filtros (omítelo para ocultarlo) |
+| `categoryLabel` | `string` | `'Categoría'` | Etiqueta del `Combobox` de categoría |
+| `categoryPlaceholder` | `string` | `'Buscar categoría'` | Texto de placeholder del input de categoría |
+| `categories` | `ComboboxItem[]` | 5 categorías de ejemplo | Opciones del `Combobox` de categoría — cada una con `label` y `value` |
+| `defaultCategory` | `string` | — | Valor de categoría seleccionado inicialmente |
+| `sizeLabel` | `string` | `'Talla'` | Etiqueta sobre el grupo de tallas |
+| `sizes` | `string[]` | `['S', 'M', 'L', 'XL']` | Opciones de talla seleccionables |
+| `defaultSize` | `string` | — | Talla seleccionada inicialmente |
+| `priceLabel` | `string` | `'Precio'` | Etiqueta sobre el rango de precio |
+| `minPriceLabel` | `string` | `'Mínimo'` | Etiqueta del `NumberInput` de precio mínimo |
+| `maxPriceLabel` | `string` | `'Máximo'` | Etiqueta del `NumberInput` de precio máximo |
+| `defaultMinPrice` | `number` | — | Precio mínimo inicial |
+| `defaultMaxPrice` | `number` | — | Precio máximo inicial |
+| `applyLabel` | `string` | `'Aplicar filtros'` | Texto del botón de aplicar |
+| `resetLabel` | `string` | `'Limpiar'` | Texto del botón de limpiar |
+| `onApply` | `(filters: { category?: string; size?: string; minPrice?: number; maxPrice?: number }) => void` | — | Se llama al hacer clic en "Aplicar filtros", con el estado actual de los filtros |
+| `onReset` | `() => void` | — | Se llama al hacer clic en "Limpiar", después de limpiar el estado interno |
+
+## Uso
+
+```tsx
+import { CategoryFilters } from './blocks/CategoryFilters'
+
+<CategoryFilters
+  categories={[
+    { label: 'Sillas', value: 'sillas' },
+    { label: 'Mesas', value: 'mesas' },
+    { label: 'Iluminación', value: 'iluminacion' },
+  ]}
+  sizes={['S', 'M', 'L', 'XL']}
+  onApply={(filters) => aplicarFiltrosDeProducto(filters)}
+  onReset={() => limpiarFiltrosDeProducto()}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onApply` y `onReset` son
+los eventos `@apply` y `@reset`; en los demás son props callback. El facet de categoría
+es un `Combobox` con búsqueda — escribir filtra la lista por etiqueta, y la selección,
+la interacción de teclado y el ARIA vienen del primitive; talla es un grupo simple de
+botones toggle, y precio es un par de `NumberInput` mínimo/máximo — sin primitives
+nuevos, sin lógica de interacción a medida.

@@ -546,6 +546,30 @@ test('add copies a different framework variant of the category-preview block', a
   assert.match(copied, /Moderno block — CategoryPreview \(Svelte\)/)
 })
 
+test('add copies the category-filters block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'category-filters', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /category-filters/)
+  const copied = await readFile(join(dest, 'CategoryFilters.tsx'), 'utf8')
+  assert.match(copied, /export function CategoryFilters/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Combobox/)
+})
+
+test('add copies a different framework variant of the category-filters block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'category-filters', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'CategoryFilters.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — CategoryFilters \(Svelte\)/)
+  assert.match(copied, /Combobox/)
+})
+
 test('add copies the portfolio-sections block (portfolio domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1103,6 +1127,7 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.match(ecommerceSection, /store-nav/)
   assert.match(ecommerceSection, /promo/)
   assert.match(ecommerceSection, /category-preview/)
+  assert.match(ecommerceSection, /category-filters/)
 })
 
 test('list groups blocks by domain and includes the portfolio-sections block', () => {

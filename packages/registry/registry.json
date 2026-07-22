@@ -835,6 +835,23 @@
         "solid": "CategoryPreview.tsx"
       }
     },
+    "category-filters": {
+      "domain": "ecommerce",
+      "description": "Filtros facetados de barra lateral: combobox de categoría, tallas y rango de precio.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/category-filters/CategoryFilters.tsx",
+        "vue": "blocks/ecommerce/category-filters/CategoryFilters.vue",
+        "svelte": "blocks/ecommerce/category-filters/CategoryFilters.svelte",
+        "solid": "blocks/ecommerce/category-filters/CategoryFilters.solid.tsx"
+      },
+      "dest": {
+        "react": "CategoryFilters.tsx",
+        "vue": "CategoryFilters.vue",
+        "svelte": "CategoryFilters.svelte",
+        "solid": "CategoryFilters.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

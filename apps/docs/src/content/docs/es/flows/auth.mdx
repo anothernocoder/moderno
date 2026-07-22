@@ -1,0 +1,122 @@
+---
+title: Auth
+description: Flujo de auth de una sola pantalla (sign-in) — el tracer piloto del tier de Flows (ADR-0005). Screen + ensamblaje de ejemplo copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RAuthDemo from '../../../../demos/react/flows/AuthDemo.tsx'
+import VAuthDemo from '../../../../demos/vue/flows/AuthDemo.vue'
+import SAuthDemo from '../../../../demos/svelte/flows/AuthDemo.svelte'
+import OAuthDemo from '../../../../demos/solid/flows/AuthDemo.tsx'
+
+**Auth** es el primer [flow](/es/introduction/blocks/) de Moderno (ADR-0005): un conjunto
+conectado de [screens](/es/introduction/blocks/) que forman un solo recorrido de usuario. Este
+tracer entrega **solo sign-in** — una única screen presentacional más un ensamblaje de ejemplo
+liviano que la conecta con estado local. Las próximas screens de Auth (registro, olvidé mi
+contraseña, verificación) reutilizan la misma maquinaria.
+
+Una **screen** es presentacional: recibe un contrato de wiring tipado (`values`, `onChange`,
+`onSubmit`) y no tiene **ni estado interno ni router** — el consumidor decide cómo guardar los
+valores y navegar. El **ejemplo** (`Auth.example.{ext}`) es un ensamblaje liviano y ejecutable
+que arma la screen usando el estado local propio de cada framework (`useState` / `reactive` /
+runes / signals) y una variable `step` local — no es el producto, es un punto de partida
+copy-paste. El demo en vivo de abajo ejecuta el ejemplo directamente; no hay props que pasar a
+través del límite del island de Astro, ya que el ejemplo maneja su propio estado.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAuthDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAuthDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAuthDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAuthDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+Traer el flow `auth` copia la screen `sign-in` que compone **más** el ensamblaje de ejemplo. El
+CLI resuelve `composes` de forma recursiva y deduplica por nombre — trae solo `sign-in` si
+únicamente quieres la screen.
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add auth --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add auth --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add auth --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add auth --framework solid
+```
+</TabItem>
+</Tabs>
+
+Esto copia `screens/applications/sign-in/SignIn.{ext}` y `flows/auth/Auth.example.{ext}` dentro
+de `--dest` (por defecto `./src/blocks`), preservando esa estructura relativa para que el import
+del ejemplo hacia la screen siga funcionando. Pasa `--no-example` para copiar solo la(s)
+screen(s) compuesta(s):
+
+```sh
+npx @moderno/registry add auth --framework react --no-example
+```
+
+¿Solo quieres la screen, sin el contexto del flow? Agrégala directamente:
+
+```sh
+npx @moderno/registry add sign-in --framework react
+```
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo
+la navegación y el estado — es tuyo.
+
+## Props — screen SignIn
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `{ email: string; password: string; remember: boolean }` | Valores controlados de los campos |
+| `onChange` | `(values) => void` | Se llama con el siguiente `values` en cada cambio de campo |
+| `onSubmit` | `(values) => void` | Se llama con `values` al enviar el formulario |
+| `onForgotPassword` | `() => void` | Handler del enlace "¿Olvidaste tu contraseña?" |
+| `onSignUp` | `() => void` | Handler del enlace "Regístrate" |
+| `error` | `string` | Error del servidor mostrado sobre el formulario |
+| `submitting` | `boolean` | Deshabilita el formulario y cambia la etiqueta del submit mientras es `true` |
+| `title` | `string` | Texto del encabezado (default `Inicia sesión`) |
+| `description` | `string` | Texto del subtítulo |
+
+Sin estado interno, sin defaults para `values` — de eso se encarga el ensamblaje de ejemplo (o
+tu propio código). Compone los primitives `Input`, `Checkbox`, `Divider` y `Button`, y los
+tokens `--md-*`; sin clases utilitarias legacy.
+
+## Uso
+
+```tsx
+import { useState } from 'react'
+import { SignIn, type SignInValues } from './screens/applications/sign-in/SignIn'
+
+function App() {
+  const [values, setValues] = useState<SignInValues>({ email: '', password: '', remember: false })
+
+  return (
+    <SignIn
+      values={values}
+      onChange={setValues}
+      onSubmit={(v) => fetch('/api/sign-in', { method: 'POST', body: JSON.stringify(v) })}
+      onForgotPassword={() => router.push('/forgot-password')}
+      onSignUp={() => router.push('/sign-up')}
+    />
+  )
+}
+```
+
+Conectar tu propio router/estado es justamente el punto: la screen nunca asume que existe uno.

@@ -1,0 +1,120 @@
+---
+title: Auth
+description: Single-screen sign-in auth flow — the Flows tier's pilot tracer bullet (ADR-0005). Copy-paste screen + example assembly.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RAuthDemo from '../../../demos/react/flows/AuthDemo.tsx'
+import VAuthDemo from '../../../demos/vue/flows/AuthDemo.vue'
+import SAuthDemo from '../../../demos/svelte/flows/AuthDemo.svelte'
+import OAuthDemo from '../../../demos/solid/flows/AuthDemo.tsx'
+
+**Auth** is Moderno's first [flow](/introduction/blocks/) (ADR-0005): a connected set of
+[screens](/introduction/blocks/) forming one user journey. This tracer ships **sign-in only** —
+a single presentational screen plus a thin example assembly that wires it up with local state.
+Later Auth screens (sign-up, forgot-password, verify) reuse the same machinery.
+
+A **screen** is presentational: it takes a typed wiring contract (`values`, `onChange`,
+`onSubmit`) and owns **no internal state and no router** — the consumer decides how to store
+values and navigate. The **example** (`Auth.example.{ext}`) is a thin runnable assembly that
+stitches the screen together using that framework's own local state (`useState` / `reactive` /
+runes / signals) and a local `step` variable — not the product, just a copy-paste starting
+point. The live demo below drives the example directly; there are no props to pass across the
+Astro-island boundary since the example owns its own state.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAuthDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAuthDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAuthDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAuthDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+Pulling the `auth` flow copies the `sign-in` screen it composes **plus** the example assembly.
+The CLI resolves `composes` recursively and dedups by name — pull `sign-in` alone if you only
+want the screen.
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add auth --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add auth --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add auth --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add auth --framework solid
+```
+</TabItem>
+</Tabs>
+
+This copies `screens/applications/sign-in/SignIn.{ext}` and `flows/auth/Auth.example.{ext}` into
+`--dest` (defaults to `./src/blocks`), preserving that relative layout so the example's import of
+the screen keeps working. Pass `--no-example` to copy only the composed screen(s):
+
+```sh
+npx @moderno/registry add auth --framework react --no-example
+```
+
+Want just the screen, no flow context at all? Add it directly:
+
+```sh
+npx @moderno/registry add sign-in --framework react
+```
+
+After copying, install the `@moderno/<framework>` primitive package and
+[import the styles](/introduction/installation/). From there, the code — including navigation
+and state — is yours.
+
+## Props — SignIn screen
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `values` | `{ email: string; password: string; remember: boolean }` | Controlled field values |
+| `onChange` | `(values) => void` | Called with the next `values` on every field change |
+| `onSubmit` | `(values) => void` | Called with `values` on form submit |
+| `onForgotPassword` | `() => void` | "Forgot password?" link handler |
+| `onSignUp` | `() => void` | "Sign up" link handler |
+| `error` | `string` | Server-side error shown above the form |
+| `submitting` | `boolean` | Disables the form and swaps the submit label while true |
+| `title` | `string` | Heading text (default `Inicia sesión`) |
+| `description` | `string` | Subheading text |
+
+No internal state, no defaults for `values` — the example assembly (or your own code) owns
+that. Composes the `Input`, `Checkbox`, `Divider` and `Button` primitives and the `--md-*`
+tokens; no legacy utility classes.
+
+## Usage
+
+```tsx
+import { useState } from 'react'
+import { SignIn, type SignInValues } from './screens/applications/sign-in/SignIn'
+
+function App() {
+  const [values, setValues] = useState<SignInValues>({ email: '', password: '', remember: false })
+
+  return (
+    <SignIn
+      values={values}
+      onChange={setValues}
+      onSubmit={(v) => fetch('/api/sign-in', { method: 'POST', body: JSON.stringify(v) })}
+      onForgotPassword={() => router.push('/forgot-password')}
+      onSignUp={() => router.push('/sign-up')}
+    />
+  )
+}
+```
+
+Wiring in your own router/state is the point: the screen never assumes one exists.

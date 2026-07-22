@@ -58,17 +58,24 @@ export default defineConfig({
           translations: { es: 'Blocks' },
           items: [{ autogenerate: { directory: 'blocks' } }],
         },
+        {
+          label: 'Flows',
+          translations: { es: 'Flows' },
+          items: [{ autogenerate: { directory: 'flows' } }],
+        },
       ],
     }),
-    // Block sources live in @moderno/registry; route their .tsx to React and
-    // .solid.tsx to Solid. React must exclude the Solid variant since both
-    // integrations transform .tsx.
+    // Block/screen/flow sources live in @moderno/registry; route their .tsx to
+    // React and .solid.tsx to Solid. React must exclude the Solid variant since
+    // both integrations transform .tsx.
     react({
       include: [
         '**/packages/react/**',
         '**/@moderno/react/**',
         '**/demos/react/**',
         '**/registry/blocks/**/*.tsx',
+        '**/registry/screens/**/*.tsx',
+        '**/registry/flows/**/*.tsx',
       ],
       exclude: ['**/*.solid.tsx'],
     }),
@@ -78,6 +85,8 @@ export default defineConfig({
         '**/@moderno/solid/**',
         '**/demos/solid/**',
         '**/registry/blocks/**/*.solid.tsx',
+        '**/registry/screens/**/*.solid.tsx',
+        '**/registry/flows/**/*.solid.tsx',
       ],
     }),
     vue(),

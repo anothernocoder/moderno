@@ -961,3 +961,100 @@ test('list groups blocks by domain and includes the portfolio-sections block', (
   assert.match(portfolioSection, /portfolio-header/)
   assert.match(portfolioSection, /portfolio-sections/)
 })
+
+// ── Flows tier: screens + flows (ADR-0005) ─────────────────────────────────
+
+test('list groups screens and flows in their own sections, separate from blocks', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  assert.match(output, /Screens disponibles/)
+  assert.match(output, /Flows disponibles/)
+
+  const screensIndex = output.indexOf('Screens disponibles')
+  const flowsIndex = output.indexOf('Flows disponibles')
+  const signInIndex = output.indexOf('sign-in')
+  const authIndex = output.indexOf('auth')
+
+  assert.ok(screensIndex > -1 && flowsIndex > screensIndex, 'expected Screens before Flows')
+  assert.ok(signInIndex > screensIndex && signInIndex < flowsIndex, 'expected sign-in listed under Screens')
+  assert.ok(authIndex > flowsIndex, 'expected auth listed under Flows')
+})
+
+test('add copies the sign-in screen standalone (no example) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'sign-in', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /sign-in/)
+  const copied = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
+  assert.match(copied, /export function SignIn/)
+
+  await assert.rejects(readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8'))
+})
+
+test('add copies a different framework variant of the sign-in screen', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'sign-in', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'screens/applications/sign-in/SignIn.svelte'), 'utf8')
+  assert.match(copied, /Moderno screen — SignIn \(Svelte\)/)
+})
+
+test('add auth flow recursively resolves composes and copies the sign-in screen + the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'auth', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /auth/)
+  assert.match(output, /sign-in/)
+
+  const screen = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
+  assert.match(screen, /export function SignIn/)
+
+  const example = await readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8')
+  assert.match(example, /export function AuthExample/)
+})
+
+test('add auth flow works for every framework', async (t) => {
+  for (const framework of ['vue', 'svelte', 'solid']) {
+    const dest = await withTmpDir(t)
+    execFileSync('node', [CLI, 'add', 'auth', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
+    const files = {
+      vue: ['screens/applications/sign-in/SignIn.vue', 'flows/auth/Auth.example.vue'],
+      svelte: ['screens/applications/sign-in/SignIn.svelte', 'flows/auth/Auth.example.svelte'],
+      solid: ['screens/applications/sign-in/SignIn.tsx', 'flows/auth/Auth.example.tsx'],
+    }[framework]
+    for (const file of files) {
+      await readFile(join(dest, file), 'utf8')
+    }
+  }
+})
+
+test('add auth --no-example copies only the composed screen, not the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'auth', '--framework', 'react', '--dest', dest, '--no-example'], {
+    encoding: 'utf8',
+  })
+
+  const screen = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
+  assert.match(screen, /export function SignIn/)
+
+  await assert.rejects(readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8'))
+})
+
+test('add fails for an unknown flow', async (t) => {
+  const dest = await withTmpDir(t)
+
+  assert.throws(() => {
+    execFileSync('node', [CLI, 'add', 'not-a-flow', '--framework', 'react', '--dest', dest], {
+      encoding: 'utf8',
+      stdio: 'pipe',
+    })
+  })
+})

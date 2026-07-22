@@ -359,6 +359,23 @@
         "solid": "NotFound.tsx"
       }
     },
+    "stacked-list": {
+      "domain": "applications",
+      "description": "Lista apilada de registros: tarjetas verticales con avatar, badge de estado y acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/stacked-list/StackedList.tsx",
+        "vue": "blocks/applications/stacked-list/StackedList.vue",
+        "svelte": "blocks/applications/stacked-list/StackedList.svelte",
+        "solid": "blocks/applications/stacked-list/StackedList.solid.tsx"
+      },
+      "dest": {
+        "react": "StackedList.tsx",
+        "vue": "StackedList.vue",
+        "svelte": "StackedList.svelte",
+        "solid": "StackedList.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

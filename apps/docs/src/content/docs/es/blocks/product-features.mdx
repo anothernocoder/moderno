@@ -1,0 +1,84 @@
+---
+title: Product Features
+description: Grid de características destacadas para un solo producto — icono, etiqueta y descripción por característica. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RProductFeaturesDemo from '../../../../demos/react/blocks/ProductFeaturesDemo.tsx'
+import VProductFeaturesDemo from '../../../../demos/vue/blocks/ProductFeaturesDemo.vue'
+import SProductFeaturesDemo from '../../../../demos/svelte/blocks/ProductFeaturesDemo.svelte'
+import OProductFeaturesDemo from '../../../../demos/solid/blocks/ProductFeaturesDemo.tsx'
+
+**Product Features** es un [block](/es/introduction/blocks/) de ecommerce: un grid de
+características destacadas para un solo producto, combinando un icono con una etiqueta
+y una descripción corta por cada característica (material, garantía, envío, cuidado).
+Compone el primitive `Card` y los tokens `--md-*`. Lo copias a tu repo con el CLI y lo
+editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RProductFeaturesDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VProductFeaturesDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SProductFeaturesDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OProductFeaturesDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add product-features --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add product-features --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add product-features --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add product-features --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Características'` | Encabezado sobre el grid (omítelo para ocultarlo) |
+| `features` | `ProductFeatureItem[]` | 4 características de ejemplo | Características a renderizar — cada una con `label`, `description` e `icon` opcional (`'material' \| 'warranty' \| 'shipping' \| 'care'`, por defecto `'material'`) |
+
+## Uso
+
+```tsx
+import { ProductFeatures } from './blocks/ProductFeatures'
+
+<ProductFeatures
+  heading="Por qué te va a encantar"
+  features={[
+    { icon: 'material', label: 'Roble macizo', description: 'Estructura en roble macizo con acabado mate, hecha para durar.' },
+    { icon: 'warranty', label: 'Garantía 2 años', description: 'Cobertura completa por defectos de fabricación.' },
+    { icon: 'shipping', label: 'Envío gratis', description: 'Envío gratis a todo el país en compras desde $250.000.' },
+    { icon: 'care', label: 'Fácil mantenimiento', description: 'Se limpia con un paño húmedo, sin productos especiales.' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. Cada característica se renderiza
+como un `Card` cuyo slot `title` contiene un pequeño icono inline más la etiqueta, y cuyo
+cuerpo contiene la descripción — los mismos cuatro iconos de línea (material, garantía,
+envío, cuidado) se dibujan inline como formas SVG `path`/`circle`, siguiendo la misma
+convención del icono de carrito inline usada por el block [Store Nav](/es/blocks/store-nav/).
+Sin primitives nuevos, sin lógica de interacción a medida — este block es puramente
+presentacional.

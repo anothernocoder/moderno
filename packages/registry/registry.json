@@ -869,6 +869,23 @@
         "solid": "ProductLists.tsx"
       }
     },
+    "product-features": {
+      "domain": "ecommerce",
+      "description": "Grid de características de producto: icono, etiqueta y descripción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/product-features/ProductFeatures.tsx",
+        "vue": "blocks/ecommerce/product-features/ProductFeatures.vue",
+        "svelte": "blocks/ecommerce/product-features/ProductFeatures.svelte",
+        "solid": "blocks/ecommerce/product-features/ProductFeatures.solid.tsx"
+      },
+      "dest": {
+        "react": "ProductFeatures.tsx",
+        "vue": "ProductFeatures.vue",
+        "svelte": "ProductFeatures.svelte",
+        "solid": "ProductFeatures.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

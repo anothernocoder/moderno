@@ -1,0 +1,91 @@
+---
+title: Stacked List
+description: Lista apilada verticalmente de registros, cada fila renderizada como una tarjeta compacta con avatar, badge de estado, meta y acción. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RStackedListDemo from '../../../../demos/react/blocks/StackedListDemo.tsx'
+import VStackedListDemo from '../../../../demos/vue/blocks/StackedListDemo.vue'
+import SStackedListDemo from '../../../../demos/svelte/blocks/StackedListDemo.svelte'
+import OStackedListDemo from '../../../../demos/solid/blocks/StackedListDemo.tsx'
+
+**Stacked List** es un [block](/es/introduction/blocks/) de aplicación: una lista apilada
+verticalmente de registros donde cada fila es su propia tarjeta, con más separación y peso
+visual que una fila de lista simple. Cada tarjeta muestra un avatar, texto primario/secundario,
+un badge de estado opcional, meta al final y una acción de fila. Compone los primitives `Card`,
+`Avatar`, `Badge` y `Button`, y los tokens `--md-*`. Lo copias a tu repo con el CLI y lo editas
+libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RStackedListDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VStackedListDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SStackedListDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OStackedListDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add stacked-list --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add stacked-list --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add stacked-list --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add stacked-list --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `items` | `StackedListItem[]` | 3 tickets de ejemplo | Los registros a renderizar |
+| `onItemAction` | `(item: StackedListItem) => void` | — | Se llama al hacer clic en el botón `⋯` de un registro |
+
+Forma de `StackedListItem`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `id` | `string` | Id único del registro |
+| `title` | `string` | Texto primario |
+| `subtitle` | `string` | Texto secundario, bajo el título |
+| `avatarInitials` | `string` | Iniciales de respaldo para el `Avatar` |
+| `avatarSrc` | `string` | URL de imagen para el `Avatar` |
+| `status` | `string` | Etiqueta de estado mostrada en el `Badge` (se omite para ocultar el badge) |
+| `statusVariant` | `'neutral' \| 'solid' \| 'success' \| 'warning' \| 'error' \| 'info'` | Variante de color del `Badge` para el estado |
+| `meta` | `string` | Texto meta al final, p. ej. una marca de tiempo relativa |
+
+## Uso
+
+```tsx
+import { StackedList } from './blocks/StackedList'
+
+<StackedList
+  items={[
+    { id: 'T-1', title: 'No puede exportar el reporte', subtitle: 'Marina Ortiz · Soporte', avatarInitials: 'MO', status: 'Abierto', statusVariant: 'warning', meta: 'Hace 12 min' },
+    { id: 'T-2', title: 'Solicita cambio de plan', subtitle: 'Diego Salazar · Facturación', avatarInitials: 'DS', status: 'Resuelto', statusVariant: 'success', meta: 'Hace 1 h' },
+  ]}
+  onItemAction={(item) => abrirMenuDeRegistro(item)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onItemAction` es el evento
+`@item-action`; en los demás es una prop callback.

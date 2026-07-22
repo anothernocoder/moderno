@@ -8,13 +8,30 @@ afterEach(cleanup)
 // and each item via getBoundingClientRect/offsetWidth/scrollWidth to compute
 // scroll-snap positions. Fake a 100px item-group showing one 100px item at a
 // time across 3 items, so paging behaves like a real three-slide carousel.
+// @zag-js/scroll-snap's getScrollSnapPositions() re-derives each item's
+// scroll-content-relative offset from a *viewport*-relative rect: it adds
+// back the item-group's current scrollLeft/scrollTop to the measured rect
+// (childOffsetStart = childRect.left - parentRect.left + scrollLeft). That
+// only recovers the right absolute offset if the rect actually shifts with
+// scroll, the way a real browser's getBoundingClientRect does. A mock that
+// reports a fixed position regardless of scroll breaks that invariant, so
+// any re-measurement after the carousel has scrolled (e.g. the machine's
+// own mount-time SNAP.REFRESH raf chain, if it lands late) computes bogus
+// snap points and the machine clamps `page` back into range 0 — see the
+// React package's carousel.test.tsx for the full writeup (moderno#65).
 function mockCarouselLayout(itemWidth = 100, count = 3) {
   const rectSpy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
     const isItem = this.getAttribute('data-part') === 'item'
-    const index = isItem ? Number(this.dataset.index) : 0
-    const width = itemWidth
-    const left = isItem ? index * itemWidth : 0
-    return { width, height: 100, top: 0, left, right: left + width, bottom: 100, x: left, y: 0, toJSON() {} } as DOMRect
+    if (!isItem) {
+      return { width: itemWidth, height: 100, top: 0, left: 0, right: itemWidth, bottom: 100, x: 0, y: 0, toJSON() {} } as DOMRect
+    }
+    const index = Number(this.dataset.index)
+    const itemGroupEl = this.parentElement
+    const scrollLeft = itemGroupEl?.scrollLeft ?? 0
+    const scrollTop = itemGroupEl?.scrollTop ?? 0
+    const left = index * itemWidth - scrollLeft
+    const top = -scrollTop
+    return { width: itemWidth, height: 100, top, left, right: left + itemWidth, bottom: top + 100, x: left, y: top, toJSON() {} } as DOMRect
   })
   const widthSpy = vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(itemWidth)
   const heightSpy = vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockReturnValue(100)

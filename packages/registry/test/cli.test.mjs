@@ -99,6 +99,27 @@ test('add copies a different framework variant of the table block', async (t) =>
   assert.match(copied, /Moderno block — Table \(Svelte\)/)
 })
 
+test('add copies the empty-states block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'empty-states', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /empty-states/)
+  const copied = await readFile(join(dest, 'EmptyStates.tsx'), 'utf8')
+  assert.match(copied, /export function EmptyStates/)
+})
+
+test('add copies a different framework variant of the empty-states block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'empty-states', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'EmptyStates.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — EmptyStates \(Svelte\)/)
+})
+
 test('add copies the input-groups block (applications domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -841,6 +862,7 @@ test('list groups blocks by domain and includes the applications table block', (
   assert.match(applicationsSection, /stats/)
   assert.match(applicationsSection, /form-layouts/)
   assert.match(applicationsSection, /table/)
+  assert.match(applicationsSection, /empty-states/)
   assert.match(applicationsSection, /input-groups/)
   assert.match(applicationsSection, /app-banners/)
   assert.match(applicationsSection, /grid-lists/)

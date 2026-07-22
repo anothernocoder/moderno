@@ -120,6 +120,90 @@ test('add copies a different framework variant of the modals block', async (t) =
   assert.match(copied, /Moderno block — Modals \(Svelte\)/)
 })
 
+test('add copies the media-objects block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'media-objects', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /media-objects/)
+  const copied = await readFile(join(dest, 'MediaObjects.tsx'), 'utf8')
+  assert.match(copied, /export function MediaObjects/)
+})
+
+test('add copies a different framework variant of the media-objects block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'media-objects', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'MediaObjects.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Media objects \(Svelte\)/)
+})
+
+test('add copies the containers block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'containers', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /containers/)
+  const copied = await readFile(join(dest, 'Containers.tsx'), 'utf8')
+  assert.match(copied, /export function Containers/)
+})
+
+test('add copies a different framework variant of the containers block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'containers', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Containers.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Containers \(Svelte\)/)
+})
+
+test('add copies the list-containers block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'list-containers', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /list-containers/)
+  const copied = await readFile(join(dest, 'ListContainers.tsx'), 'utf8')
+  assert.match(copied, /export function ListContainers/)
+})
+
+test('add copies a different framework variant of the list-containers block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'list-containers', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ListContainers.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — List containers \(Svelte\)/)
+})
+
+test('add copies the panels block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'panels', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /panels/)
+  const copied = await readFile(join(dest, 'Panels.tsx'), 'utf8')
+  assert.match(copied, /export function Panels/)
+})
+
+test('add copies a different framework variant of the panels block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'panels', '--framework', 'vue', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Panels.vue'), 'utf8')
+  assert.match(copied, /Moderno block — Panels \(Vue\)/)
+})
+
 test('add copies the slide-overs block (applications domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -399,6 +483,285 @@ test('add copies a different framework variant of the product-details block', as
   assert.match(copied, /Moderno block — ProductDetails \(Vue\)/)
 })
 
+test('add copies the store-nav block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'store-nav', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /store-nav/)
+  const copied = await readFile(join(dest, 'StoreNav.tsx'), 'utf8')
+  assert.match(copied, /export function StoreNav/)
+})
+
+test('add copies a different framework variant of the store-nav block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'store-nav', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'StoreNav.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — StoreNav \(Svelte\)/)
+})
+
+test('add copies the promo block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'promo', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /promo/)
+  const copied = await readFile(join(dest, 'Promo.tsx'), 'utf8')
+  assert.match(copied, /export function Promo/)
+})
+
+test('add copies a different framework variant of the promo block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'promo', '--framework', 'vue', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Promo.vue'), 'utf8')
+  assert.match(copied, /Moderno block — Promo \(Vue\)/)
+})
+
+test('add copies the category-preview block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'category-preview', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /category-preview/)
+  const copied = await readFile(join(dest, 'CategoryPreview.tsx'), 'utf8')
+  assert.match(copied, /export function CategoryPreview/)
+})
+
+test('add copies a different framework variant of the category-preview block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'category-preview', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'CategoryPreview.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — CategoryPreview \(Svelte\)/)
+})
+
+test('add copies the category-filters block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'category-filters', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /category-filters/)
+  const copied = await readFile(join(dest, 'CategoryFilters.tsx'), 'utf8')
+  assert.match(copied, /export function CategoryFilters/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Combobox/)
+})
+
+test('add copies a different framework variant of the category-filters block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'category-filters', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'CategoryFilters.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — CategoryFilters \(Svelte\)/)
+  assert.match(copied, /Combobox/)
+})
+
+test('add copies the product-lists block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'product-lists', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /product-lists/)
+  const copied = await readFile(join(dest, 'ProductLists.tsx'), 'utf8')
+  assert.match(copied, /export function ProductLists/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Card/)
+})
+
+test('add copies a different framework variant of the product-lists block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'product-lists', '--framework', 'solid', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ProductLists.tsx'), 'utf8')
+  assert.match(copied, /Moderno block — ProductLists \(Solid\)/)
+  assert.match(copied, /Card/)
+})
+
+test('add copies the product-features block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'product-features', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /product-features/)
+  const copied = await readFile(join(dest, 'ProductFeatures.tsx'), 'utf8')
+  assert.match(copied, /export function ProductFeatures/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Card/)
+})
+
+test('add copies a different framework variant of the product-features block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'product-features', '--framework', 'vue', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ProductFeatures.vue'), 'utf8')
+  assert.match(copied, /Moderno block — ProductFeatures \(Vue\)/)
+  assert.match(copied, /Card/)
+})
+
+test('add copies the reviews block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'reviews', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /reviews/)
+  const copied = await readFile(join(dest, 'Reviews.tsx'), 'utf8')
+  assert.match(copied, /export function Reviews/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Card/)
+})
+
+test('add copies a different framework variant of the reviews block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'reviews', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Reviews.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Reviews \(Svelte\)/)
+  assert.match(copied, /Card/)
+})
+
+test('add copies the shopping-cart block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'shopping-cart', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /shopping-cart/)
+  const copied = await readFile(join(dest, 'ShoppingCart.tsx'), 'utf8')
+  assert.match(copied, /export function ShoppingCart/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /NumberInput/)
+})
+
+test('add copies a different framework variant of the shopping-cart block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'shopping-cart', '--framework', 'solid', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ShoppingCart.tsx'), 'utf8')
+  assert.match(copied, /Moderno block — ShoppingCart \(Solid\)/)
+  assert.match(copied, /NumberInput/)
+})
+
+test('add copies the checkout-forms block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'checkout-forms', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /checkout-forms/)
+  const copied = await readFile(join(dest, 'CheckoutForms.tsx'), 'utf8')
+  assert.match(copied, /export function CheckoutForms/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Select/)
+})
+
+test('add copies a different framework variant of the checkout-forms block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'checkout-forms', '--framework', 'vue', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'CheckoutForms.vue'), 'utf8')
+  assert.match(copied, /Moderno block — CheckoutForms \(Vue\)/)
+  assert.match(copied, /Select/)
+})
+
+test('add copies the order-summaries block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'order-summaries', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /order-summaries/)
+  const copied = await readFile(join(dest, 'OrderSummaries.tsx'), 'utf8')
+  assert.match(copied, /export function OrderSummaries/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Divider/)
+})
+
+test('add copies a different framework variant of the order-summaries block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'order-summaries', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'OrderSummaries.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — OrderSummaries \(Svelte\)/)
+  assert.match(copied, /Divider/)
+})
+
+test('add copies the order-history block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'order-history', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /order-history/)
+  const copied = await readFile(join(dest, 'OrderHistory.tsx'), 'utf8')
+  assert.match(copied, /export function OrderHistory/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Badge/)
+})
+
+test('add copies a different framework variant of the order-history block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'order-history', '--framework', 'solid', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'OrderHistory.tsx'), 'utf8')
+  assert.match(copied, /Moderno block — OrderHistory \(Solid\)/)
+  assert.match(copied, /Badge/)
+})
+
+test('add copies the incentives block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'incentives', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /incentives/)
+  const copied = await readFile(join(dest, 'Incentives.tsx'), 'utf8')
+  assert.match(copied, /export function Incentives/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Card/)
+})
+
+test('add copies a different framework variant of the incentives block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'incentives', '--framework', 'vue', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Incentives.vue'), 'utf8')
+  assert.match(copied, /Moderno block — Incentives \(Vue\)/)
+  assert.match(copied, /Card/)
+})
+
 test('add copies the portfolio-sections block (portfolio domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -424,6 +787,33 @@ test('add copies a different framework variant of the portfolio-sections block',
 
   const copied = await readFile(join(dest, 'PortfolioSections.svelte'), 'utf8')
   assert.match(copied, /Moderno block — PortfolioSections \(Svelte\)/)
+})
+
+test('add copies the long-form-content block (portfolio domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync(
+    'node',
+    [CLI, 'add', 'long-form-content', '--framework', 'react', '--dest', dest],
+    { encoding: 'utf8' },
+  )
+
+  assert.match(output, /long-form-content/)
+  const copied = await readFile(join(dest, 'LongFormContent.tsx'), 'utf8')
+  assert.match(copied, /export function LongFormContent/)
+})
+
+test('add copies a different framework variant of the long-form-content block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync(
+    'node',
+    [CLI, 'add', 'long-form-content', '--framework', 'vue', '--dest', dest],
+    { encoding: 'utf8' },
+  )
+
+  const copied = await readFile(join(dest, 'LongFormContent.vue'), 'utf8')
+  assert.match(copied, /Moderno block — LongFormContent \(Vue\)/)
 })
 
 test('add copies the banner block (marketing domain) to --dest', async (t) => {
@@ -937,7 +1327,11 @@ test('list groups blocks by domain and includes the applications table block', (
   assert.match(applicationsSection, /status-monitoring/)
   assert.match(applicationsSection, /kpi-cards/)
   assert.match(applicationsSection, /description-list/)
+  assert.match(applicationsSection, /media-objects/)
   assert.match(applicationsSection, /list/)
+  assert.match(applicationsSection, /containers/)
+  assert.match(applicationsSection, /list-containers/)
+  assert.match(applicationsSection, /panels/)
 })
 
 test('list groups blocks by domain and includes the ecommerce product-details block', () => {
@@ -949,9 +1343,21 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.ok(ecommerceSection, 'expected an "ecommerce" domain group in list output')
   assert.match(ecommerceSection, /product-card/)
   assert.match(ecommerceSection, /product-details/)
+  assert.match(ecommerceSection, /store-nav/)
+  assert.match(ecommerceSection, /promo/)
+  assert.match(ecommerceSection, /category-preview/)
+  assert.match(ecommerceSection, /category-filters/)
+  assert.match(ecommerceSection, /product-features/)
+  assert.match(ecommerceSection, /product-lists/)
+  assert.match(ecommerceSection, /reviews/)
+  assert.match(ecommerceSection, /shopping-cart/)
+  assert.match(ecommerceSection, /checkout-forms/)
+  assert.match(ecommerceSection, /order-summaries/)
+  assert.match(ecommerceSection, /order-history/)
+  assert.match(ecommerceSection, /incentives/)
 })
 
-test('list groups blocks by domain and includes the portfolio-sections block', () => {
+test('list groups blocks by domain and includes the portfolio blocks', () => {
   const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
 
   const sections = output.split(/\n\s*\n/).filter((section) => section.trim().length > 0)
@@ -960,4 +1366,5 @@ test('list groups blocks by domain and includes the portfolio-sections block', (
   assert.ok(portfolioSection, 'expected a "portfolio" domain group in list output')
   assert.match(portfolioSection, /portfolio-header/)
   assert.match(portfolioSection, /portfolio-sections/)
+  assert.match(portfolioSection, /long-form-content/)
 })

@@ -1,0 +1,84 @@
+---
+title: Promo
+description: Barra de anuncio promocional sitewide para ofertas y umbrales de envío, con CTA opcional y botón de cierre. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RPromoDemo from '../../../../demos/react/blocks/PromoDemo.tsx'
+import VPromoDemo from '../../../../demos/vue/blocks/PromoDemo.vue'
+import SPromoDemo from '../../../../demos/svelte/blocks/PromoDemo.svelte'
+import OPromoDemo from '../../../../demos/solid/blocks/PromoDemo.tsx'
+
+**Promo** es un [block](/es/introduction/blocks/) de ecommerce: una barra de
+anuncio sitewide para ofertas o umbrales de envío (por ejemplo "Envío gratis en
+compras mayores a $50" o "20% de descuento solo hoy"), con un mensaje, un CTA
+opcional y un botón de cierre opcional. Layout plano compuesto con los tokens
+`--md-*` — sin primitives, sin lógica de interacción a medida. Lo copias a tu
+repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RPromoDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VPromoDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SPromoDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OPromoDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add promo --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add promo --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add promo --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add promo --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el paquete `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `message` | `string` | Texto de ejemplo de envío gratis + descuento | Mensaje promocional mostrado en la barra |
+| `ctaLabel` | `string` | `'Ver ofertas'` | Texto del CTA opcional (omítelo para ocultarlo) |
+| `ctaHref` | `string` | `'#'` | Destino del enlace del CTA |
+| `onCtaClick` | `(event: MouseEvent) => void` | — | Se llama al hacer clic en el CTA |
+| `dismissible` | `boolean` | `true` | Si se muestra el botón de cierre |
+| `onDismiss` | `() => void` | — | Se llama al cerrar la barra |
+| `closeLabel` | `string` | `'Cerrar'` | Etiqueta accesible del botón de cierre |
+
+## Uso
+
+```tsx
+import { Promo } from './blocks/Promo'
+
+<Promo
+  message="Envío gratis en compras mayores a $50.000 — solo hoy."
+  ctaLabel="Comprar ahora"
+  ctaHref="/ofertas"
+  onDismiss={() => trackPromoCerrado()}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onCtaClick` y
+`onDismiss` son los eventos `@cta-click` y `@dismiss`; en React, Svelte y Solid
+son props callback. El cierre es estado local de mostrar/ocultar — no introduce
+ningún primitive nuevo.

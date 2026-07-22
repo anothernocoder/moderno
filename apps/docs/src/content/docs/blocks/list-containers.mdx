@@ -1,0 +1,101 @@
+---
+title: List containers
+description: A specialized container for lists — header, scrollable body, and footer with a summary and action. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RListContainersDemo from '../../../demos/react/blocks/ListContainersDemo.tsx'
+import VListContainersDemo from '../../../demos/vue/blocks/ListContainersDemo.vue'
+import SListContainersDemo from '../../../demos/svelte/blocks/ListContainersDemo.svelte'
+import OListContainersDemo from '../../../demos/solid/blocks/ListContainersDemo.tsx'
+
+**List containers** is an application [block](/introduction/blocks/): a specialized container
+for lists, pairing a fixed header with a scrollable body — a bounded-height wrapper using
+`overflow-y: auto` — and a footer holding a summary line and an action button. It composes the
+`Avatar`, `Badge`, `Button`, and `Divider` primitives and the `--md-*` tokens — no new primitives
+and no bespoke interaction logic, just a copy-paste layout you can drop a list into.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RListContainersDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VListContainersDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SListContainersDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OListContainersDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add list-containers --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add list-containers --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add list-containers --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add list-containers --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | `'Tareas del sprint'` | Header heading |
+| `description` | `string` | Sample copy | Header subheading (hidden if empty) |
+| `items` | `ListContainerItem[]` | 6 sample rows | The rows rendered in the scrollable body |
+| `maxBodyHeight` | `string` | `'280px'` | CSS `max-height` applied to the scrollable body |
+| `footerLabel` | `string` | `'Ver todas las tareas'` | Label for the footer action button |
+| `onFooterAction` | `() => void` | — | Called when the footer button is clicked (React/Solid/Svelte); emits `footerAction` in Vue |
+
+`ListContainerItem` shape:
+
+| Field | Type | Description |
+|-------|------|--------------|
+| `id` | `string` | Unique row id / list key |
+| `title` | `string` | Primary row text |
+| `subtitle` | `string?` | Secondary row text |
+| `meta` | `string?` | Trailing meta text (e.g. a relative date) |
+| `avatarSrc` | `string?` | Avatar image URL |
+| `avatarInitials` | `string?` | Avatar fallback initials |
+| `status` | `string?` | Status badge label |
+| `statusVariant` | `'neutral' \| 'solid' \| 'success' \| 'warning' \| 'error' \| 'info'` | Status badge variant |
+
+## Usage
+
+```tsx
+import { ListContainers } from './blocks/ListContainers'
+
+<ListContainers
+  title="Open tasks"
+  maxBodyHeight="320px"
+  items={[
+    { id: '1', title: 'Ship the changelog', subtitle: 'Docs', status: 'In progress', statusVariant: 'info' },
+    { id: '2', title: 'Fix Safari scroll bug', subtitle: 'Engineering', status: 'Blocked', statusVariant: 'error' },
+  ]}
+  footerLabel="View all tasks"
+  onFooterAction={() => console.log('view all')}
+/>
+```
+
+The props API is identical across all four frameworks (Vue exposes the footer action as a
+`footerAction` emit instead of an `onFooterAction` prop, matching Vue's event conventions). The
+body is a plain block of rows separated by `Divider`s inside a wrapper whose `max-height` is set
+from `maxBodyHeight` with `overflow-y: auto` — once the rows exceed that height the body scrolls
+while the header and footer stay fixed. There's no virtualization, infinite scroll, or other
+interaction logic layered on top; wire that up yourself once you've copied it into your repo.

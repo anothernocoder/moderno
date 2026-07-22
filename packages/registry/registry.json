@@ -682,6 +682,74 @@
         "solid": "List.tsx"
       }
     },
+    "containers": {
+      "domain": "applications",
+      "description": "Envoltorios de layout de página: ancho máximo y padding horizontal consistente (angosto, predeterminado, ancho, completo) para centrar contenido.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/containers/Containers.tsx",
+        "vue": "blocks/applications/containers/Containers.vue",
+        "svelte": "blocks/applications/containers/Containers.svelte",
+        "solid": "blocks/applications/containers/Containers.solid.tsx"
+      },
+      "dest": {
+        "react": "Containers.tsx",
+        "vue": "Containers.vue",
+        "svelte": "Containers.svelte",
+        "solid": "Containers.tsx"
+      }
+    },
+    "list-containers": {
+      "domain": "applications",
+      "description": "Contenedor especializado para listas: encabezado, cuerpo con scroll (overflow-y: auto) y footer con resumen + acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/list-containers/ListContainers.tsx",
+        "vue": "blocks/applications/list-containers/ListContainers.vue",
+        "svelte": "blocks/applications/list-containers/ListContainers.svelte",
+        "solid": "blocks/applications/list-containers/ListContainers.solid.tsx"
+      },
+      "dest": {
+        "react": "ListContainers.tsx",
+        "vue": "ListContainers.vue",
+        "svelte": "ListContainers.svelte",
+        "solid": "ListContainers.tsx"
+      }
+    },
+    "panels": {
+      "domain": "applications",
+      "description": "Superficies de panel genéricas para agrupar contenido: encabezado y una grilla responsiva de paneles con título, cuerpo y acción de footer opcional.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/panels/Panels.tsx",
+        "vue": "blocks/applications/panels/Panels.vue",
+        "svelte": "blocks/applications/panels/Panels.svelte",
+        "solid": "blocks/applications/panels/Panels.solid.tsx"
+      },
+      "dest": {
+        "react": "Panels.tsx",
+        "vue": "Panels.vue",
+        "svelte": "Panels.svelte",
+        "solid": "Panels.tsx"
+      }
+    },
+    "media-objects": {
+      "domain": "applications",
+      "description": "Media + texto: fila con avatar (imagen o iniciales), encabezado, cuerpo y meta opcional — el patrón clásico de 'media object' para comentarios o actividad.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/media-objects/MediaObjects.tsx",
+        "vue": "blocks/applications/media-objects/MediaObjects.vue",
+        "svelte": "blocks/applications/media-objects/MediaObjects.svelte",
+        "solid": "blocks/applications/media-objects/MediaObjects.solid.tsx"
+      },
+      "dest": {
+        "react": "MediaObjects.tsx",
+        "vue": "MediaObjects.vue",
+        "svelte": "MediaObjects.svelte",
+        "solid": "MediaObjects.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",
@@ -716,6 +784,210 @@
         "solid": "ProductDetails.tsx"
       }
     },
+    "store-nav": {
+      "domain": "ecommerce",
+      "description": "Navegación de tienda: logo, enlaces de categorías, buscador y carrito con contador.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/store-nav/StoreNav.tsx",
+        "vue": "blocks/ecommerce/store-nav/StoreNav.vue",
+        "svelte": "blocks/ecommerce/store-nav/StoreNav.svelte",
+        "solid": "blocks/ecommerce/store-nav/StoreNav.solid.tsx"
+      },
+      "dest": {
+        "react": "StoreNav.tsx",
+        "vue": "StoreNav.vue",
+        "svelte": "StoreNav.svelte",
+        "solid": "StoreNav.tsx"
+      }
+    },
+    "promo": {
+      "domain": "ecommerce",
+      "description": "Barra de promoción sitewide: mensaje, CTA opcional y botón de cierre opcional.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/promo/Promo.tsx",
+        "vue": "blocks/ecommerce/promo/Promo.vue",
+        "svelte": "blocks/ecommerce/promo/Promo.svelte",
+        "solid": "blocks/ecommerce/promo/Promo.solid.tsx"
+      },
+      "dest": {
+        "react": "Promo.tsx",
+        "vue": "Promo.vue",
+        "svelte": "Promo.svelte",
+        "solid": "Promo.tsx"
+      }
+    },
+    "category-preview": {
+      "domain": "ecommerce",
+      "description": "Grid de tiles de categoría: imagen y etiqueta enlazando a las páginas de categoría.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/category-preview/CategoryPreview.tsx",
+        "vue": "blocks/ecommerce/category-preview/CategoryPreview.vue",
+        "svelte": "blocks/ecommerce/category-preview/CategoryPreview.svelte",
+        "solid": "blocks/ecommerce/category-preview/CategoryPreview.solid.tsx"
+      },
+      "dest": {
+        "react": "CategoryPreview.tsx",
+        "vue": "CategoryPreview.vue",
+        "svelte": "CategoryPreview.svelte",
+        "solid": "CategoryPreview.tsx"
+      }
+    },
+    "category-filters": {
+      "domain": "ecommerce",
+      "description": "Filtros facetados de barra lateral: combobox de categoría, tallas y rango de precio.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/category-filters/CategoryFilters.tsx",
+        "vue": "blocks/ecommerce/category-filters/CategoryFilters.vue",
+        "svelte": "blocks/ecommerce/category-filters/CategoryFilters.svelte",
+        "solid": "blocks/ecommerce/category-filters/CategoryFilters.solid.tsx"
+      },
+      "dest": {
+        "react": "CategoryFilters.tsx",
+        "vue": "CategoryFilters.vue",
+        "svelte": "CategoryFilters.svelte",
+        "solid": "CategoryFilters.tsx"
+      }
+    },
+    "product-lists": {
+      "domain": "ecommerce",
+      "description": "Grid de productos: encabezado de sección, tarjetas de producto y paginación simple.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/product-lists/ProductLists.tsx",
+        "vue": "blocks/ecommerce/product-lists/ProductLists.vue",
+        "svelte": "blocks/ecommerce/product-lists/ProductLists.svelte",
+        "solid": "blocks/ecommerce/product-lists/ProductLists.solid.tsx"
+      },
+      "dest": {
+        "react": "ProductLists.tsx",
+        "vue": "ProductLists.vue",
+        "svelte": "ProductLists.svelte",
+        "solid": "ProductLists.tsx"
+      }
+    },
+    "product-features": {
+      "domain": "ecommerce",
+      "description": "Grid de características de producto: icono, etiqueta y descripción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/product-features/ProductFeatures.tsx",
+        "vue": "blocks/ecommerce/product-features/ProductFeatures.vue",
+        "svelte": "blocks/ecommerce/product-features/ProductFeatures.svelte",
+        "solid": "blocks/ecommerce/product-features/ProductFeatures.solid.tsx"
+      },
+      "dest": {
+        "react": "ProductFeatures.tsx",
+        "vue": "ProductFeatures.vue",
+        "svelte": "ProductFeatures.svelte",
+        "solid": "ProductFeatures.tsx"
+      }
+    },
+    "reviews": {
+      "domain": "ecommerce",
+      "description": "Reseñas de clientes: resumen de calificación promedio con desglose por estrellas y lista de reseñas individuales.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/reviews/Reviews.tsx",
+        "vue": "blocks/ecommerce/reviews/Reviews.vue",
+        "svelte": "blocks/ecommerce/reviews/Reviews.svelte",
+        "solid": "blocks/ecommerce/reviews/Reviews.solid.tsx"
+      },
+      "dest": {
+        "react": "Reviews.tsx",
+        "vue": "Reviews.vue",
+        "svelte": "Reviews.svelte",
+        "solid": "Reviews.tsx"
+      }
+    },
+    "shopping-cart": {
+      "domain": "ecommerce",
+      "description": "Carrito de compras: línea de productos con imagen, cantidad y opción de quitar, subtotal y CTA de checkout.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/shopping-cart/ShoppingCart.tsx",
+        "vue": "blocks/ecommerce/shopping-cart/ShoppingCart.vue",
+        "svelte": "blocks/ecommerce/shopping-cart/ShoppingCart.svelte",
+        "solid": "blocks/ecommerce/shopping-cart/ShoppingCart.solid.tsx"
+      },
+      "dest": {
+        "react": "ShoppingCart.tsx",
+        "vue": "ShoppingCart.vue",
+        "svelte": "ShoppingCart.svelte",
+        "solid": "ShoppingCart.tsx"
+      }
+    },
+    "checkout-forms": {
+      "domain": "ecommerce",
+      "description": "Formulario de checkout: dirección de envío y datos de pago agrupados en un formulario multi-sección.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/checkout-forms/CheckoutForms.tsx",
+        "vue": "blocks/ecommerce/checkout-forms/CheckoutForms.vue",
+        "svelte": "blocks/ecommerce/checkout-forms/CheckoutForms.svelte",
+        "solid": "blocks/ecommerce/checkout-forms/CheckoutForms.solid.tsx"
+      },
+      "dest": {
+        "react": "CheckoutForms.tsx",
+        "vue": "CheckoutForms.vue",
+        "svelte": "CheckoutForms.svelte",
+        "solid": "CheckoutForms.tsx"
+      }
+    },
+    "order-summaries": {
+      "domain": "ecommerce",
+      "description": "Resumen del pedido: línea de productos con cantidad, subtotal, envío, impuestos y total. Solo lectura.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/order-summaries/OrderSummaries.tsx",
+        "vue": "blocks/ecommerce/order-summaries/OrderSummaries.vue",
+        "svelte": "blocks/ecommerce/order-summaries/OrderSummaries.svelte",
+        "solid": "blocks/ecommerce/order-summaries/OrderSummaries.solid.tsx"
+      },
+      "dest": {
+        "react": "OrderSummaries.tsx",
+        "vue": "OrderSummaries.vue",
+        "svelte": "OrderSummaries.svelte",
+        "solid": "OrderSummaries.tsx"
+      }
+    },
+    "order-history": {
+      "domain": "ecommerce",
+      "description": "Historial de pedidos: lista de pedidos anteriores con estado, fecha y total, cada uno enlazando a su detalle.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/order-history/OrderHistory.tsx",
+        "vue": "blocks/ecommerce/order-history/OrderHistory.vue",
+        "svelte": "blocks/ecommerce/order-history/OrderHistory.svelte",
+        "solid": "blocks/ecommerce/order-history/OrderHistory.solid.tsx"
+      },
+      "dest": {
+        "react": "OrderHistory.tsx",
+        "vue": "OrderHistory.vue",
+        "svelte": "OrderHistory.svelte",
+        "solid": "OrderHistory.tsx"
+      }
+    },
+    "incentives": {
+      "domain": "ecommerce",
+      "description": "Franja de incentivos de confianza: envío gratis, cambios y devoluciones fáciles, y pago seguro, cada uno con icono y descripción breve.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/incentives/Incentives.tsx",
+        "vue": "blocks/ecommerce/incentives/Incentives.vue",
+        "svelte": "blocks/ecommerce/incentives/Incentives.svelte",
+        "solid": "blocks/ecommerce/incentives/Incentives.solid.tsx"
+      },
+      "dest": {
+        "react": "Incentives.tsx",
+        "vue": "Incentives.vue",
+        "svelte": "Incentives.svelte",
+        "solid": "Incentives.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",
@@ -748,6 +1020,23 @@
         "vue": "PortfolioSections.vue",
         "svelte": "PortfolioSections.svelte",
         "solid": "PortfolioSections.tsx"
+      }
+    },
+    "long-form-content": {
+      "domain": "portfolio",
+      "description": "Layout de caso de estudio / lectura larga: kicker, headline, dek, imagen de portada y secciones de prosa con pull-quote.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/portfolio/long-form-content/LongFormContent.tsx",
+        "vue": "blocks/portfolio/long-form-content/LongFormContent.vue",
+        "svelte": "blocks/portfolio/long-form-content/LongFormContent.svelte",
+        "solid": "blocks/portfolio/long-form-content/LongFormContent.solid.tsx"
+      },
+      "dest": {
+        "react": "LongFormContent.tsx",
+        "vue": "LongFormContent.vue",
+        "svelte": "LongFormContent.svelte",
+        "solid": "LongFormContent.tsx"
       }
     },
     "story": {

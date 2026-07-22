@@ -1,0 +1,104 @@
+---
+title: Reviews
+description: Sección de reseñas de clientes — resumen de calificación promedio con desglose por estrellas, más una lista de reseñas individuales. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RReviewsDemo from '../../../../demos/react/blocks/ReviewsDemo.tsx'
+import VReviewsDemo from '../../../../demos/vue/blocks/ReviewsDemo.vue'
+import SReviewsDemo from '../../../../demos/svelte/blocks/ReviewsDemo.svelte'
+import OReviewsDemo from '../../../../demos/solid/blocks/ReviewsDemo.tsx'
+
+**Reviews** es un [block](/es/introduction/blocks/) de ecommerce: una sección de reseñas
+de clientes que combina un resumen de calificación agregada — promedio, cantidad de
+reseñas y una barra de desglose por nivel de estrella — con una lista de reseñas
+individuales (avatar/nombre del cliente, calificación en estrellas, fecha y texto).
+Compone los primitives `Avatar`, `Badge`, `Card` y `Progress` junto con los tokens
+`--md-*`. Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RReviewsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VReviewsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SReviewsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OReviewsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add reviews --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add reviews --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add reviews --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add reviews --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Reseñas de clientes'` | Encabezado sobre la sección (omítelo para ocultarlo) |
+| `averageRating` | `number` | `4.6` | Calificación promedio sobre 5, mostrada como número grande y fila de estrellas |
+| `reviewCount` | `number` | `132` | Cantidad total de reseñas — también se usa para calcular el porcentaje de cada barra de desglose |
+| `breakdown` | `ReviewsBreakdownItem[]` | 5 filas de ejemplo | Conteos por estrella — cada uno `{ stars: number, count: number }`, renderizados de 5→1 |
+| `reviews` | `ReviewEntry[]` | 3 reseñas de ejemplo | Reseñas individuales — cada una con `name`, `rating`, `date`, `text`, y opcionalmente `avatarSrc`, `initials`, `verified` |
+
+## Uso
+
+```tsx
+import { Reviews } from './blocks/Reviews'
+
+<Reviews
+  heading="Lo que dicen nuestros clientes"
+  averageRating={4.8}
+  reviewCount={214}
+  breakdown={[
+    { stars: 5, count: 160 },
+    { stars: 4, count: 40 },
+    { stars: 3, count: 10 },
+    { stars: 2, count: 3 },
+    { stars: 1, count: 1 },
+  ]}
+  reviews={[
+    {
+      name: 'Ana López',
+      initials: 'AL',
+      rating: 5,
+      date: '3 de junio, 2026',
+      text: 'Superó mis expectativas. Construcción robusta y un acabado precioso.',
+      verified: true,
+    },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. La columna de resumen renderiza la
+calificación promedio, una fila de estrellas, la cantidad de reseñas y una barra
+`Progress` por cada nivel de estrella (5→1) que muestra qué porción de reseñas cayó en
+ese nivel. La columna de lista renderiza un `Card` por reseña, combinando un `Avatar`
+(imagen o iniciales como respaldo) y el nombre con un `Badge` opcional para compras
+verificadas, una fila de estrellas, la fecha y el texto de la reseña. Las calificaciones
+en estrellas se dibujan inline como formas SVG `path` — la misma convención de icono
+inline usada por el block [Product Features](/es/blocks/product-features/) — por lo que
+no se introdujo ningún primitive nuevo de "calificación en estrellas". Sin primitives
+nuevos, sin lógica de interacción a medida — este block es puramente presentacional.

@@ -1,0 +1,86 @@
+---
+title: Product Lists
+description: Grid de tiles de producto con encabezado de sección y paginación simple prev/next. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RProductListsDemo from '../../../../demos/react/blocks/ProductListsDemo.tsx'
+import VProductListsDemo from '../../../../demos/vue/blocks/ProductListsDemo.vue'
+import SProductListsDemo from '../../../../demos/svelte/blocks/ProductListsDemo.svelte'
+import OProductListsDemo from '../../../../demos/solid/blocks/ProductListsDemo.tsx'
+
+**Product Lists** es un [block](/es/introduction/blocks/) de ecommerce: un grid de
+tiles de producto con encabezado de sección y paginación simple prev/next. Compone
+los mismos primitives `Card` + `Badge` + `Button` y el mismo markup de tile que el
+block [Product Card](/es/blocks/product-card/), y los tokens `--md-*`. Lo copias a tu
+repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RProductListsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VProductListsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SProductListsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OProductListsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add product-lists --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add product-lists --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add product-lists --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add product-lists --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Productos destacados'` | Encabezado sobre el grid (omítelo para ocultarlo) |
+| `products` | `ProductListItem[]` | 9 productos de ejemplo | Productos a renderizar — cada uno con `id`, `image`, `title`, `price` y `saleText` opcional |
+| `pageSize` | `number` | `6` | Productos mostrados por página |
+| `prevLabel` | `string` | `'Anterior'` | Texto del botón de página anterior |
+| `nextLabel` | `string` | `'Siguiente'` | Texto del botón de página siguiente |
+| `onAdd` | `(product: ProductListItem, index: number) => void` | — | Se llama al hacer clic en "Agregar al carrito" de un tile |
+
+## Uso
+
+```tsx
+import { ProductLists } from './blocks/ProductLists'
+
+<ProductLists
+  heading="Productos destacados"
+  products={[
+    { id: 'silla', title: 'Silla Nórdica', price: '$320' },
+    { id: 'mesa', title: 'Mesa Roble', price: '$540', saleText: '-10%' },
+  ]}
+  pageSize={6}
+  onAdd={(product) => agregarAlCarrito(product)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onAdd` es el evento
+`@add`; en los demás es una prop callback. La paginación es estado local del
+componente — un par de botones prev/next y un indicador de página — que divide
+`products` en páginas de `pageSize`; los controles solo se renderizan cuando hay más
+de una página. Sin primitives nuevos, sin lógica de interacción a medida.

@@ -1,0 +1,90 @@
+---
+title: Shopping Cart
+description: Carrito de compras (drawer/página) con línea de productos (imagen, título, precio, cantidad y opción de quitar), subtotal y CTA de checkout. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RShoppingCartDemo from '../../../../demos/react/blocks/ShoppingCartDemo.tsx'
+import VShoppingCartDemo from '../../../../demos/vue/blocks/ShoppingCartDemo.vue'
+import SShoppingCartDemo from '../../../../demos/svelte/blocks/ShoppingCartDemo.svelte'
+import OShoppingCartDemo from '../../../../demos/solid/blocks/ShoppingCartDemo.tsx'
+
+**Shopping Cart** es un [block](/es/introduction/blocks/) de ecommerce: un carrito de
+compras (drawer o página) que lista líneas de productos — cada una con imagen, título,
+precio unitario, un selector de cantidad y una acción de quitar — seguido de un subtotal
+y un CTA de checkout. Compone los primitives `Card`, `Button` y `NumberInput` junto con
+los tokens `--md-*`. Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RShoppingCartDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VShoppingCartDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SShoppingCartDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OShoppingCartDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add shopping-cart --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add shopping-cart --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add shopping-cart --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add shopping-cart --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Carrito de compras'` | Encabezado sobre la sección (omítelo para ocultarlo) |
+| `items` | `ShoppingCartItem[]` | 3 líneas de ejemplo | Líneas del carrito — cada una `{ id, title, price, image?, quantity?, maxQuantity? }`; se copian a estado local al montar |
+| `subtotalLabel` | `string` | `'Subtotal'` | Etiqueta de la fila de subtotal |
+| `checkoutLabel` | `string` | `'Finalizar compra'` | Texto del botón CTA de checkout |
+| `removeLabel` | `string` | `'Quitar'` | Texto del botón para quitar una línea |
+| `emptyMessage` | `string` | `'Tu carrito está vacío.'` | Mensaje mostrado cuando no quedan productos en el carrito |
+| `onCheckout` | `(payload: { items: ShoppingCartItem[]; subtotal: number }) => void` | — | Se llama al hacer clic en el CTA de checkout, con las líneas actuales y el subtotal |
+
+## Uso
+
+```tsx
+import { ShoppingCart } from './blocks/ShoppingCart'
+
+<ShoppingCart
+  items={[
+    { id: 'silla', title: 'Silla Roble Nórdica', price: 389000, quantity: 1 },
+    { id: 'lampara', title: 'Lámpara de Arco', price: 128000, quantity: 2 },
+  ]}
+  onCheckout={({ items, subtotal }) => checkout.start({ items, subtotal })}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onCheckout` es el evento
+`@checkout`; en los demás es un callback prop. El `price` de cada línea es un `number`
+simple (formateado internamente con `toLocaleString`) para que el block pueda calcular el
+total por línea y el subtotal corriente a medida que cambian las cantidades. La cantidad
+se guarda como estado local del componente por línea, sembrada desde el prop `items` al
+montar y actualizada a través del stepper del primitive `NumberInput` — el mismo patrón
+que usa el campo de cantidad del block [Product Details](/es/blocks/product-details/).
+Quitar una línea la filtra de ese estado local. Sin primitives nuevos, sin stepper a
+medida — solo los primitives existentes `Card`, `Button` y `NumberInput` compuestos entre
+sí.

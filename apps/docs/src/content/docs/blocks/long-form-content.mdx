@@ -1,0 +1,96 @@
+---
+title: Long Form Content
+description: Long Form Content — a case-study / long-read layout with kicker, headline, dek, cover image and prose sections. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RLongFormContentDemo from '../../../demos/react/blocks/LongFormContentDemo.tsx'
+import VLongFormContentDemo from '../../../demos/vue/blocks/LongFormContentDemo.vue'
+import SLongFormContentDemo from '../../../demos/svelte/blocks/LongFormContentDemo.svelte'
+import OLongFormContentDemo from '../../../demos/solid/blocks/LongFormContentDemo.tsx'
+
+**Long Form Content** is a portfolio [block](/introduction/blocks/): a case-study /
+long-read layout with a kicker (category + reading time), headline, dek (subheading),
+cover image, and prose body sections — each with an optional subheading, paragraphs,
+and a pull-quote. It's built with the `--md-*` tokens only, no primitives.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RLongFormContentDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VLongFormContentDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SLongFormContentDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OLongFormContentDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add long-form-content --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add long-form-content --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add long-form-content --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add long-form-content --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/).
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `kicker` | `string` | `'Caso de estudio'` | Category label shown before the reading time |
+| `readingTime` | `string` | `'12 min'` | Reading time shown after the kicker |
+| `headline` | `string` | sample headline | Main headline (`h2`) |
+| `dek` | `string` | sample dek | Subheading shown under the headline |
+| `coverImageSrc` | `string` | — | Cover image URL (placeholder block if omitted) |
+| `coverImageAlt` | `string` | `'Imagen de portada'` | Alt text for the cover image |
+| `sections` | `LongFormSection[]` | 1 sample section | Prose body sections |
+
+### `LongFormSection`
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `subheading` | `string` (optional) | Section subheading (`h3`) |
+| `paragraphs` | `string[]` | Paragraph text, in order |
+| `pullQuote` | `string` (optional) | Pull-quote rendered after the first paragraph |
+
+## Usage
+
+```tsx
+import { LongFormContent } from './blocks/LongFormContent'
+
+<LongFormContent
+  kicker="Caso de estudio"
+  readingTime="8 min"
+  headline="Cómo rediseñamos el checkout"
+  dek="De un embudo de cinco pasos a uno de dos, sin bajar la conversión."
+  coverImageSrc="/images/checkout-cover.jpg"
+  coverImageAlt="Captura del nuevo checkout"
+  sections={[
+    {
+      subheading: 'El contexto',
+      paragraphs: ['El checkout original perdía el 40% de los usuarios en el paso de pago.'],
+      pullQuote: 'La fricción no estaba en el diseño: estaba en el orden de las preguntas.',
+    },
+  ]}
+/>
+```
+
+The props API is identical across all four frameworks.

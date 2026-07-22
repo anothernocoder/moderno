@@ -57,6 +57,27 @@ test('add copies a different framework variant of the table block', async (t) =>
   assert.match(copied, /Moderno block — Table \(Svelte\)/)
 })
 
+test('add copies the grid-lists block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'grid-lists', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /grid-lists/)
+  const copied = await readFile(join(dest, 'GridLists.tsx'), 'utf8')
+  assert.match(copied, /export function GridLists/)
+})
+
+test('add copies a different framework variant of the grid-lists block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'grid-lists', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'GridLists.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — GridLists \(Svelte\)/)
+})
+
 test('add copies the feeds block (applications domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -712,6 +733,7 @@ test('list groups blocks by domain and includes the applications table block', (
   assert.match(applicationsSection, /stacked-list/)
   assert.match(applicationsSection, /stats/)
   assert.match(applicationsSection, /table/)
+  assert.match(applicationsSection, /grid-lists/)
   assert.match(applicationsSection, /feeds/)
   assert.match(applicationsSection, /page-card-section-headers/)
   assert.match(applicationsSection, /status-monitoring/)

@@ -444,6 +444,23 @@
         "solid": "Table.tsx"
       }
     },
+    "grid-lists": {
+      "domain": "applications",
+      "description": "Grid de tarjetas: layout responsivo de tiles con miniatura, título, subtítulo y badge de estado.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/grid-lists/GridLists.tsx",
+        "vue": "blocks/applications/grid-lists/GridLists.vue",
+        "svelte": "blocks/applications/grid-lists/GridLists.svelte",
+        "solid": "blocks/applications/grid-lists/GridLists.solid.tsx"
+      },
+      "dest": {
+        "react": "GridLists.tsx",
+        "vue": "GridLists.vue",
+        "svelte": "GridLists.svelte",
+        "solid": "GridLists.tsx"
+      }
+    },
     "page-card-section-headers": {
       "domain": "applications",
       "description": "Familia de encabezados de aplicación: encabezado de página, encabezado de tarjeta y barras superior/inferior de sección.",

@@ -4,14 +4,23 @@ import { Carousel } from './carousel'
 
 afterEach(cleanup)
 
-// The carousel machine measures real scroll-snap positions from the DOM in a
-// mount-time entry action, then commits them via a React state update. In
-// jsdom that update lands a tick later than a microtask flush — a real timer
-// tick is needed before interacting, or the click race the initial (SSR-safe)
-// snap points instead of the measured ones.
+// The carousel machine's mount-time re-measurement (trackSlideResize in
+// @zag-js/carousel) is a two-level requestAnimationFrame chain: a raf that
+// calls exec() -> SNAP.REFRESH, which itself schedules a *second* raf for
+// PAGE.SCROLL. A wall-clock sleep is not a reliable way to wait that out:
+// jsdom's rAF polyfill runs on a `setInterval(fn, 1000 / 60)`, and under a
+// loaded CI box (or the full suite running in parallel via turbo) that
+// interval can slip well past a fixed real-timer delay — the chain then
+// lands *after* a test has already clicked, racing the click's own page
+// update and reverting it (see #65). Waiting on real requestAnimationFrame
+// callbacks instead ties this helper to the same scheduling primitive the
+// machine uses, so it holds regardless of how fast or slow the host machine
+// is. Three frames covers the two-level chain with one frame of margin.
 async function settle() {
   await act(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 50))
+    for (let i = 0; i < 3; i++) {
+      await new Promise((resolve) => requestAnimationFrame(() => resolve(undefined)))
+    }
   })
 }
 
@@ -20,12 +29,31 @@ async function settle() {
 // scroll-snap positions. Fake a 100px item-group showing one 100px item at a
 // time across 3 items, so paging behaves like a real three-slide carousel.
 function mockCarouselLayout(itemWidth = 100, count = 3) {
+  // @zag-js/scroll-snap's getScrollSnapPositions() re-derives each item's
+  // scroll-content-relative offset from a *viewport*-relative rect: it adds
+  // back the item-group's current scrollLeft/scrollTop to the measured rect
+  // (childOffsetStart = childRect.left - parentRect.left + scrollLeft). That
+  // only recovers the right absolute offset if the rect actually shifts with
+  // scroll, the way a real browser's getBoundingClientRect does. A mock that
+  // reports a fixed position regardless of scroll breaks that invariant, so
+  // any re-measurement after the carousel has scrolled (e.g. the machine's
+  // own mount-time SNAP.REFRESH, if it lands late) computes bogus snap
+  // points and the machine clamps `page` back into range 0 — reproducing the
+  // "page reverts after indicator click" flake from #65. Mirror real
+  // browsers here so re-measuring mid-scroll is a no-op, like it is in
+  // production.
   const rectSpy = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(function (this: HTMLElement) {
     const isItem = this.getAttribute('data-part') === 'item'
-    const index = isItem ? Number(this.dataset.index) : 0
-    const width = itemWidth
-    const left = isItem ? index * itemWidth : 0
-    return { width, height: 100, top: 0, left, right: left + width, bottom: 100, x: left, y: 0, toJSON() {} } as DOMRect
+    if (!isItem) {
+      return { width: itemWidth, height: 100, top: 0, left: 0, right: itemWidth, bottom: 100, x: 0, y: 0, toJSON() {} } as DOMRect
+    }
+    const index = Number(this.dataset.index)
+    const itemGroupEl = this.parentElement
+    const scrollLeft = itemGroupEl?.scrollLeft ?? 0
+    const scrollTop = itemGroupEl?.scrollTop ?? 0
+    const left = index * itemWidth - scrollLeft
+    const top = -scrollTop
+    return { width: itemWidth, height: 100, top, left, right: left + itemWidth, bottom: top + 100, x: left, y: top, toJSON() {} } as DOMRect
   })
   const widthSpy = vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(itemWidth)
   const heightSpy = vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockReturnValue(100)
@@ -114,12 +142,7 @@ describe('Carousel', () => {
     restoreLayout()
   })
 
-  // Flaky under CI load: onPageChange fires with the clicked index, but the
-  // machine's page context has been observed reverting to 0 before the DOM
-  // assertions run (not a plain render-timing gap — see repro notes in #65).
-  // Root cause is inside the Carousel primitive's own RAF/MutationObserver
-  // re-measurement effects, not this test's assertion strategy.
-  it.skip('jumps to a page when its indicator is clicked', async () => {
+  it('jumps to a page when its indicator is clicked', async () => {
     const restoreLayout = mockCarouselLayout()
     const onPageChange = vi.fn()
     renderCarousel({ onPageChange })
@@ -133,6 +156,85 @@ describe('Carousel', () => {
     await waitFor(() => expect(indicators[2]).toHaveAttribute('data-current'))
     await waitFor(() => expect(screen.getByRole('button', { name: 'Next slide' })).toBeDisabled())
 
+    restoreLayout()
+  })
+
+  // Regression test for #65: the carousel machine's root-level trackSlideResize
+  // effect schedules a one-shot requestAnimationFrame chain on mount (exec()
+  // -> SNAP.REFRESH, then a nested raf -> PAGE.SCROLL) to re-measure snap
+  // points once real layout is available. On a fast machine that chain always
+  // settles before a test can interact with the carousel; under CI load it can
+  // still be pending when the user clicks. SNAP.REFRESH's setSnapPoints action
+  // re-measures pageSnapPoints from the DOM and re-clamps `page` into range —
+  // normally a no-op, since @zag-js/scroll-snap's math is scroll-position
+  // invariant (it adds the item-group's current scrollLeft back to each
+  // item's viewport-relative rect). That invariant depends on
+  // getBoundingClientRect() actually shifting with scroll like it does in a
+  // real browser, which mockCarouselLayout above now does.
+  //
+  // This test forces the exact interleaving: it takes manual control of
+  // requestAnimationFrame so the mount-time raf chain is deliberately held
+  // pending across the indicator click, then flushed afterwards, and asserts
+  // the click's page change survives.
+  it('does not revert the page when the mount-time snap-point remeasurement lands after a click', async () => {
+    const restoreLayout = mockCarouselLayout()
+
+    const rafQueue: FrameRequestCallback[] = []
+    const idToCallback = new Map<number, FrameRequestCallback>()
+    let nextRafId = 1
+    const rafSpy = vi.spyOn(globalThis, 'requestAnimationFrame').mockImplementation((cb: FrameRequestCallback) => {
+      const id = nextRafId++
+      idToCallback.set(id, cb)
+      rafQueue.push(cb)
+      return id
+    })
+    const cancelRafSpy = vi.spyOn(globalThis, 'cancelAnimationFrame').mockImplementation((id: number) => {
+      const cb = idToCallback.get(id)
+      if (cb) {
+        const index = rafQueue.indexOf(cb)
+        if (index !== -1) rafQueue.splice(index, 1)
+      }
+      idToCallback.delete(id)
+    })
+    const flushOneRaf = () => rafQueue.shift()?.(0)
+
+    const onPageChange = vi.fn()
+    renderCarousel({ onPageChange })
+
+    // Flush the mount microtask (state.invoke -> entry actions + effects)
+    // without flushing the raf queue, leaving trackSlideResize's mount-time
+    // chain pending — as if a slow CI box hadn't gotten to it yet.
+    await act(async () => {
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+
+    const indicators = screen.getAllByRole('button', { name: /Go to slide/ })
+    fireEvent.click(indicators[2])
+    await act(async () => {
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+
+    // Now let the pending raf chain land, one frame at a time, *after* the click.
+    await act(async () => {
+      flushOneRaf()
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+    await act(async () => {
+      flushOneRaf()
+      await Promise.resolve()
+      await Promise.resolve()
+    })
+
+    expect(onPageChange).toHaveBeenCalledWith(2)
+    expect(onPageChange).not.toHaveBeenCalledWith(0)
+    await waitFor(() => expect(indicators[2]).toHaveAttribute('data-current'))
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Next slide' })).toBeDisabled())
+
+    rafSpy.mockRestore()
+    cancelRafSpy.mockRestore()
     restoreLayout()
   })
 

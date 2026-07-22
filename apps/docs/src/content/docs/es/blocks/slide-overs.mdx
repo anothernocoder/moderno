@@ -1,0 +1,87 @@
+---
+title: Slide-overs
+description: Panel lateral para flujos de detalle/edición, construido sobre el primitive Sheet — trigger, formulario y footer Cancelar/Guardar. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RSlideOversDemo from '../../../../demos/react/blocks/SlideOversDemo.tsx'
+import VSlideOversDemo from '../../../../demos/vue/blocks/SlideOversDemo.vue'
+import SSlideOversDemo from '../../../../demos/svelte/blocks/SlideOversDemo.svelte'
+import OSlideOversDemo from '../../../../demos/solid/blocks/SlideOversDemo.tsx'
+
+**Slide-overs** es un [block](/es/introduction/blocks/) de aplicaciones: un panel lateral para
+flujos de detalle/edición. Un botón trigger abre un [`Sheet`](/es/components/sheet/) que se
+desliza desde la derecha con un título, un formulario compacto de nombre/correo/rol y un footer
+con acciones Cancelar/Guardar. Compone los primitives `Sheet`, `Input`, `Button` y `Divider`, más
+los tokens `--md-*`. El estado de apertura/cierre del panel es la API controlada propia del
+primitive `Sheet` (`open`/`onOpenChange`) — el block no reimplementa lógica de overlay, portal ni
+focus-trap. Lo copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo"><RSlideOversDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo"><VSlideOversDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo"><SSlideOversDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo"><OSlideOversDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add slide-overs --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add slide-overs --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add slide-overs --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add slide-overs --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `triggerLabel` | `string` | `'Editar contacto'` | Label del botón que abre el sheet |
+| `title` | `string` | `'Editar contacto'` | Título del sheet |
+| `nameLabel` | `string` | `'Nombre'` | Label del campo de nombre |
+| `emailLabel` | `string` | `'Correo'` | Label del campo de correo |
+| `roleLabel` | `string` | `'Rol'` | Label del campo de rol |
+| `cancelLabel` | `string` | `'Cancelar'` | Label del botón de cancelar del footer |
+| `saveLabel` | `string` | `'Guardar cambios'` | Label del botón de guardar del footer |
+| `closeLabel` | `string` | `'Cerrar'` | `aria-label` del botón de cierre en la esquina del sheet |
+| `defaultValues` | `Partial<{ name, email, role }>` | registro de ejemplo | Valores iniciales del formulario, combinados sobre el registro de ejemplo incluido |
+| `onSave` | `(values: { name, email, role }) => void` | — | Se llama con los valores actuales del formulario al hacer clic en "Guardar cambios", antes de cerrar el sheet |
+| `onCancel` | `() => void` | — | Se llama al hacer clic en "Cancelar", antes de reiniciar el formulario y cerrar el sheet |
+
+## Uso
+
+```tsx
+import { SlideOvers } from './blocks/SlideOvers'
+
+<SlideOvers
+  triggerLabel="Editar miembro"
+  title="Editar miembro"
+  defaultValues={{ name: 'Ada Lovelace', email: 'ada@acme.com', role: 'Ingeniera' }}
+  onSave={(values) => actualizarMiembro(values)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onSave`/`onCancel` son los
+eventos `@save`/`@cancel`; en los demás son props callback.

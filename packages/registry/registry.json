@@ -393,6 +393,23 @@
         "solid": "Table.tsx"
       }
     },
+    "description-list": {
+      "domain": "applications",
+      "description": "Lista de detalle clave/valor para vistas de registro (pedido, perfil, etc).",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/description-list/DescriptionList.tsx",
+        "vue": "blocks/applications/description-list/DescriptionList.vue",
+        "svelte": "blocks/applications/description-list/DescriptionList.svelte",
+        "solid": "blocks/applications/description-list/DescriptionList.solid.tsx"
+      },
+      "dest": {
+        "react": "DescriptionList.tsx",
+        "vue": "DescriptionList.vue",
+        "svelte": "DescriptionList.svelte",
+        "solid": "DescriptionList.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",

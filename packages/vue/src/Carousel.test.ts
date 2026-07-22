@@ -47,10 +47,22 @@ function mockCarouselLayout(itemWidth = 100, count = 3) {
   }
 }
 
-// Zag's mount-time DOM measurement (setSnapPoints) settles into a real state
-// update a tick after mount — give it a moment before interacting.
+// The carousel machine's mount-time re-measurement (trackSlideResize in
+// @zag-js/carousel) is a two-level requestAnimationFrame chain: a raf that
+// calls exec() -> SNAP.REFRESH, which itself schedules a *second* raf for
+// PAGE.SCROLL. A wall-clock sleep is not a reliable way to wait that out:
+// jsdom's rAF polyfill runs on a `setInterval(fn, 1000 / 60)`, and under a
+// loaded CI box (or the full suite running in parallel via turbo) that
+// interval can slip well past a fixed real-timer delay — the chain then
+// lands *after* a test has already clicked, racing the click's own page
+// update and reverting it (see #65). Waiting on real requestAnimationFrame
+// callbacks instead ties this helper to the same scheduling primitive the
+// machine uses, so it holds regardless of how fast or slow the host machine
+// is. Three frames covers the two-level chain with one frame of margin.
 async function settle() {
-  await new Promise((resolve) => setTimeout(resolve, 50))
+  for (let i = 0; i < 3; i++) {
+    await new Promise((resolve) => requestAnimationFrame(() => resolve(undefined)))
+  }
 }
 
 function renderCarousel(props: Record<string, unknown> = {}, onPageChange?: (page: number) => void) {

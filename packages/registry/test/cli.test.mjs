@@ -666,6 +666,30 @@ test('add copies a different framework variant of the shopping-cart block', asyn
   assert.match(copied, /NumberInput/)
 })
 
+test('add copies the checkout-forms block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'checkout-forms', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /checkout-forms/)
+  const copied = await readFile(join(dest, 'CheckoutForms.tsx'), 'utf8')
+  assert.match(copied, /export function CheckoutForms/)
+  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /Select/)
+})
+
+test('add copies a different framework variant of the checkout-forms block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'checkout-forms', '--framework', 'vue', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'CheckoutForms.vue'), 'utf8')
+  assert.match(copied, /Moderno block — CheckoutForms \(Vue\)/)
+  assert.match(copied, /Select/)
+})
+
 test('add copies the portfolio-sections block (portfolio domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1228,6 +1252,7 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.match(ecommerceSection, /product-lists/)
   assert.match(ecommerceSection, /reviews/)
   assert.match(ecommerceSection, /shopping-cart/)
+  assert.match(ecommerceSection, /checkout-forms/)
 })
 
 test('list groups blocks by domain and includes the portfolio-sections block', () => {

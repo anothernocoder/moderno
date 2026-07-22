@@ -1,0 +1,94 @@
+---
+title: Checkout Forms
+description: Página de checkout con campos de dirección de envío y de pago agrupados en un formulario multi-sección. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RCheckoutFormsDemo from '../../../../demos/react/blocks/CheckoutFormsDemo.tsx'
+import VCheckoutFormsDemo from '../../../../demos/vue/blocks/CheckoutFormsDemo.vue'
+import SCheckoutFormsDemo from '../../../../demos/svelte/blocks/CheckoutFormsDemo.svelte'
+import OCheckoutFormsDemo from '../../../../demos/solid/blocks/CheckoutFormsDemo.tsx'
+
+**Checkout Forms** es un [block](/es/introduction/blocks/) de ecommerce: una página de
+checkout con una sección de dirección de envío y una sección de pago agrupadas en un
+formulario multi-sección, separadas por un divider, con una acción de envío en el pie.
+Compone los primitives `Input`, `Select`, `Divider` y `Button` junto con los tokens
+`--md-*`. Lo copias a tu repo con el CLI y lo editas libremente.
+
+Este es un block estático de solo UI: los campos de número de tarjeta, vencimiento y CVC
+son inputs de texto simples, con el mismo estilo que el resto del formulario — no hay
+enmascarado, ni validación, ni chequeo de Luhn, ni procesamiento real de pagos. Los
+valores enviados solo viven en el estado local del componente hasta que tú mismo conectes
+`onCheckout`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCheckoutFormsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCheckoutFormsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCheckoutFormsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCheckoutFormsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add checkout-forms --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add checkout-forms --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add checkout-forms --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add checkout-forms --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `heading` | `string` | `'Finalizar compra'` | Encabezado sobre el formulario (omítelo para ocultarlo) |
+| `shippingTitle` | `string` | `'Dirección de envío'` | Título de la sección de dirección de envío |
+| `shippingDescription` | `string` | `'A dónde enviamos tu pedido.'` | Descripción bajo el título de dirección de envío |
+| `paymentTitle` | `string` | `'Método de pago'` | Título de la sección de pago |
+| `paymentDescription` | `string` | `'Datos de la tarjeta para procesar el cobro.'` | Descripción bajo el título de pago |
+| `defaultValues` | `Partial<CheckoutFormsValues>` | datos de envío de ejemplo, campos de tarjeta vacíos | Valores iniciales de los campos, combinados sobre los defaults |
+| `submitLabel` | `string` | `'Confirmar pedido'` | Texto del botón de envío |
+| `onCheckout` | `(values: CheckoutFormsValues) => void` | — | Se llama al enviar el formulario, con los valores actuales de los campos |
+
+`CheckoutFormsValues` es `{ fullName, email, address, city, postalCode, country, cardName, cardNumber, cardExpiry, cardCvc }` — todos `string`.
+
+## Uso
+
+```tsx
+import { CheckoutForms } from './blocks/CheckoutForms'
+
+<CheckoutForms
+  onCheckout={(values) => checkout.submit(values)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onCheckout` es el evento
+`@checkout`; en los demás es un callback prop. Cada campo es un input controlado
+respaldado por estado local del componente, sembrado desde `defaultValues` al montar — el
+mismo patrón que usa el block de aplicación [Form Layouts](/es/blocks/form-layouts/). El
+campo de país usa el primitive `Select`; el resto de los campos, incluyendo número de
+tarjeta, vencimiento y CVC, son `Input` simples. Sin primitives nuevos, sin lógica de
+interacción a medida, sin enmascarado ni validación de tarjeta — eso queda a tu criterio
+si lo necesitas, y ningún dato sale del estado local a menos que conectes `onCheckout` a
+tu propio backend.

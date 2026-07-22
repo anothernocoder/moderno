@@ -920,6 +920,23 @@
         "solid": "ShoppingCart.tsx"
       }
     },
+    "checkout-forms": {
+      "domain": "ecommerce",
+      "description": "Formulario de checkout: dirección de envío y datos de pago agrupados en un formulario multi-sección.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/checkout-forms/CheckoutForms.tsx",
+        "vue": "blocks/ecommerce/checkout-forms/CheckoutForms.vue",
+        "svelte": "blocks/ecommerce/checkout-forms/CheckoutForms.svelte",
+        "solid": "blocks/ecommerce/checkout-forms/CheckoutForms.solid.tsx"
+      },
+      "dest": {
+        "react": "CheckoutForms.tsx",
+        "vue": "CheckoutForms.vue",
+        "svelte": "CheckoutForms.svelte",
+        "solid": "CheckoutForms.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

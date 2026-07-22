@@ -478,6 +478,23 @@
         "solid": "Table.tsx"
       }
     },
+    "app-banners": {
+      "domain": "applications",
+      "description": "Notificaciones a nivel de aplicación: impersonación, prueba por vencer, incidente de servicio.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/app-banners/AppBanners.tsx",
+        "vue": "blocks/applications/app-banners/AppBanners.vue",
+        "svelte": "blocks/applications/app-banners/AppBanners.svelte",
+        "solid": "blocks/applications/app-banners/AppBanners.solid.tsx"
+      },
+      "dest": {
+        "react": "AppBanners.tsx",
+        "vue": "AppBanners.vue",
+        "svelte": "AppBanners.svelte",
+        "solid": "AppBanners.tsx"
+      }
+    },
     "grid-lists": {
       "domain": "applications",
       "description": "Grid de tarjetas: layout responsivo de tiles con miniatura, título, subtítulo y badge de estado.",

@@ -359,6 +359,23 @@
         "solid": "NotFound.tsx"
       }
     },
+    "form-layouts": {
+      "domain": "applications",
+      "description": "Layout de formulario de aplicación: secciones agrupadas, grid responsivo de campos y footer de acciones.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/form-layouts/FormLayouts.tsx",
+        "vue": "blocks/applications/form-layouts/FormLayouts.vue",
+        "svelte": "blocks/applications/form-layouts/FormLayouts.svelte",
+        "solid": "blocks/applications/form-layouts/FormLayouts.solid.tsx"
+      },
+      "dest": {
+        "react": "FormLayouts.tsx",
+        "vue": "FormLayouts.vue",
+        "svelte": "FormLayouts.svelte",
+        "solid": "FormLayouts.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",

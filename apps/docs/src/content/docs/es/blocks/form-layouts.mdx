@@ -1,0 +1,89 @@
+---
+title: Form Layouts
+description: Layout de página de formulario de aplicación con secciones agrupadas, divisores de sección, un grid responsivo de campos en varias columnas y un footer de acciones. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RFormLayoutsDemo from '../../../../demos/react/blocks/FormLayoutsDemo.tsx'
+import VFormLayoutsDemo from '../../../../demos/vue/blocks/FormLayoutsDemo.vue'
+import SFormLayoutsDemo from '../../../../demos/svelte/blocks/FormLayoutsDemo.svelte'
+import OFormLayoutsDemo from '../../../../demos/solid/blocks/FormLayoutsDemo.tsx'
+
+**Form Layouts** es un [block](/es/introduction/blocks/) de aplicaciones: el andamiaje de
+layout a nivel de página para un formulario de configuración/edición de perfil. Dos secciones
+agrupadas ("Perfil" y "Preferencias"), cada una con un encabezado, una descripción y un grid
+de campos responsivo en varias columnas (nombre/apellido lado a lado, campos de ancho completo
+debajo), separadas por un `Divider` y seguidas de un footer con acciones. Compone los
+primitives `Input`, `Textarea`, `Select`, `Divider` y `Button`, y los tokens `--md-*`. Lo
+copias a tu repo con el CLI y lo editas libremente.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RFormLayoutsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VFormLayoutsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SFormLayoutsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OFormLayoutsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add form-layouts --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add form-layouts --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add form-layouts --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add form-layouts --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `defaultValues` | `Partial<FormLayoutsValues>` | perfil de ejemplo | Valores iniciales de los campos |
+| `onSave` | `(values: FormLayoutsValues) => void` | — | Se llama al enviar, con los valores actuales de los campos |
+| `onCancel` | `() => void` | — | Se llama al hacer clic en "Cancelar" |
+
+Forma de `FormLayoutsValues`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `firstName` | `string` | Nombre |
+| `lastName` | `string` | Apellido |
+| `email` | `string` | Correo electrónico |
+| `bio` | `string` | Biografía de texto libre, en la sección "Perfil" |
+| `role` | `string` | Valor de la opción de rol seleccionada, en la sección "Preferencias" |
+| `timezone` | `string` | Valor de la opción de zona horaria seleccionada, en la sección "Preferencias" |
+
+## Uso
+
+```tsx
+import { FormLayouts } from './blocks/FormLayouts'
+
+<FormLayouts
+  defaultValues={{ firstName: 'Ada', lastName: 'Lovelace', email: 'ada@acme.com' }}
+  onSave={(values) => guardarPerfil(values)}
+  onCancel={() => volver()}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onSave`/`onCancel` son los
+eventos `@save`/`@cancel`; en los demás son props callback.

@@ -852,6 +852,23 @@
         "solid": "CategoryFilters.tsx"
       }
     },
+    "product-lists": {
+      "domain": "ecommerce",
+      "description": "Grid de productos: encabezado de sección, tarjetas de producto y paginación simple.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/product-lists/ProductLists.tsx",
+        "vue": "blocks/ecommerce/product-lists/ProductLists.vue",
+        "svelte": "blocks/ecommerce/product-lists/ProductLists.svelte",
+        "solid": "blocks/ecommerce/product-lists/ProductLists.solid.tsx"
+      },
+      "dest": {
+        "react": "ProductLists.tsx",
+        "vue": "ProductLists.vue",
+        "svelte": "ProductLists.svelte",
+        "solid": "ProductLists.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

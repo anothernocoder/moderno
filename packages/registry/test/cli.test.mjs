@@ -504,6 +504,27 @@ test('add copies a different framework variant of the store-nav block', async (t
   assert.match(copied, /Moderno block — StoreNav \(Svelte\)/)
 })
 
+test('add copies the promo block (ecommerce domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'promo', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /promo/)
+  const copied = await readFile(join(dest, 'Promo.tsx'), 'utf8')
+  assert.match(copied, /export function Promo/)
+})
+
+test('add copies a different framework variant of the promo block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'promo', '--framework', 'vue', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'Promo.vue'), 'utf8')
+  assert.match(copied, /Moderno block — Promo \(Vue\)/)
+})
+
 test('add copies the portfolio-sections block (portfolio domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1059,6 +1080,7 @@ test('list groups blocks by domain and includes the ecommerce product-details bl
   assert.match(ecommerceSection, /product-card/)
   assert.match(ecommerceSection, /product-details/)
   assert.match(ecommerceSection, /store-nav/)
+  assert.match(ecommerceSection, /promo/)
 })
 
 test('list groups blocks by domain and includes the portfolio-sections block', () => {

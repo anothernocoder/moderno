@@ -801,6 +801,23 @@
         "solid": "StoreNav.tsx"
       }
     },
+    "promo": {
+      "domain": "ecommerce",
+      "description": "Barra de promoción sitewide: mensaje, CTA opcional y botón de cierre opcional.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/promo/Promo.tsx",
+        "vue": "blocks/ecommerce/promo/Promo.vue",
+        "svelte": "blocks/ecommerce/promo/Promo.svelte",
+        "solid": "blocks/ecommerce/promo/Promo.solid.tsx"
+      },
+      "dest": {
+        "react": "Promo.tsx",
+        "vue": "Promo.vue",
+        "svelte": "Promo.svelte",
+        "solid": "Promo.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

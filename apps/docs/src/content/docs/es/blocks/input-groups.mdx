@@ -1,0 +1,93 @@
+---
+title: Input Groups
+description: Inputs compuestos — prefijos, sufijos y add-ons de icono/botón. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RInputGroupsDemo from '../../../../demos/react/blocks/InputGroupsDemo.tsx'
+import VInputGroupsDemo from '../../../../demos/vue/blocks/InputGroupsDemo.vue'
+import SInputGroupsDemo from '../../../../demos/svelte/blocks/InputGroupsDemo.svelte'
+import OInputGroupsDemo from '../../../../demos/solid/blocks/InputGroupsDemo.tsx'
+
+**Input Groups** es un [block](/es/introduction/blocks/) de aplicaciones: cuatro patrones de
+input compuesto — un campo de sitio web con prefijo de texto `https://`, un campo de moneda
+con prefijo `$` y sufijo `MXN`, un campo de llave de API con un add-on de botón-icono al final,
+y una barra de búsqueda que combina un icono al inicio con un botón de envío al final. Compone
+los primitives `Input` y `Button` y los tokens `--md-*`; la "unión" entre segmentos es CSS puro
+— un borde de 1px compartido donde se tocan las piezas contiguas, sin ningún primitive nuevo.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RInputGroupsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VInputGroupsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SInputGroupsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OInputGroupsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add input-groups --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add input-groups --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add input-groups --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add input-groups --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `website` | `string` | `'mi-tienda'` | Valor inicial del campo de dominio (detrás del prefijo `https://`) |
+| `price` | `string` | `'129.900'` | Valor inicial del campo de monto (detrás del prefijo `$`, antes del sufijo `MXN`) |
+| `apiKey` | `string` | una llave de ejemplo | Valor de solo lectura mostrado en el campo de llave de API |
+| `onCopyApiKey` | `(value: string) => void` | — | Se llama con `apiKey` al hacer clic en el botón-icono final |
+| `search` | `string` | `''` | Valor inicial del campo de búsqueda |
+| `onSearchSubmit` | `(value: string) => void` | — | Se llama con el valor actual de búsqueda al enviar el formulario |
+
+## Uso
+
+```tsx
+import { InputGroups } from './blocks/InputGroups'
+
+<InputGroups
+  website="acme"
+  price="49.900"
+  apiKey="sk_live_51Hc2xJKa9F3d7Lp"
+  onCopyApiKey={(key) => navigator.clipboard.writeText(key)}
+  onSearchSubmit={(query) => ejecutarBusqueda(query)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onCopyApiKey`/`onSearchSubmit`
+son los eventos `@copy-api-key`/`@search-submit`; en los demás son props callback.
+
+## Cómo funciona la unión
+
+Cada grupo es una fila flex. Los add-ons (el texto `https://`, las etiquetas de moneda
+`$`/`MXN`, el icono de búsqueda al inicio) siempre renderizan su borde completo de 1px
+`--md-border-strong`. El primitive `Input` solo anula el borde del lado (o lados) que toca a
+un add-on o botón vecino (`border-left`/`border-right: none`), así el borde compartido se ve
+como una sola línea en vez de una doble. Las esquinas se mantienen cuadradas
+(`--md-radius-none`, el default del sistema), así que no hay que reconciliar redondeos en las
+uniones — todo es layout y bordes, sin ningún primitive nuevo ni lógica de interacción a
+medida más allá de un input controlado normal.

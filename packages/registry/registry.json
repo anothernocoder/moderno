@@ -410,6 +410,40 @@
         "solid": "Table.tsx"
       }
     },
+    "description-list": {
+      "domain": "applications",
+      "description": "Lista de detalle clave/valor para vistas de registro (pedido, perfil, etc).",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/description-list/DescriptionList.tsx",
+        "vue": "blocks/applications/description-list/DescriptionList.vue",
+        "svelte": "blocks/applications/description-list/DescriptionList.svelte",
+        "solid": "blocks/applications/description-list/DescriptionList.solid.tsx"
+      },
+      "dest": {
+        "react": "DescriptionList.tsx",
+        "vue": "DescriptionList.vue",
+        "svelte": "DescriptionList.svelte",
+        "solid": "DescriptionList.tsx"
+      }
+    },
+    "list": {
+      "domain": "applications",
+      "description": "Lista de registros de aplicación: fila con avatar, texto primario/secundario, badge de estado y acción — sin las columnas tabulares de Table.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/list/List.tsx",
+        "vue": "blocks/applications/list/List.vue",
+        "svelte": "blocks/applications/list/List.svelte",
+        "solid": "blocks/applications/list/List.solid.tsx"
+      },
+      "dest": {
+        "react": "List.tsx",
+        "vue": "List.vue",
+        "svelte": "List.svelte",
+        "solid": "List.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",

@@ -886,6 +886,23 @@
         "solid": "ProductFeatures.tsx"
       }
     },
+    "reviews": {
+      "domain": "ecommerce",
+      "description": "Reseñas de clientes: resumen de calificación promedio con desglose por estrellas y lista de reseñas individuales.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/ecommerce/reviews/Reviews.tsx",
+        "vue": "blocks/ecommerce/reviews/Reviews.vue",
+        "svelte": "blocks/ecommerce/reviews/Reviews.svelte",
+        "solid": "blocks/ecommerce/reviews/Reviews.solid.tsx"
+      },
+      "dest": {
+        "react": "Reviews.tsx",
+        "vue": "Reviews.vue",
+        "svelte": "Reviews.svelte",
+        "solid": "Reviews.tsx"
+      }
+    },
     "portfolio-header": {
       "domain": "portfolio",
       "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",

@@ -1,0 +1,92 @@
+---
+title: Input Groups
+description: Composite inputs — prefixes, suffixes, and icon/button add-ons. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RInputGroupsDemo from '../../../demos/react/blocks/InputGroupsDemo.tsx'
+import VInputGroupsDemo from '../../../demos/vue/blocks/InputGroupsDemo.vue'
+import SInputGroupsDemo from '../../../demos/svelte/blocks/InputGroupsDemo.svelte'
+import OInputGroupsDemo from '../../../demos/solid/blocks/InputGroupsDemo.tsx'
+
+**Input Groups** is an application [block](/introduction/blocks/): four composite-input
+patterns — a URL field with a `https://` text prefix, a currency field with a `$` prefix and
+a `MXN` suffix, an API key field with a trailing icon-button add-on, and a search bar
+combining a leading icon with a trailing submit button. It composes the `Input` and `Button`
+primitives and the `--md-*` tokens; the "join" between segments is pure CSS layout — a shared
+1px border where adjoining pieces meet, no new primitive.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RInputGroupsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VInputGroupsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SInputGroupsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OInputGroupsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add input-groups --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add input-groups --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add input-groups --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add input-groups --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `website` | `string` | `'mi-tienda'` | Initial value of the domain field (behind the `https://` prefix) |
+| `price` | `string` | `'129.900'` | Initial value of the amount field (behind the `$` prefix, before the `MXN` suffix) |
+| `apiKey` | `string` | a sample key | Read-only value shown in the API key field |
+| `onCopyApiKey` | `(value: string) => void` | — | Called with `apiKey` when the trailing icon button is clicked |
+| `search` | `string` | `''` | Initial value of the search field |
+| `onSearchSubmit` | `(value: string) => void` | — | Called with the current search value when the search form is submitted |
+
+## Usage
+
+```tsx
+import { InputGroups } from './blocks/InputGroups'
+
+<InputGroups
+  website="acme"
+  price="49.900"
+  apiKey="sk_live_51Hc2xJKa9F3d7Lp"
+  onCopyApiKey={(key) => navigator.clipboard.writeText(key)}
+  onSearchSubmit={(query) => runSearch(query)}
+/>
+```
+
+The props API is identical across all four frameworks. In Vue, `onCopyApiKey`/`onSearchSubmit`
+are the `@copy-api-key`/`@search-submit` events; in the others they're callback props.
+
+## How the join works
+
+Each group is a flex row. Addons (the `https://` text, the `$`/`MXN` currency labels, the
+leading search icon) always render their full 1px `--md-border-strong` border. The `Input`
+primitive only overrides the border on the side(s) that touch a neighboring addon or button
+(`border-left`/`border-right: none`), so the shared edge renders as a single line instead of
+a doubled-up one. Corners stay square (`--md-radius-none`, the system default), so no
+rounding has to be reconciled at the seams — the whole thing is layout and borders, no new
+primitive and no bespoke interaction logic beyond a plain controlled input.

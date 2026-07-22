@@ -393,6 +393,23 @@
         "solid": "Table.tsx"
       }
     },
+    "application-shells": {
+      "domain": "applications",
+      "description": "App frame: sidebar con navegación y cuenta de usuario, topbar y área de contenido.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/application-shells/ApplicationShells.tsx",
+        "vue": "blocks/applications/application-shells/ApplicationShells.vue",
+        "svelte": "blocks/applications/application-shells/ApplicationShells.svelte",
+        "solid": "blocks/applications/application-shells/ApplicationShells.solid.tsx"
+      },
+      "dest": {
+        "react": "ApplicationShells.tsx",
+        "vue": "ApplicationShells.vue",
+        "svelte": "ApplicationShells.svelte",
+        "solid": "ApplicationShells.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",

@@ -1,0 +1,123 @@
+---
+title: Application Shells
+description: Marco de aplicación de página completa con sidebar colapsable, topbar y área de contenido. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RApplicationShellsDemo from '../../../../demos/react/blocks/ApplicationShellsDemo.tsx'
+import VApplicationShellsDemo from '../../../../demos/vue/blocks/ApplicationShellsDemo.vue'
+import SApplicationShellsDemo from '../../../../demos/svelte/blocks/ApplicationShellsDemo.svelte'
+import OApplicationShellsDemo from '../../../../demos/solid/blocks/ApplicationShellsDemo.tsx'
+
+**Application Shells** es un [block](/es/introduction/blocks/) de aplicaciones: el marco exterior
+donde viven otros blocks de aplicación como [Table](/es/blocks/table/) o
+[Stats](/es/blocks/stats/). Compone un sidebar colapsable (marca, enlaces de navegación con
+indicador de elemento activo, y un footer de cuenta de usuario/cerrar sesión), un topbar (toggle
+del sidebar, título de página, notificaciones y menú de usuario), y un área de contenido principal
+con scroll. Compone los primitives `Avatar`, `Badge`, `Button` y `Divider`, y los tokens `--md-*`.
+Lo copias a tu repo con el CLI y lo editas libremente.
+
+La demo de abajo tiene una altura limitada para caber en esta página — monta el block real dentro
+de un contenedor de altura completa (p. ej. `#root { height: 100vh }`) y ocupará el 100% de su
+padre.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RApplicationShellsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VApplicationShellsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SApplicationShellsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OApplicationShellsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add application-shells --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add application-shells --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add application-shells --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add application-shells --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `brandLabel` | `string` | `'Moderno'` | Texto de marca/logo en la parte superior del sidebar |
+| `brandHref` | `string` | `'#'` | `href` del enlace de marca |
+| `navItems` | `ApplicationShellsNavItem[]` | 5 elementos de ejemplo | Enlaces de navegación del sidebar |
+| `defaultActiveItem` | `string` | `id` del primer elemento | Id del elemento de navegación activo inicialmente |
+| `pageTitle` | `string` | etiqueta del elemento activo | Encabezado del topbar; sobreescribe el título derivado |
+| `user` | `ApplicationShellsUser` | usuario de ejemplo | Se muestra en el footer del sidebar y el menú de usuario del topbar |
+| `unreadCount` | `number` | `3` | Contador del badge junto al botón de notificaciones; se oculta cuando es `0` |
+| `onNavItemClick` | `(item: ApplicationShellsNavItem) => void` | — | Se llama al hacer clic en un elemento de navegación, con el elemento clickeado |
+| `onSignOut` | `() => void` | — | Se llama al hacer clic en "Cerrar sesión" |
+| `onNotificationsClick` | `() => void` | — | Se llama al hacer clic en el botón de notificaciones |
+| `onUserMenuClick` | `() => void` | — | Se llama al hacer clic en el botón de usuario del topbar |
+
+El área de contenido principal renderiza sus children/slot; cuando no se pasan, muestra un
+placeholder con la etiqueta del elemento de navegación activo.
+
+Forma de `ApplicationShellsNavItem`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `id` | `string` | Id único, también usado como clave de selección/activo |
+| `label` | `string` | Texto del enlace |
+| `href` | `string` | `href` opcional (por defecto `#`) |
+
+Forma de `ApplicationShellsUser`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `name` | `string` | Nombre a mostrar |
+| `role` | `string` | Rol/subtítulo opcional mostrado bajo el nombre en el footer del sidebar |
+| `avatarInitials` | `string` | Iniciales de respaldo para el `Avatar` |
+| `avatarSrc` | `string` | URL opcional de la imagen del avatar |
+
+## Uso
+
+```tsx
+import { ApplicationShells } from './blocks/ApplicationShells'
+
+<ApplicationShells
+  navItems={[
+    { id: 'overview', label: 'Resumen', href: '/app' },
+    { id: 'orders', label: 'Pedidos', href: '/app/orders' },
+    { id: 'settings', label: 'Configuración', href: '/app/settings' },
+  ]}
+  user={{ name: 'Jane Doe', role: 'Admin', avatarInitials: 'JD' }}
+  onNavItemClick={(item) => router.push(item.href)}
+  onSignOut={() => signOut()}
+>
+  <TuContenidoDePagina />
+</ApplicationShells>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onNavItemClick`/`onSignOut`/
+`onNotificationsClick`/`onUserMenuClick` son los eventos `@nav-item-click`/`@sign-out`/
+`@notifications-click`/`@user-menu-click`; en los demás son props callback. El contenido pasa por
+el slot por defecto / prop `children` en cada framework.
+
+El toggle del sidebar y el indicador de elemento activo son estado local del componente — no hay
+router ni un primitive nuevo involucrado. Conecta `onNavItemClick` (y `href`s reales) a tu router
+para impulsar la navegación real.

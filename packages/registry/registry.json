@@ -359,6 +359,23 @@
         "solid": "NotFound.tsx"
       }
     },
+    "alerts": {
+      "domain": "applications",
+      "description": "Área de alertas de aplicación: mensajes info/success/warning/error, con opciones de cierre y acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/alerts/Alerts.tsx",
+        "vue": "blocks/applications/alerts/Alerts.vue",
+        "svelte": "blocks/applications/alerts/Alerts.svelte",
+        "solid": "blocks/applications/alerts/Alerts.solid.tsx"
+      },
+      "dest": {
+        "react": "Alerts.tsx",
+        "vue": "Alerts.vue",
+        "svelte": "Alerts.svelte",
+        "solid": "Alerts.tsx"
+      }
+    },
     "action-panels": {
       "domain": "applications",
       "description": "Panel de acciones: filas de título + descripción con una acción única, estilo cuenta/ajustes, con variante destructiva.",

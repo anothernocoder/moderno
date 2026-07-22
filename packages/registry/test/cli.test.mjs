@@ -829,6 +829,27 @@ test('add copies a different framework variant of the not-found block', async (t
   assert.match(copied, /Moderno block — NotFound \(Svelte\)/)
 })
 
+test('add copies the application-shells block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'application-shells', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /application-shells/)
+  const copied = await readFile(join(dest, 'ApplicationShells.tsx'), 'utf8')
+  assert.match(copied, /export function ApplicationShells/)
+})
+
+test('add copies a different framework variant of the application-shells block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'application-shells', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ApplicationShells.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — Application Shells \(Svelte\)/)
+})
+
 test('add copies the app-banners block (applications domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -904,6 +925,7 @@ test('list groups blocks by domain and includes the applications table block', (
   assert.match(applicationsSection, /stats/)
   assert.match(applicationsSection, /form-layouts/)
   assert.match(applicationsSection, /table/)
+  assert.match(applicationsSection, /application-shells/)
   assert.match(applicationsSection, /modals/)
   assert.match(applicationsSection, /slide-overs/)
   assert.match(applicationsSection, /empty-states/)

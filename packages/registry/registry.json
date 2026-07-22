@@ -1056,5 +1056,43 @@
         "solid": "Story.tsx"
       }
     }
+  },
+  "screens": {
+    "sign-in": {
+      "domain": "applications",
+      "description": "Pantalla de inicio de sesión: correo/contraseña, recordarme, olvidé mi contraseña y enlace a registro.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/sign-in/SignIn.tsx",
+        "vue": "screens/applications/sign-in/SignIn.vue",
+        "svelte": "screens/applications/sign-in/SignIn.svelte",
+        "solid": "screens/applications/sign-in/SignIn.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/sign-in/SignIn.tsx",
+        "vue": "screens/applications/sign-in/SignIn.vue",
+        "svelte": "screens/applications/sign-in/SignIn.svelte",
+        "solid": "screens/applications/sign-in/SignIn.tsx"
+      }
+    }
+  },
+  "flows": {
+    "auth": {
+      "description": "Flujo de autenticación (tracer): pantalla de inicio de sesión + ensamblaje de ejemplo con estado local.",
+      "composes": ["sign-in"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "flows/auth/Auth.example.tsx",
+        "vue": "flows/auth/Auth.example.vue",
+        "svelte": "flows/auth/Auth.example.svelte",
+        "solid": "flows/auth/Auth.example.solid.tsx"
+      },
+      "dest": {
+        "react": "flows/auth/Auth.example.tsx",
+        "vue": "flows/auth/Auth.example.vue",
+        "svelte": "flows/auth/Auth.example.svelte",
+        "solid": "flows/auth/Auth.example.tsx"
+      }
+    }
   }
 }

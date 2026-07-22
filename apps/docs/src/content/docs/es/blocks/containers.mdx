@@ -1,0 +1,93 @@
+---
+title: Contenedores
+description: Envoltorios de layout de página con ancho máximo y padding horizontal consistente — angosto, predeterminado, ancho y completo — para centrar el contenido de la página. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RContainersDemo from '../../../../demos/react/blocks/ContainersDemo.tsx'
+import VContainersDemo from '../../../../demos/vue/blocks/ContainersDemo.vue'
+import SContainersDemo from '../../../../demos/svelte/blocks/ContainersDemo.svelte'
+import OContainersDemo from '../../../../demos/solid/blocks/ContainersDemo.tsx'
+
+**Contenedores** es un [block](/es/introduction/blocks/) de aplicaciones: un conjunto de
+envoltorios de layout de página con nombre — angosto, predeterminado, ancho y completo — cada
+uno combinando un `max-width` con padding horizontal consistente para centrar el contenido de
+la página a un ancho determinado. Compone los primitives `Card` y `Badge` y los tokens
+`--md-*` — sin lógica de interacción a medida, solo una referencia de layout copy-paste de la
+que puedes elegir una variante.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RContainersDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VContainersDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SContainersDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OContainersDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add containers --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add containers --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add containers --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add containers --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `title` | `string` | `'Contenedores'` | Encabezado del panel |
+| `description` | `string` | Texto de ejemplo | Subtítulo del panel (se oculta si está vacío) |
+| `variants` | `ContainerVariant[]` | 4 variantes de ejemplo | Los anchos de contenedor a demostrar |
+
+Forma de `ContainerVariant`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `id` | `string` | Id único de la variante / key de lista |
+| `name` | `string` | Etiqueta de la variante (p. ej. "Angosto", "Ancho") |
+| `maxWidth` | `string` | Valor CSS `max-width` aplicado al envoltorio, p. ej. `'640px'` o `'none'` para borde a borde |
+| `description` | `string` | Cuándo usar esta variante |
+
+## Uso
+
+```tsx
+import { Containers } from './blocks/Containers'
+
+<Containers
+  title="Anchos de página"
+  variants={[
+    { id: 'narrow', name: 'Angosto', maxWidth: '640px', description: 'Contenido de lectura enfocado, formularios, páginas de ajustes.' },
+    { id: 'wide', name: 'Ancho', maxWidth: '1024px', description: 'Vistas densas en datos: tablas, dashboards de varias columnas.' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. Cada variante se renderiza dentro de un
+envoltorio "viewport" con borde punteado (`.md-containers__viewport` en Vue/Svelte, el objeto
+`viewportStyle` en React/Solid) para que puedas ver el contenedor de `max-width` centrado
+contra el ancho disponible. El envoltorio de layout real es el elemento interno — `margin: 0
+auto` más `padding: 0 24px` — que es la parte que copias a tu propio shell de página. No hay
+cambio de breakpoints responsivo ni otra lógica de interacción por encima; agrégala una vez que
+lo hayas copiado a tu repo.

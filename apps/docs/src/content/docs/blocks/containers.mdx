@@ -1,0 +1,91 @@
+---
+title: Containers
+description: Page layout wrappers with max-width and consistent horizontal padding — narrow, default, wide, and full-bleed — for centering page content. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RContainersDemo from '../../../demos/react/blocks/ContainersDemo.tsx'
+import VContainersDemo from '../../../demos/vue/blocks/ContainersDemo.vue'
+import SContainersDemo from '../../../demos/svelte/blocks/ContainersDemo.svelte'
+import OContainersDemo from '../../../demos/solid/blocks/ContainersDemo.tsx'
+
+**Containers** is an application [block](/introduction/blocks/): a set of named page layout
+wrappers — narrow, default, wide, and full-bleed — each pairing a `max-width` with consistent
+horizontal padding to center page content at a given width. It composes the `Card` and `Badge`
+primitives and the `--md-*` tokens — no bespoke interaction logic, just a copy-paste layout
+reference you can pick a variant from.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RContainersDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VContainersDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SContainersDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OContainersDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add containers --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add containers --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add containers --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add containers --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | `'Contenedores'` | Panel heading |
+| `description` | `string` | Sample copy | Panel subheading (hidden if empty) |
+| `variants` | `ContainerVariant[]` | 4 sample variants | The container widths to demonstrate |
+
+`ContainerVariant` shape:
+
+| Field | Type | Description |
+|-------|------|--------------|
+| `id` | `string` | Unique variant id / list key |
+| `name` | `string` | Variant label (e.g. "Narrow", "Wide") |
+| `maxWidth` | `string` | CSS `max-width` value applied to the wrapper, e.g. `'640px'` or `'none'` for full-bleed |
+| `description` | `string` | When to reach for this variant |
+
+## Usage
+
+```tsx
+import { Containers } from './blocks/Containers'
+
+<Containers
+  title="Page widths"
+  variants={[
+    { id: 'narrow', name: 'Narrow', maxWidth: '640px', description: 'Focused reading content, forms, settings pages.' },
+    { id: 'wide', name: 'Wide', maxWidth: '1024px', description: 'Data-dense views: tables, multi-column dashboards.' },
+  ]}
+/>
+```
+
+The props API is identical across all four frameworks. Each variant renders inside a dashed
+"viewport" wrapper (`.md-containers__viewport` in Vue/Svelte, the `viewportStyle` object in
+React/Solid) so you can see the centered `max-width` container against the available width. The
+actual layout wrapper is the inner element — `margin: 0 auto` plus `padding: 0 24px` — which is
+the part you copy into your own page shell. There's no responsive breakpoint switching or other
+interaction logic layered on top; add that once you've copied it into your repo.

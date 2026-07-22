@@ -682,6 +682,23 @@
         "solid": "List.tsx"
       }
     },
+    "containers": {
+      "domain": "applications",
+      "description": "Envoltorios de layout de página: ancho máximo y padding horizontal consistente (angosto, predeterminado, ancho, completo) para centrar contenido.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/containers/Containers.tsx",
+        "vue": "blocks/applications/containers/Containers.vue",
+        "svelte": "blocks/applications/containers/Containers.svelte",
+        "solid": "blocks/applications/containers/Containers.solid.tsx"
+      },
+      "dest": {
+        "react": "Containers.tsx",
+        "vue": "Containers.vue",
+        "svelte": "Containers.svelte",
+        "solid": "Containers.tsx"
+      }
+    },
     "media-objects": {
       "domain": "applications",
       "description": "Media + texto: fila con avatar (imagen o iniciales), encabezado, cuerpo y meta opcional — el patrón clásico de 'media object' para comentarios o actividad.",

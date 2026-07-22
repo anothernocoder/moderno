@@ -393,6 +393,23 @@
         "solid": "Table.tsx"
       }
     },
+    "empty-states": {
+      "domain": "applications",
+      "description": "Estado vacío de aplicación: icono, título, descripción y CTA para crear el primer elemento.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/empty-states/EmptyStates.tsx",
+        "vue": "blocks/applications/empty-states/EmptyStates.vue",
+        "svelte": "blocks/applications/empty-states/EmptyStates.svelte",
+        "solid": "blocks/applications/empty-states/EmptyStates.solid.tsx"
+      },
+      "dest": {
+        "react": "EmptyStates.tsx",
+        "vue": "EmptyStates.vue",
+        "svelte": "EmptyStates.svelte",
+        "solid": "EmptyStates.tsx"
+      }
+    },
     "product-card": {
       "domain": "ecommerce",
       "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",

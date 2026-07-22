@@ -1,0 +1,83 @@
+---
+title: Description List
+description: Lista de detalle clave/valor para vistas de registro — etiqueta sobre valor en layouts angostos, lado a lado en los más anchos. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RDescriptionListDemo from '../../../../demos/react/blocks/DescriptionListDemo.tsx'
+import VDescriptionListDemo from '../../../../demos/vue/blocks/DescriptionListDemo.vue'
+import SDescriptionListDemo from '../../../../demos/svelte/blocks/DescriptionListDemo.svelte'
+import ODescriptionListDemo from '../../../../demos/solid/blocks/DescriptionListDemo.tsx'
+
+**Description List** es un [block](/es/introduction/blocks/) de aplicación: una lista de
+detalle clave/valor para datos de registro estructurados (una vista de detalle de pedido o
+perfil). Cada fila muestra una etiqueta y un valor — apilados en layouts angostos, lado a
+lado en los más anchos. Compone el primitive `Card` y los tokens `--md-*`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RDescriptionListDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VDescriptionListDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SDescriptionListDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><ODescriptionListDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add description-list --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add description-list --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add description-list --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add description-list --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/).
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `title` | `string` | `'Detalle del pedido'` | Encabezado mostrado en el título del `Card` |
+| `items` | `DescriptionItem[]` | 8 campos de muestra | Pares etiqueta/valor a renderizar |
+
+### `DescriptionItem`
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `label` | `string` | Nombre del campo |
+| `value` | `string` | Valor ya formateado |
+
+## Uso
+
+```tsx
+import { DescriptionList } from './blocks/DescriptionList'
+
+<DescriptionList
+  title="Detalle del pedido"
+  items={[
+    { label: 'Número de pedido', value: 'A-1104' },
+    { label: 'Cliente', value: 'Ada Corp' },
+    { label: 'Estado', value: 'Despachado' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.

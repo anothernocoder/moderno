@@ -359,6 +359,23 @@
         "solid": "NotFound.tsx"
       }
     },
+    "action-panels": {
+      "domain": "applications",
+      "description": "Panel de acciones: filas de título + descripción con una acción única, estilo cuenta/ajustes, con variante destructiva.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/action-panels/ActionPanels.tsx",
+        "vue": "blocks/applications/action-panels/ActionPanels.vue",
+        "svelte": "blocks/applications/action-panels/ActionPanels.svelte",
+        "solid": "blocks/applications/action-panels/ActionPanels.solid.tsx"
+      },
+      "dest": {
+        "react": "ActionPanels.tsx",
+        "vue": "ActionPanels.vue",
+        "svelte": "ActionPanels.svelte",
+        "solid": "ActionPanels.tsx"
+      }
+    },
     "feeds": {
       "domain": "applications",
       "description": "Feed de actividad: timeline vertical con avatar, actor/acción y timestamp.",

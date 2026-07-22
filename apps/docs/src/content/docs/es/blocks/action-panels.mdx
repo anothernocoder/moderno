@@ -1,0 +1,91 @@
+---
+title: Action panels
+description: Lista de paneles de ajustes/cuenta que combinan título + descripción con una única acción, con variante destructiva "danger zone". Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RActionPanelsDemo from '../../../../demos/react/blocks/ActionPanelsDemo.tsx'
+import VActionPanelsDemo from '../../../../demos/vue/blocks/ActionPanelsDemo.vue'
+import SActionPanelsDemo from '../../../../demos/svelte/blocks/ActionPanelsDemo.svelte'
+import OActionPanelsDemo from '../../../../demos/solid/blocks/ActionPanelsDemo.tsx'
+
+**Action panels** es un [block](/es/introduction/blocks/) de aplicaciones: una lista de filas
+estilo ajustes, cada una con título y descripción a la izquierda y una única acción a la
+derecha — el clásico patrón "Danger Zone" para pantallas de cuenta/ajustes. Cualquier fila
+puede activar un estilo destructivo (por ejemplo, para eliminar la cuenta). Compone los
+primitives `Card`, `Button` y `Divider`, y los tokens `--md-*`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RActionPanelsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VActionPanelsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SActionPanelsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OActionPanelsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add action-panels --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add action-panels --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add action-panels --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add action-panels --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `items` | `ActionPanelItem[]` | 3 paneles de ejemplo | Las filas a renderizar |
+| `onAction` | `(item: ActionPanelItem) => void` | — | Se llama con los datos de la fila al hacer clic en su botón de acción |
+
+Forma de `ActionPanelItem`:
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `title` | `string` | Título de la fila |
+| `description` | `string` | Texto de apoyo bajo el título |
+| `actionLabel` | `string` | Etiqueta del botón de acción único de la fila |
+| `destructive` | `boolean` | Colorea el título y la acción con el token `--md-error` (estilo danger-zone) |
+
+## Uso
+
+```tsx
+import { ActionPanels } from './blocks/ActionPanels'
+
+<ActionPanels
+  items={[
+    { title: 'Descargar tus datos', description: 'Exporta todo en un archivo JSON.', actionLabel: 'Exportar' },
+    {
+      title: 'Eliminar cuenta',
+      description: 'Esta acción es permanente y no se puede deshacer.',
+      actionLabel: 'Eliminar cuenta',
+      destructive: true,
+    },
+  ]}
+  onAction={(item) => manejarAccionDelPanel(item)}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks. En Vue, `onAction` es el evento
+`@action` en lugar de una prop callback.

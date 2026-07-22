@@ -1,0 +1,91 @@
+---
+title: Action panels
+description: Settings/account panel list pairing a title + description with a single action, with a destructive "danger zone" variant. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RActionPanelsDemo from '../../../demos/react/blocks/ActionPanelsDemo.tsx'
+import VActionPanelsDemo from '../../../demos/vue/blocks/ActionPanelsDemo.vue'
+import SActionPanelsDemo from '../../../demos/svelte/blocks/ActionPanelsDemo.svelte'
+import OActionPanelsDemo from '../../../demos/solid/blocks/ActionPanelsDemo.tsx'
+
+**Action panels** is an application [block](/introduction/blocks/): a list of settings-style
+rows, each pairing a title and description on the left with a single action on the right —
+the classic "Danger Zone" pattern for account/settings screens. Any row can opt into a
+destructive style (for a delete-account action, for example). It composes the `Card`,
+`Button`, and `Divider` primitives and the `--md-*` tokens.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RActionPanelsDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VActionPanelsDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SActionPanelsDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OActionPanelsDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add action-panels --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add action-panels --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add action-panels --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add action-panels --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `ActionPanelItem[]` | 3 sample panels | The rows to render |
+| `onAction` | `(item: ActionPanelItem) => void` | — | Called with the row's data when its action button is clicked |
+
+`ActionPanelItem` shape:
+
+| Field | Type | Description |
+|-------|------|--------------|
+| `title` | `string` | Row heading |
+| `description` | `string` | Supporting copy shown under the title |
+| `actionLabel` | `string` | Label for the row's single action button |
+| `destructive` | `boolean` | Colors the title and action with the `--md-error` token (danger-zone style) |
+
+## Usage
+
+```tsx
+import { ActionPanels } from './blocks/ActionPanels'
+
+<ActionPanels
+  items={[
+    { title: 'Download your data', description: 'Export everything as a JSON file.', actionLabel: 'Export' },
+    {
+      title: 'Delete account',
+      description: 'This is permanent and cannot be undone.',
+      actionLabel: 'Delete account',
+      destructive: true,
+    },
+  ]}
+  onAction={(item) => handlePanelAction(item)}
+/>
+```
+
+The props API is identical across all four frameworks. In Vue, `onAction` is the `@action`
+event instead of a callback prop.

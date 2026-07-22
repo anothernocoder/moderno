@@ -359,6 +359,91 @@
         "solid": "NotFound.tsx"
       }
     },
+    "form-layouts": {
+      "domain": "applications",
+      "description": "Layout de formulario de aplicación: secciones agrupadas, grid responsivo de campos y footer de acciones.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/form-layouts/FormLayouts.tsx",
+        "vue": "blocks/applications/form-layouts/FormLayouts.vue",
+        "svelte": "blocks/applications/form-layouts/FormLayouts.svelte",
+        "solid": "blocks/applications/form-layouts/FormLayouts.solid.tsx"
+      },
+      "dest": {
+        "react": "FormLayouts.tsx",
+        "vue": "FormLayouts.vue",
+        "svelte": "FormLayouts.svelte",
+        "solid": "FormLayouts.tsx"
+      }
+    },
+    "alerts": {
+      "domain": "applications",
+      "description": "Área de alertas de aplicación: mensajes info/success/warning/error, con opciones de cierre y acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/alerts/Alerts.tsx",
+        "vue": "blocks/applications/alerts/Alerts.vue",
+        "svelte": "blocks/applications/alerts/Alerts.svelte",
+        "solid": "blocks/applications/alerts/Alerts.solid.tsx"
+      },
+      "dest": {
+        "react": "Alerts.tsx",
+        "vue": "Alerts.vue",
+        "svelte": "Alerts.svelte",
+        "solid": "Alerts.tsx"
+      }
+    },
+    "action-panels": {
+      "domain": "applications",
+      "description": "Panel de acciones: filas de título + descripción con una acción única, estilo cuenta/ajustes, con variante destructiva.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/action-panels/ActionPanels.tsx",
+        "vue": "blocks/applications/action-panels/ActionPanels.vue",
+        "svelte": "blocks/applications/action-panels/ActionPanels.svelte",
+        "solid": "blocks/applications/action-panels/ActionPanels.solid.tsx"
+      },
+      "dest": {
+        "react": "ActionPanels.tsx",
+        "vue": "ActionPanels.vue",
+        "svelte": "ActionPanels.svelte",
+        "solid": "ActionPanels.tsx"
+      }
+    },
+    "feeds": {
+      "domain": "applications",
+      "description": "Feed de actividad: timeline vertical con avatar, actor/acción y timestamp.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/feeds/Feeds.tsx",
+        "vue": "blocks/applications/feeds/Feeds.vue",
+        "svelte": "blocks/applications/feeds/Feeds.svelte",
+        "solid": "blocks/applications/feeds/Feeds.solid.tsx"
+      },
+      "dest": {
+        "react": "Feeds.tsx",
+        "vue": "Feeds.vue",
+        "svelte": "Feeds.svelte",
+        "solid": "Feeds.tsx"
+      }
+    },
+    "stacked-list": {
+      "domain": "applications",
+      "description": "Lista apilada de registros: tarjetas verticales con avatar, badge de estado y acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/stacked-list/StackedList.tsx",
+        "vue": "blocks/applications/stacked-list/StackedList.vue",
+        "svelte": "blocks/applications/stacked-list/StackedList.svelte",
+        "solid": "blocks/applications/stacked-list/StackedList.solid.tsx"
+      },
+      "dest": {
+        "react": "StackedList.tsx",
+        "vue": "StackedList.vue",
+        "svelte": "StackedList.svelte",
+        "solid": "StackedList.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",
@@ -374,6 +459,23 @@
         "vue": "Stats.vue",
         "svelte": "Stats.svelte",
         "solid": "Stats.tsx"
+      }
+    },
+    "kpi-cards": {
+      "domain": "applications",
+      "description": "Tarjetas de KPI primario: valor, etiqueta e indicador de tendencia, la contraparte de una sola métrica del bloque stats.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/kpi-cards/KpiCards.tsx",
+        "vue": "blocks/applications/kpi-cards/KpiCards.vue",
+        "svelte": "blocks/applications/kpi-cards/KpiCards.svelte",
+        "solid": "blocks/applications/kpi-cards/KpiCards.solid.tsx"
+      },
+      "dest": {
+        "react": "KpiCards.tsx",
+        "vue": "KpiCards.vue",
+        "svelte": "KpiCards.svelte",
+        "solid": "KpiCards.tsx"
       }
     },
     "table": {
@@ -408,6 +510,125 @@
         "vue": "EmptyStates.vue",
         "svelte": "EmptyStates.svelte",
         "solid": "EmptyStates.tsx"
+      }
+    },
+    "input-groups": {
+      "domain": "applications",
+      "description": "Inputs compuestos: prefijos, sufijos y add-ons (URL, moneda, icono, buscador).",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/input-groups/InputGroups.tsx",
+        "vue": "blocks/applications/input-groups/InputGroups.vue",
+        "svelte": "blocks/applications/input-groups/InputGroups.svelte",
+        "solid": "blocks/applications/input-groups/InputGroups.solid.tsx"
+      },
+      "dest": {
+        "react": "InputGroups.tsx",
+        "vue": "InputGroups.vue",
+        "svelte": "InputGroups.svelte",
+        "solid": "InputGroups.tsx"
+      }
+    },
+    "app-banners": {
+      "domain": "applications",
+      "description": "Notificaciones a nivel de aplicación: impersonación, prueba por vencer, incidente de servicio.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/app-banners/AppBanners.tsx",
+        "vue": "blocks/applications/app-banners/AppBanners.vue",
+        "svelte": "blocks/applications/app-banners/AppBanners.svelte",
+        "solid": "blocks/applications/app-banners/AppBanners.solid.tsx"
+      },
+      "dest": {
+        "react": "AppBanners.tsx",
+        "vue": "AppBanners.vue",
+        "svelte": "AppBanners.svelte",
+        "solid": "AppBanners.tsx"
+      }
+    },
+    "grid-lists": {
+      "domain": "applications",
+      "description": "Grid de tarjetas: layout responsivo de tiles con miniatura, título, subtítulo y badge de estado.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/grid-lists/GridLists.tsx",
+        "vue": "blocks/applications/grid-lists/GridLists.vue",
+        "svelte": "blocks/applications/grid-lists/GridLists.svelte",
+        "solid": "blocks/applications/grid-lists/GridLists.solid.tsx"
+      },
+      "dest": {
+        "react": "GridLists.tsx",
+        "vue": "GridLists.vue",
+        "svelte": "GridLists.svelte",
+        "solid": "GridLists.tsx"
+      }
+    },
+    "page-card-section-headers": {
+      "domain": "applications",
+      "description": "Familia de encabezados de aplicación: encabezado de página, encabezado de tarjeta y barras superior/inferior de sección.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.tsx",
+        "vue": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.vue",
+        "svelte": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.svelte",
+        "solid": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.solid.tsx"
+      },
+      "dest": {
+        "react": "PageCardSectionHeaders.tsx",
+        "vue": "PageCardSectionHeaders.vue",
+        "svelte": "PageCardSectionHeaders.svelte",
+        "solid": "PageCardSectionHeaders.tsx"
+      }
+    },
+    "status-monitoring": {
+      "domain": "applications",
+      "description": "Panel de estado de servicios: banner general, indicador y badge por servicio, uptime y último incidente.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/status-monitoring/StatusMonitoring.tsx",
+        "vue": "blocks/applications/status-monitoring/StatusMonitoring.vue",
+        "svelte": "blocks/applications/status-monitoring/StatusMonitoring.svelte",
+        "solid": "blocks/applications/status-monitoring/StatusMonitoring.solid.tsx"
+      },
+      "dest": {
+        "react": "StatusMonitoring.tsx",
+        "vue": "StatusMonitoring.vue",
+        "svelte": "StatusMonitoring.svelte",
+        "solid": "StatusMonitoring.tsx"
+      }
+    },
+    "description-list": {
+      "domain": "applications",
+      "description": "Lista de detalle clave/valor para vistas de registro (pedido, perfil, etc).",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/description-list/DescriptionList.tsx",
+        "vue": "blocks/applications/description-list/DescriptionList.vue",
+        "svelte": "blocks/applications/description-list/DescriptionList.svelte",
+        "solid": "blocks/applications/description-list/DescriptionList.solid.tsx"
+      },
+      "dest": {
+        "react": "DescriptionList.tsx",
+        "vue": "DescriptionList.vue",
+        "svelte": "DescriptionList.svelte",
+        "solid": "DescriptionList.tsx"
+      }
+    },
+    "list": {
+      "domain": "applications",
+      "description": "Lista de registros de aplicación: fila con avatar, texto primario/secundario, badge de estado y acción — sin las columnas tabulares de Table.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/list/List.tsx",
+        "vue": "blocks/applications/list/List.vue",
+        "svelte": "blocks/applications/list/List.svelte",
+        "solid": "blocks/applications/list/List.solid.tsx"
+      },
+      "dest": {
+        "react": "List.tsx",
+        "vue": "List.vue",
+        "svelte": "List.svelte",
+        "solid": "List.tsx"
       }
     },
     "product-card": {

@@ -1,0 +1,83 @@
+---
+title: Description List
+description: Key/value detail list for record views — label above value on narrow layouts, side-by-side on wider ones. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RDescriptionListDemo from '../../../demos/react/blocks/DescriptionListDemo.tsx'
+import VDescriptionListDemo from '../../../demos/vue/blocks/DescriptionListDemo.vue'
+import SDescriptionListDemo from '../../../demos/svelte/blocks/DescriptionListDemo.svelte'
+import ODescriptionListDemo from '../../../demos/solid/blocks/DescriptionListDemo.tsx'
+
+**Description List** is an application [block](/introduction/blocks/): a key/value detail
+list for structured record data (an order or profile detail view). Each row shows a label
+and a value — stacked on narrow layouts, side-by-side on wider ones. It composes the `Card`
+primitive and the `--md-*` tokens.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RDescriptionListDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VDescriptionListDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SDescriptionListDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><ODescriptionListDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add description-list --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add description-list --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add description-list --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add description-list --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/).
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | `'Detalle del pedido'` | Heading shown in the `Card` title |
+| `items` | `DescriptionItem[]` | 8 sample fields | Label/value pairs to render |
+
+### `DescriptionItem`
+
+| Field | Type | Description |
+|-------|------|--------------|
+| `label` | `string` | Field name |
+| `value` | `string` | Pre-formatted value |
+
+## Usage
+
+```tsx
+import { DescriptionList } from './blocks/DescriptionList'
+
+<DescriptionList
+  title="Order details"
+  items={[
+    { label: 'Order number', value: 'A-1104' },
+    { label: 'Customer', value: 'Ada Corp' },
+    { label: 'Status', value: 'Shipped' },
+  ]}
+/>
+```
+
+The props API is identical across all four frameworks.

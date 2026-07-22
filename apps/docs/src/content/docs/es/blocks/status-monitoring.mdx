@@ -1,0 +1,89 @@
+---
+title: Status monitoring
+description: Panel de estado de servicios — banner general, indicador por servicio, badge, uptime y último incidente. Block copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RStatusMonitoringDemo from '../../../../demos/react/blocks/StatusMonitoringDemo.tsx'
+import VStatusMonitoringDemo from '../../../../demos/vue/blocks/StatusMonitoringDemo.vue'
+import SStatusMonitoringDemo from '../../../../demos/svelte/blocks/StatusMonitoringDemo.svelte'
+import OStatusMonitoringDemo from '../../../../demos/solid/blocks/StatusMonitoringDemo.tsx'
+
+**Status monitoring** es un [block](/es/introduction/blocks/) de aplicaciones: un panel de
+salud de servicios con un banner de estado general y una lista de servicios monitoreados, cada
+uno con un `Indicator` de estado, un `Badge` y texto opcional de uptime / último incidente.
+Compone los primitives `Badge`, `Divider` e `Indicator`, y los tokens `--md-*`.
+
+## Demo en vivo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RStatusMonitoringDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VStatusMonitoringDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SStatusMonitoringDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OStatusMonitoringDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add status-monitoring --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add status-monitoring --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add status-monitoring --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add status-monitoring --framework solid
+```
+</TabItem>
+</Tabs>
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código es tuyo.
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `title` | `string` | `'Estado del sistema'` | Título del encabezado del panel |
+| `services` | `ServiceItem[]` | 4 servicios de muestra | Servicios monitoreados a renderizar |
+
+### `ServiceItem`
+
+| Campo | Tipo | Descripción |
+|-------|------|--------------|
+| `id` | `string` | Id único del servicio, usado como clave de la lista |
+| `name` | `string` | Nombre del servicio |
+| `status` | `'operational' \| 'degraded' \| 'down'` | Estado de salud — define el color del `Indicator`/`Badge` (`operational` → success, `degraded` → warning, `down` → error) y agrega un pulso al indicador cuando es `down` |
+| `statusLabel` | `string` | Texto de estado mostrado en el `Badge` |
+| `uptime` | `string` | Porcentaje de uptime ya formateado (oculto si se omite) |
+| `lastIncident` | `string` | Texto resumen del último incidente (oculto si se omite) |
+
+El banner de estado general del encabezado se calcula automáticamente a partir del peor estado
+encontrado en `services` (`down` > `degraded` > `operational`).
+
+## Uso
+
+```tsx
+import { StatusMonitoring } from './blocks/StatusMonitoring'
+
+<StatusMonitoring
+  title="Estado del sistema"
+  services={[
+    { id: 'api', name: 'API', status: 'operational', statusLabel: 'Operativo', uptime: '99.98%', lastIncident: 'Sin incidentes en 90 días' },
+    { id: 'payments', name: 'Pagos', status: 'degraded', statusLabel: 'Degradado', uptime: '98.40%', lastIncident: 'Incidente hace 2 horas' },
+  ]}
+/>
+```
+
+La API de props es idéntica en los cuatro frameworks.

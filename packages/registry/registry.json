@@ -410,6 +410,23 @@
         "solid": "Table.tsx"
       }
     },
+    "page-card-section-headers": {
+      "domain": "applications",
+      "description": "Familia de encabezados de aplicación: encabezado de página, encabezado de tarjeta y barras superior/inferior de sección.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.tsx",
+        "vue": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.vue",
+        "svelte": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.svelte",
+        "solid": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.solid.tsx"
+      },
+      "dest": {
+        "react": "PageCardSectionHeaders.tsx",
+        "vue": "PageCardSectionHeaders.vue",
+        "svelte": "PageCardSectionHeaders.svelte",
+        "solid": "PageCardSectionHeaders.tsx"
+      }
+    },
     "status-monitoring": {
       "domain": "applications",
       "description": "Panel de estado de servicios: banner general, indicador y badge por servicio, uptime y último incidente.",

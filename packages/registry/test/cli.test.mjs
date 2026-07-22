@@ -57,6 +57,31 @@ test('add copies a different framework variant of the table block', async (t) =>
   assert.match(copied, /Moderno block — Table \(Svelte\)/)
 })
 
+test('add copies the page-card-section-headers block (applications domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync(
+    'node',
+    [CLI, 'add', 'page-card-section-headers', '--framework', 'react', '--dest', dest],
+    { encoding: 'utf8' },
+  )
+
+  assert.match(output, /page-card-section-headers/)
+  const copied = await readFile(join(dest, 'PageCardSectionHeaders.tsx'), 'utf8')
+  assert.match(copied, /export function PageCardSectionHeaders/)
+})
+
+test('add copies a different framework variant of the page-card-section-headers block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'page-card-section-headers', '--framework', 'svelte', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  const copied = await readFile(join(dest, 'PageCardSectionHeaders.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — PageCardSectionHeaders \(Svelte\)/)
+})
+
 test('add copies the status-monitoring block (applications domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -644,6 +669,7 @@ test('list groups blocks by domain and includes the applications table block', (
   assert.ok(applicationsSection, 'expected an "applications" domain group in list output')
   assert.match(applicationsSection, /stats/)
   assert.match(applicationsSection, /table/)
+  assert.match(applicationsSection, /page-card-section-headers/)
   assert.match(applicationsSection, /status-monitoring/)
   assert.match(applicationsSection, /kpi-cards/)
   assert.match(applicationsSection, /description-list/)

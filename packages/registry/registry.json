@@ -376,6 +376,23 @@
         "solid": "Stats.tsx"
       }
     },
+    "kpi-cards": {
+      "domain": "applications",
+      "description": "Tarjetas de KPI primario: valor, etiqueta e indicador de tendencia, la contraparte de una sola métrica del bloque stats.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/kpi-cards/KpiCards.tsx",
+        "vue": "blocks/applications/kpi-cards/KpiCards.vue",
+        "svelte": "blocks/applications/kpi-cards/KpiCards.svelte",
+        "solid": "blocks/applications/kpi-cards/KpiCards.solid.tsx"
+      },
+      "dest": {
+        "react": "KpiCards.tsx",
+        "vue": "KpiCards.vue",
+        "svelte": "KpiCards.svelte",
+        "solid": "KpiCards.tsx"
+      }
+    },
     "table": {
       "domain": "applications",
       "description": "Tabla de datos de aplicación: orden, selección de filas y acciones en lote.",

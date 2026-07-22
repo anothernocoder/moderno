@@ -359,6 +359,40 @@
         "solid": "NotFound.tsx"
       }
     },
+    "feeds": {
+      "domain": "applications",
+      "description": "Feed de actividad: timeline vertical con avatar, actor/acción y timestamp.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/feeds/Feeds.tsx",
+        "vue": "blocks/applications/feeds/Feeds.vue",
+        "svelte": "blocks/applications/feeds/Feeds.svelte",
+        "solid": "blocks/applications/feeds/Feeds.solid.tsx"
+      },
+      "dest": {
+        "react": "Feeds.tsx",
+        "vue": "Feeds.vue",
+        "svelte": "Feeds.svelte",
+        "solid": "Feeds.tsx"
+      }
+    },
+    "stacked-list": {
+      "domain": "applications",
+      "description": "Lista apilada de registros: tarjetas verticales con avatar, badge de estado y acción.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/stacked-list/StackedList.tsx",
+        "vue": "blocks/applications/stacked-list/StackedList.vue",
+        "svelte": "blocks/applications/stacked-list/StackedList.svelte",
+        "solid": "blocks/applications/stacked-list/StackedList.solid.tsx"
+      },
+      "dest": {
+        "react": "StackedList.tsx",
+        "vue": "StackedList.vue",
+        "svelte": "StackedList.svelte",
+        "solid": "StackedList.tsx"
+      }
+    },
     "stats": {
       "domain": "applications",
       "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",
@@ -374,6 +408,23 @@
         "vue": "Stats.vue",
         "svelte": "Stats.svelte",
         "solid": "Stats.tsx"
+      }
+    },
+    "kpi-cards": {
+      "domain": "applications",
+      "description": "Tarjetas de KPI primario: valor, etiqueta e indicador de tendencia, la contraparte de una sola métrica del bloque stats.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/kpi-cards/KpiCards.tsx",
+        "vue": "blocks/applications/kpi-cards/KpiCards.vue",
+        "svelte": "blocks/applications/kpi-cards/KpiCards.svelte",
+        "solid": "blocks/applications/kpi-cards/KpiCards.solid.tsx"
+      },
+      "dest": {
+        "react": "KpiCards.tsx",
+        "vue": "KpiCards.vue",
+        "svelte": "KpiCards.svelte",
+        "solid": "KpiCards.tsx"
       }
     },
     "table": {
@@ -408,6 +459,74 @@
         "vue": "GridLists.vue",
         "svelte": "GridLists.svelte",
         "solid": "GridLists.tsx"
+      }
+    },
+    "page-card-section-headers": {
+      "domain": "applications",
+      "description": "Familia de encabezados de aplicación: encabezado de página, encabezado de tarjeta y barras superior/inferior de sección.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.tsx",
+        "vue": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.vue",
+        "svelte": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.svelte",
+        "solid": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.solid.tsx"
+      },
+      "dest": {
+        "react": "PageCardSectionHeaders.tsx",
+        "vue": "PageCardSectionHeaders.vue",
+        "svelte": "PageCardSectionHeaders.svelte",
+        "solid": "PageCardSectionHeaders.tsx"
+      }
+    },
+    "status-monitoring": {
+      "domain": "applications",
+      "description": "Panel de estado de servicios: banner general, indicador y badge por servicio, uptime y último incidente.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/status-monitoring/StatusMonitoring.tsx",
+        "vue": "blocks/applications/status-monitoring/StatusMonitoring.vue",
+        "svelte": "blocks/applications/status-monitoring/StatusMonitoring.svelte",
+        "solid": "blocks/applications/status-monitoring/StatusMonitoring.solid.tsx"
+      },
+      "dest": {
+        "react": "StatusMonitoring.tsx",
+        "vue": "StatusMonitoring.vue",
+        "svelte": "StatusMonitoring.svelte",
+        "solid": "StatusMonitoring.tsx"
+      }
+    },
+    "description-list": {
+      "domain": "applications",
+      "description": "Lista de detalle clave/valor para vistas de registro (pedido, perfil, etc).",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/description-list/DescriptionList.tsx",
+        "vue": "blocks/applications/description-list/DescriptionList.vue",
+        "svelte": "blocks/applications/description-list/DescriptionList.svelte",
+        "solid": "blocks/applications/description-list/DescriptionList.solid.tsx"
+      },
+      "dest": {
+        "react": "DescriptionList.tsx",
+        "vue": "DescriptionList.vue",
+        "svelte": "DescriptionList.svelte",
+        "solid": "DescriptionList.tsx"
+      }
+    },
+    "list": {
+      "domain": "applications",
+      "description": "Lista de registros de aplicación: fila con avatar, texto primario/secundario, badge de estado y acción — sin las columnas tabulares de Table.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/applications/list/List.tsx",
+        "vue": "blocks/applications/list/List.vue",
+        "svelte": "blocks/applications/list/List.svelte",
+        "solid": "blocks/applications/list/List.solid.tsx"
+      },
+      "dest": {
+        "react": "List.tsx",
+        "vue": "List.vue",
+        "svelte": "List.svelte",
+        "solid": "List.tsx"
       }
     },
     "product-card": {

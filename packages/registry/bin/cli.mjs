@@ -13,8 +13,8 @@
  * assembly file. `--no-example` skips that example. Primitives are never copied;
  * they stay versioned `@moderno/<framework>` npm deps.
  */
-import { readFile, mkdir, copyFile, access } from 'node:fs/promises'
-import { dirname, join, resolve } from 'node:path'
+import { readFile, writeFile, mkdir, access } from 'node:fs/promises'
+import { dirname, join, resolve, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
@@ -81,6 +81,44 @@ function resolveComposed(registry, name, seen = new Map()) {
   return seen
 }
 
+const RELATIVE_IMPORT = /(\bfrom\s*)(['"])(\.\.?\/[^'"]+)\2/g
+
+/** Strips a single trailing extension (`.tsx`, `.vue`, `.svelte`, ...), if any. */
+function stripExt(path) {
+  return path.replace(/\.[^./\\]+$/, '')
+}
+
+/**
+ * Registry source files import sibling composed files (block from a screen,
+ * screen from a flow) via relative paths that assume the monorepo's own
+ * source-tree layout. Block dest paths are flat while screen/flow dest paths
+ * mirror their nested source path (ADR-0001 vs ADR-0005), so a plain copy
+ * leaves those relative imports pointing at paths that don't exist in the
+ * copied tree. Rewrite each relative import against the actual planned dest
+ * of the file it targets, using the same bare-vs-extension form as the
+ * original specifier.
+ */
+function rewriteRelativeImports(content, srcPath, destPath, plan) {
+  const srcDir = dirname(srcPath)
+  return content.replace(RELATIVE_IMPORT, (full, prefix, quote, specifier) => {
+    const resolvedSrc = resolve(srcDir, specifier)
+
+    // Whether the specifier carried the target's real extension has to be read
+    // off which form matched, not sniffed from the specifier text: Solid's own
+    // bare imports (e.g. `ShoppingCart.solid`, no `.tsx`) end in something that
+    // looks like an extension but isn't the file's actual one.
+    let target = plan.find((item) => resolvedSrc === item.srcPath)
+    let hasExt = Boolean(target)
+    if (!target) target = plan.find((item) => resolvedSrc === stripExt(item.srcPath))
+    if (!target) return full
+
+    const targetDest = hasExt ? target.destPath : stripExt(target.destPath)
+    let rel = relative(dirname(destPath), targetDest).split(sep).join('/')
+    if (!rel.startsWith('.')) rel = `./${rel}`
+    return `${prefix}${quote}${rel}${quote}`
+  })
+}
+
 async function cmdList() {
   const registry = await loadRegistry()
 
@@ -126,18 +164,24 @@ async function cmdAdd(positional, flags) {
     (item) => !(noExample && found.kind === 'flow' && item.name === name),
   )
 
-  const copied = []
-  for (const item of toCopy) {
+  // Plan every item's src/dest path upfront so relative imports between
+  // composed files (e.g. a screen importing the block it composes) can be
+  // rewritten against where files actually land, not just copied verbatim.
+  const plan = toCopy.map((item) => {
     const src = item.entry.files[framework]
     if (!src) fail(`"${item.name}" no tiene variante para ${framework}.`)
-
     const destFile = item.entry.dest?.[framework] ?? src.split('/').pop()
-    const destPath = resolve(process.cwd(), dest, destFile)
-    if (await exists(destPath)) fail(`Ya existe ${destPath}. Bórralo o usa otro --dest.`)
+    return { ...item, srcPath: join(PKG_ROOT, src), destPath: resolve(process.cwd(), dest, destFile) }
+  })
 
-    await mkdir(dirname(destPath), { recursive: true })
-    await copyFile(join(PKG_ROOT, src), destPath)
-    copied.push({ ...item, destPath })
+  const copied = []
+  for (const item of plan) {
+    if (await exists(item.destPath)) fail(`Ya existe ${item.destPath}. Bórralo o usa otro --dest.`)
+
+    await mkdir(dirname(item.destPath), { recursive: true })
+    const content = await readFile(item.srcPath, 'utf8')
+    await writeFile(item.destPath, rewriteRelativeImports(content, item.srcPath, item.destPath, plan))
+    copied.push(item)
   }
 
   for (const item of copied) {
@@ -168,4 +212,9 @@ async function main() {
   }
 }
 
-main().catch((err) => fail(err.message))
+// Guarded so this module can be imported (e.g. from tests) without also running the CLI.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => fail(err.message))
+}
+
+export { rewriteRelativeImports, stripExt }

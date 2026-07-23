@@ -1198,6 +1198,27 @@ test('add copies a different framework variant of the contact-modal block', asyn
   assert.match(copied, /Moderno block — ContactModal \(Svelte\)/)
 })
 
+test('add copies the share-invite block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'share-invite', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /share-invite/)
+  const copied = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(copied, /export function ShareInvite/)
+})
+
+test('add copies a different framework variant of the share-invite block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'share-invite', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ShareInvite.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — ShareInvite \(Svelte\)/)
+})
+
 test('add copies the not-found block (marketing domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1828,4 +1849,145 @@ test('list groups the onboarding flow and its screens separate from blocks', () 
 
   assert.ok(welcomeIndex > screensIndex && welcomeIndex < flowsIndex, 'expected welcome listed under Screens')
   assert.ok(onboardingIndex > flowsIndex, 'expected onboarding listed under Flows')
+})
+
+// ── Referral flow: cross-domain (Applications + Marketing) capstone ────────
+
+test('add referral flow recursively resolves composes and copies all three screens + the composed Marketing block + the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /referral/)
+  assert.match(output, /referral-invite/)
+  assert.match(output, /referral-share/)
+  assert.match(output, /referral-reward/)
+  assert.match(output, /share-invite/)
+  assert.match(output, /Trajo también/)
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.tsx'), 'utf8')
+  assert.match(referralInvite, /export function ReferralInvite/)
+
+  const referralShare = await readFile(join(dest, 'screens/applications/referral-share/ReferralShare.tsx'), 'utf8')
+  assert.match(referralShare, /export function ReferralShare/)
+
+  const referralReward = await readFile(join(dest, 'screens/applications/referral-reward/ReferralReward.tsx'), 'utf8')
+  assert.match(referralReward, /export function ReferralReward/)
+
+  // The composed Marketing block lands alongside the screens (blocks copy
+  // flat to --dest, screens preserve their nested layout) — never the
+  // primitives, which stay an npm dependency. This also exercises `composes`
+  // resolution crossing from the Applications screens domain into the
+  // Marketing blocks domain.
+  const shareInvite = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(shareInvite, /export function ShareInvite/)
+
+  const example = await readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8')
+  assert.match(example, /export function ReferralExample/)
+})
+
+test('add referral flow works for every framework', async (t) => {
+  for (const framework of ['vue', 'svelte', 'solid']) {
+    const dest = await withTmpDir(t)
+    execFileSync('node', [CLI, 'add', 'referral', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
+    const ext = { vue: 'vue', svelte: 'svelte', solid: 'tsx' }[framework]
+    const files = [
+      `screens/applications/referral-invite/ReferralInvite.${ext}`,
+      `screens/applications/referral-share/ReferralShare.${ext}`,
+      `screens/applications/referral-reward/ReferralReward.${ext}`,
+      `ShareInvite.${ext}`,
+      `flows/referral/Referral.example.${ext}`,
+    ]
+    for (const file of files) {
+      await readFile(join(dest, file), 'utf8')
+    }
+  }
+})
+
+test('add referral --no-example copies the composed screens and block, not the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'referral', '--framework', 'react', '--dest', dest, '--no-example'], {
+    encoding: 'utf8',
+  })
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.tsx'), 'utf8')
+  assert.match(referralInvite, /export function ReferralInvite/)
+
+  const shareInvite = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(shareInvite, /export function ShareInvite/)
+
+  await assert.rejects(readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8'))
+})
+
+test('add referral-invite works standalone with no composed block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral-invite', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /referral-invite/)
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.tsx'), 'utf8')
+  assert.match(referralInvite, /export function ReferralInvite/)
+
+  await assert.rejects(readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8'))
+})
+
+test('add referral-invite works standalone for a different framework variant', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'referral-invite', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.svelte'), 'utf8')
+  assert.match(referralInvite, /Moderno screen — ReferralInvite \(Svelte\)/)
+})
+
+test('add referral-share works standalone and transitively pulls the composed share-invite block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral-share', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /share-invite/)
+
+  const referralShare = await readFile(join(dest, 'screens/applications/referral-share/ReferralShare.tsx'), 'utf8')
+  assert.match(referralShare, /export function ReferralShare/)
+
+  const shareInvite = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(shareInvite, /export function ShareInvite/)
+})
+
+test('add referral-reward works standalone with no composed block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral-reward', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /referral-reward/)
+
+  const referralReward = await readFile(join(dest, 'screens/applications/referral-reward/ReferralReward.tsx'), 'utf8')
+  assert.match(referralReward, /export function ReferralReward/)
+
+  await assert.rejects(readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8'))
+})
+
+test('list groups the referral flow and its screens separate from blocks', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  const screensIndex = output.indexOf('Screens disponibles')
+  const flowsIndex = output.indexOf('Flows disponibles')
+  const referralInviteIndex = output.indexOf('\x1b[1mreferral-invite\x1b[0m')
+  const referralIndex = output.indexOf('\x1b[1mreferral\x1b[0m')
+
+  assert.ok(
+    referralInviteIndex > screensIndex && referralInviteIndex < flowsIndex,
+    'expected referral-invite listed under Screens',
+  )
+  assert.ok(referralIndex > flowsIndex, 'expected referral listed under Flows')
 })

@@ -1,0 +1,197 @@
+---
+title: Referral
+description: Flujo de referidos cross-domain (Applications + Marketing, ADR-0005) — invita, comparte y reward/claim. Screens + ensamblaje de ejemplo copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RReferralDemo from '../../../../demos/react/flows/ReferralDemo.tsx'
+import VReferralDemo from '../../../../demos/vue/flows/ReferralDemo.vue'
+import SReferralDemo from '../../../../demos/svelte/flows/ReferralDemo.svelte'
+import OReferralDemo from '../../../../demos/solid/flows/ReferralDemo.tsx'
+
+**Referral** es el capstone cross-domain (ADR-0005): un conjunto conectado de
+[screens](/es/introduction/blocks/) que abarca tanto el dominio Applications como el de
+Marketing — inicia tu referido, compártelo y reclama tu recompensa. A diferencia de los capstones
+de un solo dominio Onboarding y Checkout, su screen `referral-share` `compone` el bloque
+[Share and Invite](/es/blocks/share-invite/) de **Marketing** desde una screen del dominio
+**Applications** — la resolución de `composes` del CLI recorre flow → screen → bloque sin importar
+el dominio, así que traer el flow copia todo automáticamente.
+
+Una **screen** es presentacional: recibe un contrato de wiring tipado (`values`/`onNext`, más
+callbacks de navegación específicos del flow como `onBack`) y no tiene **ni estado interno ni
+router** — el consumidor decide cómo guardar los valores y navegar. `referral-invite` no necesita
+ningún bloque — igual que la screen `welcome` del flow Onboarding, compone solo los primitives
+Input/Button para su propio formulario de "inicia tu referido". `referral-reward` es igual: ningún
+bloque encaja con un resumen de recompensa puntual, así que compone solo los primitives
+Badge/Button. El **ejemplo** (`Referral.example.{ext}`) es un ensamblaje liviano y ejecutable que
+arma las tres screens usando el estado local propio de cada framework y una variable `step` local,
+transportando el nombre del referidor, el enlace generado y la lista creciente de invitaciones
+entre pasos — no es el producto, es un punto de partida copy-paste.
+
+## Demo en vivo
+
+El recorrido completo ensamblado — inicia tu referido, comparte tu enlace y reclama tu recompensa:
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RReferralDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VReferralDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SReferralDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OReferralDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+### Screens individuales
+
+Cada screen de abajo es el mismo ejemplo en vivo montado con un `step` inicial distinto — útil
+para inspeccionar una screen de forma aislada, aunque navegar desde ella sigue moviéndose por el
+recorrido real.
+
+#### Compartir
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RReferralDemo step="share" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VReferralDemo step="share" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SReferralDemo step="share" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OReferralDemo step="share" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Recompensa
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RReferralDemo step="reward" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VReferralDemo step="reward" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SReferralDemo step="reward" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OReferralDemo step="reward" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+Traer el flow `referral` copia las tres screens que compone (`referral-invite`, `referral-share`,
+`referral-reward`) **y** el bloque de Marketing que `referral-share` compone a su vez
+(`share-invite`) **más** el ensamblaje de ejemplo. El CLI resuelve `composes` recursivamente
+(flow → screen → bloque) a través de dominios y deduplica por nombre — los primitives nunca se
+copian, se quedan como dependencia npm `@moderno/<framework>`.
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add referral --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add referral --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add referral --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add referral --framework solid
+```
+</TabItem>
+</Tabs>
+
+Esto imprime cada screen y bloque que trajo, y copia
+`screens/applications/{referral-invite,referral-share,referral-reward}/*.{ext}`,
+`ShareInvite.{ext}` y `flows/referral/Referral.example.{ext}` en `--dest` (por defecto
+`./src/blocks`) — las screens preservan su estructura anidada, los bloques se copian planos en la
+raíz de `--dest`. Pasa `--no-example` para copiar solo las screens y el bloque compuestos:
+
+```sh
+npx @moderno/registry add referral --framework react --no-example
+```
+
+¿Quieres solo el bloque `share-invite`, sin ningún contexto de flow? Es instalable de forma
+independiente:
+
+```sh
+npx @moderno/registry add share-invite --framework react
+```
+
+Tras copiarlo, instala el paquete primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo la
+navegación y el estado — es tuyo.
+
+## Props
+
+### ReferralInvite
+
+| Prop | Tipo | Descripción |
+|------|------|--------------|
+| `values` | `ReferralInviteValues` | Valor controlado del campo "tu nombre" |
+| `onChange` | `(values: ReferralInviteValues) => void` | Se dispara al cambiar el campo de nombre |
+| `onNext` | `(values: ReferralInviteValues) => void` | Se dispara al enviar — genera el enlace compartible a partir de `values` y avanza |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del cuerpo |
+| `namePlaceholder` | `string` | Placeholder del campo de nombre |
+| `ctaLabel` | `string` | Label del botón de envío |
+
+### ReferralShare
+
+| Prop | Tipo | Descripción |
+|------|------|--------------|
+| `shareUrl` | `string` | El enlace de referido generado en el paso anterior |
+| `onCopyLink` | `(url: string) => void` | Forwarded desde el `onCopyLink` del bloque Share/Invite compuesto |
+| `channels` | `ShareChannel[]` | Forwarded al `channels` del bloque compuesto |
+| `onShare` | `(channel: ShareChannel) => void` | Forwarded desde el `onShare` del bloque compuesto |
+| `inviteEmail` | `string` | Valor controlado del campo de invitación por correo del bloque compuesto |
+| `onInviteEmailChange` | `(value: string) => void` | Forwarded desde el `onInviteEmailChange` del bloque compuesto |
+| `onInvite` | `(email: string) => void` | Forwarded desde el `onInvite` del bloque compuesto |
+| `invites` | `ShareInviteItem[]` | Invitaciones pendientes/aceptadas renderizadas por el bloque compuesto |
+| `onNext` | `() => void` | Handler del CTA "Continuar" |
+| `onBack` | `() => void` | Handler del link "Volver" |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+| `nextLabel` | `string` | Label del CTA de continuar |
+| `backLabel` | `string` | Label del link de volver |
+
+### ReferralReward
+
+| Prop | Tipo | Descripción |
+|------|------|--------------|
+| `invites` | `ReferralRewardItem[]` | Invitaciones transportadas desde el paso de compartir, con su estado de recompensa |
+| `rewardAmount` | `string` | El monto de recompensa acumulado |
+| `onClaim` | `() => void` | Handler del CTA de reclamo |
+| `onBack` | `() => void` | Handler del link "Volver" |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del cuerpo |
+| `claimLabel` | `string` | Label del CTA de reclamo |
+| `backLabel` | `string` | Label del link de volver |
+
+Ninguna screen carga estado interno ni defaults para el nombre del referidor, el enlace compartido
+o las invitaciones — eso es trabajo del ensamblaje de ejemplo (o de tu propio código).
+`referral-invite` y `referral-reward` componen solo primitives para sus propios formularios/resumen
+puntuales; `referral-share` compone el bloque de Marketing `share-invite` más el primitive Button
+para su propio chrome de encabezado/pie. Todas usan los tokens `--md-*`; ninguna clase utilitaria
+legacy.
+
+## Uso
+
+```tsx
+import { useState } from 'react'
+import { ReferralInvite } from './screens/applications/referral-invite/ReferralInvite'
+
+function App() {
+  const [step, setStep] = useState('invite')
+
+  return (
+    <ReferralInvite
+      values={values}
+      onChange={setValues}
+      onNext={(values) => {
+        // genera el enlace de referido a partir de `values`
+        setStep('share')
+      }}
+    />
+  )
+}
+```
+
+Conectar tu propio router/estado es el punto: ninguna screen asume que existe uno. Mira
+`Referral.example.tsx` (y sus hermanos `.vue`/`.svelte`/`.solid.tsx`) para el recorrido completo —
+una unión `step` local a través de las tres screens, el nombre del referidor y el enlace generado
+transportados desde `referral-invite` hacia adelante, y la lista creciente de invitaciones armada
+en `referral-share` y transportada hacia `referral-reward`.

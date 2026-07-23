@@ -342,6 +342,23 @@
         "solid": "ContactModal.tsx"
       }
     },
+    "share-invite": {
+      "domain": "marketing",
+      "description": "Compartir e invitar: enlace compartible con copiar al portapapeles, botones de canal/red social y un formulario de invitación por correo con lista de invitaciones pendientes.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/share-invite/ShareInvite.tsx",
+        "vue": "blocks/marketing/share-invite/ShareInvite.vue",
+        "svelte": "blocks/marketing/share-invite/ShareInvite.svelte",
+        "solid": "blocks/marketing/share-invite/ShareInvite.solid.tsx"
+      },
+      "dest": {
+        "react": "ShareInvite.tsx",
+        "vue": "ShareInvite.vue",
+        "svelte": "ShareInvite.svelte",
+        "solid": "ShareInvite.tsx"
+      }
+    },
     "not-found": {
       "domain": "marketing",
       "description": "Sección de error 404: numeral grande, mensaje y CTA de vuelta al sitio.",
@@ -1214,6 +1231,58 @@
         "solid": "screens/applications/invite-team/InviteTeam.tsx"
       }
     },
+    "referral-invite": {
+      "domain": "applications",
+      "description": "Pantalla de inicio del flow Referral: formulario propio con el nombre del usuario y un CTA para generar el enlace de referido — no compone ningún bloque.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/referral-invite/ReferralInvite.tsx",
+        "vue": "screens/applications/referral-invite/ReferralInvite.vue",
+        "svelte": "screens/applications/referral-invite/ReferralInvite.svelte",
+        "solid": "screens/applications/referral-invite/ReferralInvite.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/referral-invite/ReferralInvite.tsx",
+        "vue": "screens/applications/referral-invite/ReferralInvite.vue",
+        "svelte": "screens/applications/referral-invite/ReferralInvite.svelte",
+        "solid": "screens/applications/referral-invite/ReferralInvite.tsx"
+      }
+    },
+    "referral-share": {
+      "domain": "applications",
+      "description": "Pantalla de compartir del flow Referral (cross-domain Applications + Marketing): compone el bloque Marketing share-invite para el enlace, los botones de canal y el formulario de invitación por correo.",
+      "composes": ["share-invite"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/referral-share/ReferralShare.tsx",
+        "vue": "screens/applications/referral-share/ReferralShare.vue",
+        "svelte": "screens/applications/referral-share/ReferralShare.svelte",
+        "solid": "screens/applications/referral-share/ReferralShare.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/referral-share/ReferralShare.tsx",
+        "vue": "screens/applications/referral-share/ReferralShare.vue",
+        "svelte": "screens/applications/referral-share/ReferralShare.svelte",
+        "solid": "screens/applications/referral-share/ReferralShare.tsx"
+      }
+    },
+    "referral-reward": {
+      "domain": "applications",
+      "description": "Pantalla final del flow Referral: resumen de recompensa acumulada, lista de invitados con su estado y CTA de reclamo — no compone ningún bloque.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/referral-reward/ReferralReward.tsx",
+        "vue": "screens/applications/referral-reward/ReferralReward.vue",
+        "svelte": "screens/applications/referral-reward/ReferralReward.svelte",
+        "solid": "screens/applications/referral-reward/ReferralReward.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/referral-reward/ReferralReward.tsx",
+        "vue": "screens/applications/referral-reward/ReferralReward.vue",
+        "svelte": "screens/applications/referral-reward/ReferralReward.svelte",
+        "solid": "screens/applications/referral-reward/ReferralReward.tsx"
+      }
+    },
     "cart": {
       "domain": "ecommerce",
       "description": "Pantalla de carrito: line items con cantidad y opción de quitar, subtotal y CTA para continuar a envío. Compone el bloque shopping-cart. También se puede agregar de forma independiente.",
@@ -1354,6 +1423,23 @@
         "vue": "flows/onboarding/Onboarding.example.vue",
         "svelte": "flows/onboarding/Onboarding.example.svelte",
         "solid": "flows/onboarding/Onboarding.example.tsx"
+      }
+    },
+    "referral": {
+      "description": "Flujo de referidos — cross-domain (Applications + Marketing), el último en salir: invita (genera tu enlace), comparte (compone el bloque Marketing share-invite) y reward/claim, con un ensamblaje de ejemplo de estado local. La screen `referral-share` compone el bloque share-invite en vez de reimplementar su UI, ejercitando la resolución recursiva de `composes` a través de dominios.",
+      "composes": ["referral-invite", "referral-share", "referral-reward"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "flows/referral/Referral.example.tsx",
+        "vue": "flows/referral/Referral.example.vue",
+        "svelte": "flows/referral/Referral.example.svelte",
+        "solid": "flows/referral/Referral.example.solid.tsx"
+      },
+      "dest": {
+        "react": "flows/referral/Referral.example.tsx",
+        "vue": "flows/referral/Referral.example.vue",
+        "svelte": "flows/referral/Referral.example.svelte",
+        "solid": "flows/referral/Referral.example.tsx"
       }
     }
   }

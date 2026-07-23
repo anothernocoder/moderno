@@ -1074,12 +1074,80 @@
         "svelte": "screens/applications/sign-in/SignIn.svelte",
         "solid": "screens/applications/sign-in/SignIn.tsx"
       }
+    },
+    "sign-up": {
+      "domain": "applications",
+      "description": "Pantalla de registro: nombre, correo, contraseña, confirmación y aceptación de términos.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/sign-up/SignUp.tsx",
+        "vue": "screens/applications/sign-up/SignUp.vue",
+        "svelte": "screens/applications/sign-up/SignUp.svelte",
+        "solid": "screens/applications/sign-up/SignUp.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/sign-up/SignUp.tsx",
+        "vue": "screens/applications/sign-up/SignUp.vue",
+        "svelte": "screens/applications/sign-up/SignUp.svelte",
+        "solid": "screens/applications/sign-up/SignUp.tsx"
+      }
+    },
+    "forgot-password": {
+      "domain": "applications",
+      "description": "Pantalla de recuperación de contraseña: solicita el correo y confirma el envío del enlace.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/forgot-password/ForgotPassword.tsx",
+        "vue": "screens/applications/forgot-password/ForgotPassword.vue",
+        "svelte": "screens/applications/forgot-password/ForgotPassword.svelte",
+        "solid": "screens/applications/forgot-password/ForgotPassword.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/forgot-password/ForgotPassword.tsx",
+        "vue": "screens/applications/forgot-password/ForgotPassword.vue",
+        "svelte": "screens/applications/forgot-password/ForgotPassword.svelte",
+        "solid": "screens/applications/forgot-password/ForgotPassword.tsx"
+      }
+    },
+    "reset-password": {
+      "domain": "applications",
+      "description": "Pantalla para elegir una nueva contraseña tras verificar el código de recuperación.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/reset-password/ResetPassword.tsx",
+        "vue": "screens/applications/reset-password/ResetPassword.vue",
+        "svelte": "screens/applications/reset-password/ResetPassword.svelte",
+        "solid": "screens/applications/reset-password/ResetPassword.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/reset-password/ResetPassword.tsx",
+        "vue": "screens/applications/reset-password/ResetPassword.vue",
+        "svelte": "screens/applications/reset-password/ResetPassword.svelte",
+        "solid": "screens/applications/reset-password/ResetPassword.tsx"
+      }
+    },
+    "verify": {
+      "domain": "applications",
+      "description": "Pantalla de verificación por código (OTP): confirma la dirección de correo o el restablecimiento de contraseña.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/verify/Verify.tsx",
+        "vue": "screens/applications/verify/Verify.vue",
+        "svelte": "screens/applications/verify/Verify.svelte",
+        "solid": "screens/applications/verify/Verify.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/verify/Verify.tsx",
+        "vue": "screens/applications/verify/Verify.vue",
+        "svelte": "screens/applications/verify/Verify.svelte",
+        "solid": "screens/applications/verify/Verify.tsx"
+      }
     }
   },
   "flows": {
     "auth": {
-      "description": "Flujo de autenticación (tracer): pantalla de inicio de sesión + ensamblaje de ejemplo con estado local.",
-      "composes": ["sign-in"],
+      "description": "Flujo de autenticación completo: inicio de sesión, registro, recuperación y restablecimiento de contraseña, y verificación por código, con un ensamblaje de ejemplo de estado local.",
+      "composes": ["sign-in", "sign-up", "forgot-password", "reset-password", "verify"],
       "dependencies": ["@moderno/{framework}"],
       "files": {
         "react": "flows/auth/Auth.example.tsx",

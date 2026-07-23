@@ -1410,7 +1410,7 @@ test('add copies a different framework variant of the sign-in screen', async (t)
   assert.match(copied, /Moderno screen — SignIn \(Svelte\)/)
 })
 
-test('add auth flow recursively resolves composes and copies the sign-in screen + the example', async (t) => {
+test('add auth flow recursively resolves composes and copies all five screens + the example', async (t) => {
   const dest = await withTmpDir(t)
 
   const output = execFileSync('node', [CLI, 'add', 'auth', '--framework', 'react', '--dest', dest], {
@@ -1419,9 +1419,31 @@ test('add auth flow recursively resolves composes and copies the sign-in screen 
 
   assert.match(output, /auth/)
   assert.match(output, /sign-in/)
+  assert.match(output, /sign-up/)
+  assert.match(output, /forgot-password/)
+  assert.match(output, /reset-password/)
+  assert.match(output, /verify/)
 
-  const screen = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
-  assert.match(screen, /export function SignIn/)
+  const signIn = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
+  assert.match(signIn, /export function SignIn/)
+
+  const signUp = await readFile(join(dest, 'screens/applications/sign-up/SignUp.tsx'), 'utf8')
+  assert.match(signUp, /export function SignUp/)
+
+  const forgotPassword = await readFile(
+    join(dest, 'screens/applications/forgot-password/ForgotPassword.tsx'),
+    'utf8',
+  )
+  assert.match(forgotPassword, /export function ForgotPassword/)
+
+  const resetPassword = await readFile(
+    join(dest, 'screens/applications/reset-password/ResetPassword.tsx'),
+    'utf8',
+  )
+  assert.match(resetPassword, /export function ResetPassword/)
+
+  const verify = await readFile(join(dest, 'screens/applications/verify/Verify.tsx'), 'utf8')
+  assert.match(verify, /export function Verify/)
 
   const example = await readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8')
   assert.match(example, /export function AuthExample/)
@@ -1431,28 +1453,63 @@ test('add auth flow works for every framework', async (t) => {
   for (const framework of ['vue', 'svelte', 'solid']) {
     const dest = await withTmpDir(t)
     execFileSync('node', [CLI, 'add', 'auth', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
-    const files = {
-      vue: ['screens/applications/sign-in/SignIn.vue', 'flows/auth/Auth.example.vue'],
-      svelte: ['screens/applications/sign-in/SignIn.svelte', 'flows/auth/Auth.example.svelte'],
-      solid: ['screens/applications/sign-in/SignIn.tsx', 'flows/auth/Auth.example.tsx'],
-    }[framework]
+    const ext = { vue: 'vue', svelte: 'svelte', solid: 'tsx' }[framework]
+    const files = [
+      `screens/applications/sign-in/SignIn.${ext}`,
+      `screens/applications/sign-up/SignUp.${ext}`,
+      `screens/applications/forgot-password/ForgotPassword.${ext}`,
+      `screens/applications/reset-password/ResetPassword.${ext}`,
+      `screens/applications/verify/Verify.${ext}`,
+      `flows/auth/Auth.example.${ext}`,
+    ]
     for (const file of files) {
       await readFile(join(dest, file), 'utf8')
     }
   }
 })
 
-test('add auth --no-example copies only the composed screen, not the example', async (t) => {
+test('add auth --no-example copies only the composed screens, not the example', async (t) => {
   const dest = await withTmpDir(t)
 
   execFileSync('node', [CLI, 'add', 'auth', '--framework', 'react', '--dest', dest, '--no-example'], {
     encoding: 'utf8',
   })
 
-  const screen = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
-  assert.match(screen, /export function SignIn/)
+  const signIn = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
+  assert.match(signIn, /export function SignIn/)
+
+  const verify = await readFile(join(dest, 'screens/applications/verify/Verify.tsx'), 'utf8')
+  assert.match(verify, /export function Verify/)
 
   await assert.rejects(readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8'))
+})
+
+test('add copies the sign-up screen standalone (no example)', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'sign-up', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /sign-up/)
+  const copied = await readFile(join(dest, 'screens/applications/sign-up/SignUp.tsx'), 'utf8')
+  assert.match(copied, /export function SignUp/)
+
+  await assert.rejects(readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8'))
+})
+
+test('add copies the forgot-password, reset-password and verify screens standalone', async (t) => {
+  const dest = await withTmpDir(t)
+
+  for (const [name, file, exportName] of [
+    ['forgot-password', 'screens/applications/forgot-password/ForgotPassword.tsx', 'ForgotPassword'],
+    ['reset-password', 'screens/applications/reset-password/ResetPassword.tsx', 'ResetPassword'],
+    ['verify', 'screens/applications/verify/Verify.tsx', 'Verify'],
+  ]) {
+    execFileSync('node', [CLI, 'add', name, '--framework', 'react', '--dest', dest], { encoding: 'utf8' })
+    const copied = await readFile(join(dest, file), 'utf8')
+    assert.match(copied, new RegExp(`export function ${exportName}`))
+  }
 })
 
 test('add fails for an unknown flow', async (t) => {

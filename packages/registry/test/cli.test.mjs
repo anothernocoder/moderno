@@ -1672,3 +1672,160 @@ test('list groups the checkout flow and its screens separate from blocks', () =>
   assert.ok(cartIndex > screensIndex && cartIndex < flowsIndex, 'expected cart listed under Screens')
   assert.ok(checkoutIndex > flowsIndex, 'expected checkout listed under Flows')
 })
+
+// ── Onboarding flow: Applications capstone ─────────────────────────────────
+
+test('add onboarding flow recursively resolves composes and copies all four screens + the three composed blocks + the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'onboarding', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /onboarding/)
+  assert.match(output, /welcome/)
+  assert.match(output, /profile-setup/)
+  assert.match(output, /plan-select/)
+  assert.match(output, /invite-team/)
+  assert.match(output, /form-layouts/)
+  assert.match(output, /grid-lists/)
+  assert.match(output, /\blist\b/)
+  assert.match(output, /Trajo también/)
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.tsx'), 'utf8')
+  assert.match(welcome, /export function Welcome/)
+
+  const profileSetup = await readFile(join(dest, 'screens/applications/profile-setup/ProfileSetup.tsx'), 'utf8')
+  assert.match(profileSetup, /export function ProfileSetup/)
+
+  const planSelect = await readFile(join(dest, 'screens/applications/plan-select/PlanSelect.tsx'), 'utf8')
+  assert.match(planSelect, /export function PlanSelect/)
+
+  const inviteTeam = await readFile(join(dest, 'screens/applications/invite-team/InviteTeam.tsx'), 'utf8')
+  assert.match(inviteTeam, /export function InviteTeam/)
+
+  // The three composed Applications blocks land alongside the screens
+  // (blocks copy flat to --dest, screens preserve their nested layout) —
+  // never the primitives, which stay an npm dependency.
+  const formLayouts = await readFile(join(dest, 'FormLayouts.tsx'), 'utf8')
+  assert.match(formLayouts, /export function FormLayouts/)
+
+  const gridLists = await readFile(join(dest, 'GridLists.tsx'), 'utf8')
+  assert.match(gridLists, /export function GridLists/)
+
+  const list = await readFile(join(dest, 'List.tsx'), 'utf8')
+  assert.match(list, /export function List/)
+
+  const example = await readFile(join(dest, 'flows/onboarding/Onboarding.example.tsx'), 'utf8')
+  assert.match(example, /export function OnboardingExample/)
+})
+
+test('add onboarding flow works for every framework', async (t) => {
+  for (const framework of ['vue', 'svelte', 'solid']) {
+    const dest = await withTmpDir(t)
+    execFileSync('node', [CLI, 'add', 'onboarding', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
+    const ext = { vue: 'vue', svelte: 'svelte', solid: 'tsx' }[framework]
+    const files = [
+      `screens/applications/welcome/Welcome.${ext}`,
+      `screens/applications/profile-setup/ProfileSetup.${ext}`,
+      `screens/applications/plan-select/PlanSelect.${ext}`,
+      `screens/applications/invite-team/InviteTeam.${ext}`,
+      `FormLayouts.${ext}`,
+      `GridLists.${ext}`,
+      `List.${ext}`,
+      `flows/onboarding/Onboarding.example.${ext}`,
+    ]
+    for (const file of files) {
+      await readFile(join(dest, file), 'utf8')
+    }
+  }
+})
+
+test('add onboarding --no-example copies the composed screens and blocks, not the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'onboarding', '--framework', 'react', '--dest', dest, '--no-example'], {
+    encoding: 'utf8',
+  })
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.tsx'), 'utf8')
+  assert.match(welcome, /export function Welcome/)
+
+  const formLayouts = await readFile(join(dest, 'FormLayouts.tsx'), 'utf8')
+  assert.match(formLayouts, /export function FormLayouts/)
+
+  await assert.rejects(readFile(join(dest, 'flows/onboarding/Onboarding.example.tsx'), 'utf8'))
+})
+
+test('add welcome works standalone with no composed block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'welcome', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /welcome/)
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.tsx'), 'utf8')
+  assert.match(welcome, /export function Welcome/)
+
+  await assert.rejects(readFile(join(dest, 'flows/onboarding/Onboarding.example.tsx'), 'utf8'))
+})
+
+test('add welcome works standalone for a different framework variant', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'welcome', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.svelte'), 'utf8')
+  assert.match(welcome, /Moderno screen — Welcome \(Svelte\)/)
+})
+
+test('add copies the profile-setup, plan-select and invite-team screens standalone, each transitively pulling its composed block', async (t) => {
+  for (const [name, file, exportName, block, blockFile, blockExport] of [
+    [
+      'profile-setup',
+      'screens/applications/profile-setup/ProfileSetup.tsx',
+      'ProfileSetup',
+      'form-layouts',
+      'FormLayouts.tsx',
+      'FormLayouts',
+    ],
+    [
+      'plan-select',
+      'screens/applications/plan-select/PlanSelect.tsx',
+      'PlanSelect',
+      'grid-lists',
+      'GridLists.tsx',
+      'GridLists',
+    ],
+    ['invite-team', 'screens/applications/invite-team/InviteTeam.tsx', 'InviteTeam', 'list', 'List.tsx', 'List'],
+  ]) {
+    const dest = await withTmpDir(t)
+    const output = execFileSync('node', [CLI, 'add', name, '--framework', 'react', '--dest', dest], {
+      encoding: 'utf8',
+    })
+    assert.match(output, new RegExp(block))
+
+    const copied = await readFile(join(dest, file), 'utf8')
+    assert.match(copied, new RegExp(`export function ${exportName}`))
+
+    const copiedBlock = await readFile(join(dest, blockFile), 'utf8')
+    assert.match(copiedBlock, new RegExp(`export function ${blockExport}`))
+  }
+})
+
+test('list groups the onboarding flow and its screens separate from blocks', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  const screensIndex = output.indexOf('Screens disponibles')
+  const flowsIndex = output.indexOf('Flows disponibles')
+  // Search for the bolded screen/flow entry name specifically rather than a
+  // bare substring match, since e.g. "list" also occurs inside the "list"
+  // block entry listed earlier under Blocks.
+  const welcomeIndex = output.indexOf('\x1b[1mwelcome\x1b[0m')
+  const onboardingIndex = output.indexOf('\x1b[1monboarding\x1b[0m')
+
+  assert.ok(welcomeIndex > screensIndex && welcomeIndex < flowsIndex, 'expected welcome listed under Screens')
+  assert.ok(onboardingIndex > flowsIndex, 'expected onboarding listed under Flows')
+})

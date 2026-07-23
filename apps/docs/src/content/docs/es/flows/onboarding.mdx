@@ -1,0 +1,209 @@
+---
+title: Onboarding
+description: Flujo de onboarding completo — bienvenida, perfil, selección de plan e invitación de equipo (ADR-0005), el capstone del dominio Applications. Screens + ensamblaje de ejemplo copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import ROnboardingDemo from '../../../../demos/react/flows/OnboardingDemo.tsx'
+import VOnboardingDemo from '../../../../demos/vue/flows/OnboardingDemo.vue'
+import SOnboardingDemo from '../../../../demos/svelte/flows/OnboardingDemo.svelte'
+import OOnboardingDemo from '../../../../demos/solid/flows/OnboardingDemo.tsx'
+
+**Onboarding** es el capstone del dominio Applications (ADR-0005) — un conjunto conectado de
+[screens](/es/introduction/blocks/) que forman un recorrido de configuración: bienvenida, perfil,
+selección de workspace/plan e invitación de equipo. Sus screens `componen` bloques de Applications
+existentes: `profile-setup` compone el bloque Form Layouts, `plan-select` compone el bloque Grid
+Lists (reutilizando su tile de título/subtítulo/badge de estado para las tarjetas de precios de
+plan), e `invite-team` compone el bloque List para las filas de invitados. La resolución de
+`composes` del CLI es recursiva, así que traer el flow recorre flow → screen → bloque
+automáticamente.
+
+Una **screen** es presentacional: recibe un contrato de wiring tipado (`values`/`onNext`, más
+callbacks de navegación específicos del flow como `onBack`) y no tiene **ni estado interno ni
+router** — el consumidor decide cómo guardar los valores y navegar. `welcome` no necesita ningún
+bloque — igual que la screen `confirmation` del flow Checkout, compone solo el primitive Button.
+El **ejemplo** (`Onboarding.example.{ext}`) es un ensamblaje liviano y ejecutable que arma las
+cuatro screens usando el estado local propio de cada framework (`useState` / `reactive`/`ref` /
+runes / signals) y una variable `step` local, transportando los valores de perfil, el plan
+seleccionado y las invitaciones entre pasos — no es el producto, es un punto de partida copy-paste.
+
+## Demo en vivo
+
+El recorrido completo ensamblado — saluda, completa tu perfil, elige un plan e invita a tu equipo:
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><ROnboardingDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VOnboardingDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SOnboardingDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OOnboardingDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+### Screens individuales
+
+Cada screen de abajo es el mismo ejemplo en vivo montado con un `step` inicial distinto — útil para
+inspeccionar una screen de forma aislada, aunque navegar desde ella sigue moviéndote por el
+recorrido real.
+
+#### Configuración de perfil
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><ROnboardingDemo step="profile" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VOnboardingDemo step="profile" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SOnboardingDemo step="profile" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OOnboardingDemo step="profile" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Selección de plan
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><ROnboardingDemo step="plan" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VOnboardingDemo step="plan" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SOnboardingDemo step="plan" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OOnboardingDemo step="plan" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Invitar equipo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><ROnboardingDemo step="invite" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VOnboardingDemo step="invite" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SOnboardingDemo step="invite" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OOnboardingDemo step="invite" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+Traer el flow `onboarding` copia las cuatro screens que compone (`welcome`, `profile-setup`,
+`plan-select`, `invite-team`) **y** los bloques de Applications que esas screens componen a su vez
+(`form-layouts`, `grid-lists`, `list`) **más** el ensamblaje de ejemplo. El CLI resuelve `composes`
+de forma recursiva (flow → screen → bloque) y deduplica por nombre — los primitives nunca se
+copian, siguen siendo una dependencia npm `@moderno/<framework>`.
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add onboarding --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add onboarding --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add onboarding --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add onboarding --framework solid
+```
+</TabItem>
+</Tabs>
+
+Esto imprime cada screen y bloque que trajo, y luego copia
+`screens/applications/{welcome,profile-setup,plan-select,invite-team}/*.{ext}`,
+`{FormLayouts,GridLists,List}.{ext}` y `flows/onboarding/Onboarding.example.{ext}` dentro de
+`--dest` (por defecto `./src/blocks`) — las screens preservan su estructura anidada, los bloques se
+copian planos en la raíz de `--dest`. Pasa `--no-example` para copiar solo las screens y bloques
+compuestos:
+
+```sh
+npx @moderno/registry add onboarding --framework react --no-example
+```
+
+¿Solo quieres la screen de bienvenida, sin el contexto del flow? Se puede agregar de forma
+independiente — y como no compone ningún bloque, no trae nada más consigo:
+
+```sh
+npx @moderno/registry add welcome --framework react
+```
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo la
+navegación y el estado — es tuyo.
+
+## Props
+
+### Welcome
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `onNext` | `() => void` | Handler del CTA "Comenzar" |
+| `workspaceName` | `string` | Si está definido, se agrega al mensaje de saludo |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del cuerpo |
+| `ctaLabel` | `string` | Etiqueta del CTA |
+
+### ProfileSetup
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `Partial<FormLayoutsValues>` | Valores iniciales para el bloque FormLayouts compuesto |
+| `onNext` | `(values: FormLayoutsValues) => void` | Se transporta desde el `onSave` del bloque compuesto |
+| `onBack` | `() => void` | Handler del enlace "volver", se transporta al `onCancel` del bloque compuesto |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+| `backLabel` | `string` | Etiqueta del enlace de volver |
+
+### PlanSelect
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `plans` | `GridListItem[]` | Tiles de plan renderizados por el bloque GridLists compuesto (usa los planes Starter/Pro/Business de ejemplo si se omite) |
+| `onNext` | `(plan: GridListItem) => void` | Se transporta desde el `onItemAction` del bloque compuesto — elegir un tile selecciona el plan y avanza de inmediato |
+| `onBack` | `() => void` | Handler del enlace "volver" |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+| `backLabel` | `string` | Etiqueta del enlace de volver |
+
+### InviteTeam
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `InviteTeamValues` | Valor controlado del campo de correo para "agregar compañero" |
+| `onChange` | `(values: InviteTeamValues) => void` | Se dispara al cambiar el campo de correo |
+| `onInvite` | `(values: InviteTeamValues) => void` | Se dispara al enviar el formulario de invitación |
+| `invites` | `ListItem[]` | Invitaciones pendientes/aceptadas renderizadas por el bloque List compuesto |
+| `onRemoveInvite` | `(item: ListItem) => void` | Se transporta desde el `onItemAction` del bloque compuesto |
+| `onNext` | `() => void` | Handler del CTA "Finalizar" |
+| `onBack` | `() => void` | Handler del enlace "volver" |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+| `emailPlaceholder` | `string` | Placeholder del campo de correo |
+| `inviteLabel` | `string` | Etiqueta del botón de invitar |
+| `nextLabel` | `string` | Etiqueta del CTA de finalizar |
+| `backLabel` | `string` | Etiqueta del enlace de volver |
+
+Ninguna screen tiene estado interno ni defaults para los valores de perfil/plan/invitaciones — de
+eso se encarga el ensamblaje de ejemplo (o tu propio código). `welcome` compone solo el primitive
+Button; `profile-setup`, `plan-select` e `invite-team` componen su bloque de Applications
+respectivo más los primitives Input/Button para su propio chrome. Todas usan los tokens `--md-*`;
+sin clases utilitarias legacy.
+
+## Uso
+
+```tsx
+import { useState } from 'react'
+import { Welcome } from './screens/applications/welcome/Welcome'
+
+function App() {
+  const [step, setStep] = useState('welcome')
+
+  return (
+    <Welcome
+      onNext={() => {
+        setStep('profile')
+        router.push('/onboarding/profile')
+      }}
+    />
+  )
+}
+```
+
+Conectar tu propio router/estado es justamente el punto: ninguna screen asume que existe uno.
+Revisa `Onboarding.example.tsx` (y sus hermanos `.vue`/`.svelte`/`.solid.tsx`) para ver el recorrido
+completo — una unión `step` local que cubre las cuatro screens, los valores de perfil transportados
+desde `profile-setup` en adelante, el plan seleccionado transportado desde `plan-select` en
+adelante, y la lista de invitaciones que crece en `invite-team`.

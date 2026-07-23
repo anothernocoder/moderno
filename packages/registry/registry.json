@@ -1143,6 +1143,77 @@
         "solid": "screens/applications/verify/Verify.tsx"
       }
     },
+    "welcome": {
+      "domain": "applications",
+      "description": "Pantalla de bienvenida: primer paso del onboarding, mensaje de saludo y CTA para comenzar. No compone ningún bloque — solo primitives.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/welcome/Welcome.tsx",
+        "vue": "screens/applications/welcome/Welcome.vue",
+        "svelte": "screens/applications/welcome/Welcome.svelte",
+        "solid": "screens/applications/welcome/Welcome.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/welcome/Welcome.tsx",
+        "vue": "screens/applications/welcome/Welcome.vue",
+        "svelte": "screens/applications/welcome/Welcome.svelte",
+        "solid": "screens/applications/welcome/Welcome.tsx"
+      }
+    },
+    "profile-setup": {
+      "domain": "applications",
+      "description": "Pantalla de configuración de perfil: compone el bloque form-layouts (nombre, correo, biografía, rol y zona horaria).",
+      "composes": ["form-layouts"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/profile-setup/ProfileSetup.tsx",
+        "vue": "screens/applications/profile-setup/ProfileSetup.vue",
+        "svelte": "screens/applications/profile-setup/ProfileSetup.svelte",
+        "solid": "screens/applications/profile-setup/ProfileSetup.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/profile-setup/ProfileSetup.tsx",
+        "vue": "screens/applications/profile-setup/ProfileSetup.vue",
+        "svelte": "screens/applications/profile-setup/ProfileSetup.svelte",
+        "solid": "screens/applications/profile-setup/ProfileSetup.tsx"
+      }
+    },
+    "plan-select": {
+      "domain": "applications",
+      "description": "Pantalla de selección de plan/workspace: compone el bloque grid-lists — cada tile de plan reutiliza su tarjeta de título/subtítulo/badge de estado.",
+      "composes": ["grid-lists"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/plan-select/PlanSelect.tsx",
+        "vue": "screens/applications/plan-select/PlanSelect.vue",
+        "svelte": "screens/applications/plan-select/PlanSelect.svelte",
+        "solid": "screens/applications/plan-select/PlanSelect.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/plan-select/PlanSelect.tsx",
+        "vue": "screens/applications/plan-select/PlanSelect.vue",
+        "svelte": "screens/applications/plan-select/PlanSelect.svelte",
+        "solid": "screens/applications/plan-select/PlanSelect.tsx"
+      }
+    },
+    "invite-team": {
+      "domain": "applications",
+      "description": "Pantalla de invitación de equipo: compone el bloque list para las filas de invitados, junto a un formulario propio de correo + botón para agregar.",
+      "composes": ["list"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/invite-team/InviteTeam.tsx",
+        "vue": "screens/applications/invite-team/InviteTeam.vue",
+        "svelte": "screens/applications/invite-team/InviteTeam.svelte",
+        "solid": "screens/applications/invite-team/InviteTeam.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/invite-team/InviteTeam.tsx",
+        "vue": "screens/applications/invite-team/InviteTeam.vue",
+        "svelte": "screens/applications/invite-team/InviteTeam.svelte",
+        "solid": "screens/applications/invite-team/InviteTeam.tsx"
+      }
+    },
     "cart": {
       "domain": "ecommerce",
       "description": "Pantalla de carrito: line items con cantidad y opción de quitar, subtotal y CTA para continuar a envío. Compone el bloque shopping-cart. También se puede agregar de forma independiente.",
@@ -1266,6 +1337,23 @@
         "vue": "flows/checkout/Checkout.example.vue",
         "svelte": "flows/checkout/Checkout.example.svelte",
         "solid": "flows/checkout/Checkout.example.tsx"
+      }
+    },
+    "onboarding": {
+      "description": "Flujo de onboarding completo — el capstone de Applications: bienvenida, perfil, selección de plan/workspace e invitación de equipo, con un ensamblaje de ejemplo de estado local. Las screens componen los bloques Applications form-layouts, grid-lists y list en vez de solo primitives, ejercitando la resolución recursiva de `composes`.",
+      "composes": ["welcome", "profile-setup", "plan-select", "invite-team"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "flows/onboarding/Onboarding.example.tsx",
+        "vue": "flows/onboarding/Onboarding.example.vue",
+        "svelte": "flows/onboarding/Onboarding.example.svelte",
+        "solid": "flows/onboarding/Onboarding.example.solid.tsx"
+      },
+      "dest": {
+        "react": "flows/onboarding/Onboarding.example.tsx",
+        "vue": "flows/onboarding/Onboarding.example.vue",
+        "svelte": "flows/onboarding/Onboarding.example.svelte",
+        "solid": "flows/onboarding/Onboarding.example.tsx"
       }
     }
   }

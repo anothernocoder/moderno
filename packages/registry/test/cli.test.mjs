@@ -5,6 +5,7 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { rewriteRelativeImports } from '../bin/cli.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const CLI = resolve(__dirname, '../bin/cli.mjs')
@@ -1591,6 +1592,11 @@ test('add checkout flow recursively resolves composes and copies all five screen
 
   const example = await readFile(join(dest, 'flows/checkout/Checkout.example.tsx'), 'utf8')
   assert.match(example, /export function CheckoutExample/)
+
+  // The composed block imports must resolve against where the files actually
+  // land, not the monorepo's own source-tree depth (screens/ecommerce/cart/
+  // → blocks copy flat to the --dest root, not blocks/ecommerce/...).
+  assert.match(cart, /from '\.\.\/\.\.\/\.\.\/ShoppingCart'/)
 })
 
 test('add checkout flow works for every framework', async (t) => {
@@ -1610,7 +1616,11 @@ test('add checkout flow works for every framework', async (t) => {
       `flows/checkout/Checkout.example.${ext}`,
     ]
     for (const file of files) {
-      await readFile(join(dest, file), 'utf8')
+      const content = await readFile(join(dest, file), 'utf8')
+      // No leftover relative import should point at a path that doesn't
+      // exist in the copied tree (e.g. still nested under `blocks/...`, or a
+      // Solid bare import that gained a bogus explicit `.tsx` extension).
+      assert.doesNotMatch(content, /from ['"]\.\.?\/[^'"]*\/blocks\//)
     }
   }
 })
@@ -1643,6 +1653,7 @@ test('add cart works standalone and transitively pulls the shopping-cart block',
 
   const cart = await readFile(join(dest, 'screens/ecommerce/cart/Cart.tsx'), 'utf8')
   assert.match(cart, /export function Cart/)
+  assert.match(cart, /from '\.\.\/\.\.\/\.\.\/ShoppingCart'/)
 
   const shoppingCart = await readFile(join(dest, 'ShoppingCart.tsx'), 'utf8')
   assert.match(shoppingCart, /export function ShoppingCart/)
@@ -1657,6 +1668,7 @@ test('add cart works standalone for a different framework variant', async (t) =>
 
   const cart = await readFile(join(dest, 'screens/ecommerce/cart/Cart.svelte'), 'utf8')
   assert.match(cart, /Moderno screen — Cart \(Svelte\)/)
+  assert.match(cart, /from '\.\.\/\.\.\/\.\.\/ShoppingCart\.svelte'/)
 
   const shoppingCart = await readFile(join(dest, 'ShoppingCart.svelte'), 'utf8')
   assert.match(shoppingCart, /export function ShoppingCart|Moderno block — ShoppingCart/)
@@ -1990,4 +2002,101 @@ test('list groups the referral flow and its screens separate from blocks', () =>
     'expected referral-invite listed under Screens',
   )
   assert.ok(referralIndex > flowsIndex, 'expected referral listed under Flows')
+})
+
+test('add leaves an already-correct relative import (flow → screen) untouched', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'auth', '--framework', 'react', '--dest', dest], { encoding: 'utf8' })
+
+  const example = await readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8')
+  assert.match(example, /from '\.\.\/\.\.\/screens\/applications\/sign-in\/SignIn'/)
+})
+
+// ── rewriteRelativeImports: composed-block import rewriting ────────────────
+//
+// Blocks copy flat to the top of --dest (ADR-0001) while screens/flows mirror
+// their nested source path (ADR-0005). A screen composing a block imports it
+// via a relative path sized for the monorepo's own source-tree depth, which
+// no longer resolves once copied into that mismatched layout — this is what
+// broke the Checkout flow (#33), the first screen to compose a block over a
+// relative import rather than only `@moderno/<framework>` primitives.
+
+function fakePlan({ srcPath, destPath }) {
+  return [{ srcPath: resolve(srcPath), destPath: resolve(destPath) }]
+}
+
+test('rewriteRelativeImports repoints a bare (TS) import from a nested screen dest to a flat block dest', () => {
+  const plan = fakePlan({
+    srcPath: '/repo/blocks/ecommerce/shopping-cart/ShoppingCart.tsx',
+    destPath: '/out/ShoppingCart.tsx',
+  })
+  const content = `import { ShoppingCart } from '../../../blocks/ecommerce/shopping-cart/ShoppingCart'\n`
+
+  const rewritten = rewriteRelativeImports(
+    content,
+    '/repo/screens/ecommerce/cart/Cart.tsx',
+    '/out/screens/ecommerce/cart/Cart.tsx',
+    plan,
+  )
+
+  assert.match(rewritten, /from '\.\.\/\.\.\/\.\.\/ShoppingCart'/)
+})
+
+test('rewriteRelativeImports preserves an extension-qualified (Vue) import', () => {
+  const plan = fakePlan({
+    srcPath: '/repo/blocks/ecommerce/shopping-cart/ShoppingCart.vue',
+    destPath: '/out/ShoppingCart.vue',
+  })
+  const content = `import ShoppingCart from '../../../blocks/ecommerce/shopping-cart/ShoppingCart.vue'\n`
+
+  const rewritten = rewriteRelativeImports(
+    content,
+    '/repo/screens/ecommerce/cart/Cart.vue',
+    '/out/screens/ecommerce/cart/Cart.vue',
+    plan,
+  )
+
+  assert.match(rewritten, /from '\.\.\/\.\.\/\.\.\/ShoppingCart\.vue'/)
+})
+
+test('rewriteRelativeImports does not mistake Solid\'s bare ".solid" import for a real extension', () => {
+  // Solid source files are named `ShoppingCart.solid.tsx` but imported bare as
+  // `ShoppingCart.solid` (TS strips only the real `.tsx` extension) — the
+  // dest, per registry.json, is the plain `ShoppingCart.tsx`. A naive
+  // "does the specifier look like it has an extension" check treats `.solid`
+  // as real, appending the dest's own `.tsx` and producing an explicit
+  // `.tsx` import that tsc rejects without `allowImportingTsExtensions`.
+  const plan = fakePlan({
+    srcPath: '/repo/blocks/ecommerce/shopping-cart/ShoppingCart.solid.tsx',
+    destPath: '/out/ShoppingCart.tsx',
+  })
+  const content = `import { ShoppingCart } from '../../../blocks/ecommerce/shopping-cart/ShoppingCart.solid'\n`
+
+  const rewritten = rewriteRelativeImports(
+    content,
+    '/repo/screens/ecommerce/cart/Cart.solid.tsx',
+    '/out/screens/ecommerce/cart/Cart.tsx',
+    plan,
+  )
+
+  assert.match(rewritten, /from '\.\.\/\.\.\/\.\.\/ShoppingCart'/)
+  assert.doesNotMatch(rewritten, /ShoppingCart\.tsx'/)
+})
+
+test('rewriteRelativeImports leaves relative imports unrelated to any composed item untouched', () => {
+  const plan = fakePlan({
+    srcPath: '/repo/blocks/ecommerce/shopping-cart/ShoppingCart.tsx',
+    destPath: '/out/ShoppingCart.tsx',
+  })
+  const content = `import { formatPrice } from '../../../lib/format'\n`
+
+  const rewritten = rewriteRelativeImports(
+    content,
+    '/repo/screens/ecommerce/cart/Cart.tsx',
+    '/out/screens/ecommerce/cart/Cart.tsx',
+    plan,
+  )
+
+  assert.strictEqual(rewritten, content)
 })

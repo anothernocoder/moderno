@@ -1,0 +1,102 @@
+---
+title: Share and Invite
+description: A shareable link with copy-to-clipboard, channel share buttons, and an email-invite form with a pending-invites list. Copy-paste block.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RShareInviteDemo from '../../../demos/react/blocks/ShareInviteDemo.tsx'
+import VShareInviteDemo from '../../../demos/vue/blocks/ShareInviteDemo.vue'
+import SShareInviteDemo from '../../../demos/svelte/blocks/ShareInviteDemo.svelte'
+import OShareInviteDemo from '../../../demos/solid/blocks/ShareInviteDemo.tsx'
+
+**ShareInvite** is a marketing [block](/introduction/blocks/) (design system §2.3 "Data display" —
+"Share and Invite"): a shareable link with a copy action, a row of channel/social share buttons,
+and an email-invite form with a list of pending invites. It's purely presentational — there's no
+clipboard access or async logic inside it, just callbacks (`onCopyLink`, `onShare`, `onInvite`) the
+consumer wires up to their own clipboard write, share integration, and invite request. It composes
+the `Input`/`Button`/`Badge` primitives and the `--md-*` tokens. You copy it into your repo with
+the CLI and edit it freely.
+
+## Live demo
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RShareInviteDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VShareInviteDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SShareInviteDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OShareInviteDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Installation
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add share-invite --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add share-invite --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add share-invite --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add share-invite --framework solid
+```
+</TabItem>
+</Tabs>
+
+After copying it, install the `@moderno/<framework>` primitive and
+[import the styles](/introduction/installation/). From there, the code is yours.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | `'Comparte e invita'` | Section title |
+| `description` | `string` | One short sentence | Optional supporting copy |
+| `shareUrl` | `string` | A sample link | The shareable link, rendered read-only in the copy field |
+| `linkLabel` | `string` | `'Tu enlace para compartir'` | Label above the link field |
+| `copyLabel` | `string` | `'Copiar'` | Copy button label |
+| `onCopyLink` | `(url: string) => void` | — | Fired when the copy button is clicked — perform the actual clipboard write here |
+| `channels` | `ShareChannel[]` | Email/X/WhatsApp sample channels | Channel buttons rendered next to the link |
+| `onShare` | `(channel: ShareChannel) => void` | — | Fired when a channel button is clicked |
+| `inviteEmail` | `string` | `''` | Controlled value of the email-invite field |
+| `onInviteEmailChange` | `(value: string) => void` | — | Fired as the email field changes |
+| `inviteEmailPlaceholder` | `string` | `'nombre@empresa.com'` | Placeholder for the email field |
+| `inviteLabel` | `string` | `'Invitar'` | Invite button label |
+| `onInvite` | `(email: string) => void` | — | Fired when the invite form is submitted |
+| `invites` | `ShareInviteItem[]` | `undefined` | Pending/accepted invites rendered below the invite form; the section is hidden when empty |
+| `invitesLabel` | `string` | `'Invitaciones pendientes'` | Heading above the invites list |
+
+## Usage
+
+```tsx
+import { ShareInvite } from './blocks/ShareInvite'
+
+<ShareInvite
+  shareUrl="https://moderno.app/invite/abc123"
+  onCopyLink={(url) => navigator.clipboard.writeText(url)}
+  onShare={(channel) => console.log('share via', channel.id)}
+  inviteEmail={email}
+  onInviteEmailChange={setEmail}
+  onInvite={(value) => addInvite(value)}
+  invites={invites}
+/>
+```
+
+The props API is identical across all four frameworks.
+
+The block renders a bordered panel on `var(--md-surface-raised)` — the link field and copy
+button, the channel buttons row, the email-invite form, and (only when `invites` is non-empty) a
+bordered list of invite rows with an email and a status `Badge`. This block has no internal async
+logic: `onCopyLink` fires with the current `shareUrl` so the consumer performs the actual
+clipboard write, `onShare` fires with the clicked channel so the consumer performs the actual
+share integration, and `onInvite` fires with the current `inviteEmail` so the consumer decides how
+to request the invite and update the `invites` list. See the [Referral flow](/flows/referral/) for
+this block composed inside a screen.

@@ -1,0 +1,235 @@
+---
+title: Checkout
+description: Flujo de checkout completo — carrito, envío, pago, revisión y confirmación (ADR-0005), el primer flow cuyas screens componen bloques de E-Commerce. Screens + ensamblaje de ejemplo copy-paste.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+import RCheckoutDemo from '../../../../demos/react/flows/CheckoutDemo.tsx'
+import VCheckoutDemo from '../../../../demos/vue/flows/CheckoutDemo.vue'
+import SCheckoutDemo from '../../../../demos/svelte/flows/CheckoutDemo.svelte'
+import OCheckoutDemo from '../../../../demos/solid/flows/CheckoutDemo.tsx'
+
+**Checkout** es el capstone del dominio E-Commerce (ADR-0005) — un conjunto conectado de
+[screens](/es/introduction/blocks/) que forman un solo recorrido de compra: carrito, envío, pago,
+revisión y confirmación. También es el **primer flow cuyas screens componen bloques de
+E-Commerce** existentes en vez de solo primitives: `cart` compone el bloque Shopping Cart,
+`shipping` y `payment` componen ambos el bloque Checkout Forms, y `review` compone el bloque Order
+Summaries. La resolución de `composes` del CLI es recursiva, así que traer el flow recorre
+flow → screen → bloque automáticamente.
+
+Una **screen** es presentacional: recibe un contrato de wiring tipado (`values`/`items`/`onNext`,
+más callbacks de navegación específicos del flow como `onBack`) y no tiene **ni estado interno ni
+router** — el consumidor decide cómo guardar los valores y navegar. Como el bloque Checkout Forms
+agrupa la dirección de envío y los datos de pago en un solo formulario (así lo entrega el bloque
+mismo — no está dividido por sección), la screen `shipping` es donde el usuario completa ambos, y
+la screen `payment` vuelve a mostrar el mismo bloque precargado para que revise o ajuste la
+tarjeta antes de continuar. El **ejemplo** (`Checkout.example.{ext}`) es un ensamblaje liviano y
+ejecutable que arma las cinco screens usando el estado local propio de cada framework (`useState` /
+`reactive`/`ref` / runes / signals) y una variable `step` local, transportando los items del
+carrito y los valores de checkout entre pasos — no es el producto, es un punto de partida
+copy-paste.
+
+## Demo en vivo
+
+El recorrido completo ensamblado — agrega productos al carrito, continúa por envío y pago, revisa
+el pedido y confirma:
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCheckoutDemo client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCheckoutDemo client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCheckoutDemo client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCheckoutDemo client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+### Screens individuales
+
+Cada screen de abajo es el mismo ejemplo en vivo montado con un `step` inicial distinto — útil
+para inspeccionar una screen de forma aislada, aunque navegar desde ella sigue moviéndote por el
+recorrido real.
+
+#### Envío
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCheckoutDemo step="shipping" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCheckoutDemo step="shipping" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCheckoutDemo step="shipping" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCheckoutDemo step="shipping" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Pago
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCheckoutDemo step="payment" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCheckoutDemo step="payment" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCheckoutDemo step="payment" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCheckoutDemo step="payment" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Revisión
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCheckoutDemo step="review" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCheckoutDemo step="review" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCheckoutDemo step="review" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCheckoutDemo step="review" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Confirmación
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RCheckoutDemo step="confirmation" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VCheckoutDemo step="confirmation" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SCheckoutDemo step="confirmation" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OCheckoutDemo step="confirmation" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+## Instalación
+
+Traer el flow `checkout` copia las cinco screens que compone (`cart`, `shipping`, `payment`,
+`review`, `confirmation`) **y** los bloques de E-Commerce que esas screens componen a su vez
+(`shopping-cart`, `checkout-forms`, `order-summaries`, deduplicados ya que `shipping` y `payment`
+usan ambos `checkout-forms`) **más** el ensamblaje de ejemplo. El CLI resuelve `composes` de forma
+recursiva (flow → screen → bloque) y deduplica por nombre — los primitives nunca se copian, siguen
+siendo una dependencia npm `@moderno/<framework>`.
+
+<Tabs syncKey="framework">
+<TabItem label="React">
+```sh
+npx @moderno/registry add checkout --framework react
+```
+</TabItem>
+<TabItem label="Vue">
+```sh
+npx @moderno/registry add checkout --framework vue
+```
+</TabItem>
+<TabItem label="Svelte">
+```sh
+npx @moderno/registry add checkout --framework svelte
+```
+</TabItem>
+<TabItem label="Solid">
+```sh
+npx @moderno/registry add checkout --framework solid
+```
+</TabItem>
+</Tabs>
+
+Esto imprime cada screen y bloque que trajo, y luego copia
+`screens/ecommerce/{cart,shipping,payment,review,confirmation}/*.{ext}`,
+`{ShoppingCart,CheckoutForms,OrderSummaries}.{ext}` y `flows/checkout/Checkout.example.{ext}`
+dentro de `--dest` (por defecto `./src/blocks`) — las screens preservan su estructura anidada, los
+bloques se copian planos en la raíz de `--dest`. Pasa `--no-example` para copiar solo las screens y
+bloques compuestos:
+
+```sh
+npx @moderno/registry add checkout --framework react --no-example
+```
+
+¿Solo quieres el carrito, sin el contexto del flow? Se puede agregar de forma independiente —se
+reutiliza fuera del recorrido de checkout también— y sigue trayendo de forma transitiva el bloque
+`shopping-cart` que compone:
+
+```sh
+npx @moderno/registry add cart --framework react
+```
+
+Tras copiarlo, instala el primitive `@moderno/<framework>` e
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo la
+navegación y el estado — es tuyo.
+
+## Props
+
+### Cart
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `items` | `ShoppingCartItem[]` | Line items iniciales (usa los datos de ejemplo del bloque ShoppingCart compuesto si se omite) |
+| `onNext` | `(payload: { items, subtotal }) => void` | Se transporta desde el `onCheckout` del ShoppingCart compuesto |
+| `onBack` | `() => void` | Handler opcional del enlace "seguir comprando" |
+| `title` | `string` | Texto del encabezado, pasado al bloque compuesto |
+| `description` | `string` | Subtítulo mostrado sobre el bloque |
+| `checkoutLabel` | `string` | Etiqueta del CTA de checkout del bloque compuesto |
+| `backLabel` | `string` | Etiqueta del enlace "seguir comprando" |
+
+### Shipping
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `Partial<CheckoutFormsValues>` | Valores iniciales para el bloque CheckoutForms compuesto |
+| `onNext` | `(values: CheckoutFormsValues) => void` | Se transporta desde el `onCheckout` del bloque compuesto |
+| `onBack` | `() => void` | Handler del enlace "volver al carrito" |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+| `submitLabel` | `string` | Etiqueta del CTA de envío del bloque compuesto |
+| `backLabel` | `string` | Etiqueta del enlace de volver |
+
+### Payment
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `Partial<CheckoutFormsValues>` | Valores transportados desde Shipping, precargando el bloque compuesto |
+| `onNext` | `(values: CheckoutFormsValues) => void` | Se transporta desde el `onCheckout` del bloque compuesto |
+| `onBack` | `() => void` | Handler del enlace "volver a envío" |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+| `submitLabel` | `string` | Etiqueta del CTA de envío del bloque compuesto |
+| `backLabel` | `string` | Etiqueta del enlace de volver |
+
+### Review
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `items` | `OrderSummariesItem[]` | Line items pasados al bloque OrderSummaries compuesto |
+| `shipping` | `Pick<CheckoutFormsValues, 'fullName'\|'address'\|'city'\|'postalCode'\|'country'>` | Resumen de envío de solo lectura |
+| `payment` | `Pick<CheckoutFormsValues, 'cardName'\|'cardNumber'>` | Resumen de pago de solo lectura (el número de tarjeta se enmascara a sus últimos 4 dígitos) |
+| `onNext` | `() => void` | Handler de "confirmar pedido" |
+| `onBack` | `() => void` | Handler del enlace "volver a pago" |
+| `submitting` | `boolean` | Deshabilita el CTA de envío y cambia su etiqueta mientras es `true` |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+| `submitLabel` | `string` | Etiqueta del CTA de envío |
+| `backLabel` | `string` | Etiqueta del enlace de volver |
+
+### Confirmation
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `orderNumber` | `string` | Referencia del pedido mostrada al cliente |
+| `email` | `string` | Si está definido, se agrega al mensaje de confirmación |
+| `onContinueShopping` | `() => void` | Handler del CTA "seguir comprando" |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del cuerpo |
+| `continueLabel` | `string` | Etiqueta del CTA |
+
+Ninguna screen tiene estado interno ni defaults para los valores de carrito/checkout — de eso se
+encarga el ensamblaje de ejemplo (o tu propio código). `cart`, `shipping`, `payment` y `review`
+componen su bloque de E-Commerce respectivo más los primitives Button/Divider para su propio
+chrome; `confirmation` compone solo el primitive Button. Todas usan los tokens `--md-*`; sin
+clases utilitarias legacy.
+
+## Uso
+
+```tsx
+import { useState } from 'react'
+import { Cart, type ShoppingCartCheckoutPayload } from './screens/ecommerce/cart/Cart'
+
+function App() {
+  const [cartItems, setCartItems] = useState()
+
+  return (
+    <Cart
+      onNext={(payload: ShoppingCartCheckoutPayload) => {
+        setCartItems(payload.items)
+        router.push('/checkout/shipping')
+      }}
+    />
+  )
+}
+```
+
+Conectar tu propio router/estado es justamente el punto: ninguna screen asume que existe uno.
+Revisa `Checkout.example.tsx` (y sus hermanos `.vue`/`.svelte`/`.solid.tsx`) para ver el recorrido
+completo — una unión `step` local que cubre las cinco screens, el payload del carrito transportado
+desde `cart` hasta `review`, y los valores de checkout transportados desde `shipping` a través de
+`payment` hasta `review`.

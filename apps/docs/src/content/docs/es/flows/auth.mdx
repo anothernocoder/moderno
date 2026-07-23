@@ -1,6 +1,6 @@
 ---
 title: Auth
-description: Flujo de auth de una sola pantalla (sign-in) — el tracer piloto del tier de Flows (ADR-0005). Screen + ensamblaje de ejemplo copy-paste.
+description: Flujo de auth completo — sign-in, registro, olvidé/restablecer contraseña y verificación (ADR-0005). Screens + ensamblaje de ejemplo copy-paste.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
@@ -10,20 +10,28 @@ import SAuthDemo from '../../../../demos/svelte/flows/AuthDemo.svelte'
 import OAuthDemo from '../../../../demos/solid/flows/AuthDemo.tsx'
 
 **Auth** es el primer [flow](/es/introduction/blocks/) de Moderno (ADR-0005): un conjunto
-conectado de [screens](/es/introduction/blocks/) que forman un solo recorrido de usuario. Este
-tracer entrega **solo sign-in** — una única screen presentacional más un ensamblaje de ejemplo
-liviano que la conecta con estado local. Las próximas screens de Auth (registro, olvidé mi
-contraseña, verificación) reutilizan la misma maquinaria.
+conectado de [screens](/es/introduction/blocks/) que forman un solo recorrido de usuario. Entrega
+**cinco screens presentacionales** — sign-in, registro, olvidé mi contraseña, restablecer
+contraseña y verificación — más un ensamblaje de ejemplo liviano que las conecta con estado
+local: un toggle sign-in↔registro, una rama de "olvidé mi contraseña" que verifica un código
+antes de dejar elegir una nueva contraseña, y un correo que se transporta desde
+registro/olvidé-mi-contraseña hacia la screen de verificación.
 
 Una **screen** es presentacional: recibe un contrato de wiring tipado (`values`, `onChange`,
-`onSubmit`) y no tiene **ni estado interno ni router** — el consumidor decide cómo guardar los
-valores y navegar. El **ejemplo** (`Auth.example.{ext}`) es un ensamblaje liviano y ejecutable
-que arma la screen usando el estado local propio de cada framework (`useState` / `reactive` /
-runes / signals) y una variable `step` local — no es el producto, es un punto de partida
-copy-paste. El demo en vivo de abajo ejecuta el ejemplo directamente; no hay props que pasar a
-través del límite del island de Astro, ya que el ejemplo maneja su propio estado.
+`onSubmit`, más callbacks de navegación específicos del flow como `onSignUp`/`onSignIn`/`onBack`)
+y no tiene **ni estado interno ni router** — el consumidor decide cómo guardar los valores y
+navegar. El **ejemplo** (`Auth.example.{ext}`) es un ensamblaje liviano y ejecutable que arma las
+cinco screens usando el estado local propio de cada framework (`useState` / `reactive` / runes /
+signals) y una variable `step` local — no es el producto, es un punto de partida copy-paste. El
+demo en vivo de abajo ejecuta el ejemplo a través de un único prop `step` (string serializable —
+el límite del island de Astro serializa a JSON, así que solo strings simples cruzan esa
+frontera); todo lo demás es estado propio del ejemplo.
 
 ## Demo en vivo
+
+El recorrido completo ensamblado — empieza en sign-in, prueba "Regístrate", "¿Olvidaste tu
+contraseña?", y observa cómo el correo que escribes se transporta hasta la screen de
+verificación:
 
 <Tabs syncKey="framework">
 <TabItem label="React"><div class="md-demo md-demo--stack"><RAuthDemo client:only="react" /></div></TabItem>
@@ -32,11 +40,54 @@ través del límite del island de Astro, ya que el ejemplo maneja su propio esta
 <TabItem label="Solid"><div class="md-demo md-demo--stack"><OAuthDemo client:only="solid-js" /></div></TabItem>
 </Tabs>
 
+### Screens individuales
+
+Cada screen de abajo es el mismo ejemplo en vivo montado con un `step` inicial distinto — útil
+para inspeccionar una screen de forma aislada, aunque navegar desde ella sigue moviéndote por el
+recorrido real.
+
+#### Registro
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAuthDemo step="sign-up" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAuthDemo step="sign-up" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAuthDemo step="sign-up" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAuthDemo step="sign-up" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Olvidé mi contraseña
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAuthDemo step="forgot-password" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAuthDemo step="forgot-password" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAuthDemo step="forgot-password" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAuthDemo step="forgot-password" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Verificación
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAuthDemo step="verify" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAuthDemo step="verify" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAuthDemo step="verify" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAuthDemo step="verify" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
+#### Restablecer contraseña
+
+<Tabs syncKey="framework">
+<TabItem label="React"><div class="md-demo md-demo--stack"><RAuthDemo step="reset-password" client:only="react" /></div></TabItem>
+<TabItem label="Vue"><div class="md-demo md-demo--stack"><VAuthDemo step="reset-password" client:only="vue" /></div></TabItem>
+<TabItem label="Svelte"><div class="md-demo md-demo--stack"><SAuthDemo step="reset-password" client:only="svelte" /></div></TabItem>
+<TabItem label="Solid"><div class="md-demo md-demo--stack"><OAuthDemo step="reset-password" client:only="solid-js" /></div></TabItem>
+</Tabs>
+
 ## Instalación
 
-Traer el flow `auth` copia la screen `sign-in` que compone **más** el ensamblaje de ejemplo. El
-CLI resuelve `composes` de forma recursiva y deduplica por nombre — trae solo `sign-in` si
-únicamente quieres la screen.
+Traer el flow `auth` copia las cinco screens que compone (`sign-in`, `sign-up`,
+`forgot-password`, `reset-password`, `verify`) **más** el ensamblaje de ejemplo. El CLI resuelve
+`composes` de forma recursiva y deduplica por nombre — trae cualquier screen individual si es lo
+único que quieres.
 
 <Tabs syncKey="framework">
 <TabItem label="React">
@@ -61,26 +112,28 @@ npx @moderno/registry add auth --framework solid
 </TabItem>
 </Tabs>
 
-Esto copia `screens/applications/sign-in/SignIn.{ext}` y `flows/auth/Auth.example.{ext}` dentro
-de `--dest` (por defecto `./src/blocks`), preservando esa estructura relativa para que el import
-del ejemplo hacia la screen siga funcionando. Pasa `--no-example` para copiar solo la(s)
-screen(s) compuesta(s):
+Esto copia `screens/applications/{sign-in,sign-up,forgot-password,reset-password,verify}/*.{ext}`
+y `flows/auth/Auth.example.{ext}` dentro de `--dest` (por defecto `./src/blocks`), preservando esa
+estructura relativa para que los imports del ejemplo hacia cada screen sigan funcionando. Pasa
+`--no-example` para copiar solo las screens compuestas:
 
 ```sh
 npx @moderno/registry add auth --framework react --no-example
 ```
 
-¿Solo quieres la screen, sin el contexto del flow? Agrégala directamente:
+¿Solo quieres una screen, sin el contexto del flow? Agrégala directamente:
 
 ```sh
-npx @moderno/registry add sign-in --framework react
+npx @moderno/registry add sign-up --framework react
 ```
 
 Tras copiarlo, instala el primitive `@moderno/<framework>` e
-[importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo
-la navegación y el estado — es tuyo.
+[importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo la
+navegación y el estado — es tuyo.
 
-## Props — screen SignIn
+## Props
+
+### SignIn
 
 | Prop | Tipo | Descripción |
 |------|------|-------------|
@@ -94,9 +147,64 @@ la navegación y el estado — es tuyo.
 | `title` | `string` | Texto del encabezado (default `Inicia sesión`) |
 | `description` | `string` | Texto del subtítulo |
 
-Sin estado interno, sin defaults para `values` — de eso se encarga el ensamblaje de ejemplo (o
-tu propio código). Compone los primitives `Input`, `Checkbox`, `Divider` y `Button`, y los
-tokens `--md-*`; sin clases utilitarias legacy.
+### SignUp
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `{ name: string; email: string; password: string; confirmPassword: string; acceptTerms: boolean }` | Valores controlados de los campos |
+| `onChange` | `(values) => void` | Se llama con el siguiente `values` en cada cambio de campo |
+| `onSubmit` | `(values) => void` | Se llama con `values` al enviar el formulario |
+| `onSignIn` | `() => void` | Handler del enlace "¿Ya tienes cuenta? Inicia sesión" |
+| `error` | `string` | Error del servidor mostrado sobre el formulario |
+| `submitting` | `boolean` | Deshabilita el formulario y cambia la etiqueta del submit mientras es `true` |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+
+### ForgotPassword
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `{ email: string }` | Valores controlados de los campos |
+| `onChange` | `(values) => void` | Se llama con el siguiente `values` en cada cambio de campo |
+| `onSubmit` | `(values) => void` | Se llama con `values` al enviar el formulario |
+| `onBack` | `() => void` | Handler del enlace "Volver a iniciar sesión" |
+| `error` | `string` | Error del servidor mostrado sobre el formulario |
+| `submitting` | `boolean` | Deshabilita el formulario y cambia la etiqueta del submit mientras es `true` |
+| `sent` | `boolean` | Cambia el formulario por un mensaje de confirmación una vez enviado el correo |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+
+### Verify
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `{ code: string }` | Valores controlados de los campos |
+| `onChange` | `(values) => void` | Se llama con el siguiente `values` en cada cambio de campo |
+| `onSubmit` | `(values) => void` | Se llama con `values` al enviar el formulario |
+| `onResend` | `() => void` | Handler del enlace "Reenviar código" |
+| `onBack` | `() => void` | Handler del enlace "Volver" |
+| `error` | `string` | Error del servidor mostrado sobre el formulario |
+| `submitting` | `boolean` | Deshabilita el formulario y cambia la etiqueta del submit mientras es `true` |
+| `email` | `string` | Solo lectura: la dirección a la que se envió el código, transportada por el consumidor |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo (por defecto menciona `email` cuando está presente) |
+
+### ResetPassword
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `values` | `{ password: string; confirmPassword: string }` | Valores controlados de los campos |
+| `onChange` | `(values) => void` | Se llama con el siguiente `values` en cada cambio de campo |
+| `onSubmit` | `(values) => void` | Se llama con `values` al enviar el formulario |
+| `onBack` | `() => void` | Handler del enlace "Volver a iniciar sesión" |
+| `error` | `string` | Error del servidor mostrado sobre el formulario |
+| `submitting` | `boolean` | Deshabilita el formulario y cambia la etiqueta del submit mientras es `true` |
+| `title` | `string` | Texto del encabezado |
+| `description` | `string` | Texto del subtítulo |
+
+Ninguna screen tiene estado interno ni defaults para `values` — de eso se encarga el ensamblaje
+de ejemplo (o tu propio código). Las cinco componen los primitives Input, Button y (sign-in/
+sign-up) Checkbox/Divider, y los tokens `--md-*`; sin clases utilitarias legacy.
 
 ## Uso
 
@@ -119,4 +227,9 @@ function App() {
 }
 ```
 
-Conectar tu propio router/estado es justamente el punto: la screen nunca asume que existe uno.
+Conectar tu propio router/estado es justamente el punto: ninguna screen asume que existe uno.
+Revisa `Auth.example.tsx` (y sus hermanos `.vue`/`.svelte`/`.solid.tsx`) para ver el recorrido
+completo — una unión `step` local que cubre las cinco screens, un correo que se transporta desde
+registro/olvidé-mi-contraseña hacia verificación, y un flag `verifyPurpose` que decide si un
+código correcto te devuelve a sign-in (cuenta nueva) o te avanza a restablecer contraseña
+(recuperación).

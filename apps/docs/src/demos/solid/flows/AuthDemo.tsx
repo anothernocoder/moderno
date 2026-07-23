@@ -1,5 +1,8 @@
-import { AuthExample } from '@moderno/registry/flows/auth/Auth.example.solid.tsx'
+import { AuthExample, type AuthExampleProps } from '@moderno/registry/flows/auth/Auth.example.solid.tsx'
 
-export default function AuthDemo() {
-  return <AuthExample />
+// `step` is a plain string prop passed from the MDX doc across the
+// Astro-island boundary (which serializes to JSON) so each screen can be
+// demoed individually alongside the full assembled journey.
+export default function AuthDemo(props: { step?: AuthExampleProps['initialStep'] }) {
+  return <AuthExample initialStep={props.step} />
 }

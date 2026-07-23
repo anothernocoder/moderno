@@ -1198,6 +1198,27 @@ test('add copies a different framework variant of the contact-modal block', asyn
   assert.match(copied, /Moderno block — ContactModal \(Svelte\)/)
 })
 
+test('add copies the share-invite block (marketing domain) to --dest', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'share-invite', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /share-invite/)
+  const copied = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(copied, /export function ShareInvite/)
+})
+
+test('add copies a different framework variant of the share-invite block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'share-invite', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const copied = await readFile(join(dest, 'ShareInvite.svelte'), 'utf8')
+  assert.match(copied, /Moderno block — ShareInvite \(Svelte\)/)
+})
+
 test('add copies the not-found block (marketing domain) to --dest', async (t) => {
   const dest = await withTmpDir(t)
 
@@ -1410,7 +1431,7 @@ test('add copies a different framework variant of the sign-in screen', async (t)
   assert.match(copied, /Moderno screen — SignIn \(Svelte\)/)
 })
 
-test('add auth flow recursively resolves composes and copies the sign-in screen + the example', async (t) => {
+test('add auth flow recursively resolves composes and copies all five screens + the example', async (t) => {
   const dest = await withTmpDir(t)
 
   const output = execFileSync('node', [CLI, 'add', 'auth', '--framework', 'react', '--dest', dest], {
@@ -1419,9 +1440,31 @@ test('add auth flow recursively resolves composes and copies the sign-in screen 
 
   assert.match(output, /auth/)
   assert.match(output, /sign-in/)
+  assert.match(output, /sign-up/)
+  assert.match(output, /forgot-password/)
+  assert.match(output, /reset-password/)
+  assert.match(output, /verify/)
 
-  const screen = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
-  assert.match(screen, /export function SignIn/)
+  const signIn = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
+  assert.match(signIn, /export function SignIn/)
+
+  const signUp = await readFile(join(dest, 'screens/applications/sign-up/SignUp.tsx'), 'utf8')
+  assert.match(signUp, /export function SignUp/)
+
+  const forgotPassword = await readFile(
+    join(dest, 'screens/applications/forgot-password/ForgotPassword.tsx'),
+    'utf8',
+  )
+  assert.match(forgotPassword, /export function ForgotPassword/)
+
+  const resetPassword = await readFile(
+    join(dest, 'screens/applications/reset-password/ResetPassword.tsx'),
+    'utf8',
+  )
+  assert.match(resetPassword, /export function ResetPassword/)
+
+  const verify = await readFile(join(dest, 'screens/applications/verify/Verify.tsx'), 'utf8')
+  assert.match(verify, /export function Verify/)
 
   const example = await readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8')
   assert.match(example, /export function AuthExample/)
@@ -1431,28 +1474,63 @@ test('add auth flow works for every framework', async (t) => {
   for (const framework of ['vue', 'svelte', 'solid']) {
     const dest = await withTmpDir(t)
     execFileSync('node', [CLI, 'add', 'auth', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
-    const files = {
-      vue: ['screens/applications/sign-in/SignIn.vue', 'flows/auth/Auth.example.vue'],
-      svelte: ['screens/applications/sign-in/SignIn.svelte', 'flows/auth/Auth.example.svelte'],
-      solid: ['screens/applications/sign-in/SignIn.tsx', 'flows/auth/Auth.example.tsx'],
-    }[framework]
+    const ext = { vue: 'vue', svelte: 'svelte', solid: 'tsx' }[framework]
+    const files = [
+      `screens/applications/sign-in/SignIn.${ext}`,
+      `screens/applications/sign-up/SignUp.${ext}`,
+      `screens/applications/forgot-password/ForgotPassword.${ext}`,
+      `screens/applications/reset-password/ResetPassword.${ext}`,
+      `screens/applications/verify/Verify.${ext}`,
+      `flows/auth/Auth.example.${ext}`,
+    ]
     for (const file of files) {
       await readFile(join(dest, file), 'utf8')
     }
   }
 })
 
-test('add auth --no-example copies only the composed screen, not the example', async (t) => {
+test('add auth --no-example copies only the composed screens, not the example', async (t) => {
   const dest = await withTmpDir(t)
 
   execFileSync('node', [CLI, 'add', 'auth', '--framework', 'react', '--dest', dest, '--no-example'], {
     encoding: 'utf8',
   })
 
-  const screen = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
-  assert.match(screen, /export function SignIn/)
+  const signIn = await readFile(join(dest, 'screens/applications/sign-in/SignIn.tsx'), 'utf8')
+  assert.match(signIn, /export function SignIn/)
+
+  const verify = await readFile(join(dest, 'screens/applications/verify/Verify.tsx'), 'utf8')
+  assert.match(verify, /export function Verify/)
 
   await assert.rejects(readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8'))
+})
+
+test('add copies the sign-up screen standalone (no example)', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'sign-up', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /sign-up/)
+  const copied = await readFile(join(dest, 'screens/applications/sign-up/SignUp.tsx'), 'utf8')
+  assert.match(copied, /export function SignUp/)
+
+  await assert.rejects(readFile(join(dest, 'flows/auth/Auth.example.tsx'), 'utf8'))
+})
+
+test('add copies the forgot-password, reset-password and verify screens standalone', async (t) => {
+  const dest = await withTmpDir(t)
+
+  for (const [name, file, exportName] of [
+    ['forgot-password', 'screens/applications/forgot-password/ForgotPassword.tsx', 'ForgotPassword'],
+    ['reset-password', 'screens/applications/reset-password/ResetPassword.tsx', 'ResetPassword'],
+    ['verify', 'screens/applications/verify/Verify.tsx', 'Verify'],
+  ]) {
+    execFileSync('node', [CLI, 'add', name, '--framework', 'react', '--dest', dest], { encoding: 'utf8' })
+    const copied = await readFile(join(dest, file), 'utf8')
+    assert.match(copied, new RegExp(`export function ${exportName}`))
+  }
 })
 
 test('add fails for an unknown flow', async (t) => {
@@ -1464,4 +1542,452 @@ test('add fails for an unknown flow', async (t) => {
       stdio: 'pipe',
     })
   })
+})
+
+test('add checkout flow recursively resolves composes and copies all five screens + the three composed blocks + the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'checkout', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /checkout/)
+  assert.match(output, /cart/)
+  assert.match(output, /shipping/)
+  assert.match(output, /payment/)
+  assert.match(output, /review/)
+  assert.match(output, /confirmation/)
+  assert.match(output, /shopping-cart/)
+  assert.match(output, /checkout-forms/)
+  assert.match(output, /order-summaries/)
+  assert.match(output, /Trajo también/)
+
+  const cart = await readFile(join(dest, 'screens/ecommerce/cart/Cart.tsx'), 'utf8')
+  assert.match(cart, /export function Cart/)
+
+  const shipping = await readFile(join(dest, 'screens/ecommerce/shipping/Shipping.tsx'), 'utf8')
+  assert.match(shipping, /export function Shipping/)
+
+  const payment = await readFile(join(dest, 'screens/ecommerce/payment/Payment.tsx'), 'utf8')
+  assert.match(payment, /export function Payment/)
+
+  const review = await readFile(join(dest, 'screens/ecommerce/review/Review.tsx'), 'utf8')
+  assert.match(review, /export function Review/)
+
+  const confirmation = await readFile(join(dest, 'screens/ecommerce/confirmation/Confirmation.tsx'), 'utf8')
+  assert.match(confirmation, /export function Confirmation/)
+
+  // The three composed E-Commerce blocks land alongside the screens (blocks
+  // copy flat to --dest, screens preserve their nested layout) — never the
+  // primitives, which stay an npm dependency.
+  const shoppingCart = await readFile(join(dest, 'ShoppingCart.tsx'), 'utf8')
+  assert.match(shoppingCart, /export function ShoppingCart/)
+
+  const checkoutForms = await readFile(join(dest, 'CheckoutForms.tsx'), 'utf8')
+  assert.match(checkoutForms, /export function CheckoutForms/)
+
+  const orderSummaries = await readFile(join(dest, 'OrderSummaries.tsx'), 'utf8')
+  assert.match(orderSummaries, /export function OrderSummaries/)
+
+  const example = await readFile(join(dest, 'flows/checkout/Checkout.example.tsx'), 'utf8')
+  assert.match(example, /export function CheckoutExample/)
+})
+
+test('add checkout flow works for every framework', async (t) => {
+  for (const framework of ['vue', 'svelte', 'solid']) {
+    const dest = await withTmpDir(t)
+    execFileSync('node', [CLI, 'add', 'checkout', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
+    const ext = { vue: 'vue', svelte: 'svelte', solid: 'tsx' }[framework]
+    const files = [
+      `screens/ecommerce/cart/Cart.${ext}`,
+      `screens/ecommerce/shipping/Shipping.${ext}`,
+      `screens/ecommerce/payment/Payment.${ext}`,
+      `screens/ecommerce/review/Review.${ext}`,
+      `screens/ecommerce/confirmation/Confirmation.${ext}`,
+      `ShoppingCart.${ext}`,
+      `CheckoutForms.${ext}`,
+      `OrderSummaries.${ext}`,
+      `flows/checkout/Checkout.example.${ext}`,
+    ]
+    for (const file of files) {
+      await readFile(join(dest, file), 'utf8')
+    }
+  }
+})
+
+test('add checkout --no-example copies the composed screens and blocks, not the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'checkout', '--framework', 'react', '--dest', dest, '--no-example'], {
+    encoding: 'utf8',
+  })
+
+  const cart = await readFile(join(dest, 'screens/ecommerce/cart/Cart.tsx'), 'utf8')
+  assert.match(cart, /export function Cart/)
+
+  const shoppingCart = await readFile(join(dest, 'ShoppingCart.tsx'), 'utf8')
+  assert.match(shoppingCart, /export function ShoppingCart/)
+
+  await assert.rejects(readFile(join(dest, 'flows/checkout/Checkout.example.tsx'), 'utf8'))
+})
+
+test('add cart works standalone and transitively pulls the shopping-cart block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'cart', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /cart/)
+  assert.match(output, /shopping-cart/)
+
+  const cart = await readFile(join(dest, 'screens/ecommerce/cart/Cart.tsx'), 'utf8')
+  assert.match(cart, /export function Cart/)
+
+  const shoppingCart = await readFile(join(dest, 'ShoppingCart.tsx'), 'utf8')
+  assert.match(shoppingCart, /export function ShoppingCart/)
+
+  await assert.rejects(readFile(join(dest, 'flows/checkout/Checkout.example.tsx'), 'utf8'))
+})
+
+test('add cart works standalone for a different framework variant', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'cart', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const cart = await readFile(join(dest, 'screens/ecommerce/cart/Cart.svelte'), 'utf8')
+  assert.match(cart, /Moderno screen — Cart \(Svelte\)/)
+
+  const shoppingCart = await readFile(join(dest, 'ShoppingCart.svelte'), 'utf8')
+  assert.match(shoppingCart, /export function ShoppingCart|Moderno block — ShoppingCart/)
+})
+
+test('add copies the shipping, payment, review and confirmation screens standalone', async (t) => {
+  // Each screen gets its own --dest: shipping and payment both compose
+  // checkout-forms, and blocks copy flat, so adding both to the same dest
+  // would collide on CheckoutForms.tsx already existing.
+  for (const [name, file, exportName] of [
+    ['shipping', 'screens/ecommerce/shipping/Shipping.tsx', 'Shipping'],
+    ['payment', 'screens/ecommerce/payment/Payment.tsx', 'Payment'],
+    ['review', 'screens/ecommerce/review/Review.tsx', 'Review'],
+    ['confirmation', 'screens/ecommerce/confirmation/Confirmation.tsx', 'Confirmation'],
+  ]) {
+    const dest = await withTmpDir(t)
+    execFileSync('node', [CLI, 'add', name, '--framework', 'react', '--dest', dest], { encoding: 'utf8' })
+    const copied = await readFile(join(dest, file), 'utf8')
+    assert.match(copied, new RegExp(`export function ${exportName}`))
+  }
+})
+
+test('list groups the checkout flow and its screens separate from blocks', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  const screensIndex = output.indexOf('Screens disponibles')
+  const flowsIndex = output.indexOf('Flows disponibles')
+  // Search for the bolded screen/flow entry name specifically (`\x1b[1mcart\x1b[0m`)
+  // rather than a bare substring match, since "cart" also occurs inside the
+  // "shopping-cart" block entry listed earlier under Blocks.
+  const cartIndex = output.indexOf('\x1b[1mcart\x1b[0m')
+  const checkoutIndex = output.indexOf('\x1b[1mcheckout\x1b[0m')
+
+  assert.ok(cartIndex > screensIndex && cartIndex < flowsIndex, 'expected cart listed under Screens')
+  assert.ok(checkoutIndex > flowsIndex, 'expected checkout listed under Flows')
+})
+
+// ── Onboarding flow: Applications capstone ─────────────────────────────────
+
+test('add onboarding flow recursively resolves composes and copies all four screens + the three composed blocks + the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'onboarding', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /onboarding/)
+  assert.match(output, /welcome/)
+  assert.match(output, /profile-setup/)
+  assert.match(output, /plan-select/)
+  assert.match(output, /invite-team/)
+  assert.match(output, /form-layouts/)
+  assert.match(output, /grid-lists/)
+  assert.match(output, /\blist\b/)
+  assert.match(output, /Trajo también/)
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.tsx'), 'utf8')
+  assert.match(welcome, /export function Welcome/)
+
+  const profileSetup = await readFile(join(dest, 'screens/applications/profile-setup/ProfileSetup.tsx'), 'utf8')
+  assert.match(profileSetup, /export function ProfileSetup/)
+
+  const planSelect = await readFile(join(dest, 'screens/applications/plan-select/PlanSelect.tsx'), 'utf8')
+  assert.match(planSelect, /export function PlanSelect/)
+
+  const inviteTeam = await readFile(join(dest, 'screens/applications/invite-team/InviteTeam.tsx'), 'utf8')
+  assert.match(inviteTeam, /export function InviteTeam/)
+
+  // The three composed Applications blocks land alongside the screens
+  // (blocks copy flat to --dest, screens preserve their nested layout) —
+  // never the primitives, which stay an npm dependency.
+  const formLayouts = await readFile(join(dest, 'FormLayouts.tsx'), 'utf8')
+  assert.match(formLayouts, /export function FormLayouts/)
+
+  const gridLists = await readFile(join(dest, 'GridLists.tsx'), 'utf8')
+  assert.match(gridLists, /export function GridLists/)
+
+  const list = await readFile(join(dest, 'List.tsx'), 'utf8')
+  assert.match(list, /export function List/)
+
+  const example = await readFile(join(dest, 'flows/onboarding/Onboarding.example.tsx'), 'utf8')
+  assert.match(example, /export function OnboardingExample/)
+})
+
+test('add onboarding flow works for every framework', async (t) => {
+  for (const framework of ['vue', 'svelte', 'solid']) {
+    const dest = await withTmpDir(t)
+    execFileSync('node', [CLI, 'add', 'onboarding', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
+    const ext = { vue: 'vue', svelte: 'svelte', solid: 'tsx' }[framework]
+    const files = [
+      `screens/applications/welcome/Welcome.${ext}`,
+      `screens/applications/profile-setup/ProfileSetup.${ext}`,
+      `screens/applications/plan-select/PlanSelect.${ext}`,
+      `screens/applications/invite-team/InviteTeam.${ext}`,
+      `FormLayouts.${ext}`,
+      `GridLists.${ext}`,
+      `List.${ext}`,
+      `flows/onboarding/Onboarding.example.${ext}`,
+    ]
+    for (const file of files) {
+      await readFile(join(dest, file), 'utf8')
+    }
+  }
+})
+
+test('add onboarding --no-example copies the composed screens and blocks, not the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'onboarding', '--framework', 'react', '--dest', dest, '--no-example'], {
+    encoding: 'utf8',
+  })
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.tsx'), 'utf8')
+  assert.match(welcome, /export function Welcome/)
+
+  const formLayouts = await readFile(join(dest, 'FormLayouts.tsx'), 'utf8')
+  assert.match(formLayouts, /export function FormLayouts/)
+
+  await assert.rejects(readFile(join(dest, 'flows/onboarding/Onboarding.example.tsx'), 'utf8'))
+})
+
+test('add welcome works standalone with no composed block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'welcome', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /welcome/)
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.tsx'), 'utf8')
+  assert.match(welcome, /export function Welcome/)
+
+  await assert.rejects(readFile(join(dest, 'flows/onboarding/Onboarding.example.tsx'), 'utf8'))
+})
+
+test('add welcome works standalone for a different framework variant', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'welcome', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.svelte'), 'utf8')
+  assert.match(welcome, /Moderno screen — Welcome \(Svelte\)/)
+})
+
+test('add copies the profile-setup, plan-select and invite-team screens standalone, each transitively pulling its composed block', async (t) => {
+  for (const [name, file, exportName, block, blockFile, blockExport] of [
+    [
+      'profile-setup',
+      'screens/applications/profile-setup/ProfileSetup.tsx',
+      'ProfileSetup',
+      'form-layouts',
+      'FormLayouts.tsx',
+      'FormLayouts',
+    ],
+    [
+      'plan-select',
+      'screens/applications/plan-select/PlanSelect.tsx',
+      'PlanSelect',
+      'grid-lists',
+      'GridLists.tsx',
+      'GridLists',
+    ],
+    ['invite-team', 'screens/applications/invite-team/InviteTeam.tsx', 'InviteTeam', 'list', 'List.tsx', 'List'],
+  ]) {
+    const dest = await withTmpDir(t)
+    const output = execFileSync('node', [CLI, 'add', name, '--framework', 'react', '--dest', dest], {
+      encoding: 'utf8',
+    })
+    assert.match(output, new RegExp(block))
+
+    const copied = await readFile(join(dest, file), 'utf8')
+    assert.match(copied, new RegExp(`export function ${exportName}`))
+
+    const copiedBlock = await readFile(join(dest, blockFile), 'utf8')
+    assert.match(copiedBlock, new RegExp(`export function ${blockExport}`))
+  }
+})
+
+test('list groups the onboarding flow and its screens separate from blocks', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  const screensIndex = output.indexOf('Screens disponibles')
+  const flowsIndex = output.indexOf('Flows disponibles')
+  // Search for the bolded screen/flow entry name specifically rather than a
+  // bare substring match, since e.g. "list" also occurs inside the "list"
+  // block entry listed earlier under Blocks.
+  const welcomeIndex = output.indexOf('\x1b[1mwelcome\x1b[0m')
+  const onboardingIndex = output.indexOf('\x1b[1monboarding\x1b[0m')
+
+  assert.ok(welcomeIndex > screensIndex && welcomeIndex < flowsIndex, 'expected welcome listed under Screens')
+  assert.ok(onboardingIndex > flowsIndex, 'expected onboarding listed under Flows')
+})
+
+// ── Referral flow: cross-domain (Applications + Marketing) capstone ────────
+
+test('add referral flow recursively resolves composes and copies all three screens + the composed Marketing block + the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /referral/)
+  assert.match(output, /referral-invite/)
+  assert.match(output, /referral-share/)
+  assert.match(output, /referral-reward/)
+  assert.match(output, /share-invite/)
+  assert.match(output, /Trajo también/)
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.tsx'), 'utf8')
+  assert.match(referralInvite, /export function ReferralInvite/)
+
+  const referralShare = await readFile(join(dest, 'screens/applications/referral-share/ReferralShare.tsx'), 'utf8')
+  assert.match(referralShare, /export function ReferralShare/)
+
+  const referralReward = await readFile(join(dest, 'screens/applications/referral-reward/ReferralReward.tsx'), 'utf8')
+  assert.match(referralReward, /export function ReferralReward/)
+
+  // The composed Marketing block lands alongside the screens (blocks copy
+  // flat to --dest, screens preserve their nested layout) — never the
+  // primitives, which stay an npm dependency. This also exercises `composes`
+  // resolution crossing from the Applications screens domain into the
+  // Marketing blocks domain.
+  const shareInvite = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(shareInvite, /export function ShareInvite/)
+
+  const example = await readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8')
+  assert.match(example, /export function ReferralExample/)
+})
+
+test('add referral flow works for every framework', async (t) => {
+  for (const framework of ['vue', 'svelte', 'solid']) {
+    const dest = await withTmpDir(t)
+    execFileSync('node', [CLI, 'add', 'referral', '--framework', framework, '--dest', dest], { encoding: 'utf8' })
+    const ext = { vue: 'vue', svelte: 'svelte', solid: 'tsx' }[framework]
+    const files = [
+      `screens/applications/referral-invite/ReferralInvite.${ext}`,
+      `screens/applications/referral-share/ReferralShare.${ext}`,
+      `screens/applications/referral-reward/ReferralReward.${ext}`,
+      `ShareInvite.${ext}`,
+      `flows/referral/Referral.example.${ext}`,
+    ]
+    for (const file of files) {
+      await readFile(join(dest, file), 'utf8')
+    }
+  }
+})
+
+test('add referral --no-example copies the composed screens and block, not the example', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'referral', '--framework', 'react', '--dest', dest, '--no-example'], {
+    encoding: 'utf8',
+  })
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.tsx'), 'utf8')
+  assert.match(referralInvite, /export function ReferralInvite/)
+
+  const shareInvite = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(shareInvite, /export function ShareInvite/)
+
+  await assert.rejects(readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8'))
+})
+
+test('add referral-invite works standalone with no composed block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral-invite', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /referral-invite/)
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.tsx'), 'utf8')
+  assert.match(referralInvite, /export function ReferralInvite/)
+
+  await assert.rejects(readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8'))
+})
+
+test('add referral-invite works standalone for a different framework variant', async (t) => {
+  const dest = await withTmpDir(t)
+
+  execFileSync('node', [CLI, 'add', 'referral-invite', '--framework', 'svelte', '--dest', dest], { encoding: 'utf8' })
+
+  const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.svelte'), 'utf8')
+  assert.match(referralInvite, /Moderno screen — ReferralInvite \(Svelte\)/)
+})
+
+test('add referral-share works standalone and transitively pulls the composed share-invite block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral-share', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /share-invite/)
+
+  const referralShare = await readFile(join(dest, 'screens/applications/referral-share/ReferralShare.tsx'), 'utf8')
+  assert.match(referralShare, /export function ReferralShare/)
+
+  const shareInvite = await readFile(join(dest, 'ShareInvite.tsx'), 'utf8')
+  assert.match(shareInvite, /export function ShareInvite/)
+})
+
+test('add referral-reward works standalone with no composed block', async (t) => {
+  const dest = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'add', 'referral-reward', '--framework', 'react', '--dest', dest], {
+    encoding: 'utf8',
+  })
+
+  assert.match(output, /referral-reward/)
+
+  const referralReward = await readFile(join(dest, 'screens/applications/referral-reward/ReferralReward.tsx'), 'utf8')
+  assert.match(referralReward, /export function ReferralReward/)
+
+  await assert.rejects(readFile(join(dest, 'flows/referral/Referral.example.tsx'), 'utf8'))
+})
+
+test('list groups the referral flow and its screens separate from blocks', () => {
+  const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
+
+  const screensIndex = output.indexOf('Screens disponibles')
+  const flowsIndex = output.indexOf('Flows disponibles')
+  const referralInviteIndex = output.indexOf('\x1b[1mreferral-invite\x1b[0m')
+  const referralIndex = output.indexOf('\x1b[1mreferral\x1b[0m')
+
+  assert.ok(
+    referralInviteIndex > screensIndex && referralInviteIndex < flowsIndex,
+    'expected referral-invite listed under Screens',
+  )
+  assert.ok(referralIndex > flowsIndex, 'expected referral listed under Flows')
 })

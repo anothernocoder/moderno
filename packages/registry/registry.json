@@ -342,6 +342,23 @@
         "solid": "ContactModal.tsx"
       }
     },
+    "share-invite": {
+      "domain": "marketing",
+      "description": "Compartir e invitar: enlace compartible con copiar al portapapeles, botones de canal/red social y un formulario de invitación por correo con lista de invitaciones pendientes.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "blocks/marketing/share-invite/ShareInvite.tsx",
+        "vue": "blocks/marketing/share-invite/ShareInvite.vue",
+        "svelte": "blocks/marketing/share-invite/ShareInvite.svelte",
+        "solid": "blocks/marketing/share-invite/ShareInvite.solid.tsx"
+      },
+      "dest": {
+        "react": "ShareInvite.tsx",
+        "vue": "ShareInvite.vue",
+        "svelte": "ShareInvite.svelte",
+        "solid": "ShareInvite.tsx"
+      }
+    },
     "not-found": {
       "domain": "marketing",
       "description": "Sección de error 404: numeral grande, mensaje y CTA de vuelta al sitio.",
@@ -1074,12 +1091,292 @@
         "svelte": "screens/applications/sign-in/SignIn.svelte",
         "solid": "screens/applications/sign-in/SignIn.tsx"
       }
+    },
+    "sign-up": {
+      "domain": "applications",
+      "description": "Pantalla de registro: nombre, correo, contraseña, confirmación y aceptación de términos.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/sign-up/SignUp.tsx",
+        "vue": "screens/applications/sign-up/SignUp.vue",
+        "svelte": "screens/applications/sign-up/SignUp.svelte",
+        "solid": "screens/applications/sign-up/SignUp.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/sign-up/SignUp.tsx",
+        "vue": "screens/applications/sign-up/SignUp.vue",
+        "svelte": "screens/applications/sign-up/SignUp.svelte",
+        "solid": "screens/applications/sign-up/SignUp.tsx"
+      }
+    },
+    "forgot-password": {
+      "domain": "applications",
+      "description": "Pantalla de recuperación de contraseña: solicita el correo y confirma el envío del enlace.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/forgot-password/ForgotPassword.tsx",
+        "vue": "screens/applications/forgot-password/ForgotPassword.vue",
+        "svelte": "screens/applications/forgot-password/ForgotPassword.svelte",
+        "solid": "screens/applications/forgot-password/ForgotPassword.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/forgot-password/ForgotPassword.tsx",
+        "vue": "screens/applications/forgot-password/ForgotPassword.vue",
+        "svelte": "screens/applications/forgot-password/ForgotPassword.svelte",
+        "solid": "screens/applications/forgot-password/ForgotPassword.tsx"
+      }
+    },
+    "reset-password": {
+      "domain": "applications",
+      "description": "Pantalla para elegir una nueva contraseña tras verificar el código de recuperación.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/reset-password/ResetPassword.tsx",
+        "vue": "screens/applications/reset-password/ResetPassword.vue",
+        "svelte": "screens/applications/reset-password/ResetPassword.svelte",
+        "solid": "screens/applications/reset-password/ResetPassword.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/reset-password/ResetPassword.tsx",
+        "vue": "screens/applications/reset-password/ResetPassword.vue",
+        "svelte": "screens/applications/reset-password/ResetPassword.svelte",
+        "solid": "screens/applications/reset-password/ResetPassword.tsx"
+      }
+    },
+    "verify": {
+      "domain": "applications",
+      "description": "Pantalla de verificación por código (OTP): confirma la dirección de correo o el restablecimiento de contraseña.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/verify/Verify.tsx",
+        "vue": "screens/applications/verify/Verify.vue",
+        "svelte": "screens/applications/verify/Verify.svelte",
+        "solid": "screens/applications/verify/Verify.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/verify/Verify.tsx",
+        "vue": "screens/applications/verify/Verify.vue",
+        "svelte": "screens/applications/verify/Verify.svelte",
+        "solid": "screens/applications/verify/Verify.tsx"
+      }
+    },
+    "welcome": {
+      "domain": "applications",
+      "description": "Pantalla de bienvenida: primer paso del onboarding, mensaje de saludo y CTA para comenzar. No compone ningún bloque — solo primitives.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/welcome/Welcome.tsx",
+        "vue": "screens/applications/welcome/Welcome.vue",
+        "svelte": "screens/applications/welcome/Welcome.svelte",
+        "solid": "screens/applications/welcome/Welcome.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/welcome/Welcome.tsx",
+        "vue": "screens/applications/welcome/Welcome.vue",
+        "svelte": "screens/applications/welcome/Welcome.svelte",
+        "solid": "screens/applications/welcome/Welcome.tsx"
+      }
+    },
+    "profile-setup": {
+      "domain": "applications",
+      "description": "Pantalla de configuración de perfil: compone el bloque form-layouts (nombre, correo, biografía, rol y zona horaria).",
+      "composes": ["form-layouts"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/profile-setup/ProfileSetup.tsx",
+        "vue": "screens/applications/profile-setup/ProfileSetup.vue",
+        "svelte": "screens/applications/profile-setup/ProfileSetup.svelte",
+        "solid": "screens/applications/profile-setup/ProfileSetup.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/profile-setup/ProfileSetup.tsx",
+        "vue": "screens/applications/profile-setup/ProfileSetup.vue",
+        "svelte": "screens/applications/profile-setup/ProfileSetup.svelte",
+        "solid": "screens/applications/profile-setup/ProfileSetup.tsx"
+      }
+    },
+    "plan-select": {
+      "domain": "applications",
+      "description": "Pantalla de selección de plan/workspace: compone el bloque grid-lists — cada tile de plan reutiliza su tarjeta de título/subtítulo/badge de estado.",
+      "composes": ["grid-lists"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/plan-select/PlanSelect.tsx",
+        "vue": "screens/applications/plan-select/PlanSelect.vue",
+        "svelte": "screens/applications/plan-select/PlanSelect.svelte",
+        "solid": "screens/applications/plan-select/PlanSelect.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/plan-select/PlanSelect.tsx",
+        "vue": "screens/applications/plan-select/PlanSelect.vue",
+        "svelte": "screens/applications/plan-select/PlanSelect.svelte",
+        "solid": "screens/applications/plan-select/PlanSelect.tsx"
+      }
+    },
+    "invite-team": {
+      "domain": "applications",
+      "description": "Pantalla de invitación de equipo: compone el bloque list para las filas de invitados, junto a un formulario propio de correo + botón para agregar.",
+      "composes": ["list"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/invite-team/InviteTeam.tsx",
+        "vue": "screens/applications/invite-team/InviteTeam.vue",
+        "svelte": "screens/applications/invite-team/InviteTeam.svelte",
+        "solid": "screens/applications/invite-team/InviteTeam.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/invite-team/InviteTeam.tsx",
+        "vue": "screens/applications/invite-team/InviteTeam.vue",
+        "svelte": "screens/applications/invite-team/InviteTeam.svelte",
+        "solid": "screens/applications/invite-team/InviteTeam.tsx"
+      }
+    },
+    "referral-invite": {
+      "domain": "applications",
+      "description": "Pantalla de inicio del flow Referral: formulario propio con el nombre del usuario y un CTA para generar el enlace de referido — no compone ningún bloque.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/referral-invite/ReferralInvite.tsx",
+        "vue": "screens/applications/referral-invite/ReferralInvite.vue",
+        "svelte": "screens/applications/referral-invite/ReferralInvite.svelte",
+        "solid": "screens/applications/referral-invite/ReferralInvite.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/referral-invite/ReferralInvite.tsx",
+        "vue": "screens/applications/referral-invite/ReferralInvite.vue",
+        "svelte": "screens/applications/referral-invite/ReferralInvite.svelte",
+        "solid": "screens/applications/referral-invite/ReferralInvite.tsx"
+      }
+    },
+    "referral-share": {
+      "domain": "applications",
+      "description": "Pantalla de compartir del flow Referral (cross-domain Applications + Marketing): compone el bloque Marketing share-invite para el enlace, los botones de canal y el formulario de invitación por correo.",
+      "composes": ["share-invite"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/referral-share/ReferralShare.tsx",
+        "vue": "screens/applications/referral-share/ReferralShare.vue",
+        "svelte": "screens/applications/referral-share/ReferralShare.svelte",
+        "solid": "screens/applications/referral-share/ReferralShare.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/referral-share/ReferralShare.tsx",
+        "vue": "screens/applications/referral-share/ReferralShare.vue",
+        "svelte": "screens/applications/referral-share/ReferralShare.svelte",
+        "solid": "screens/applications/referral-share/ReferralShare.tsx"
+      }
+    },
+    "referral-reward": {
+      "domain": "applications",
+      "description": "Pantalla final del flow Referral: resumen de recompensa acumulada, lista de invitados con su estado y CTA de reclamo — no compone ningún bloque.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/applications/referral-reward/ReferralReward.tsx",
+        "vue": "screens/applications/referral-reward/ReferralReward.vue",
+        "svelte": "screens/applications/referral-reward/ReferralReward.svelte",
+        "solid": "screens/applications/referral-reward/ReferralReward.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/applications/referral-reward/ReferralReward.tsx",
+        "vue": "screens/applications/referral-reward/ReferralReward.vue",
+        "svelte": "screens/applications/referral-reward/ReferralReward.svelte",
+        "solid": "screens/applications/referral-reward/ReferralReward.tsx"
+      }
+    },
+    "cart": {
+      "domain": "ecommerce",
+      "description": "Pantalla de carrito: line items con cantidad y opción de quitar, subtotal y CTA para continuar a envío. Compone el bloque shopping-cart. También se puede agregar de forma independiente.",
+      "composes": ["shopping-cart"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/cart/Cart.tsx",
+        "vue": "screens/ecommerce/cart/Cart.vue",
+        "svelte": "screens/ecommerce/cart/Cart.svelte",
+        "solid": "screens/ecommerce/cart/Cart.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/cart/Cart.tsx",
+        "vue": "screens/ecommerce/cart/Cart.vue",
+        "svelte": "screens/ecommerce/cart/Cart.svelte",
+        "solid": "screens/ecommerce/cart/Cart.tsx"
+      }
+    },
+    "shipping": {
+      "domain": "ecommerce",
+      "description": "Pantalla de dirección de envío y pago: compone el bloque checkout-forms (dirección + tarjeta en un solo formulario).",
+      "composes": ["checkout-forms"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/shipping/Shipping.tsx",
+        "vue": "screens/ecommerce/shipping/Shipping.vue",
+        "svelte": "screens/ecommerce/shipping/Shipping.svelte",
+        "solid": "screens/ecommerce/shipping/Shipping.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/shipping/Shipping.tsx",
+        "vue": "screens/ecommerce/shipping/Shipping.vue",
+        "svelte": "screens/ecommerce/shipping/Shipping.svelte",
+        "solid": "screens/ecommerce/shipping/Shipping.tsx"
+      }
+    },
+    "payment": {
+      "domain": "ecommerce",
+      "description": "Pantalla de método de pago: re-presenta el bloque checkout-forms, precargado con los valores de envío, para confirmar o ajustar la tarjeta.",
+      "composes": ["checkout-forms"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/payment/Payment.tsx",
+        "vue": "screens/ecommerce/payment/Payment.vue",
+        "svelte": "screens/ecommerce/payment/Payment.svelte",
+        "solid": "screens/ecommerce/payment/Payment.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/payment/Payment.tsx",
+        "vue": "screens/ecommerce/payment/Payment.vue",
+        "svelte": "screens/ecommerce/payment/Payment.svelte",
+        "solid": "screens/ecommerce/payment/Payment.tsx"
+      }
+    },
+    "review": {
+      "domain": "ecommerce",
+      "description": "Pantalla de revisión del pedido: compone el bloque order-summaries (solo lectura) junto a un resumen de envío/pago propio de la pantalla.",
+      "composes": ["order-summaries"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/review/Review.tsx",
+        "vue": "screens/ecommerce/review/Review.vue",
+        "svelte": "screens/ecommerce/review/Review.svelte",
+        "solid": "screens/ecommerce/review/Review.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/review/Review.tsx",
+        "vue": "screens/ecommerce/review/Review.vue",
+        "svelte": "screens/ecommerce/review/Review.svelte",
+        "solid": "screens/ecommerce/review/Review.tsx"
+      }
+    },
+    "confirmation": {
+      "domain": "ecommerce",
+      "description": "Pantalla de confirmación de pedido: mensaje de éxito, número de pedido y CTA para seguir comprando. No compone ningún bloque — solo primitives.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/confirmation/Confirmation.tsx",
+        "vue": "screens/ecommerce/confirmation/Confirmation.vue",
+        "svelte": "screens/ecommerce/confirmation/Confirmation.svelte",
+        "solid": "screens/ecommerce/confirmation/Confirmation.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/confirmation/Confirmation.tsx",
+        "vue": "screens/ecommerce/confirmation/Confirmation.vue",
+        "svelte": "screens/ecommerce/confirmation/Confirmation.svelte",
+        "solid": "screens/ecommerce/confirmation/Confirmation.tsx"
+      }
     }
   },
   "flows": {
     "auth": {
-      "description": "Flujo de autenticación (tracer): pantalla de inicio de sesión + ensamblaje de ejemplo con estado local.",
-      "composes": ["sign-in"],
+      "description": "Flujo de autenticación completo: inicio de sesión, registro, recuperación y restablecimiento de contraseña, y verificación por código, con un ensamblaje de ejemplo de estado local.",
+      "composes": ["sign-in", "sign-up", "forgot-password", "reset-password", "verify"],
       "dependencies": ["@moderno/{framework}"],
       "files": {
         "react": "flows/auth/Auth.example.tsx",
@@ -1092,6 +1389,57 @@
         "vue": "flows/auth/Auth.example.vue",
         "svelte": "flows/auth/Auth.example.svelte",
         "solid": "flows/auth/Auth.example.tsx"
+      }
+    },
+    "checkout": {
+      "description": "Flujo de checkout completo — el capstone de E-Commerce: carrito, envío, pago, revisión y confirmación, con un ensamblaje de ejemplo de estado local. Primera vez que las screens de un flow componen bloques de E-Commerce (shopping-cart, checkout-forms, order-summaries) en vez de solo primitives, ejercitando la resolución recursiva de `composes`.",
+      "composes": ["cart", "shipping", "payment", "review", "confirmation"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "flows/checkout/Checkout.example.tsx",
+        "vue": "flows/checkout/Checkout.example.vue",
+        "svelte": "flows/checkout/Checkout.example.svelte",
+        "solid": "flows/checkout/Checkout.example.solid.tsx"
+      },
+      "dest": {
+        "react": "flows/checkout/Checkout.example.tsx",
+        "vue": "flows/checkout/Checkout.example.vue",
+        "svelte": "flows/checkout/Checkout.example.svelte",
+        "solid": "flows/checkout/Checkout.example.tsx"
+      }
+    },
+    "onboarding": {
+      "description": "Flujo de onboarding completo — el capstone de Applications: bienvenida, perfil, selección de plan/workspace e invitación de equipo, con un ensamblaje de ejemplo de estado local. Las screens componen los bloques Applications form-layouts, grid-lists y list en vez de solo primitives, ejercitando la resolución recursiva de `composes`.",
+      "composes": ["welcome", "profile-setup", "plan-select", "invite-team"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "flows/onboarding/Onboarding.example.tsx",
+        "vue": "flows/onboarding/Onboarding.example.vue",
+        "svelte": "flows/onboarding/Onboarding.example.svelte",
+        "solid": "flows/onboarding/Onboarding.example.solid.tsx"
+      },
+      "dest": {
+        "react": "flows/onboarding/Onboarding.example.tsx",
+        "vue": "flows/onboarding/Onboarding.example.vue",
+        "svelte": "flows/onboarding/Onboarding.example.svelte",
+        "solid": "flows/onboarding/Onboarding.example.tsx"
+      }
+    },
+    "referral": {
+      "description": "Flujo de referidos — cross-domain (Applications + Marketing), el último en salir: invita (genera tu enlace), comparte (compone el bloque Marketing share-invite) y reward/claim, con un ensamblaje de ejemplo de estado local. La screen `referral-share` compone el bloque share-invite en vez de reimplementar su UI, ejercitando la resolución recursiva de `composes` a través de dominios.",
+      "composes": ["referral-invite", "referral-share", "referral-reward"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "flows/referral/Referral.example.tsx",
+        "vue": "flows/referral/Referral.example.vue",
+        "svelte": "flows/referral/Referral.example.svelte",
+        "solid": "flows/referral/Referral.example.solid.tsx"
+      },
+      "dest": {
+        "react": "flows/referral/Referral.example.tsx",
+        "vue": "flows/referral/Referral.example.vue",
+        "svelte": "flows/referral/Referral.example.svelte",
+        "solid": "flows/referral/Referral.example.tsx"
       }
     }
   }

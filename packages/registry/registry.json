@@ -1142,6 +1142,95 @@
         "svelte": "screens/applications/verify/Verify.svelte",
         "solid": "screens/applications/verify/Verify.tsx"
       }
+    },
+    "cart": {
+      "domain": "ecommerce",
+      "description": "Pantalla de carrito: line items con cantidad y opción de quitar, subtotal y CTA para continuar a envío. Compone el bloque shopping-cart. También se puede agregar de forma independiente.",
+      "composes": ["shopping-cart"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/cart/Cart.tsx",
+        "vue": "screens/ecommerce/cart/Cart.vue",
+        "svelte": "screens/ecommerce/cart/Cart.svelte",
+        "solid": "screens/ecommerce/cart/Cart.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/cart/Cart.tsx",
+        "vue": "screens/ecommerce/cart/Cart.vue",
+        "svelte": "screens/ecommerce/cart/Cart.svelte",
+        "solid": "screens/ecommerce/cart/Cart.tsx"
+      }
+    },
+    "shipping": {
+      "domain": "ecommerce",
+      "description": "Pantalla de dirección de envío y pago: compone el bloque checkout-forms (dirección + tarjeta en un solo formulario).",
+      "composes": ["checkout-forms"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/shipping/Shipping.tsx",
+        "vue": "screens/ecommerce/shipping/Shipping.vue",
+        "svelte": "screens/ecommerce/shipping/Shipping.svelte",
+        "solid": "screens/ecommerce/shipping/Shipping.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/shipping/Shipping.tsx",
+        "vue": "screens/ecommerce/shipping/Shipping.vue",
+        "svelte": "screens/ecommerce/shipping/Shipping.svelte",
+        "solid": "screens/ecommerce/shipping/Shipping.tsx"
+      }
+    },
+    "payment": {
+      "domain": "ecommerce",
+      "description": "Pantalla de método de pago: re-presenta el bloque checkout-forms, precargado con los valores de envío, para confirmar o ajustar la tarjeta.",
+      "composes": ["checkout-forms"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/payment/Payment.tsx",
+        "vue": "screens/ecommerce/payment/Payment.vue",
+        "svelte": "screens/ecommerce/payment/Payment.svelte",
+        "solid": "screens/ecommerce/payment/Payment.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/payment/Payment.tsx",
+        "vue": "screens/ecommerce/payment/Payment.vue",
+        "svelte": "screens/ecommerce/payment/Payment.svelte",
+        "solid": "screens/ecommerce/payment/Payment.tsx"
+      }
+    },
+    "review": {
+      "domain": "ecommerce",
+      "description": "Pantalla de revisión del pedido: compone el bloque order-summaries (solo lectura) junto a un resumen de envío/pago propio de la pantalla.",
+      "composes": ["order-summaries"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/review/Review.tsx",
+        "vue": "screens/ecommerce/review/Review.vue",
+        "svelte": "screens/ecommerce/review/Review.svelte",
+        "solid": "screens/ecommerce/review/Review.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/review/Review.tsx",
+        "vue": "screens/ecommerce/review/Review.vue",
+        "svelte": "screens/ecommerce/review/Review.svelte",
+        "solid": "screens/ecommerce/review/Review.tsx"
+      }
+    },
+    "confirmation": {
+      "domain": "ecommerce",
+      "description": "Pantalla de confirmación de pedido: mensaje de éxito, número de pedido y CTA para seguir comprando. No compone ningún bloque — solo primitives.",
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "screens/ecommerce/confirmation/Confirmation.tsx",
+        "vue": "screens/ecommerce/confirmation/Confirmation.vue",
+        "svelte": "screens/ecommerce/confirmation/Confirmation.svelte",
+        "solid": "screens/ecommerce/confirmation/Confirmation.solid.tsx"
+      },
+      "dest": {
+        "react": "screens/ecommerce/confirmation/Confirmation.tsx",
+        "vue": "screens/ecommerce/confirmation/Confirmation.vue",
+        "svelte": "screens/ecommerce/confirmation/Confirmation.svelte",
+        "solid": "screens/ecommerce/confirmation/Confirmation.tsx"
+      }
     }
   },
   "flows": {
@@ -1160,6 +1249,23 @@
         "vue": "flows/auth/Auth.example.vue",
         "svelte": "flows/auth/Auth.example.svelte",
         "solid": "flows/auth/Auth.example.tsx"
+      }
+    },
+    "checkout": {
+      "description": "Flujo de checkout completo — el capstone de E-Commerce: carrito, envío, pago, revisión y confirmación, con un ensamblaje de ejemplo de estado local. Primera vez que las screens de un flow componen bloques de E-Commerce (shopping-cart, checkout-forms, order-summaries) en vez de solo primitives, ejercitando la resolución recursiva de `composes`.",
+      "composes": ["cart", "shipping", "payment", "review", "confirmation"],
+      "dependencies": ["@moderno/{framework}"],
+      "files": {
+        "react": "flows/checkout/Checkout.example.tsx",
+        "vue": "flows/checkout/Checkout.example.vue",
+        "svelte": "flows/checkout/Checkout.example.svelte",
+        "solid": "flows/checkout/Checkout.example.solid.tsx"
+      },
+      "dest": {
+        "react": "flows/checkout/Checkout.example.tsx",
+        "vue": "flows/checkout/Checkout.example.vue",
+        "svelte": "flows/checkout/Checkout.example.svelte",
+        "solid": "flows/checkout/Checkout.example.tsx"
       }
     }
   }

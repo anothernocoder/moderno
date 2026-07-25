@@ -124,10 +124,18 @@ process.stdout.write(JSON.stringify(checks))
  * tarballs into a fresh scratch directory outside the pnpm workspace, and
  * exercises the package's public entry point (exports + bin).
  *
+ * `options.extraChecks`, if given, is an async `({ installDir, manifest }) =>
+ * check[]` callback run after the npm install (and before the scratch
+ * directory is cleaned up), for packages that need more than export/bin
+ * resolution — e.g. actually rendering a component against the installed
+ * tarball. Its returned checks (same `{ kind, specifier, ok, detail? }`
+ * shape as the built-in ones) are merged into the result.
+ *
  * Returns { pkg, ok, checks }, where checks is a flat list of per-entry-point
  * pass/fail results.
  */
-export async function smokeTestPackage(pkgPathOrName) {
+export async function smokeTestPackage(pkgPathOrName, options = {}) {
+  const { extraChecks } = options
   const pkgDir = packageDirFor(pkgPathOrName)
   const manifest = await readManifest(pkgDir)
 
@@ -159,6 +167,10 @@ export async function smokeTestPackage(pkgPathOrName) {
     await writeFile(verifierPath, buildVerifierSource(manifest))
     const stdout = execFileSync(process.execPath, [verifierPath], { cwd: installDir, encoding: 'utf8' })
     const checks = JSON.parse(stdout)
+
+    if (extraChecks) {
+      checks.push(...(await extraChecks({ installDir, manifest })))
+    }
 
     return { pkg: manifest.name, ok: checks.every((c) => c.ok), checks }
   } finally {

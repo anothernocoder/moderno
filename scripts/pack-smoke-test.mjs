@@ -124,10 +124,17 @@ process.stdout.write(JSON.stringify(checks))
  * tarballs into a fresh scratch directory outside the pnpm workspace, and
  * exercises the package's public entry point (exports + bin).
  *
- * Returns { pkg, ok, checks }, where checks is a flat list of per-entry-point
- * pass/fail results.
+ * Returns { pkg, ok, checks, scratchRoot, installDir }, where checks is a flat
+ * list of per-entry-point pass/fail results, and scratchRoot/installDir point
+ * at the npm-install scratch directory used to run the checks.
+ *
+ * By default the scratch directory is removed before returning. Pass
+ * `{ keepInstallDir: true }` to keep it around (e.g. to run additional,
+ * package-specific checks — such as rendering a component — against the
+ * freshly-installed tarball) — the caller is then responsible for removing
+ * `scratchRoot` itself.
  */
-export async function smokeTestPackage(pkgPathOrName) {
+export async function smokeTestPackage(pkgPathOrName, { keepInstallDir = false } = {}) {
   const pkgDir = packageDirFor(pkgPathOrName)
   const manifest = await readManifest(pkgDir)
 
@@ -160,9 +167,11 @@ export async function smokeTestPackage(pkgPathOrName) {
     const stdout = execFileSync(process.execPath, [verifierPath], { cwd: installDir, encoding: 'utf8' })
     const checks = JSON.parse(stdout)
 
-    return { pkg: manifest.name, ok: checks.every((c) => c.ok), checks }
+    return { pkg: manifest.name, ok: checks.every((c) => c.ok), checks, scratchRoot, installDir }
   } finally {
-    await rm(scratchRoot, { recursive: true, force: true })
+    if (!keepInstallDir) {
+      await rm(scratchRoot, { recursive: true, force: true })
+    }
   }
 }
 

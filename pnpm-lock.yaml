@@ -196,6 +196,9 @@ importers:
       jsdom:
         specifier: ^29.1.1
         version: 29.1.1
+      tsup:
+        specifier: ^8.5.1
+        version: 8.5.1(postcss@8.5.15)(typescript@5.9.3)
       vite:
         specifier: ^5.4.20
         version: 5.4.21(@types/node@24.13.2)

@@ -1,4 +1,4 @@
-import { cx, type SpinnerSize } from '@moderno/class-contract'
+import { cx, type SpinnerSize } from '@moderno-ui/class-contract'
 
 export interface SpinnerProps {
   size?: SpinnerSize

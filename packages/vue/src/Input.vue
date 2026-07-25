@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useId } from 'vue'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 defineOptions({ inheritAttrs: false })
 

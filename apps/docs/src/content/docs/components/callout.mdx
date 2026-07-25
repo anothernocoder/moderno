@@ -4,10 +4,10 @@ description: Highlighted block that draws attention to a message or tip. Pure CS
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Callout as RCallout } from '@moderno/react'
-import { Callout as VCallout } from '@moderno/vue'
-import { Callout as SCallout } from '@moderno/svelte'
-import { Callout as OCallout } from '@moderno/solid'
+import { Callout as RCallout } from '@moderno-ui/react'
+import { Callout as VCallout } from '@moderno-ui/vue'
+import { Callout as SCallout } from '@moderno-ui/svelte'
+import { Callout as OCallout } from '@moderno-ui/solid'
 
 **Callout** highlights a message or tip. A **closed-prop** primitive, pure CSS.
 
@@ -49,7 +49,7 @@ import { Callout as OCallout } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Callout } from '@moderno/react'
+import { Callout } from '@moderno-ui/react'
 
 <Callout variant="warning" title="Heads up">
   This action affects every member of the team.
@@ -59,7 +59,7 @@ import { Callout } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Callout } from '@moderno/vue'
+import { Callout } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -72,7 +72,7 @@ import { Callout } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Callout } from '@moderno/svelte'
+  import { Callout } from '@moderno-ui/svelte'
 </script>
 
 <Callout variant="warning" title="Heads up">
@@ -82,7 +82,7 @@ import { Callout } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Callout } from '@moderno/solid'
+import { Callout } from '@moderno-ui/solid'
 
 <Callout variant="warning" title="Heads up">
   This action affects every member of the team.

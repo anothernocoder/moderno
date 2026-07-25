@@ -1,4 +1,4 @@
-import { CheckoutExample, type CheckoutExampleProps } from '@moderno/registry/flows/checkout/Checkout.example.solid.tsx'
+import { CheckoutExample, type CheckoutExampleProps } from '@moderno-ui/registry/flows/checkout/Checkout.example.solid.tsx'
 
 // `step` is a plain string prop passed from the MDX doc across the
 // Astro-island boundary (which serializes to JSON) so each screen can be

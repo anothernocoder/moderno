@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { Button } from '@moderno/solid'
+import { Button } from '@moderno-ui/solid'
 import { ShareInvite, type ShareChannel, type ShareInviteItem } from '../../../blocks/marketing/share-invite/ShareInvite.solid'
 
 export type { ShareChannel, ShareInviteItem }

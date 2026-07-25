@@ -2,7 +2,7 @@
 import { computed, ref, useId } from 'vue'
 import * as combobox from '@zag-js/combobox'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface ComboboxItem {
   label: string

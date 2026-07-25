@@ -1,5 +1,5 @@
 import { createMemo, createSignal, For, Show, type JSX } from 'solid-js'
-import { Avatar, Badge, Button, Divider } from '@moderno/solid'
+import { Avatar, Badge, Button, Divider } from '@moderno-ui/solid'
 
 export interface ApplicationShellsNavItem {
   id: string

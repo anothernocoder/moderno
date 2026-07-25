@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from 'react'
-import { Alert, Button } from '@moderno/react'
+import { Alert, Button } from '@moderno-ui/react'
 
 export type AlertVariant = 'info' | 'success' | 'warning' | 'error'
 

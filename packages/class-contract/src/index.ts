@@ -1,4 +1,4 @@
-// @moderno/class-contract — single source for the md-* class contract.
+// @moderno-ui/class-contract — single source for the md-* class contract.
 //
 // Two families:
 //   • Variant components (cx.*) — a base class plus named axes of modifier values

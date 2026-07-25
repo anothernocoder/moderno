@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as radio from '@zag-js/radio-group'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   interface RadioOption {
     value: string

@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { cx, parts, type ChipVariant } from '@moderno/class-contract'
+import { cx, parts, type ChipVariant } from '@moderno-ui/class-contract'
 
 export interface ChipProps {
   variant?: ChipVariant

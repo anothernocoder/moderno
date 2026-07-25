@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ActionPanels from '@moderno/registry/blocks/applications/action-panels/ActionPanels.vue'
+import ActionPanels from '@moderno-ui/registry/blocks/applications/action-panels/ActionPanels.vue'
 </script>
 
 <template>

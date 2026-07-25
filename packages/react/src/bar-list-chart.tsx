@@ -1,5 +1,5 @@
-import { buildBarListGeometry, type ChartCategoryDatum } from '@moderno/chart-core'
-import { parts } from '@moderno/class-contract'
+import { buildBarListGeometry, type ChartCategoryDatum } from '@moderno-ui/chart-core'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface BarListChartProps {
   /** Labeled values to plot, one row per datum. */

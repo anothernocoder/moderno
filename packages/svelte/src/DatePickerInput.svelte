@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getDatePickerContext } from './date-picker-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let { index }: { index?: number } = $props()
   const api = getDatePickerContext()

@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react'
 import * as carousel from '@zag-js/carousel'
 import { useMachine, normalizeProps } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 type CarouselApi = ReturnType<typeof carousel.connect>

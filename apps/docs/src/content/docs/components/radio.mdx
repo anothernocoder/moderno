@@ -4,10 +4,10 @@ description: Single selection within a group of mutually exclusive options. Zag 
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Radio as RRadio } from '@moderno/react'
-import { Radio as VRadio } from '@moderno/vue'
-import { Radio as SRadio } from '@moderno/svelte'
-import { Radio as ORadio } from '@moderno/solid'
+import { Radio as RRadio } from '@moderno-ui/react'
+import { Radio as VRadio } from '@moderno-ui/vue'
+import { Radio as SRadio } from '@moderno-ui/svelte'
+import { Radio as ORadio } from '@moderno-ui/solid'
 
 export const opts = [
   { value: 'card', label: 'Card' },
@@ -47,7 +47,7 @@ export const opts = [
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Radio } from '@moderno/react'
+import { Radio } from '@moderno-ui/react'
 
 const options = [
   { value: 'card', label: 'Card' },
@@ -60,7 +60,7 @@ const options = [
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Radio } from '@moderno/vue'
+import { Radio } from '@moderno-ui/vue'
 import { ref } from 'vue'
 const value = ref('card')
 const options = [
@@ -77,7 +77,7 @@ const options = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Radio } from '@moderno/svelte'
+  import { Radio } from '@moderno-ui/svelte'
   let value = $state('card')
   const options = [
     { value: 'card', label: 'Card' },
@@ -90,7 +90,7 @@ const options = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Radio } from '@moderno/solid'
+import { Radio } from '@moderno-ui/solid'
 
 const options = [
   { value: 'card', label: 'Card' },

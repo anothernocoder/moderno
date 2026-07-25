@@ -68,27 +68,27 @@ Pulling the `referral` flow copies the three screens it composes (`referral-invi
 `referral-share`, `referral-reward`) **and** the Marketing block `referral-share` in turn composes
 (`share-invite`) **plus** the example assembly. The CLI resolves `composes` recursively (flow →
 screen → block) across domains and dedups by name — primitives are never copied, they stay an
-`@moderno/<framework>` npm dependency.
+`@moderno-ui/<framework>` npm dependency.
 
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```sh
-npx @moderno/registry add referral --framework react
+npx @moderno-ui/registry add referral --framework react
 ```
 </TabItem>
 <TabItem label="Vue">
 ```sh
-npx @moderno/registry add referral --framework vue
+npx @moderno-ui/registry add referral --framework vue
 ```
 </TabItem>
 <TabItem label="Svelte">
 ```sh
-npx @moderno/registry add referral --framework svelte
+npx @moderno-ui/registry add referral --framework svelte
 ```
 </TabItem>
 <TabItem label="Solid">
 ```sh
-npx @moderno/registry add referral --framework solid
+npx @moderno-ui/registry add referral --framework solid
 ```
 </TabItem>
 </Tabs>
@@ -100,16 +100,16 @@ This prints every screen and block it pulled in, then copies
 Pass `--no-example` to copy only the composed screens and block:
 
 ```sh
-npx @moderno/registry add referral --framework react --no-example
+npx @moderno-ui/registry add referral --framework react --no-example
 ```
 
 Want just the `share-invite` block, with no flow context at all? It's addable standalone:
 
 ```sh
-npx @moderno/registry add share-invite --framework react
+npx @moderno-ui/registry add share-invite --framework react
 ```
 
-After copying, install the `@moderno/<framework>` primitive package and
+After copying, install the `@moderno-ui/<framework>` primitive package and
 [import the styles](/introduction/installation/). From there, the code — including navigation and
 state — is yours.
 

@@ -1,7 +1,7 @@
 import { Show, createMemo, createRenderEffect, createUniqueId, type JSX } from 'solid-js'
 import * as progress from '@zag-js/progress'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { cx, parts, type ProgressVariant } from '@moderno/class-contract'
+import { cx, parts, type ProgressVariant } from '@moderno-ui/class-contract'
 
 export interface ProgressProps {
   label?: JSX.Element

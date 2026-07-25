@@ -2,7 +2,7 @@
 // Moderno block — Content (Vue). Copy-paste; edit freely.
 // General content/prose section: heading, subtitle, and long-form copy broken into headed
 // sections. Uses the Divider primitive + Moderno tokens.
-import { Divider } from '@moderno/vue'
+import { Divider } from '@moderno-ui/vue'
 
 export interface ContentSection {
   heading?: string

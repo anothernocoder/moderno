@@ -1,9 +1,9 @@
 ---
-"@moderno/react": minor
-"@moderno/vue": minor
-"@moderno/svelte": minor
-"@moderno/solid": minor
-"@moderno/styles": minor
+"@moderno-ui/react": minor
+"@moderno-ui/vue": minor
+"@moderno-ui/svelte": minor
+"@moderno-ui/solid": minor
+"@moderno-ui/styles": minor
 ---
 
 Add three closed-prop primitives (ADR-0003) across all four frameworks:
@@ -17,4 +17,4 @@ Add three closed-prop primitives (ADR-0003) across all four frameworks:
   machine, with min/max clamping and keyboard stepping; emits `md-number-input-*`
   classes.
 
-Adds the matching token-driven CSS to `@moderno/styles`.
+Adds the matching token-driven CSS to `@moderno-ui/styles`.

@@ -4,7 +4,7 @@
   // (values/onChange/onSubmit) with no internal state and no router — the consumer
   // owns state and navigation. Composes the Input, Checkbox, Divider and Button
   // primitives + Moderno tokens.
-  import { Button, Checkbox, Divider, Input } from '@moderno/svelte'
+  import { Button, Checkbox, Divider, Input } from '@moderno-ui/svelte'
 
   export interface SignInValues {
     email: string

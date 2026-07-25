@@ -1,5 +1,5 @@
 import type { CSSProperties, FormEvent } from 'react'
-import { Badge, Button, Input } from '@moderno/react'
+import { Badge, Button, Input } from '@moderno-ui/react'
 
 export type ShareInviteStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

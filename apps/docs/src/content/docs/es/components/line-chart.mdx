@@ -12,7 +12,7 @@ import OLineChartDemo from '../../../../demos/solid/LineChartDemo.tsx'
 **Line chart** dibuja datos `{x, y}` como un path SVG, opcionalmente con un punto por
 dato. Es la primitiva trazadora del chart core (ADR-0004): la geometría — escalas y el
 path de la línea — se calcula una sola vez en el **chart-core** framework-neutral
-(`@moderno/chart-core`, construido sobre `d3-scale` + `d3-shape`), y cada paquete de
+(`@moderno-ui/chart-core`, construido sobre `d3-scale` + `d3-shape`), y cada paquete de
 framework solo renderiza esa geometría como SVG. El color del trazo y de los puntos
 viene de tokens `--md-*`, así el theming (claro/oscuro) se hereda de CSS sin plomería
 de color en JS. Primitive **closed-prop** (ADR-0003) — se pasan `data` y props de
@@ -48,7 +48,7 @@ tamaño, sin anatomía composicional.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { LineChart } from '@moderno/react'
+import { LineChart } from '@moderno-ui/react'
 
 <LineChart
   data={[
@@ -66,7 +66,7 @@ import { LineChart } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { LineChart } from '@moderno/vue'
+import { LineChart } from '@moderno-ui/vue'
 
 const data = [
   { x: 0, y: 12 },
@@ -83,7 +83,7 @@ const data = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { LineChart } from '@moderno/svelte'
+  import { LineChart } from '@moderno-ui/svelte'
 
   const data = [
     { x: 0, y: 12 },
@@ -97,7 +97,7 @@ const data = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { LineChart } from '@moderno/solid'
+import { LineChart } from '@moderno-ui/solid'
 
 <LineChart
   data={[

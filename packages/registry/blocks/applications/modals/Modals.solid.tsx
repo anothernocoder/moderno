@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Badge, Dialog } from '@moderno/solid'
+import { Badge, Dialog } from '@moderno-ui/solid'
 
 export interface ModalAction {
   id: string

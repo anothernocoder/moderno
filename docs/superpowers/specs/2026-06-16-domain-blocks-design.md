@@ -34,7 +34,7 @@ packages/registry/blocks/
 ## The blocks
 
 All blocks follow the Hero pattern: a single section/component, inline styles
-reading `--md-*` tokens, composing existing primitives from `@moderno/{framework}`.
+reading `--md-*` tokens, composing existing primitives from `@moderno-ui/{framework}`.
 Low behavior, high layout. Each ships an interface/props with sensible defaults so
 it renders standalone.
 
@@ -100,7 +100,7 @@ point into the nested folders.
 }
 ```
 
-Each block keeps `description`, `dependencies: ["@moderno/{framework}"]`, `files`,
+Each block keeps `description`, `dependencies: ["@moderno-ui/{framework}"]`, `files`,
 and `dest` (bare filename per framework) exactly like the current Hero entry.
 
 ## CLI

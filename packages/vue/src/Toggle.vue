@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as zagSwitch from '@zag-js/switch'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 // Renders a control plus an optional label; no single host element for attrs.
 defineOptions({ inheritAttrs: false })

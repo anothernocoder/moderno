@@ -6,7 +6,7 @@
 // no clipboard access or async logic lives here, just emitted events
 // (`copy-link`, `share`, `invite`) the consumer wires up. Uses the
 // Input/Button/Badge primitives + Moderno tokens (--md-* custom properties).
-import { Badge, Button, Input } from '@moderno/vue'
+import { Badge, Button, Input } from '@moderno-ui/vue'
 
 export type ShareInviteStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

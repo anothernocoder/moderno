@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSheet } from './sheet-context'
-import { cx, parts, type SheetSide } from '@moderno/class-contract'
+import { cx, parts, type SheetSide } from '@moderno-ui/class-contract'
 
 // Content is teleported to the body; trigger stays in flow.
 defineOptions({ inheritAttrs: false })

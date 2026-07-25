@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Select } from '@moderno/vue'
+import { Select } from '@moderno-ui/vue'
 
 const frutas = [
   { label: 'Manzana', value: 'apple' },

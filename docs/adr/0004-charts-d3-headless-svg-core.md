@@ -7,7 +7,7 @@ Status: accepted
 Moderno ships **interactive chart primitives** (Area, Bar, Line, Donut, Spark, Bar
 List) as npm packages, built on a **framework-neutral chart core** of `d3-scale` +
 `d3-shape`. The core is pure functions (scales, path/arc generators) shared across
-frameworks; each `@moderno/{framework}` package renders the resulting geometry as
+frameworks; each `@moderno-ui/{framework}` package renders the resulting geometry as
 **SVG** and reads `--md-*` tokens for color, so theming is inherited from CSS with no
 JS color plumbing. No monolithic charting library (Chart.js, ECharts, Unovis) is used.
 
@@ -24,7 +24,7 @@ into the same "one core, four adapters" shape Moderno already uses for [[behavio
 
 ## Consequences
 
-- A shared `@moderno/charts-core` (d3-scale + d3-shape) is the single geometry source;
+- A shared `@moderno-ui/charts-core` (d3-scale + d3-shape) is the single geometry source;
   interaction (hover, tooltip) is wired per framework, mirroring the Zag per-framework
   cost noted in ADR-0002.
 - Charts are SVG, so color/stroke come from `--md-*` tokens like every other primitive;

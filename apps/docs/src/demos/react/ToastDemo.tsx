@@ -1,4 +1,4 @@
-import { Button, createToaster, Toaster } from '@moderno/react'
+import { Button, createToaster, Toaster } from '@moderno-ui/react'
 
 const toaster = createToaster({ placement: 'bottom-end' })
 

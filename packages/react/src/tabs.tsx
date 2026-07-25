@@ -1,7 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 type TabsApi = ReturnType<typeof tabs.connect>

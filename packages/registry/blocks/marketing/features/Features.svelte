@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — Features (Svelte). Copy-paste; edit freely.
   // Feature highlight grid: icon, title, and description per item. Uses the Card primitive + Moderno tokens.
-  import { Card } from '@moderno/svelte'
+  import { Card } from '@moderno-ui/svelte'
 
   interface FeatureItem {
     icon?: string

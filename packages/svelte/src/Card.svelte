@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     title,

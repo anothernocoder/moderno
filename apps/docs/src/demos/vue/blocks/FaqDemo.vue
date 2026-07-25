@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Faq from '@moderno/registry/blocks/marketing/faq/Faq.vue'
+import Faq from '@moderno-ui/registry/blocks/marketing/faq/Faq.vue'
 </script>
 
 <template>

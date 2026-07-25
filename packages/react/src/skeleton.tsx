@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { cx, type SkeletonVariant } from '@moderno/class-contract'
+import { cx, type SkeletonVariant } from '@moderno-ui/class-contract'
 
 export interface SkeletonProps {
   variant?: SkeletonVariant

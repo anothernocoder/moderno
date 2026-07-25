@@ -1,4 +1,4 @@
-import { Card, Badge, Button } from '@moderno/react'
+import { Card, Badge, Button } from '@moderno-ui/react'
 
 export interface ProductCardProps {
   image?: string

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cx, type ButtonSize, type ButtonVariant } from '@moderno/class-contract'
+import { cx, type ButtonSize, type ButtonVariant } from '@moderno-ui/class-contract'
 
 const props = defineProps<{ variant?: ButtonVariant; size?: ButtonSize; label?: string }>()
 </script>

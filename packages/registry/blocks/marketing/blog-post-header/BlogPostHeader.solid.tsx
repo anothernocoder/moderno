@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { Avatar, Badge } from '@moderno/solid'
+import { Avatar, Badge } from '@moderno-ui/solid'
 
 export interface BlogPostHeaderProps {
   category?: string

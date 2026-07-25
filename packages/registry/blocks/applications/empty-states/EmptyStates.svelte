@@ -4,7 +4,7 @@
   // description, and a primary "create your first X" CTA. No illustration asset —
   // a bordered icon box, like Features' item icons, consistent with how Moderno's
   // blocks avoid binary image assets. Uses the Button primitive + Moderno tokens.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   let {
     icon = '📭',

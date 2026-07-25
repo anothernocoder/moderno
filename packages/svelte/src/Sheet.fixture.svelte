@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Sheet } from './index'
-  import type { SheetSide } from '@moderno/class-contract'
+  import type { SheetSide } from '@moderno-ui/class-contract'
 
   let { side }: { side?: SheetSide } = $props()
 </script>

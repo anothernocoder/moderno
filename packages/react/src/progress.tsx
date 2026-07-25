@@ -1,7 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as progress from '@zag-js/progress'
 import { useMachine, normalizeProps } from '@zag-js/react'
-import { cx, parts, type ProgressVariant } from '@moderno/class-contract'
+import { cx, parts, type ProgressVariant } from '@moderno-ui/class-contract'
 
 export interface ProgressProps {
   /** Visible label. */

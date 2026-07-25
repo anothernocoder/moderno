@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as progress from '@zag-js/progress'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { cx, parts, type ProgressVariant } from '@moderno/class-contract'
+import { cx, parts, type ProgressVariant } from '@moderno-ui/class-contract'
 
 const props = withDefaults(
   defineProps<{

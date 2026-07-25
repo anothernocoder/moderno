@@ -2,7 +2,7 @@
 // Moderno block — Feeds (Vue). Copy-paste; edit freely.
 // Activity feed / timeline: avatar connected by a vertical rail, actor + action text,
 // an optional status tag, and a timestamp. Uses the Avatar + Badge primitives + Moderno tokens.
-import { Avatar, Badge } from '@moderno/vue'
+import { Avatar, Badge } from '@moderno-ui/vue'
 
 export type FeedTagVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

@@ -1,5 +1,5 @@
 import { For, type JSX } from 'solid-js'
-import { Badge, Card } from '@moderno/solid'
+import { Badge, Card } from '@moderno-ui/solid'
 
 export interface ContainerVariant {
   id: string

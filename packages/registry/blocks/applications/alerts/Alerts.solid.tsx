@@ -1,5 +1,5 @@
 import { createSignal, createMemo, For, type JSX } from 'solid-js'
-import { Alert, Button } from '@moderno/solid'
+import { Alert, Button } from '@moderno-ui/solid'
 
 export type AlertVariant = 'info' | 'success' | 'warning' | 'error'
 

@@ -4,7 +4,7 @@
   // name/email/message form, plus a secondary "prefer to email or call?" trigger that opens the
   // Dialog primitive with your direct contact info. Uses the Input + Textarea + Button + Dialog
   // primitives + Moderno tokens.
-  import { Button, Dialog, Input, Textarea } from '@moderno/svelte'
+  import { Button, Dialog, Input, Textarea } from '@moderno-ui/svelte'
 
   export interface ContactModalFormValues {
     name: string

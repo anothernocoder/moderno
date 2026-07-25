@@ -4,10 +4,10 @@ description: Control de acción primaria. Pura CSS, sin núcleo de comportamient
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Button as RButton } from '@moderno/react'
-import { Button as VButton } from '@moderno/vue'
-import { Button as SButton } from '@moderno/svelte'
-import { Button as OButton } from '@moderno/solid'
+import { Button as RButton } from '@moderno-ui/react'
+import { Button as VButton } from '@moderno-ui/vue'
+import { Button as SButton } from '@moderno-ui/svelte'
+import { Button as OButton } from '@moderno-ui/solid'
 
 **Button** es el control de acción primaria. Es un primitive **closed-prop** y **pura CSS**:
 no usa máquina de Zag, solo el contrato de clases `md-*`. Una sola acción primaria por vista.
@@ -50,7 +50,7 @@ no usa máquina de Zag, solo el contrato de clases `md-*`. Una sola acción prim
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Button } from '@moderno/react'
+import { Button } from '@moderno-ui/react'
 
 <Button label="Guardar cambios" />
 <Button variant="secondary" label="Cancelar" />
@@ -60,7 +60,7 @@ import { Button } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Button } from '@moderno/vue'
+import { Button } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -73,7 +73,7 @@ import { Button } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 </script>
 
 <Button label="Guardar cambios" />
@@ -83,7 +83,7 @@ import { Button } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Button } from '@moderno/solid'
+import { Button } from '@moderno-ui/solid'
 
 <Button label="Guardar cambios" />
 <Button variant="secondary" label="Cancelar" />

@@ -12,7 +12,7 @@ import OAreaChartDemo from '../../../../demos/solid/AreaChartDemo.tsx'
 **Area chart** dibuja datos `{x, y}` como un área SVG rellena con una línea trazada
 sobre su borde superior, opcionalmente con un punto por dato. Construye sobre la misma
 geometría de **chart-core** que [Line chart](/es/components/line-chart/) (ADR-0004) —
-`@moderno/chart-core`, construido sobre `d3-scale` + `d3-shape` — calculada una sola
+`@moderno-ui/chart-core`, construido sobre `d3-scale` + `d3-shape` — calculada una sola
 vez y renderizada como SVG por cada paquete de framework. El relleno cierra hacia el
 fondo del gráfico (no hacia el y=0 de los datos), así que se lee correctamente incluso
 cuando todos los valores son positivos. El color de relleno y de trazo viene de tokens
@@ -49,7 +49,7 @@ anatomía composicional.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { AreaChart } from '@moderno/react'
+import { AreaChart } from '@moderno-ui/react'
 
 <AreaChart
   data={[
@@ -67,7 +67,7 @@ import { AreaChart } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { AreaChart } from '@moderno/vue'
+import { AreaChart } from '@moderno-ui/vue'
 
 const data = [
   { x: 0, y: 12 },
@@ -84,7 +84,7 @@ const data = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { AreaChart } from '@moderno/svelte'
+  import { AreaChart } from '@moderno-ui/svelte'
 
   const data = [
     { x: 0, y: 12 },
@@ -98,7 +98,7 @@ const data = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { AreaChart } from '@moderno/solid'
+import { AreaChart } from '@moderno-ui/solid'
 
 <AreaChart
   data={[

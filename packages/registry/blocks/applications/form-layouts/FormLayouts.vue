@@ -4,8 +4,8 @@
 // multi-column field grid, section dividers, and a footer action row. Uses the Input +
 // Textarea + Select + Divider + Button primitives + Moderno tokens.
 import { reactive } from 'vue'
-import { Button, Divider, Input, Select, Textarea } from '@moderno/vue'
-import type { SelectItem } from '@moderno/vue'
+import { Button, Divider, Input, Select, Textarea } from '@moderno-ui/vue'
+import type { SelectItem } from '@moderno-ui/vue'
 
 export interface FormLayoutsValues {
   firstName: string

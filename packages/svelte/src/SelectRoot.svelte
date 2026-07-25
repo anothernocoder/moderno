@@ -3,7 +3,7 @@
   import * as select from '@zag-js/select'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setSelectContext, type SelectItem } from './select-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     items,

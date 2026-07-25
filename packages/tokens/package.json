@@ -1,5 +1,5 @@
 {
-  "name": "@moderno/tokens",
+  "name": "@moderno-ui/tokens",
   "version": "0.1.0",
   "description": "Moderno design tokens — framework-free CSS custom properties + W3C DTCG source.",
   "type": "module",

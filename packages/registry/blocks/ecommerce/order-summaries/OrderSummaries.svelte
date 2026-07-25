@@ -6,7 +6,7 @@
   // presentational, no interactive controls (unlike Shopping Cart, which has
   // quantity editing). Composes the Divider primitive + Moderno tokens — no
   // new primitives.
-  import { Divider } from '@moderno/svelte'
+  import { Divider } from '@moderno-ui/svelte'
 
   export interface OrderSummariesItem {
     id: string | number

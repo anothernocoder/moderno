@@ -3,7 +3,7 @@
   // Service/system health panel: overall status banner plus a list of monitored
   // services, each with a status Indicator, a Badge, and uptime / last-incident text.
   // Uses the Badge + Divider + Indicator primitives + Moderno tokens.
-  import { Badge, Divider, Indicator } from '@moderno/svelte'
+  import { Badge, Divider, Indicator } from '@moderno-ui/svelte'
 
   export type ServiceStatus = 'operational' | 'degraded' | 'down'
 

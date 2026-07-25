@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type CSSProperties, type FormEvent } from 'react'
-import { Button, Dialog, Input, Textarea } from '@moderno/react'
+import { Button, Dialog, Input, Textarea } from '@moderno-ui/react'
 
 export interface ContactModalFormValues {
   name: string

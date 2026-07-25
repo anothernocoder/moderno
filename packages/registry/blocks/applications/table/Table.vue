@@ -3,7 +3,7 @@
 // Application data table: sortable order column, row selection, status badges and
 // bulk actions. Uses the Checkbox + Badge + Button primitives + Moderno tokens.
 import { computed, ref } from 'vue'
-import { Badge, Button, Checkbox } from '@moderno/vue'
+import { Badge, Button, Checkbox } from '@moderno-ui/vue'
 
 export type TableStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

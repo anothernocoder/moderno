@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
-import { legalNames } from '@moderno/class-contract'
+import { legalNames } from '@moderno-ui/class-contract'
 import { assembleStyles, STYLE_SEGMENTS } from './generate'
 
 describe('assembleStyles — concatenate partials + enforce the class contract', () => {

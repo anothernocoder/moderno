@@ -1,8 +1,9 @@
 # Moderno
 
-Moderno is a token-driven, framework-agnostic design system: it defines a visual
-language (sharp corners, monochrome, Hedvig type) and aims to deliver styled,
+Moderno is a token-driven, framework-agnostic design system: it delivers styled,
 accessible, interactive components consumable from React, Vue, Svelte and Solid.
+Its visual language (sharp corners, monochrome, Hedvig type) is the default
+[[theme]], not an invariant — consumers may re-theme it to their own brand.
 
 ## Language
 
@@ -25,11 +26,19 @@ An intent-based token name (`color/text/primary`, `border-default`) that compone
 consume; the swap layer for theming (light/dark, re-skin).
 _Avoid_: alias, mapping.
 
+**Theme**:
+A named, complete assignment of values to the [[semantic-role]]s — Moderno's look
+(sharp corners, monochrome, Hedvig) is just the default one. Created from curated
+knobs (brand color, neutrals, type, radius, density, light/dark) that write
+semantic roles, never one-off values; authored themes ship as starting points.
+Exported as DTCG tokens plus generated CSS custom properties.
+_Avoid_: skin, palette, style, branding.
+
 **Class contract**:
 The machine-readable set of `md-*` class names — and the variant/size composition
 that builds them (`md-btn` + `md-btn--${variant}`) — that the [[styled-layer]] applies
 to markup and `styles.css` realizes as rules. The seam between the rendered DOM and the
-look. Owned once (`@moderno/class-contract`) so a rename is one edit, not five, and
+look. Owned once (`@moderno-ui/class-contract`) so a rename is one edit, not five, and
 generated CSS selectors are guaranteed to match the names the frameworks emit. Distinct
 from [[semantic-role]], which names token values, not component classes.
 _Avoid_: classnames, BEM, css contract, stylesheet API.
@@ -78,6 +87,14 @@ The copy-paste delivery channel for blocks — a CLI pulls a block's per-framewo
 source into the consumer's own repo to edit freely. Distinct from npm packages.
 _Avoid_: catalog, store, repo.
 
+**Starter**:
+The third distribution channel, alongside [[primitive]] (npm) and [[registry]]
+(copy-paste): a brand-new project scaffold, pre-integrated with Moderno — framework
+package installed, tokens/styles imported, theme set — delivered by the standalone
+`create-moderno` package (`npm create moderno@latest`). Unlike the [[registry]], which
+adds pieces to a project that already exists, a Starter creates the project itself.
+_Avoid_: scaffold, boilerplate, template, kit.
+
 **Screen**:
 A full single view composed of [[block]]s (a sign-in screen, a dashboard home, a
 cart screen). One step in a [[flow]]. Larger than a block, smaller than a flow.
@@ -91,6 +108,23 @@ checkout = cart + shipping + payment + confirmation). The third delivery tier ab
 [[block]]; cuts across [[domain]]s rather than living inside one. Delivered by
 copy-paste via the [[registry]].
 _Avoid_: funnel, wizard, journey, sequence, example page.
+
+**Playground**:
+Moderno's interactive surface — one app, two runtimes. Hosted (public, static,
+part of the product): browse and compose registry inventory, edit themes, toggle
+viewport, export. Local (`npx moderno playground`, run inside a repo): the same UI
+plus generation — it can drive the user's own coding agent to produce variant
+source files in that repo. Generation capabilities light up only in the local
+runtime.
+_Avoid_: editor, builder, studio, demo site.
+
+**Prototype**:
+The saveable, shareable unit of [[playground]] work: a composition (which
+[[screen]]s/[[flow]], which [[block]]s in what order, chosen variants and edited
+content, viewport) plus the [[theme]] applied to it. Replaces a wireframe.
+Serialized as a shareable link and as a JSON file; exports (HTML, prompt) are
+derived outputs, not part of the Prototype itself.
+_Avoid_: preset, snapshot, draft, design, mockup, wireframe.
 
 **Domain**:
 A product-type grouping of [[block]]s and [[screen]]s — Marketing, Applications,

@@ -1,5 +1,5 @@
 ---
-"@moderno/registry": minor
+"@moderno-ui/registry": minor
 ---
 
 Add the **Flows** delivery tier (ADR-0005) and its pilot tracer, **Auth** (sign-in

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DateView } from '@zag-js/date-picker'
 import { useDatePicker } from './date-picker-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{ view: DateView }>()
 const api = useDatePicker('Content')

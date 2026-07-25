@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Card, Button } from '@moderno/vue'
+import { Card, Button } from '@moderno-ui/vue'
 </script>
 
 <template>

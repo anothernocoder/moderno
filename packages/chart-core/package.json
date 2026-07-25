@@ -1,5 +1,5 @@
 {
-  "name": "@moderno/chart-core",
+  "name": "@moderno-ui/chart-core",
   "version": "0.1.0",
   "description": "Moderno chart core — framework-neutral chart geometry (d3-scale + d3-shape), the charting analogue of the behavior-core.",
   "type": "module",

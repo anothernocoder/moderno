@@ -1,5 +1,5 @@
 import { createSignal, For, Show, type JSX } from 'solid-js'
-import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno/solid'
+import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno-ui/solid'
 
 export interface CategoryFiltersState {
   category?: string

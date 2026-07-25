@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as splitter from '@zag-js/splitter'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface SplitterPanelDef {
   /** Unique id for the panel; content is provided via a slot of the same name. */

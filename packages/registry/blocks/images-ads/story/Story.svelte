@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — Story (Svelte). Copy-paste; edit freely.
   // Vertical 9:16 ad / social template. Uses the Button primitive + Moderno tokens.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   let {
     kicker = 'Nueva colección',

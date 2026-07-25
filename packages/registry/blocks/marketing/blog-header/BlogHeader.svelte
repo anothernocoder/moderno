@@ -2,7 +2,7 @@
   // Moderno block — BlogHeader (Svelte). Copy-paste; edit freely.
   // Index/landing header for a blog: centered kicker/title/subtitle above a row of category chips.
   // Uses the Chip primitive + Moderno tokens.
-  import { Chip } from '@moderno/svelte'
+  import { Chip } from '@moderno-ui/svelte'
 
   const DEFAULT_CATEGORIES = ['Producto', 'Ingeniería', 'Diseño']
 

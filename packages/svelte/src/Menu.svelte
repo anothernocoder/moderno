@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as menu from '@zag-js/menu'
   import { useMachine, normalizeProps, portal } from '@zag-js/svelte'
-  import { cx, parts } from '@moderno/class-contract'
+  import { cx, parts } from '@moderno-ui/class-contract'
 
   export interface MenuItem {
     label: string

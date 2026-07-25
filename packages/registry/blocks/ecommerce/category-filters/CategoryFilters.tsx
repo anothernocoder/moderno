@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from 'react'
-import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno/react'
+import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno-ui/react'
 
 export interface CategoryFiltersState {
   category?: string

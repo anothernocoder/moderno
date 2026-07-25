@@ -2,7 +2,7 @@
   // Moderno block — KpiCards (Svelte). Copy-paste; edit freely.
   // Primary metric cards with a trend indicator. Single-metric counterpart to
   // the Stats row block. Uses the Card + Badge primitives + Moderno tokens.
-  import { Card, Badge } from '@moderno/svelte'
+  import { Card, Badge } from '@moderno-ui/svelte'
 
   interface KpiCardItem {
     label: string

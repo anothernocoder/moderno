@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Avatar, Card } from '@moderno/react'
+import { Avatar, Card } from '@moderno-ui/react'
 
 export interface TeamMember {
   name: string

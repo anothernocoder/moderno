@@ -30,7 +30,7 @@ es dueño del markup y del class contract `md-toast-*`.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { createToaster, Toaster } from '@moderno/react'
+import { createToaster, Toaster } from '@moderno-ui/react'
 
 // Singleton a nivel de módulo: creá una vez, montá un <Toaster>, llamá desde donde sea.
 export const toaster = createToaster({ placement: 'bottom-end' })
@@ -48,7 +48,7 @@ function App() {
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { createToaster, Toaster } from '@moderno/vue'
+import { createToaster, Toaster } from '@moderno-ui/vue'
 
 const toaster = createToaster({ placement: 'bottom-end' })
 </script>
@@ -62,7 +62,7 @@ const toaster = createToaster({ placement: 'bottom-end' })
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { createToaster, Toaster } from '@moderno/svelte'
+  import { createToaster, Toaster } from '@moderno-ui/svelte'
 
   const toaster = createToaster({ placement: 'bottom-end' })
 </script>
@@ -73,7 +73,7 @@ const toaster = createToaster({ placement: 'bottom-end' })
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { createToaster, Toaster } from '@moderno/solid'
+import { createToaster, Toaster } from '@moderno-ui/solid'
 
 const toaster = createToaster({ placement: 'bottom-end' })
 

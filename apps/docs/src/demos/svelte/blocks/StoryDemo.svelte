@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Story from '@moderno/registry/blocks/images-ads/story/Story.svelte'
+  import Story from '@moderno-ui/registry/blocks/images-ads/story/Story.svelte'
 </script>
 
 <Story />

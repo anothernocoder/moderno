@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select } from '@moderno/svelte'
+  import { Select } from '@moderno-ui/svelte'
 
   const frutas = [
     { label: 'Manzana', value: 'apple' },

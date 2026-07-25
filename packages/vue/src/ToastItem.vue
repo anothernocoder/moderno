@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as toastMachine from '@zag-js/toast'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{
   toast: toastMachine.Props

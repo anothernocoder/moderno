@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Moderno block — Header (Vue). Copy-paste; edit freely.
 // Site header / marketing navigation: logo, nav links, and CTA button(s) in a top bar. Uses the Button primitive + Moderno tokens.
-import { Button } from '@moderno/vue'
+import { Button } from '@moderno-ui/vue'
 
 interface HeaderNavItem {
   label: string

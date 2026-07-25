@@ -4,10 +4,10 @@ description: Control deslizante de un valor numérico en un rango. Behavior core
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Slider as RSlider } from '@moderno/react'
-import { Slider as VSlider } from '@moderno/vue'
-import { Slider as SSlider } from '@moderno/svelte'
-import { Slider as OSlider } from '@moderno/solid'
+import { Slider as RSlider } from '@moderno-ui/react'
+import { Slider as VSlider } from '@moderno-ui/vue'
+import { Slider as SSlider } from '@moderno-ui/svelte'
+import { Slider as OSlider } from '@moderno-ui/solid'
 
 **Slider** ajusta un valor numérico dentro de un rango arrastrando el thumb o con el teclado. Primitive **closed-prop** (ADR-0003) sobre la máquina `slider` de Zag.js (un único thumb).
 
@@ -49,7 +49,7 @@ import { Slider as OSlider } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Slider } from '@moderno/react'
+import { Slider } from '@moderno-ui/react'
 
 <Slider label="Volumen" defaultValue={60} onValueChange={(v) => console.log(v)} />
 ```
@@ -57,7 +57,7 @@ import { Slider } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Slider } from '@moderno/vue'
+import { Slider } from '@moderno-ui/vue'
 import { ref } from 'vue'
 const volume = ref(60)
 </script>
@@ -70,7 +70,7 @@ const volume = ref(60)
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Slider } from '@moderno/svelte'
+  import { Slider } from '@moderno-ui/svelte'
   let volume = $state(60)
 </script>
 
@@ -79,7 +79,7 @@ const volume = ref(60)
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Slider } from '@moderno/solid'
+import { Slider } from '@moderno-ui/solid'
 
 <Slider label="Volumen" defaultValue={60} onValueChange={(v) => console.log(v)} />
 ```

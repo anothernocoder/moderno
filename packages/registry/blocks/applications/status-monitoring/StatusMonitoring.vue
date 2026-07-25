@@ -4,7 +4,7 @@
 // services, each with a status Indicator, a Badge, and uptime / last-incident text.
 // Uses the Badge + Divider + Indicator primitives + Moderno tokens.
 import { computed } from 'vue'
-import { Badge, Divider, Indicator } from '@moderno/vue'
+import { Badge, Divider, Indicator } from '@moderno-ui/vue'
 
 export type ServiceStatus = 'operational' | 'degraded' | 'down'
 

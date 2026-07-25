@@ -3,7 +3,7 @@
   import * as tabs from '@zag-js/tabs'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setTabsContext } from './tabs-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     defaultValue,

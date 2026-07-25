@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { buildSparkGeometry, type ChartPoint } from '@moderno/chart-core'
-import { parts } from '@moderno/class-contract'
+import { buildSparkGeometry, type ChartPoint } from '@moderno-ui/chart-core'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = withDefaults(
   defineProps<{

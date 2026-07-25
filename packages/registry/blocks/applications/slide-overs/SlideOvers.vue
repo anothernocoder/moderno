@@ -6,7 +6,7 @@
 // panel's open/close state is the Sheet primitive's own controlled API, no bespoke overlay
 // or focus-trap logic here.
 import { reactive, ref } from 'vue'
-import { Button, Divider, Input, Sheet } from '@moderno/vue'
+import { Button, Divider, Input, Sheet } from '@moderno-ui/vue'
 
 export interface SlideOversFormValues {
   name: string

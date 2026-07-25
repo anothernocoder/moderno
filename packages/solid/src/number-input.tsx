@@ -1,7 +1,7 @@
 import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as numberInput from '@zag-js/number-input'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface NumberInputProps {
   /** Visible label. */

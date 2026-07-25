@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Accordion } from '@moderno/react'
+import { Accordion } from '@moderno-ui/react'
 
 export interface FaqItem {
   question: string

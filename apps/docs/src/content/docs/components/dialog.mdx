@@ -4,10 +4,10 @@ description: Centered modal dialog. Closed-prop, built on Zag's dialog machine.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Dialog as RDialog } from '@moderno/react'
-import { Dialog as VDialog } from '@moderno/vue'
-import { Dialog as SDialog } from '@moderno/svelte'
-import { Dialog as ODialog } from '@moderno/solid'
+import { Dialog as RDialog } from '@moderno-ui/react'
+import { Dialog as VDialog } from '@moderno-ui/vue'
+import { Dialog as SDialog } from '@moderno-ui/svelte'
+import { Dialog as ODialog } from '@moderno-ui/solid'
 
 **Dialog** is a centered modal dialog. It's a **closed-prop** primitive (ADR-0003):
 configured through props, not composed. The behavior — focus trapping, closing with `Esc`,
@@ -43,7 +43,7 @@ click outside, ARIA — comes from Zag's `dialog` machine; Moderno provides the 
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Dialog } from '@moderno/react'
+import { Dialog } from '@moderno-ui/react'
 
 <Dialog
   triggerLabel="Open dialog"
@@ -55,7 +55,7 @@ import { Dialog } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Dialog } from '@moderno/vue'
+import { Dialog } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -70,7 +70,7 @@ import { Dialog } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Dialog } from '@moderno/svelte'
+  import { Dialog } from '@moderno-ui/svelte'
 </script>
 
 <Dialog
@@ -82,7 +82,7 @@ import { Dialog } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Dialog } from '@moderno/solid'
+import { Dialog } from '@moderno-ui/solid'
 
 <Dialog
   triggerLabel="Open dialog"

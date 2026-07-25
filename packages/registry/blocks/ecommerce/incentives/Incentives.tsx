@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Card } from '@moderno/react'
+import { Card } from '@moderno-ui/react'
 
 export type IncentiveIcon = 'shipping' | 'returns' | 'payment'
 

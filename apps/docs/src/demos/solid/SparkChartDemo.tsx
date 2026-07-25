@@ -1,4 +1,4 @@
-import { SparkChart } from '@moderno/solid'
+import { SparkChart } from '@moderno-ui/solid'
 
 const DATA = [
   { x: 0, y: 12 },

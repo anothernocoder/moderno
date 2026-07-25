@@ -3,7 +3,7 @@
   import * as dialog from '@zag-js/dialog'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setSheetContext } from './sheet-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     defaultOpen,

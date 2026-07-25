@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Table from '@moderno/registry/blocks/applications/table/Table.svelte'
+  import Table from '@moderno-ui/registry/blocks/applications/table/Table.svelte'
 </script>
 
 <Table />

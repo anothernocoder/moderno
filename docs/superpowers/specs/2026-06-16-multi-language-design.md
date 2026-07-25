@@ -23,7 +23,7 @@ These are independent workstreams and can be implemented and shipped separately.
 ### Scope
 
 Change the default value of built-in UI strings across all four framework
-packages (`@moderno/react`, `@moderno/vue`, `@moderno/svelte`, `@moderno/solid`).
+packages (`@moderno-ui/react`, `@moderno-ui/vue`, `@moderno-ui/svelte`, `@moderno-ui/solid`).
 
 | Component | Prop | Before | After |
 |---|---|---|---|
@@ -165,7 +165,7 @@ maintenance for zero gain.
 
 ## Verification (Workstream 2)
 
-- `pnpm --filter @moderno/docs build` succeeds.
+- `pnpm --filter @moderno-ui/docs build` succeeds.
 - Language picker appears; `/components/button` is English, `/es/components/button`
   is Spanish.
 - Sidebar labels localize per locale.

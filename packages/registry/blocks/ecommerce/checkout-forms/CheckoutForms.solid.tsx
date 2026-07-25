@@ -1,6 +1,6 @@
 import { createSignal, For, type JSX } from 'solid-js'
-import { Button, Divider, Input, Select } from '@moderno/solid'
-import type { SelectItem } from '@moderno/solid'
+import { Button, Divider, Input, Select } from '@moderno-ui/solid'
+import type { SelectItem } from '@moderno-ui/solid'
 
 export interface CheckoutFormsValues {
   fullName: string

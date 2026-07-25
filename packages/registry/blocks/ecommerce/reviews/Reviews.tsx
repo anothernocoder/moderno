@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Avatar, Badge, Card, Progress } from '@moderno/react'
+import { Avatar, Badge, Card, Progress } from '@moderno-ui/react'
 
 export interface ReviewsBreakdownItem {
   stars: number

@@ -1,6 +1,6 @@
 import { createSignal, For, Show } from 'solid-js'
 import type { JSX } from 'solid-js'
-import { Button } from '@moderno/solid'
+import { Button } from '@moderno-ui/solid'
 
 export type AppBannerVariant = 'info' | 'success' | 'warning' | 'error'
 

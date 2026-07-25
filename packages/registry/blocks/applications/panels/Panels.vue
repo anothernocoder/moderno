@@ -4,7 +4,7 @@
 // above a responsive grid of bordered panel surfaces, each with a heading, a body slot, and an
 // optional footer action. Uses the Card + Button primitives + Moderno tokens — no new
 // primitives and no bespoke interaction logic, just layout.
-import { Button, Card } from '@moderno/vue'
+import { Button, Card } from '@moderno-ui/vue'
 
 interface PanelItem {
   id: string

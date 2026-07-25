@@ -4,7 +4,7 @@
   // on a bounded-height wrapper) holding the row items, and a footer with a summary + action.
   // Uses the Avatar + Badge + Button + Divider primitives + Moderno tokens — no bespoke
   // interaction logic, just layout.
-  import { Avatar, Badge, Button, Divider } from '@moderno/svelte'
+  import { Avatar, Badge, Button, Divider } from '@moderno-ui/svelte'
 
   type ListContainerItemStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

@@ -2,7 +2,7 @@ import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as popover from '@zag-js/popover'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export interface PopoverProps {
   /** Label of the trigger button. */

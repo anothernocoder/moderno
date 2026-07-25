@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { AreaChart } from '@moderno/svelte'
+  import { AreaChart } from '@moderno-ui/svelte'
 
   const data = [
     { x: 0, y: 12 },

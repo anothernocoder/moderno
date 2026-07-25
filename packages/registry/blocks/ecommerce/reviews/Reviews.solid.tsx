@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Avatar, Badge, Card, Progress } from '@moderno/solid'
+import { Avatar, Badge, Card, Progress } from '@moderno-ui/solid'
 
 export interface ReviewsBreakdownItem {
   stars: number

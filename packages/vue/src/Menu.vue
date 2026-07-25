@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as menu from '@zag-js/menu'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export interface MenuItem {
   label: string

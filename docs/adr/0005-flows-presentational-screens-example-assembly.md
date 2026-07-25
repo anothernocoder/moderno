@@ -19,7 +19,7 @@ signal) and a local `step` variable for navigation, with **no router dependency*
 example is a runnable demo and a copy-paste starting point, not the product.
 
 Delivery follows the existing block model and `--md-*` token convention: screens use
-inline styles reading `var(--md-*)` and import primitives from `@moderno/{framework}`
+inline styles reading `var(--md-*)` and import primitives from `@moderno-ui/{framework}`
 (which carry the class contract internally); no legacy utility classes. The
 [[registry]] gains `screens` and `flows` maps alongside `blocks`. A flow declares
 `composes: [...]`; the CLI resolves `composes` **recursively** (flow → screens → blocks),

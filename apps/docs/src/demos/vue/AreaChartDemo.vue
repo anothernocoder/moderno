@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AreaChart } from '@moderno/vue'
+import { AreaChart } from '@moderno-ui/vue'
 
 const data = [
   { x: 0, y: 12 },

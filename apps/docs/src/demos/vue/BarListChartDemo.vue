@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BarListChart } from '@moderno/vue'
+import { BarListChart } from '@moderno-ui/vue'
 
 const data = [
   { label: 'Direct', value: 456 },

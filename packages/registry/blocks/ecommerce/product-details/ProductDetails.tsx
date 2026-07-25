@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from 'react'
-import { Badge, Button, NumberInput } from '@moderno/react'
+import { Badge, Button, NumberInput } from '@moderno-ui/react'
 
 export type ProductDetailsStockVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

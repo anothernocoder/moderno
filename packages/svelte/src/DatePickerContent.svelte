@@ -2,7 +2,7 @@
   import { portal } from '@zag-js/svelte'
   import { getDatePickerContext } from './date-picker-context'
   import DatePickerNavView from './DatePickerNavView.svelte'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   const api = getDatePickerContext()
 </script>

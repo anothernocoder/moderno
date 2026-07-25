@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import * as pagination from '@zag-js/pagination'
 import { useMachine, normalizeProps } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface PaginationProps {
   /** Total number of data items. */

@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — Hero (Svelte). Copy-paste; edit freely.
   // Uses the Button primitive + Moderno tokens (--md-* custom properties).
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   let {
     kicker = 'Moderno',

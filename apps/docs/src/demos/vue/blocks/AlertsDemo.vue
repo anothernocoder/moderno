@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Alerts from '@moderno/registry/blocks/applications/alerts/Alerts.vue'
+import Alerts from '@moderno-ui/registry/blocks/applications/alerts/Alerts.vue'
 </script>
 
 <template>

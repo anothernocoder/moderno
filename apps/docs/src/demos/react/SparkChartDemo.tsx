@@ -1,4 +1,4 @@
-import { SparkChart } from '@moderno/react'
+import { SparkChart } from '@moderno-ui/react'
 
 const DATA = [
   { x: 0, y: 12 },

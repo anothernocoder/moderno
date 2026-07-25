@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { cx, parts, type DividerOrientation } from '@moderno/class-contract'
+import { cx, parts, type DividerOrientation } from '@moderno-ui/class-contract'
 
 export interface DividerProps {
   orientation?: DividerOrientation

@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { Button, Divider } from '@moderno/solid'
+import { Button, Divider } from '@moderno-ui/solid'
 import { OrderSummaries, type OrderSummariesItem } from '../../../blocks/ecommerce/order-summaries/OrderSummaries.solid'
 import type { CheckoutFormsValues } from '../../../blocks/ecommerce/checkout-forms/CheckoutForms.solid'
 

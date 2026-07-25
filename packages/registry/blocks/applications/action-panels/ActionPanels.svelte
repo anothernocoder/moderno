@@ -3,7 +3,7 @@
   // Settings/account panel list: title + description on the left, a single action on the
   // right, with an optional "destructive" (danger-zone) style. Uses the Card + Button +
   // Divider primitives + Moderno tokens.
-  import { Button, Card, Divider } from '@moderno/svelte'
+  import { Button, Card, Divider } from '@moderno-ui/svelte'
 
   export interface ActionPanelItem {
     title: string

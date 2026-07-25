@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Avatar, Badge, Card } from '@moderno/solid'
+import { Avatar, Badge, Card } from '@moderno-ui/solid'
 
 export interface BlogPostPreview {
   title: string

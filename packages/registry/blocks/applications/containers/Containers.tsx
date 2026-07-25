@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Badge, Card } from '@moderno/react'
+import { Badge, Card } from '@moderno-ui/react'
 
 export interface ContainerVariant {
   id: string

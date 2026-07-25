@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Moderno block — PortfolioHeader (Vue). Copy-paste; edit freely.
 // Intro header. Uses the Avatar + Chip + Button primitives + Moderno tokens.
-import { Avatar, Chip, Button } from '@moderno/vue'
+import { Avatar, Chip, Button } from '@moderno-ui/vue'
 
 interface PortfolioLink {
   label: string

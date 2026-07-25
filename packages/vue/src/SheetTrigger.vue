@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSheet } from './sheet-context'
-import { cx } from '@moderno/class-contract'
+import { cx } from '@moderno-ui/class-contract'
 
 const api = useSheet('Trigger')
 </script>

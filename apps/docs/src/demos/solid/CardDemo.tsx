@@ -1,4 +1,4 @@
-import { Card, Button } from '@moderno/solid'
+import { Card, Button } from '@moderno-ui/solid'
 
 export default function CardDemo() {
   return (

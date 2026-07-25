@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Avatar } from '@moderno/solid'
+import { Avatar } from '@moderno-ui/solid'
 
 export interface MediaObjectItem {
   id: string

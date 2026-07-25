@@ -3,7 +3,7 @@
   // Application record list: avatar, primary/secondary text, status badge, meta and a row
   // action — without Table's sorting, multi-select, or tabular columns. Uses the Avatar +
   // Badge + Button + Divider primitives + Moderno tokens.
-  import { Avatar, Badge, Button, Divider } from '@moderno/svelte'
+  import { Avatar, Badge, Button, Divider } from '@moderno-ui/svelte'
 
   export type ListItemStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

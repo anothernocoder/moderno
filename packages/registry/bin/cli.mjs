@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @moderno/registry — minimal copy-paste CLI for Moderno blocks, screens and flows.
+ * @moderno-ui/registry — minimal copy-paste CLI for Moderno blocks, screens and flows.
  *
  * Usage:
  *   moderno add <block|screen|flow> --framework <react|vue|svelte|solid> [--dest <dir>] [--no-example]
@@ -11,7 +11,7 @@
  * `composes` blocks — the CLI resolves `composes` recursively and dedups by name,
  * copying every block/screen it touches plus (for a flow) its own example
  * assembly file. `--no-example` skips that example. Primitives are never copied;
- * they stay versioned `@moderno/<framework>` npm deps.
+ * they stay versioned `@moderno-ui/<framework>` npm deps.
  */
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises'
 import { dirname, join, resolve, relative, sep } from 'node:path'

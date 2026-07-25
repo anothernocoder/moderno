@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Avatar, Badge, Button, Card } from '@moderno/react'
+import { Avatar, Badge, Button, Card } from '@moderno-ui/react'
 
 export type StackedListStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

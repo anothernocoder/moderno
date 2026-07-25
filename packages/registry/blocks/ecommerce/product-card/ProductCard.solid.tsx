@@ -1,4 +1,4 @@
-import { Card, Badge, Button } from '@moderno/solid'
+import { Card, Badge, Button } from '@moderno-ui/solid'
 import { Show } from 'solid-js'
 import type { JSX } from 'solid-js'
 

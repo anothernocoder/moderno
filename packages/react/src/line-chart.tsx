@@ -1,5 +1,5 @@
-import { buildLineGeometry, type ChartPoint } from '@moderno/chart-core'
-import { parts } from '@moderno/class-contract'
+import { buildLineGeometry, type ChartPoint } from '@moderno-ui/chart-core'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface LineChartProps {
   /** `{x, y}` pairs to plot, in x order. */

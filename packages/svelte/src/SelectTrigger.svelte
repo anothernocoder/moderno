@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getSelectContext } from './select-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let { placeholder = 'Select…' }: { placeholder?: string } = $props()
   const api = getSelectContext()

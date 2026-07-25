@@ -4,7 +4,7 @@
   import * as carousel from '@zag-js/carousel'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setCarouselContext } from './carousel-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     slideCount,

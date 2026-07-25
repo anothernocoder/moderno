@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Badge, Dialog } from '@moderno/react'
+import { Badge, Dialog } from '@moderno-ui/react'
 
 export interface ModalAction {
   id: string

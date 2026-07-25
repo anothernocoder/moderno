@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSelect, type SelectItem } from './select-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{ item: SelectItem }>()
 const api = useSelect('Item')

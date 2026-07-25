@@ -4,10 +4,10 @@ description: Compact, optionally removable token. Pure CSS, closed-prop.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Chip as RChip } from '@moderno/react'
-import { Chip as VChip } from '@moderno/vue'
-import { Chip as SChip } from '@moderno/svelte'
-import { Chip as OChip } from '@moderno/solid'
+import { Chip as RChip } from '@moderno-ui/react'
+import { Chip as VChip } from '@moderno-ui/vue'
+import { Chip as SChip } from '@moderno-ui/svelte'
+import { Chip as OChip } from '@moderno-ui/solid'
 
 **Chip** is a compact, optionally removable token. It's a **closed-prop** primitive, pure CSS. The remove event follows the native idiom of each framework: `onRemove` prop (React/Solid), `emit('remove')` (Vue), callback prop (Svelte).
 
@@ -49,7 +49,7 @@ import { Chip as OChip } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Chip } from '@moderno/react'
+import { Chip } from '@moderno-ui/react'
 
 <Chip variant="solid">Active</Chip>
 <Chip removable onRemove={() => remove()}>Filter</Chip>
@@ -58,7 +58,7 @@ import { Chip } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Chip } from '@moderno/vue'
+import { Chip } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -70,7 +70,7 @@ import { Chip } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Chip } from '@moderno/svelte'
+  import { Chip } from '@moderno-ui/svelte'
 </script>
 
 <Chip variant="solid">Active</Chip>
@@ -79,7 +79,7 @@ import { Chip } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Chip } from '@moderno/solid'
+import { Chip } from '@moderno-ui/solid'
 
 <Chip variant="solid">Active</Chip>
 <Chip removable onRemove={() => remove()}>Filter</Chip>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as toast from '@zag-js/toast'
   import { useMachine, normalizeProps, portal } from '@zag-js/svelte'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
   import ToastItem from './ToastItem.svelte'
   import type { Toaster } from './toast'
 

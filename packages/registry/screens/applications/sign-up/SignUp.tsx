@@ -1,5 +1,5 @@
 import type { CSSProperties, FormEvent } from 'react'
-import { Button, Checkbox, Divider, Input } from '@moderno/react'
+import { Button, Checkbox, Divider, Input } from '@moderno-ui/react'
 
 export interface SignUpValues {
   name: string

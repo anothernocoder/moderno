@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { buildDonutGeometry, type ChartCategoryDatum } from '@moderno/chart-core'
-  import { parts } from '@moderno/class-contract'
+  import { buildDonutGeometry, type ChartCategoryDatum } from '@moderno-ui/chart-core'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     data,

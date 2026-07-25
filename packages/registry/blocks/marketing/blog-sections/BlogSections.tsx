@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Avatar, Badge, Card } from '@moderno/react'
+import { Avatar, Badge, Card } from '@moderno-ui/react'
 
 export interface BlogPostPreview {
   title: string

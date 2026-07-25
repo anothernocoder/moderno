@@ -4,7 +4,7 @@
 // and a cart icon with an item-count badge. Uses the Badge + Input primitives +
 // Moderno tokens.
 import { ref } from 'vue'
-import { Badge, Input } from '@moderno/vue'
+import { Badge, Input } from '@moderno-ui/vue'
 
 interface StoreNavCategory {
   label: string

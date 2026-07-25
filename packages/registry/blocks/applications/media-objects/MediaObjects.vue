@@ -3,7 +3,7 @@
 // Media + text layout: a list of rows pairing an Avatar (image or initials fallback) with a
 // heading, body copy and an optional meta line — the classic "media object" pattern for
 // comments, activity, or contact lists. Uses the Avatar primitive + Moderno tokens.
-import { Avatar } from '@moderno/vue'
+import { Avatar } from '@moderno-ui/vue'
 
 interface MediaObjectItem {
   id: string

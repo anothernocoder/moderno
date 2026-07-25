@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — Banner (Svelte). Copy-paste; edit freely.
   // Dismissible top-of-page promo/announcement strip. Uses the Button primitive + Moderno tokens.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   let {
     message = 'Lanzamos blocks para React, Vue, Svelte y Solid — mismo look, cualquier framework.',

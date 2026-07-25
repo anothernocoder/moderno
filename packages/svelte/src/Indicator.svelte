@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
-  import { cx, parts, type IndicatorVariant } from '@moderno/class-contract'
+  import { cx, parts, type IndicatorVariant } from '@moderno-ui/class-contract'
 
   let {
     variant,

@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — PortfolioHeader (Svelte). Copy-paste; edit freely.
   // Intro header. Uses the Avatar + Chip + Button primitives + Moderno tokens.
-  import { Avatar, Chip, Button } from '@moderno/svelte'
+  import { Avatar, Chip, Button } from '@moderno-ui/svelte'
 
   interface PortfolioLink {
     label: string

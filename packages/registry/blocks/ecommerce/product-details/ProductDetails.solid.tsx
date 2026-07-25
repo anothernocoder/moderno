@@ -1,5 +1,5 @@
 import { createSignal, For, Show, type JSX } from 'solid-js'
-import { Badge, Button, NumberInput } from '@moderno/solid'
+import { Badge, Button, NumberInput } from '@moderno-ui/solid'
 
 export type ProductDetailsStockVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

@@ -1,4 +1,4 @@
-import { Avatar, Chip, Button } from '@moderno/solid'
+import { Avatar, Chip, Button } from '@moderno-ui/solid'
 import { For } from 'solid-js'
 import type { JSX } from 'solid-js'
 

@@ -4,10 +4,10 @@ description: Numeric field with increment/decrement steppers. Zag behavior core 
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { NumberInput as RNumberInput } from '@moderno/react'
-import { NumberInput as VNumberInput } from '@moderno/vue'
-import { NumberInput as SNumberInput } from '@moderno/svelte'
-import { NumberInput as ONumberInput } from '@moderno/solid'
+import { NumberInput as RNumberInput } from '@moderno-ui/react'
+import { NumberInput as VNumberInput } from '@moderno-ui/vue'
+import { NumberInput as SNumberInput } from '@moderno-ui/svelte'
+import { NumberInput as ONumberInput } from '@moderno-ui/solid'
 
 **NumberInput** is a numeric field with `−`/`+` steppers. A **closed-prop** primitive
 (ADR-0003) built on Zag.js's `number-input` machine — keyboard stepping (arrow keys),
@@ -45,7 +45,7 @@ string so formatted input is preserved; `onValueChange` also passes `valueAsNumb
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { NumberInput } from '@moderno/react'
+import { NumberInput } from '@moderno-ui/react'
 
 <NumberInput
   label="Quantity"
@@ -59,7 +59,7 @@ import { NumberInput } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { NumberInput } from '@moderno/vue'
+import { NumberInput } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -70,7 +70,7 @@ import { NumberInput } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { NumberInput } from '@moderno/svelte'
+  import { NumberInput } from '@moderno-ui/svelte'
 </script>
 
 <NumberInput label="Quantity" defaultValue={2} min={0} max={10} />
@@ -78,7 +78,7 @@ import { NumberInput } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { NumberInput } from '@moderno/solid'
+import { NumberInput } from '@moderno-ui/solid'
 
 <NumberInput label="Quantity" defaultValue={2} min={0} max={10} />
 ```

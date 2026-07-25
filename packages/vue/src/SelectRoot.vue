@@ -3,7 +3,7 @@ import { computed, useId } from 'vue'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { provideSelect, type SelectItem } from './select-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{
   items: SelectItem[]

@@ -1,5 +1,5 @@
 import { Fragment, type CSSProperties } from 'react'
-import { Avatar, Badge, Button, Divider } from '@moderno/react'
+import { Avatar, Badge, Button, Divider } from '@moderno-ui/react'
 
 export type ListContainerItemStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

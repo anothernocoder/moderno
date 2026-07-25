@@ -1,4 +1,4 @@
-import { Sheet } from '@moderno/react'
+import { Sheet } from '@moderno-ui/react'
 
 export default function SheetDemo() {
   return (

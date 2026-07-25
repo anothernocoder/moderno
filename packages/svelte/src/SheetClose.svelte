@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { getSheetContext } from './sheet-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let { closeLabel = 'Close', children }: { closeLabel?: string; children?: Snippet } = $props()
   const api = getSheetContext()

@@ -1,7 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as zagSwitch from '@zag-js/switch'
 import { useMachine, normalizeProps } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface ToggleProps {
   /** Visible label next to the switch. */

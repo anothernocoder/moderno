@@ -2,7 +2,7 @@ import { Show, For, createMemo, createSignal, createUniqueId, type JSX } from 's
 import { Portal } from 'solid-js/web'
 import * as combobox from '@zag-js/combobox'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface ComboboxItem {
   label: string

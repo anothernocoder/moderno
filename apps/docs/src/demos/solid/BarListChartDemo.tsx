@@ -1,4 +1,4 @@
-import { BarListChart } from '@moderno/solid'
+import { BarListChart } from '@moderno-ui/solid'
 
 const DATA = [
   { label: 'Direct', value: 456 },

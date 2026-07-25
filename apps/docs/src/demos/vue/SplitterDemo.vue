@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Splitter } from '@moderno/vue'
+import { Splitter } from '@moderno-ui/vue'
 </script>
 
 <template>

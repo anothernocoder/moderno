@@ -1,4 +1,4 @@
-import { DonutChart } from '@moderno/solid'
+import { DonutChart } from '@moderno-ui/solid'
 
 const DATA = [
   { label: 'Direct', value: 456 },

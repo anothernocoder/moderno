@@ -2,7 +2,7 @@
   // Moderno block — Cta (Svelte). Copy-paste; edit freely.
   // A focused headline + CTA button section — no kicker, no subtitle-as-secondary-emphasis.
   // Uses the Button primitive + Moderno tokens (--md-* custom properties).
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   let {
     title = '¿Listo para construir con Moderno?',

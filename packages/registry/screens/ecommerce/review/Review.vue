@@ -6,7 +6,7 @@
 // masked-payment recap alongside it is this screen's own simple text markup —
 // there's no dedicated "read-only address/card" block to compose, so it isn't
 // duplicating any block's internals. `next` places the order.
-import { Button, Divider } from '@moderno/vue'
+import { Button, Divider } from '@moderno-ui/vue'
 import OrderSummaries from '../../../blocks/ecommerce/order-summaries/OrderSummaries.vue'
 import type { OrderSummariesItem } from '../../../blocks/ecommerce/order-summaries/OrderSummaries.vue'
 import type { CheckoutFormsValues } from '../../../blocks/ecommerce/checkout-forms/CheckoutForms.vue'

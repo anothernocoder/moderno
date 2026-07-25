@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Button, Card } from '@moderno/react'
+import { Button, Card } from '@moderno-ui/react'
 
 export interface PanelItem {
   id: string

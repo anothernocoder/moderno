@@ -1,7 +1,7 @@
 import { createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 type TabsApi = ReturnType<typeof tabs.connect>

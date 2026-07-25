@@ -1,7 +1,7 @@
 import { Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as slider from '@zag-js/slider'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface SliderProps {
   label?: JSX.Element

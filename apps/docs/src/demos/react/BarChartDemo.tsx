@@ -1,4 +1,4 @@
-import { BarChart } from '@moderno/react'
+import { BarChart } from '@moderno-ui/react'
 
 const DATA = [
   { label: 'Jan', value: 12 },

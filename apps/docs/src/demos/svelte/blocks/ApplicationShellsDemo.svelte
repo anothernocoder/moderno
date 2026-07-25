@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ApplicationShells from '@moderno/registry/blocks/applications/application-shells/ApplicationShells.svelte'
+  import ApplicationShells from '@moderno-ui/registry/blocks/applications/application-shells/ApplicationShells.svelte'
 </script>
 
 <div style="height: 480px">

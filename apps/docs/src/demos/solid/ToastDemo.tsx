@@ -1,4 +1,4 @@
-import { Button, createToaster, Toaster } from '@moderno/solid'
+import { Button, createToaster, Toaster } from '@moderno-ui/solid'
 
 const toaster = createToaster({ placement: 'bottom-end' })
 

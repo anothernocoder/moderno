@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Badge, Button, Input } from '@moderno/solid'
+import { Badge, Button, Input } from '@moderno-ui/solid'
 
 export type ShareInviteStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

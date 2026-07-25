@@ -1,5 +1,5 @@
 import { createMemo, createSignal, For, Show, type JSX } from 'solid-js'
-import { Card, Badge, Button } from '@moderno/solid'
+import { Card, Badge, Button } from '@moderno-ui/solid'
 
 export interface ProductListItem {
   id?: string | number

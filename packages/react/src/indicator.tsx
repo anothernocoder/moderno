@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { cx, parts, type IndicatorVariant } from '@moderno/class-contract'
+import { cx, parts, type IndicatorVariant } from '@moderno-ui/class-contract'
 
 export interface IndicatorProps {
   variant?: IndicatorVariant

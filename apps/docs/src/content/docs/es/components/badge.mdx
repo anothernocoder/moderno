@@ -4,10 +4,10 @@ description: Token compacto de estado o etiqueta. Pura CSS, closed-prop.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Badge as RBadge } from '@moderno/react'
-import { Badge as VBadge } from '@moderno/vue'
-import { Badge as SBadge } from '@moderno/svelte'
-import { Badge as OBadge } from '@moderno/solid'
+import { Badge as RBadge } from '@moderno-ui/react'
+import { Badge as VBadge } from '@moderno-ui/vue'
+import { Badge as SBadge } from '@moderno-ui/svelte'
+import { Badge as OBadge } from '@moderno-ui/solid'
 
 **Badge** es un token compacto de estado o etiqueta. Primitive **closed-prop**, pura CSS.
 
@@ -61,7 +61,7 @@ import { Badge as OBadge } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Badge } from '@moderno/react'
+import { Badge } from '@moderno-ui/react'
 
 <Badge variant="success" dot>Activo</Badge>
 ```
@@ -69,7 +69,7 @@ import { Badge } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Badge } from '@moderno/vue'
+import { Badge } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -80,7 +80,7 @@ import { Badge } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Badge } from '@moderno/svelte'
+  import { Badge } from '@moderno-ui/svelte'
 </script>
 
 <Badge variant="success" dot>Activo</Badge>
@@ -88,7 +88,7 @@ import { Badge } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Badge } from '@moderno/solid'
+import { Badge } from '@moderno-ui/solid'
 
 <Badge variant="success" dot>Activo</Badge>
 ```

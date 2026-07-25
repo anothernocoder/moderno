@@ -6,7 +6,7 @@ Status: accepted (supersedes the core-technology choice in ADR-0001)
 
 Moderno's behavior core is **Zag.js consumed directly** via its per-framework adapters
 (`@zag-js/{react,vue,svelte,solid}`), not the Ark UI component layer that sits on top of
-Zag. Each `@moderno/{framework}` package hand-writes the component anatomy and wires
+Zag. Each `@moderno-ui/{framework}` package hand-writes the component anatomy and wires
 Zag's prop-getters (`api.getTriggerProps()` …) to its own `md-*` class contract. The
 rest of ADR-0001 is unchanged: shared Zag state machines remain the single behavior +
 a11y core, primitives ship as npm packages, blocks via copy-paste registry, and the

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cx, parts, type CalloutVariant } from '@moderno/class-contract'
+import { cx, parts, type CalloutVariant } from '@moderno-ui/class-contract'
 
 const props = defineProps<{ variant?: CalloutVariant; title?: string }>()
 </script>

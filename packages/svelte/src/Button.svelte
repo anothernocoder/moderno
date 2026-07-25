@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import type { HTMLButtonAttributes } from 'svelte/elements'
-  import { cx, type ButtonSize, type ButtonVariant } from '@moderno/class-contract'
+  import { cx, type ButtonSize, type ButtonVariant } from '@moderno-ui/class-contract'
 
   let {
     variant,

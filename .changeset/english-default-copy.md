@@ -1,8 +1,8 @@
 ---
-"@moderno/react": minor
-"@moderno/vue": minor
-"@moderno/svelte": minor
-"@moderno/solid": minor
+"@moderno-ui/react": minor
+"@moderno-ui/vue": minor
+"@moderno-ui/svelte": minor
+"@moderno-ui/solid": minor
 ---
 
 Default component copy is now English instead of Spanish. `Dialog.closeLabel`

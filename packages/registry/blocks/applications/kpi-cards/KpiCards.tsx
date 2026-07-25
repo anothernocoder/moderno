@@ -1,4 +1,4 @@
-import { Card, Badge } from '@moderno/react'
+import { Card, Badge } from '@moderno-ui/react'
 
 export interface KpiCardItem {
   label: string

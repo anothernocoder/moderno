@@ -1,5 +1,5 @@
 import { For } from 'solid-js'
-import { Select } from '@moderno/solid'
+import { Select } from '@moderno-ui/solid'
 
 const frutas = [
   { label: 'Manzana', value: 'apple' },

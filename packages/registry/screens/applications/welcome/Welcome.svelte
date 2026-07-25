@@ -4,7 +4,7 @@
   // greeting with a single CTA. No Applications block fits a one-off welcome
   // message, so this screen composes only the Button primitive + Moderno
   // tokens — the same allowance the Checkout flow's `confirmation` screen used.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   let {
     onNext,

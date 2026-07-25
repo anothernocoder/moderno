@@ -2,7 +2,7 @@
   // Moderno block — Table (Svelte). Copy-paste; edit freely.
   // Application data table: sortable order column, row selection, status badges and
   // bulk actions. Uses the Checkbox + Badge + Button primitives + Moderno tokens.
-  import { Badge, Button, Checkbox } from '@moderno/svelte'
+  import { Badge, Button, Checkbox } from '@moderno-ui/svelte'
 
   export type TableStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

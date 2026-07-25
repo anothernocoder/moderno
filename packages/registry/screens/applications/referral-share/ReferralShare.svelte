@@ -7,7 +7,7 @@
   // of its own — `shareUrl`, `inviteEmail` and `invites` are all controlled,
   // carried by the example assembly (or your own code) from the previous
   // `referral-invite` step.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
   import ShareInvite from '../../../blocks/marketing/share-invite/ShareInvite.svelte'
   import type { ShareChannel, ShareInviteItem } from '../../../blocks/marketing/share-invite/ShareInvite.svelte'
 

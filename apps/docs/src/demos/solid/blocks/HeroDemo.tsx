@@ -1,4 +1,4 @@
-import { Hero } from '@moderno/registry/blocks/marketing/hero/Hero.solid.tsx'
+import { Hero } from '@moderno-ui/registry/blocks/marketing/hero/Hero.solid.tsx'
 
 export default function HeroDemo() {
   return <Hero />

@@ -2,7 +2,7 @@
   // Moderno block — Footer (Svelte). Copy-paste; edit freely.
   // Site footer: logo/tagline, navigation link columns, legal links, social links, and copyright.
   // Uses the Divider primitive + Moderno tokens.
-  import { Divider } from '@moderno/svelte'
+  import { Divider } from '@moderno-ui/svelte'
 
   export interface FooterLink {
     label: string

@@ -1,4 +1,4 @@
-import { DatePicker } from '@moderno/react'
+import { DatePicker } from '@moderno-ui/react'
 
 export default function DatePickerDemo() {
   return (

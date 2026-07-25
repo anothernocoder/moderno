@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from 'react'
-import { Card, Badge, Button } from '@moderno/react'
+import { Card, Badge, Button } from '@moderno-ui/react'
 
 export interface ProductListItem {
   id?: string | number

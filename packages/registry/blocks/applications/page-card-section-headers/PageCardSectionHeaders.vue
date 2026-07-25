@@ -4,7 +4,7 @@
 // status/meta), a card header (title, subtitle, actions) and a section with a top
 // header bar and a bottom summary/actions bar.
 // Uses the Button + Badge + Card + Divider primitives + Moderno tokens.
-import { Badge, Button, Card, Divider } from '@moderno/vue'
+import { Badge, Button, Card, Divider } from '@moderno-ui/vue'
 
 export interface PageHeaderBreadcrumb {
   label: string

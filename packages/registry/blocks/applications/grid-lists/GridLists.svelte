@@ -2,7 +2,7 @@
   // Moderno block — GridLists (Svelte). Copy-paste; edit freely.
   // Responsive grid of item cards: thumbnail/icon, title, subtitle, and status badge with an
   // action. Uses the Card + Avatar + Badge + Button primitives + Moderno tokens.
-  import { Card, Avatar, Badge, Button } from '@moderno/svelte'
+  import { Card, Avatar, Badge, Button } from '@moderno-ui/svelte'
 
   type GridListStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

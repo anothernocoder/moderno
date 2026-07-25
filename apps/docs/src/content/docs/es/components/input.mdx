@@ -4,10 +4,10 @@ description: Campo de texto de una línea con etiqueta, hint y error. Pura CSS, 
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Input as RInput } from '@moderno/react'
-import { Input as VInput } from '@moderno/vue'
-import { Input as SInput } from '@moderno/svelte'
-import { Input as OInput } from '@moderno/solid'
+import { Input as RInput } from '@moderno-ui/react'
+import { Input as VInput } from '@moderno-ui/vue'
+import { Input as SInput } from '@moderno-ui/svelte'
+import { Input as OInput } from '@moderno-ui/solid'
 
 **Input** es un campo de texto de una línea con etiqueta, hint y error. Primitive
 **closed-prop**, pura CSS. La etiqueta es siempre visible; el error reemplaza al hint y marca
@@ -47,7 +47,7 @@ el campo como inválido (`aria-invalid`).
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Input } from '@moderno/react'
+import { Input } from '@moderno-ui/react'
 
 <Input
   label="Correo de facturación"
@@ -60,7 +60,7 @@ import { Input } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Input } from '@moderno/vue'
+import { Input } from '@moderno-ui/vue'
 import { ref } from 'vue'
 const correo = ref('')
 </script>
@@ -73,7 +73,7 @@ const correo = ref('')
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Input } from '@moderno/svelte'
+  import { Input } from '@moderno-ui/svelte'
   let correo = $state('')
 </script>
 
@@ -82,7 +82,7 @@ const correo = ref('')
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Input } from '@moderno/solid'
+import { Input } from '@moderno-ui/solid'
 
 <Input
   label="Correo de facturación"

@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Badge, Button, Divider } from '@moderno/react'
+import { Badge, Button, Divider } from '@moderno-ui/react'
 
 export interface CareerRole {
   title: string

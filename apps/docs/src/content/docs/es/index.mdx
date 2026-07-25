@@ -20,12 +20,12 @@ Moderno separa con claridad dos responsabilidades:
   ARIA, máquinas de estado — vive en [Zag.js](https://zagjs.com), consumido directamente a
   través de sus adaptadores por framework. Es el mismo núcleo para los cuatro.
 - **Look (tokens + CSS compilado).** El aspecto visual se expresa como
-  [tokens de diseño](https://www.w3.org/community/design-tokens/) (`@moderno/tokens`)
+  [tokens de diseño](https://www.w3.org/community/design-tokens/) (`@moderno-ui/tokens`)
   surfaceados como custom properties de CSS, y un contrato de clases `md-*` compilado
-  (`@moderno/styles`). Re-temar es re-mapear roles semánticos, sin tocar componentes.
+  (`@moderno-ui/styles`). Re-temar es re-mapear roles semánticos, sin tocar componentes.
 
-Cada paquete por framework (`@moderno/react`, `@moderno/vue`, `@moderno/svelte`,
-`@moderno/solid`) escribe la anatomía del componente y conecta los _prop-getters_ de Zag al
+Cada paquete por framework (`@moderno-ui/react`, `@moderno-ui/vue`, `@moderno-ui/svelte`,
+`@moderno-ui/solid`) escribe la anatomía del componente y conecta los _prop-getters_ de Zag al
 contrato de clases `md-*`.
 
 ## Dos canales de entrega

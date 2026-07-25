@@ -2,7 +2,7 @@
 // Moderno block — DescriptionList (Vue). Copy-paste; edit freely.
 // Key/value detail list for a record view (order, profile, etc). Label above value on
 // narrow layouts, side-by-side on wider ones. Uses the Card primitive + Moderno tokens.
-import { Card } from '@moderno/vue'
+import { Card } from '@moderno-ui/vue'
 
 interface DescriptionItem {
   label: string

@@ -1,6 +1,6 @@
 import { For, Show, createMemo } from 'solid-js'
-import { buildAreaGeometry, type ChartPoint } from '@moderno/chart-core'
-import { parts } from '@moderno/class-contract'
+import { buildAreaGeometry, type ChartPoint } from '@moderno-ui/chart-core'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface AreaChartProps {
   /** `{x, y}` pairs to plot, in x order. */

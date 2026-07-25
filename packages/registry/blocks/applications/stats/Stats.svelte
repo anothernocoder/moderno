@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — Stats (Svelte). Copy-paste; edit freely.
   // KPI metric row. Uses the Card + Badge primitives + Moderno tokens.
-  import { Card, Badge } from '@moderno/svelte'
+  import { Card, Badge } from '@moderno-ui/svelte'
 
   interface StatItem {
     label: string

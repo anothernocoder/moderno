@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAccordion, useAccordionItem } from './accordion-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const api = useAccordion('ItemTrigger')
 const item = useAccordionItem('ItemTrigger')

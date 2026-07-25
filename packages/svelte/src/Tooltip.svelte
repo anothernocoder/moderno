@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as tooltip from '@zag-js/tooltip'
   import { useMachine, normalizeProps, portal } from '@zag-js/svelte'
-  import { cx, parts } from '@moderno/class-contract'
+  import { cx, parts } from '@moderno-ui/class-contract'
 
   let {
     triggerLabel,

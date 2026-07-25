@@ -4,7 +4,7 @@
 // stock badge, variant selector, quantity stepper and add-to-cart. Uses the
 // Badge + Button + NumberInput primitives + Moderno tokens.
 import { ref } from 'vue'
-import { Badge, Button, NumberInput } from '@moderno/vue'
+import { Badge, Button, NumberInput } from '@moderno-ui/vue'
 
 export type ProductDetailsStockVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

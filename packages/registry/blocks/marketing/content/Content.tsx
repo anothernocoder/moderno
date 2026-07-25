@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Divider } from '@moderno/react'
+import { Divider } from '@moderno-ui/react'
 
 export interface ContentSection {
   heading?: string

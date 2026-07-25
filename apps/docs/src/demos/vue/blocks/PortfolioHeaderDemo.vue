@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PortfolioHeader from '@moderno/registry/blocks/portfolio/portfolio-header/PortfolioHeader.vue'
+import PortfolioHeader from '@moderno-ui/registry/blocks/portfolio/portfolio-header/PortfolioHeader.vue'
 </script>
 
 <template>

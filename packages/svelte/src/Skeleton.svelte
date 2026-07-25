@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { cx, type SkeletonVariant } from '@moderno/class-contract'
+  import { cx, type SkeletonVariant } from '@moderno-ui/class-contract'
 
   let {
     variant,

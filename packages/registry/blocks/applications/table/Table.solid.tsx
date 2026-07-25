@@ -1,6 +1,6 @@
 import { createSignal, createMemo, For, type JSX } from 'solid-js'
-import { Badge, Button, Checkbox } from '@moderno/solid'
-import type { CheckedState } from '@moderno/solid'
+import { Badge, Button, Checkbox } from '@moderno-ui/solid'
+import type { CheckedState } from '@moderno-ui/solid'
 
 export type TableStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

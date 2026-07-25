@@ -1,5 +1,5 @@
 <script lang="ts">
-  import StatusMonitoring from '@moderno/registry/blocks/applications/status-monitoring/StatusMonitoring.svelte'
+  import StatusMonitoring from '@moderno-ui/registry/blocks/applications/status-monitoring/StatusMonitoring.svelte'
 </script>
 
 <StatusMonitoring />

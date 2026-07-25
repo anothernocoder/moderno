@@ -1,4 +1,4 @@
-import { Tabs } from '@moderno/solid'
+import { Tabs } from '@moderno-ui/solid'
 
 export default function TabsDemo() {
   return (

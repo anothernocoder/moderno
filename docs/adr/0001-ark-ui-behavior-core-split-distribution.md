@@ -13,7 +13,7 @@ core, rather than maintaining four parallel component implementations. The publi
 styling contract is **compiled CSS + CSS custom properties** (theming via design
 tokens and `data-theme`), with Tailwind kept internal to authoring only.
 Distribution is **split by component profile**: interactive **primitives** ship as
-versioned **npm packages** (`@moderno/tokens`, `@moderno/{react,vue,svelte,solid}`)
+versioned **npm packages** (`@moderno-ui/tokens`, `@moderno-ui/{react,vue,svelte,solid}`)
 so accessibility/bug fixes propagate centrally; **blocks** (Hero, Pricing, app
 shells) ship via a **copy-paste registry** so consumers fork layout freely. Native
 mobile (iOS/Android) is **out of scope** for this library and shares only tokens.

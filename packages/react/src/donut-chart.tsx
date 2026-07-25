@@ -1,5 +1,5 @@
-import { buildDonutGeometry, type ChartCategoryDatum } from '@moderno/chart-core'
-import { parts } from '@moderno/class-contract'
+import { buildDonutGeometry, type ChartCategoryDatum } from '@moderno-ui/chart-core'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface DonutChartProps {
   /** Labeled values to plot, one slice per datum. */

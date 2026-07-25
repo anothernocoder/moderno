@@ -6,7 +6,7 @@
 // this block stays self-contained. No new primitives, no bespoke
 // interaction logic beyond local page state.
 import { computed, ref } from 'vue'
-import { Card, Badge, Button } from '@moderno/vue'
+import { Card, Badge, Button } from '@moderno-ui/vue'
 
 export interface ProductListItem {
   id?: string | number

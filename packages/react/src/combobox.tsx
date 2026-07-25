@@ -1,7 +1,7 @@
 import { useId, useMemo, useState, type ReactNode } from 'react'
 import * as combobox from '@zag-js/combobox'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface ComboboxItem {
   label: string

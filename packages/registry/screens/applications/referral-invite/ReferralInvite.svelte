@@ -8,7 +8,7 @@
   // `welcome` screen and the Checkout flow's `confirmation` screen used. The
   // actual link/invite UI lives on the next `share` step, which composes the
   // Share/Invite block instead of duplicating it here.
-  import { Button, Input } from '@moderno/svelte'
+  import { Button, Input } from '@moderno-ui/svelte'
 
   export interface ReferralInviteValues {
     name: string

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BarChart } from '@moderno/svelte'
+  import { BarChart } from '@moderno-ui/svelte'
 
   const data = [
     { label: 'Jan', value: 12 },

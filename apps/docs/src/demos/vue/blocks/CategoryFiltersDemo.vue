@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CategoryFilters from '@moderno/registry/blocks/ecommerce/category-filters/CategoryFilters.vue'
+import CategoryFilters from '@moderno-ui/registry/blocks/ecommerce/category-filters/CategoryFilters.vue'
 </script>
 
 <template>

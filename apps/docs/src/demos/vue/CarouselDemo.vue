@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Carousel } from '@moderno/vue'
+import { Carousel } from '@moderno-ui/vue'
 
 const slides = ['Diseño', 'Desarrollo', 'Pruebas', 'Lanzamiento']
 </script>

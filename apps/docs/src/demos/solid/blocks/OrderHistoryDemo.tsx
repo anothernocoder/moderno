@@ -1,4 +1,4 @@
-import { OrderHistory } from '@moderno/registry/blocks/ecommerce/order-history/OrderHistory.solid.tsx'
+import { OrderHistory } from '@moderno-ui/registry/blocks/ecommerce/order-history/OrderHistory.solid.tsx'
 
 export default function OrderHistoryDemo() {
   return <OrderHistory />

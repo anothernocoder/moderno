@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Tabs } from '@moderno/svelte'
+  import { Tabs } from '@moderno-ui/svelte'
 </script>
 
 <Tabs.Root defaultValue="cuenta">

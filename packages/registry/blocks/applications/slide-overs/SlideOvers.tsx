@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type CSSProperties } from 'react'
-import { Button, Divider, Input, Sheet } from '@moderno/react'
+import { Button, Divider, Input, Sheet } from '@moderno-ui/react'
 
 export interface SlideOversFormValues {
   name: string

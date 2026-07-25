@@ -2,7 +2,7 @@
 // Moderno block — KpiCards (Vue). Copy-paste; edit freely.
 // Primary metric cards with a trend indicator. Single-metric counterpart to
 // the Stats row block. Uses the Card + Badge primitives + Moderno tokens.
-import { Card, Badge } from '@moderno/vue'
+import { Card, Badge } from '@moderno-ui/vue'
 
 interface KpiCardItem {
   label: string

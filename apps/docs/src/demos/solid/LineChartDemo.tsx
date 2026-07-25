@@ -1,4 +1,4 @@
-import { LineChart } from '@moderno/solid'
+import { LineChart } from '@moderno-ui/solid'
 
 const DATA = [
   { x: 0, y: 12 },

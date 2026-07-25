@@ -3,7 +3,7 @@
 // Contact section: intro copy + contact info list on the left, a name/email/subject/message
 // form on the right. Uses the Input + Textarea + Button primitives + Moderno tokens.
 import { reactive } from 'vue'
-import { Button, Input, Textarea } from '@moderno/vue'
+import { Button, Input, Textarea } from '@moderno-ui/vue'
 
 export interface ContactInfoItem {
   label: string

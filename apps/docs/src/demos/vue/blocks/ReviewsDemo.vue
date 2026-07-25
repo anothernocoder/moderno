@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Reviews from '@moderno/registry/blocks/ecommerce/reviews/Reviews.vue'
+import Reviews from '@moderno-ui/registry/blocks/ecommerce/reviews/Reviews.vue'
 </script>
 
 <template>

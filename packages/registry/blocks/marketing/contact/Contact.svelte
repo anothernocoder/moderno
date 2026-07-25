@@ -2,7 +2,7 @@
   // Moderno block — Contact (Svelte). Copy-paste; edit freely.
   // Contact section: intro copy + contact info list on the left, a name/email/subject/message
   // form on the right. Uses the Input + Textarea + Button primitives + Moderno tokens.
-  import { Button, Input, Textarea } from '@moderno/svelte'
+  import { Button, Input, Textarea } from '@moderno-ui/svelte'
 
   export interface ContactInfoItem {
     label: string

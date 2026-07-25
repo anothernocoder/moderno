@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Content from '@moderno/registry/blocks/marketing/content/Content.svelte'
+  import Content from '@moderno-ui/registry/blocks/marketing/content/Content.svelte'
 </script>
 
 <Content />

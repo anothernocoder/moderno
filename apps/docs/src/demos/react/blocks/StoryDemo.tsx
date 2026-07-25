@@ -1,4 +1,4 @@
-import { Story } from '@moderno/registry/blocks/images-ads/story/Story.tsx'
+import { Story } from '@moderno-ui/registry/blocks/images-ads/story/Story.tsx'
 
 export default function StoryDemo() {
   return <Story />

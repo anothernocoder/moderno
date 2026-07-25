@@ -1,5 +1,5 @@
 import { useState, type CSSProperties, type MouseEvent, type ReactNode } from 'react'
-import { Avatar, Badge, Button, Divider } from '@moderno/react'
+import { Avatar, Badge, Button, Divider } from '@moderno-ui/react'
 
 export interface ApplicationShellsNavItem {
   id: string

@@ -2,7 +2,7 @@
   // Moderno block — Faq (Svelte). Copy-paste; edit freely.
   // Frequently-asked-questions section: centered header above a Q&A list. Uses the Accordion
   // primitive + Moderno tokens.
-  import { Accordion } from '@moderno/svelte'
+  import { Accordion } from '@moderno-ui/svelte'
 
   export interface FaqItem {
     question: string

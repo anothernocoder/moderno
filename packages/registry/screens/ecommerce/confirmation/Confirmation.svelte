@@ -5,7 +5,7 @@
   // message, so this screen composes only the Button primitive + Moderno
   // tokens — matching how a screen may compose blocks OR primitives directly,
   // whichever the step actually needs.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   let {
     orderNumber = '#MD-10482',

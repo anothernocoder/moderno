@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { DateView } from '@zag-js/date-picker'
   import { getDatePickerContext } from './date-picker-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let { view }: { view: DateView } = $props()
   const api = getDatePickerContext()

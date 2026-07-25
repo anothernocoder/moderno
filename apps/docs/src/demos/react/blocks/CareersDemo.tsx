@@ -1,4 +1,4 @@
-import { Careers } from '@moderno/registry/blocks/marketing/careers/Careers.tsx'
+import { Careers } from '@moderno-ui/registry/blocks/marketing/careers/Careers.tsx'
 
 export default function CareersDemo() {
   return <Careers />

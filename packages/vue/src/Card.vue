@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSlots } from 'vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 const slots = useSlots()
 </script>
 

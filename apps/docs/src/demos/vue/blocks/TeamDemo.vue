@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Team from '@moderno/registry/blocks/marketing/team/Team.vue'
+import Team from '@moderno-ui/registry/blocks/marketing/team/Team.vue'
 </script>
 
 <template>

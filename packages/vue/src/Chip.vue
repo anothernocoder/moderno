@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cx, parts, type ChipVariant } from '@moderno/class-contract'
+import { cx, parts, type ChipVariant } from '@moderno-ui/class-contract'
 
 const props = withDefaults(
   defineProps<{

@@ -1,7 +1,7 @@
 import { createMemo, createUniqueId, For, onCleanup, onMount, type JSX } from 'solid-js'
 import * as carousel from '@zag-js/carousel'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 type CarouselApi = ReturnType<typeof carousel.connect>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ApplicationShells from '@moderno/registry/blocks/applications/application-shells/ApplicationShells.vue'
+import ApplicationShells from '@moderno-ui/registry/blocks/applications/application-shells/ApplicationShells.vue'
 </script>
 
 <template>

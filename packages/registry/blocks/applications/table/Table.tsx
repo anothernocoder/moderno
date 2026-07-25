@@ -1,5 +1,5 @@
 import { useState, type CSSProperties, type ReactNode } from 'react'
-import { Badge, Button, Checkbox, type CheckedState } from '@moderno/react'
+import { Badge, Button, Checkbox, type CheckedState } from '@moderno-ui/react'
 
 export type TableStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

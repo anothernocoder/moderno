@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Table from '@moderno/registry/blocks/applications/table/Table.vue'
+import Table from '@moderno-ui/registry/blocks/applications/table/Table.vue'
 </script>
 
 <template>

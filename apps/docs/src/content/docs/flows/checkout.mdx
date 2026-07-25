@@ -88,27 +88,27 @@ Pulling the `checkout` flow copies the five screens it composes (`cart`, `shippi
 (`shopping-cart`, `checkout-forms`, `order-summaries`, deduped since `shipping` and `payment` both
 use `checkout-forms`) **plus** the example assembly. The CLI resolves `composes` recursively
 (flow → screen → block) and dedups by name — primitives are never copied, they stay an
-`@moderno/<framework>` npm dependency.
+`@moderno-ui/<framework>` npm dependency.
 
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```sh
-npx @moderno/registry add checkout --framework react
+npx @moderno-ui/registry add checkout --framework react
 ```
 </TabItem>
 <TabItem label="Vue">
 ```sh
-npx @moderno/registry add checkout --framework vue
+npx @moderno-ui/registry add checkout --framework vue
 ```
 </TabItem>
 <TabItem label="Svelte">
 ```sh
-npx @moderno/registry add checkout --framework svelte
+npx @moderno-ui/registry add checkout --framework svelte
 ```
 </TabItem>
 <TabItem label="Solid">
 ```sh
-npx @moderno/registry add checkout --framework solid
+npx @moderno-ui/registry add checkout --framework solid
 ```
 </TabItem>
 </Tabs>
@@ -120,17 +120,17 @@ into `--dest` (defaults to `./src/blocks`) — screens preserve their nested lay
 to the top of `--dest`. Pass `--no-example` to copy only the composed screens and blocks:
 
 ```sh
-npx @moderno/registry add checkout --framework react --no-example
+npx @moderno-ui/registry add checkout --framework react --no-example
 ```
 
 Want just the cart, with no flow context at all? It's addable standalone — reused outside the
 checkout journey too — and still transitively pulls the `shopping-cart` block it composes:
 
 ```sh
-npx @moderno/registry add cart --framework react
+npx @moderno-ui/registry add cart --framework react
 ```
 
-After copying, install the `@moderno/<framework>` primitive package and
+After copying, install the `@moderno-ui/<framework>` primitive package and
 [import the styles](/introduction/installation/). From there, the code — including navigation and
 state — is yours.
 

@@ -2,7 +2,7 @@
 // Moderno block — BlogPostHeader (Vue). Copy-paste; edit freely.
 // Single-article header: category badge, large title, subtitle and an author/date/read-time meta row.
 // Uses the Avatar + Badge primitives + Moderno tokens.
-import { Avatar, Badge } from '@moderno/vue'
+import { Avatar, Badge } from '@moderno-ui/vue'
 
 withDefaults(
   defineProps<{

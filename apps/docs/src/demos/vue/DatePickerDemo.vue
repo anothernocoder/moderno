@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DatePicker } from '@moderno/vue'
+import { DatePicker } from '@moderno-ui/vue'
 </script>
 
 <template>

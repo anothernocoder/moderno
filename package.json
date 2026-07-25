@@ -9,7 +9,7 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "check": "turbo run check",
-    "docs": "pnpm --filter @moderno/docs dev",
+    "docs": "pnpm --filter @moderno-ui/docs dev",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build && changeset publish"

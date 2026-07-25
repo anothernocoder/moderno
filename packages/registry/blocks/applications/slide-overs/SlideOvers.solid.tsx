@@ -1,5 +1,5 @@
 import { createSignal, type JSX } from 'solid-js'
-import { Button, Divider, Input, Sheet } from '@moderno/solid'
+import { Button, Divider, Input, Sheet } from '@moderno-ui/solid'
 
 export interface SlideOversFormValues {
   name: string

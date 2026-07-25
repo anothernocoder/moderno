@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Badge, Divider, Indicator } from '@moderno/react'
+import { Badge, Divider, Indicator } from '@moderno-ui/react'
 
 export type ServiceStatus = 'operational' | 'degraded' | 'down'
 

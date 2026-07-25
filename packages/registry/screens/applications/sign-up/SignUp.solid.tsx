@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { Button, Checkbox, Divider, Input } from '@moderno/solid'
+import { Button, Checkbox, Divider, Input } from '@moderno-ui/solid'
 
 export interface SignUpValues {
   name: string

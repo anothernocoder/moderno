@@ -1,5 +1,5 @@
 ---
-"@moderno/registry": minor
+"@moderno-ui/registry": minor
 ---
 
 Adds the **Onboarding** flow (ADR-0005) — the Applications domain capstone: welcome, profile
@@ -20,7 +20,7 @@ block at all.
 local `step` union across all four screens, and the profile values / selected plan / invites list
 carried forward between them (no router, no state library). `moderno add onboarding --framework
 <fw>` transitively copies the four screens plus the three composed blocks (`form-layouts`,
-`grid-lists`, `list`) and the example assembly; primitives stay an `@moderno/<framework>` npm
+`grid-lists`, `list`) and the example assembly; primitives stay an `@moderno-ui/<framework>` npm
 dependency and are never copied. Adds a bilingual `onboarding` flow docs page (EN + `/es/`) and
 CLI/registry tests covering the transitive composition, the standalone `welcome` add (no composed
 block), the standalone `profile-setup`/`plan-select`/`invite-team` adds (each transitively pulling

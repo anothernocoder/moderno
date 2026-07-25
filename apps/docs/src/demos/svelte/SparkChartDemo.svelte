@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SparkChart } from '@moderno/svelte'
+  import { SparkChart } from '@moderno-ui/svelte'
 
   const data = [
     { x: 0, y: 12 },

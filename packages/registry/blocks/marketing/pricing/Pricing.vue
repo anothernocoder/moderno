@@ -2,7 +2,7 @@
 // Moderno block — Pricing (Vue). Copy-paste; edit freely.
 // Plan comparison section. Uses the Card + Badge + Button + Divider primitives + Moderno tokens.
 import { computed } from 'vue'
-import { Card, Badge, Button, Divider } from '@moderno/vue'
+import { Card, Badge, Button, Divider } from '@moderno-ui/vue'
 
 export interface PricingPlan {
   name: string

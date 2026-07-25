@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as combobox from '@zag-js/combobox'
   import { useMachine, normalizeProps, portal } from '@zag-js/svelte'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   export interface ComboboxItem {
     label: string

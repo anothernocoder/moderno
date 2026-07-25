@@ -3,7 +3,7 @@ import { computed, useId } from 'vue'
 import * as datepicker from '@zag-js/date-picker'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { provideDatePicker } from './date-picker-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{
   /** `'single'` picks one date, `'range'` picks a start/end pair. */

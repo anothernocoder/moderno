@@ -1,4 +1,4 @@
-import { Accordion } from '@moderno/react'
+import { Accordion } from '@moderno-ui/react'
 
 export default function AccordionDemo() {
   return (

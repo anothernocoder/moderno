@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react'
-import { cx, type ButtonSize, type ButtonVariant } from '@moderno/class-contract'
+import { cx, type ButtonSize, type ButtonVariant } from '@moderno-ui/class-contract'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant

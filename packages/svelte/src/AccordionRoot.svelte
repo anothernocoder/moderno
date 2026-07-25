@@ -3,7 +3,7 @@
   import * as accordion from '@zag-js/accordion'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setAccordionContext } from './accordion-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     defaultValue,

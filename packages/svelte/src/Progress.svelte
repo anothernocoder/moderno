@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as progress from '@zag-js/progress'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
-  import { cx, parts, type ProgressVariant } from '@moderno/class-contract'
+  import { cx, parts, type ProgressVariant } from '@moderno-ui/class-contract'
 
   let {
     label,

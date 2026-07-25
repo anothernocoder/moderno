@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import * as toast from '@zag-js/toast'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export type ToastOptions = toast.Options
 export type Toaster = toast.Store

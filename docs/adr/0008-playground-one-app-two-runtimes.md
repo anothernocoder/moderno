@@ -9,7 +9,7 @@ theming registry inventory — with generation deliberately kept **local-first**
 
 **One app, two runtimes.** A single React SPA (`apps/playground`, Vite) is deployed
 statically alongside the docs as the public playground, and the same build is served
-locally by `npx moderno playground`, which boots a small framework-agnostic server
+locally by `npx @moderno-ui/registry playground`, which boots a small framework-agnostic server
 inside the user's repo. Generative capabilities light up only in the local runtime:
 the server spawns the **user's own coding-agent CLI** (Claude Code / Cursor / Codex,
 the design-playground model) with templated prompts; the agent writes variant source
@@ -46,7 +46,7 @@ assembly: it holds `step` state and drives screens through the wiring contract
 desktop ~1280) plus a URL "view mode" flag that hides panels for stakeholders.
 
 **Exports, in order:** v1 ships prompt export (self-contained: theme tokens,
-composition, `npx moderno add` commands, wiring notes — works with any agent) and
+composition, `npx @moderno-ui/registry add` commands, wiring notes — works with any agent) and
 framework-source export via the existing registry CLI. Pure-HTML snapshot export
 comes after v1; an MCP server is explicitly deferred until the local runtime exists
 and its absence hurts.

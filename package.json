@@ -10,6 +10,7 @@
     "test": "turbo run test",
     "check": "turbo run check",
     "docs": "pnpm --filter @moderno-ui/docs dev",
+    "smoke-test": "node --test scripts/pack-smoke-test.test.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build && changeset publish"

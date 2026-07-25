@@ -112,7 +112,7 @@ _Avoid_: funnel, wizard, journey, sequence, example page.
 **Playground**:
 Moderno's interactive surface — one app, two runtimes. Hosted (public, static,
 part of the product): browse and compose registry inventory, edit themes, toggle
-viewport, export. Local (`npx moderno playground`, run inside a repo): the same UI
+viewport, export. Local (`npx @moderno-ui/registry playground`, run inside a repo): the same UI
 plus generation — it can drive the user's own coding agent to produce variant
 source files in that repo. Generation capabilities light up only in the local
 runtime.

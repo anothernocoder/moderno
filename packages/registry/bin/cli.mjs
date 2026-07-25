@@ -3,8 +3,8 @@
  * @moderno-ui/registry — minimal copy-paste CLI for Moderno blocks, screens and flows.
  *
  * Usage:
- *   moderno add <block|screen|flow> --framework <react|vue|svelte|solid> [--dest <dir>] [--no-example]
- *   moderno list
+ *   moderno-ui add <block|screen|flow> --framework <react|vue|svelte|solid> [--dest <dir>] [--no-example]
+ *   moderno-ui list
  *
  * Blocks are layout-heavy compositions delivered by copy (ADR-0001). Screens and
  * flows (ADR-0005) sit above them: a flow `composes` screens, a screen may
@@ -73,7 +73,7 @@ function findEntry(registry, name) {
 function resolveComposed(registry, name, seen = new Map()) {
   if (seen.has(name)) return seen
   const found = findEntry(registry, name)
-  if (!found) fail(`Desconocido: ${name}. Corre "moderno list" para ver los disponibles.`)
+  if (!found) fail(`Desconocido: ${name}. Corre "moderno-ui list" para ver los disponibles.`)
   seen.set(name, found)
   for (const child of found.entry.composes ?? []) {
     resolveComposed(registry, child, seen)
@@ -142,7 +142,7 @@ async function cmdList() {
       console.log('')
     }
   }
-  console.log('Uso: moderno add <block|screen|flow> --framework <react|vue|svelte|solid>\n')
+  console.log('Uso: moderno-ui add <block|screen|flow> --framework <react|vue|svelte|solid>\n')
 }
 
 async function cmdAdd(positional, flags) {
@@ -151,13 +151,13 @@ async function cmdAdd(positional, flags) {
   const dest = flags.dest || './src/blocks'
   const noExample = Boolean(flags['no-example'])
 
-  if (!name) fail('Falta el nombre. Ej: moderno add hero --framework react')
+  if (!name) fail('Falta el nombre. Ej: moderno-ui add hero --framework react')
   if (!framework) fail('Falta --framework <react|vue|svelte|solid>')
   if (!FRAMEWORKS.includes(framework)) fail(`Framework inválido: ${framework}. Usa uno de: ${FRAMEWORKS.join(', ')}`)
 
   const registry = await loadRegistry()
   const found = findEntry(registry, name)
-  if (!found) fail(`Desconocido: ${name}. Corre "moderno list" para ver los disponibles.`)
+  if (!found) fail(`Desconocido: ${name}. Corre "moderno-ui list" para ver los disponibles.`)
 
   const resolved = resolveComposed(registry, name)
   const toCopy = [...resolved.values()].filter(
@@ -207,7 +207,7 @@ async function main() {
       await cmdList()
       break
     default:
-      console.log('Comandos: moderno add <block|screen|flow> --framework <fw> [--no-example]  |  moderno list')
+      console.log('Comandos: moderno-ui add <block|screen|flow> --framework <fw> [--no-example]  |  moderno-ui list')
       process.exit(command ? 1 : 0)
   }
 }

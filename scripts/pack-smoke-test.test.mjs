@@ -19,6 +19,18 @@ test('registry: installs the tarball and runs its bin', async () => {
   assert.ok(result.checks.some((c) => c.kind === 'bin'))
 })
 
+test('class-contract: packs, installs outside the workspace, and resolves its exports', async () => {
+  const result = await smokeTestPackage('packages/class-contract')
+  assert.equal(result.ok, true, JSON.stringify(result.checks, null, 2))
+  assert.ok(result.checks.length > 0)
+})
+
+test('chart-core: packs, installs outside the workspace, and resolves its exports', async () => {
+  const result = await smokeTestPackage('packages/chart-core')
+  assert.equal(result.ok, true, JSON.stringify(result.checks, null, 2))
+  assert.ok(result.checks.length > 0)
+})
+
 test('rejects a package path that does not exist', async () => {
   await assert.rejects(() => smokeTestPackage('packages/does-not-exist'))
 })

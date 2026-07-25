@@ -29,3 +29,9 @@ jobs:
       # svelte-check) + the contract — catches a wrong cx/parts/variant-type usage
       # against the contract at the framework seam.
       - run: pnpm check
+
+      # Pack-and-smoke-test harness: packs tokens/styles/registry, installs the
+      # tarballs into a scratch dir outside the pnpm workspace, and exercises
+      # their public entry points — catches "works via workspace:*" masking a
+      # broken published shape before it ever reaches the release workflow.
+      - run: pnpm smoke-test

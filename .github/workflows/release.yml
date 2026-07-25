@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+# Standard Changesets flow: on every push to main, this either opens/updates
+# a "Version Packages" PR (if changesets are pending in .changeset/) or, when
+# that PR has just been merged (no changesets left to consume), runs the
+# publish step. `id-token: write` is what lets `npm publish` authenticate via
+# npm Trusted Publishing (OIDC) — no NPM_TOKEN or other long-lived secret is
+# referenced anywhere in this workflow.
+#
+# One-time manual step outside this repo: npm Trusted Publishing still
+# requires the maintainer to link each package to this workflow
+# (owner/repo + this file's path) in the npmjs.com UI before its first
+# publish. Nothing here can do that automatically; until it's done, the
+# publish step will fail with an auth error even though the workflow itself
+# is correctly wired for OIDC. See docs/adr/0007-first-npm-release-build-esm-oidc.md.
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      # Trusted Publishing needs npm >= 11.5.1; the npm bundled with
+      # actions/setup-node's Node 22 build can lag behind that.
+      - run: npm install -g npm@latest
+
+      - run: pnpm build
+
+      # Pack-and-smoke-test harness (scripts/pack-smoke-test.mjs): packs
+      # tokens/styles/registry, installs the tarballs into a scratch dir
+      # outside the pnpm workspace, and exercises their public entry points.
+      # Gates publish — a broken tarball fails the release before it ships.
+      - run: pnpm smoke-test
+
+      - uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

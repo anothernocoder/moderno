@@ -117,7 +117,7 @@ console.log('rendered ok')
   }
 })
 
-test('vue: resolves its bundled internal deps and renders a Button against the built output', async () => {
+test('vue: resolves its internal @moderno-ui/* deps and renders a Button against the built output', async () => {
   const result = await smokeTestPackage('packages/vue', {
     postInstall: async ({ installDir }) => {
       const verifierPath = join(installDir, 'verify-render.mjs')

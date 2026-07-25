@@ -25,11 +25,11 @@ function copyStylesCss(): Plugin {
 // re-render wholesale on every update instead of doing Solid's fine-grained,
 // signal-driven DOM patching — the whole point of using Solid.
 //
-// solid-js and @zag-js/* are real published peer/runtime deps, so they're
-// externalized rather than bundled. @moderno-ui/class-contract and
-// @moderno-ui/chart-core are still unbuilt workspace packages (out of scope
-// here) that ship raw .ts source — Vite/Rollup resolves and inlines their
-// source directly into this bundle, the same way Vitest already does.
+// solid-js, @zag-js/*, and @moderno-ui/* are all real, independently-built
+// peer/runtime deps (class-contract/chart-core gained their own tsup build in
+// issue #152 — turbo's `^build` ordering builds them before this package), so
+// they all stay external rather than duplicating their compiled output
+// inside dist/index.js.
 export default defineConfig({
   plugins: [
     solid(),
@@ -54,7 +54,8 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: (id) => id === 'solid-js' || id.startsWith('solid-js/') || id.startsWith('@zag-js/'),
+      external: (id) =>
+        id === 'solid-js' || id.startsWith('solid-js/') || id.startsWith('@zag-js/') || id.startsWith('@moderno-ui/'),
       output: {
         preserveModules: false,
       },

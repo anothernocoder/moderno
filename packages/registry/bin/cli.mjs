@@ -21,7 +21,7 @@ const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const FRAMEWORKS = ['react', 'vue', 'svelte', 'solid']
 // Order matters for `list`: blocks, then screens, then flows.
 const KINDS = [
-  { key: 'blocks', label: 'block', heading: 'Bloques' },
+  { key: 'blocks', label: 'block', heading: 'Blocks' },
   { key: 'screens', label: 'screen', heading: 'Screens' },
   { key: 'flows', label: 'flow', heading: 'Flows' },
 ]
@@ -73,7 +73,7 @@ function findEntry(registry, name) {
 function resolveComposed(registry, name, seen = new Map()) {
   if (seen.has(name)) return seen
   const found = findEntry(registry, name)
-  if (!found) fail(`Desconocido: ${name}. Corre "moderno-ui list" para ver los disponibles.`)
+  if (!found) fail(`Unknown: ${name}. Run "moderno-ui list" to see what's available.`)
   seen.set(name, found)
   for (const child of found.entry.composes ?? []) {
     resolveComposed(registry, child, seen)
@@ -126,23 +126,23 @@ async function cmdList() {
     const items = registry[key] ?? {}
     if (Object.keys(items).length === 0) continue
 
-    console.log(`\n${heading} disponibles:\n`)
+    console.log(`\n${heading} available:\n`)
     const byDomain = new Map()
     for (const [name, item] of Object.entries(items)) {
-      const domain = item.domain ?? (label === 'flow' ? 'cross-domain' : 'otros')
+      const domain = item.domain ?? (label === 'flow' ? 'cross-domain' : 'other')
       if (!byDomain.has(domain)) byDomain.set(domain, [])
       byDomain.get(domain).push([name, item])
     }
     for (const [domain, entries] of byDomain) {
       console.log(`  \x1b[2m${domain}\x1b[0m`)
       for (const [name, item] of entries) {
-        const composes = item.composes?.length ? ` (compone: ${item.composes.join(', ')})` : ''
+        const composes = item.composes?.length ? ` (composes: ${item.composes.join(', ')})` : ''
         console.log(`    \x1b[1m${name}\x1b[0m — ${item.description}${composes}`)
       }
       console.log('')
     }
   }
-  console.log('Uso: moderno-ui add <block|screen|flow> --framework <react|vue|svelte|solid>\n')
+  console.log('Usage: moderno-ui add <block|screen|flow> --framework <react|vue|svelte|solid>\n')
 }
 
 async function cmdAdd(positional, flags) {
@@ -151,13 +151,13 @@ async function cmdAdd(positional, flags) {
   const dest = flags.dest || './src/blocks'
   const noExample = Boolean(flags['no-example'])
 
-  if (!name) fail('Falta el nombre. Ej: moderno-ui add hero --framework react')
-  if (!framework) fail('Falta --framework <react|vue|svelte|solid>')
-  if (!FRAMEWORKS.includes(framework)) fail(`Framework inválido: ${framework}. Usa uno de: ${FRAMEWORKS.join(', ')}`)
+  if (!name) fail('Missing name. E.g.: moderno-ui add hero --framework react')
+  if (!framework) fail('Missing --framework <react|vue|svelte|solid>')
+  if (!FRAMEWORKS.includes(framework)) fail(`Invalid framework: ${framework}. Use one of: ${FRAMEWORKS.join(', ')}`)
 
   const registry = await loadRegistry()
   const found = findEntry(registry, name)
-  if (!found) fail(`Desconocido: ${name}. Corre "moderno-ui list" para ver los disponibles.`)
+  if (!found) fail(`Unknown: ${name}. Run "moderno-ui list" to see what's available.`)
 
   const resolved = resolveComposed(registry, name)
   const toCopy = [...resolved.values()].filter(
@@ -169,14 +169,14 @@ async function cmdAdd(positional, flags) {
   // rewritten against where files actually land, not just copied verbatim.
   const plan = toCopy.map((item) => {
     const src = item.entry.files[framework]
-    if (!src) fail(`"${item.name}" no tiene variante para ${framework}.`)
+    if (!src) fail(`"${item.name}" has no variant for ${framework}.`)
     const destFile = item.entry.dest?.[framework] ?? src.split('/').pop()
     return { ...item, srcPath: join(PKG_ROOT, src), destPath: resolve(process.cwd(), dest, destFile) }
   })
 
   const copied = []
   for (const item of plan) {
-    if (await exists(item.destPath)) fail(`Ya existe ${item.destPath}. Bórralo o usa otro --dest.`)
+    if (await exists(item.destPath)) fail(`${item.destPath} already exists. Delete it or use a different --dest.`)
 
     await mkdir(dirname(item.destPath), { recursive: true })
     const content = await readFile(item.srcPath, 'utf8')
@@ -185,16 +185,16 @@ async function cmdAdd(positional, flags) {
   }
 
   for (const item of copied) {
-    console.log(`\x1b[32m✔\x1b[0m Copiado \x1b[1m${item.name}\x1b[0m (${item.kind}, ${framework}) → ${item.destPath}`)
+    console.log(`\x1b[32m✔\x1b[0m Copied \x1b[1m${item.name}\x1b[0m (${item.kind}, ${framework}) → ${item.destPath}`)
   }
 
   if (found.kind === 'flow') {
     const pulled = copied.filter((item) => item.name !== name).map((item) => item.name)
-    console.log(pulled.length ? `  Trajo también: ${pulled.join(', ')}` : '  No compone nada más.')
+    console.log(pulled.length ? `  Also pulled in: ${pulled.join(', ')}` : '  Composes nothing else.')
   }
 
   const deps = (found.entry.dependencies ?? []).map((d) => d.replace('{framework}', framework))
-  if (deps.length) console.log(`  Requiere: ${deps.join(', ')}`)
+  if (deps.length) console.log(`  Requires: ${deps.join(', ')}`)
 }
 
 async function main() {
@@ -207,7 +207,7 @@ async function main() {
       await cmdList()
       break
     default:
-      console.log('Comandos: moderno-ui add <block|screen|flow> --framework <fw> [--no-example]  |  moderno-ui list')
+      console.log('Commands: moderno-ui add <block|screen|flow> --framework <fw> [--no-example]  |  moderno-ui list')
       process.exit(command ? 1 : 0)
   }
 }

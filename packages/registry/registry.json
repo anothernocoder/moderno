@@ -4,7 +4,7 @@
   "blocks": {
     "hero": {
       "domain": "marketing",
-      "description": "Sección hero above-the-fold: kicker, título, subtítulo y CTA.",
+      "description": "Above-the-fold hero section: kicker, title, subtitle, and CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/hero/Hero.tsx",
@@ -21,7 +21,7 @@
     },
     "banner": {
       "domain": "marketing",
-      "description": "Franja de anuncio en la parte superior: copy, CTA opcional y cierre.",
+      "description": "Top announcement strip: copy, optional CTA, and dismiss.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/banner/Banner.tsx",
@@ -38,7 +38,7 @@
     },
     "pricing": {
       "domain": "marketing",
-      "description": "Sección de precios: tabla comparativa de planes con features y CTA.",
+      "description": "Pricing section: comparison table of plans with features and CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/pricing/Pricing.tsx",
@@ -55,7 +55,7 @@
     },
     "header": {
       "domain": "marketing",
-      "description": "Encabezado de sitio / navegación de marketing: logo, enlaces de navegación y CTA.",
+      "description": "Site header / marketing navigation: logo, nav links, and CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/header/Header.tsx",
@@ -72,7 +72,7 @@
     },
     "features": {
       "domain": "marketing",
-      "description": "Grid de características: icono, título y descripción por ítem.",
+      "description": "Features grid: icon, title, and description per item.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/features/Features.tsx",
@@ -89,7 +89,7 @@
     },
     "content": {
       "domain": "marketing",
-      "description": "Sección de contenido/prosa general: copy largo con jerarquía de encabezados y párrafos.",
+      "description": "General content/prose section: long-form copy with heading hierarchy and paragraphs.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/content/Content.tsx",
@@ -106,7 +106,7 @@
     },
     "careers": {
       "domain": "marketing",
-      "description": "Sección de carreras/vacantes: lista de roles abiertos con título, ubicación y CTA de aplicar.",
+      "description": "Careers/openings section: list of open roles with title, location, and apply CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/careers/Careers.tsx",
@@ -123,7 +123,7 @@
     },
     "footer": {
       "domain": "marketing",
-      "description": "Pie de sitio: navegación, enlaces legales y enlaces sociales.",
+      "description": "Site footer: navigation, legal links, and social links.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/footer/Footer.tsx",
@@ -140,7 +140,7 @@
     },
     "contact": {
       "domain": "marketing",
-      "description": "Sección de contacto: información de contacto y formulario de nombre/correo/asunto/mensaje.",
+      "description": "Contact section: contact info and a name/email/subject/message form.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/contact/Contact.tsx",
@@ -157,7 +157,7 @@
     },
     "faq": {
       "domain": "marketing",
-      "description": "Sección de preguntas frecuentes: lista de preguntas y respuestas usando el primitive Accordion.",
+      "description": "FAQ section: list of questions and answers using the Accordion primitive.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/faq/Faq.tsx",
@@ -174,7 +174,7 @@
     },
     "testimonials": {
       "domain": "marketing",
-      "description": "Sección de prueba social: cita, autor y avatar en una grilla de tarjetas.",
+      "description": "Social proof section: quote, author, and avatar in a card grid.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/testimonials/Testimonials.tsx",
@@ -191,7 +191,7 @@
     },
     "logos": {
       "domain": "marketing",
-      "description": "Franja de logos de confianza: fila centrada de logos de socios o clientes con kicker opcional.",
+      "description": "Trusted-by logo strip: centered row of partner or customer logos with an optional kicker.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/logos/Logos.tsx",
@@ -208,7 +208,7 @@
     },
     "team": {
       "domain": "marketing",
-      "description": "Sección de equipo: avatar, nombre, rol y bio en una grilla de tarjetas de perfil.",
+      "description": "Team section: avatar, name, role, and bio in a grid of profile cards.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/team/Team.tsx",
@@ -225,7 +225,7 @@
     },
     "cta": {
       "domain": "marketing",
-      "description": "Sección de llamado a la acción: título, descripción opcional y botón(es).",
+      "description": "Call-to-action section: title, optional description, and button(s).",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/cta/Cta.tsx",
@@ -242,7 +242,7 @@
     },
     "blog-header": {
       "domain": "marketing",
-      "description": "Encabezado de blog: kicker, título, subtítulo y chips de categoría.",
+      "description": "Blog header: kicker, title, subtitle, and category chips.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/blog-header/BlogHeader.tsx",
@@ -259,7 +259,7 @@
     },
     "blog-sections": {
       "domain": "marketing",
-      "description": "Listado de posts: grilla de tarjetas con categoría, título, extracto y autor.",
+      "description": "Post listing: card grid with category, title, excerpt, and author.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/blog-sections/BlogSections.tsx",
@@ -276,7 +276,7 @@
     },
     "blog-post-header": {
       "domain": "marketing",
-      "description": "Encabezado de artículo: categoría, título, subtítulo y meta de autor/fecha/lectura.",
+      "description": "Article header: category, title, subtitle, and author/date/read-time meta.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/blog-post-header/BlogPostHeader.tsx",
@@ -293,7 +293,7 @@
     },
     "newsletter": {
       "domain": "marketing",
-      "description": "Sección de suscripción por correo con encabezado centrado y formulario en línea.",
+      "description": "Email subscription section with a centered heading and inline form.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/newsletter/Newsletter.tsx",
@@ -310,7 +310,7 @@
     },
     "marketing-stats": {
       "domain": "marketing",
-      "description": "Fila de métricas destacadas para páginas de marketing (variante editorial, distinta del dashboard KPI de aplicaciones — bloque \"stats\").",
+      "description": "Row of featured metrics for marketing pages (editorial variant, distinct from the app dashboard's KPI block — the \"stats\" block).",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/marketing-stats/MarketingStats.tsx",
@@ -327,7 +327,7 @@
     },
     "contact-modal": {
       "domain": "marketing",
-      "description": "Captura de contacto/leads basada en modal: formulario compacto + Dialog para contacto directo.",
+      "description": "Modal-based contact/lead capture: compact form + Dialog for direct contact.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/contact-modal/ContactModal.tsx",
@@ -344,7 +344,7 @@
     },
     "share-invite": {
       "domain": "marketing",
-      "description": "Compartir e invitar: enlace compartible con copiar al portapapeles, botones de canal/red social y un formulario de invitación por correo con lista de invitaciones pendientes.",
+      "description": "Share and invite: shareable link with copy-to-clipboard, channel/social buttons, and an email invite form with a list of pending invites.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/share-invite/ShareInvite.tsx",
@@ -361,7 +361,7 @@
     },
     "not-found": {
       "domain": "marketing",
-      "description": "Sección de error 404: numeral grande, mensaje y CTA de vuelta al sitio.",
+      "description": "404 error section: large numeral, message, and CTA back to the site.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/marketing/not-found/NotFound.tsx",
@@ -378,7 +378,7 @@
     },
     "form-layouts": {
       "domain": "applications",
-      "description": "Layout de formulario de aplicación: secciones agrupadas, grid responsivo de campos y footer de acciones.",
+      "description": "Application form layout: grouped sections, a responsive field grid, and an actions footer.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/form-layouts/FormLayouts.tsx",
@@ -395,7 +395,7 @@
     },
     "alerts": {
       "domain": "applications",
-      "description": "Área de alertas de aplicación: mensajes info/success/warning/error, con opciones de cierre y acción.",
+      "description": "Application alerts area: info/success/warning/error messages, with dismiss and action options.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/alerts/Alerts.tsx",
@@ -412,7 +412,7 @@
     },
     "action-panels": {
       "domain": "applications",
-      "description": "Panel de acciones: filas de título + descripción con una acción única, estilo cuenta/ajustes, con variante destructiva.",
+      "description": "Action panel: title + description rows with a single action, account/settings style, with a destructive variant.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/action-panels/ActionPanels.tsx",
@@ -429,7 +429,7 @@
     },
     "feeds": {
       "domain": "applications",
-      "description": "Feed de actividad: timeline vertical con avatar, actor/acción y timestamp.",
+      "description": "Activity feed: vertical timeline with avatar, actor/action, and timestamp.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/feeds/Feeds.tsx",
@@ -446,7 +446,7 @@
     },
     "stacked-list": {
       "domain": "applications",
-      "description": "Lista apilada de registros: tarjetas verticales con avatar, badge de estado y acción.",
+      "description": "Stacked list of records: vertical cards with avatar, status badge, and action.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/stacked-list/StackedList.tsx",
@@ -463,7 +463,7 @@
     },
     "stats": {
       "domain": "applications",
-      "description": "Fila de KPIs: tarjetas de métrica con valor, etiqueta y delta.",
+      "description": "Row of KPIs: metric cards with value, label, and delta.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/stats/Stats.tsx",
@@ -480,7 +480,7 @@
     },
     "slide-overs": {
       "domain": "applications",
-      "description": "Slide-over de detalle/edición: panel lateral con Sheet, formulario compacto y acciones Cancelar/Guardar.",
+      "description": "Detail/edit slide-over: side panel with Sheet, a compact form, and Cancel/Save actions.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/slide-overs/SlideOvers.tsx",
@@ -497,7 +497,7 @@
     },
     "kpi-cards": {
       "domain": "applications",
-      "description": "Tarjetas de KPI primario: valor, etiqueta e indicador de tendencia, la contraparte de una sola métrica del bloque stats.",
+      "description": "Primary KPI cards: value, label, and trend indicator — the single-metric counterpart to the stats block.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/kpi-cards/KpiCards.tsx",
@@ -514,7 +514,7 @@
     },
     "table": {
       "domain": "applications",
-      "description": "Tabla de datos de aplicación: orden, selección de filas y acciones en lote.",
+      "description": "Application data table: sorting, row selection, and batch actions.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/table/Table.tsx",
@@ -531,7 +531,7 @@
     },
     "application-shells": {
       "domain": "applications",
-      "description": "App frame: sidebar con navegación y cuenta de usuario, topbar y área de contenido.",
+      "description": "App frame: sidebar with navigation and user account, topbar, and content area.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/application-shells/ApplicationShells.tsx",
@@ -548,7 +548,7 @@
     },
     "modals": {
       "domain": "applications",
-      "description": "Panel de acciones de cuenta: fila de acciones que abren diálogos centrados (Dialog).",
+      "description": "Account actions panel: row of actions that open centered dialogs (Dialog).",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/modals/Modals.tsx",
@@ -565,7 +565,7 @@
     },
     "empty-states": {
       "domain": "applications",
-      "description": "Estado vacío de aplicación: icono, título, descripción y CTA para crear el primer elemento.",
+      "description": "Application empty state: icon, title, description, and CTA to create the first item.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/empty-states/EmptyStates.tsx",
@@ -582,7 +582,7 @@
     },
     "input-groups": {
       "domain": "applications",
-      "description": "Inputs compuestos: prefijos, sufijos y add-ons (URL, moneda, icono, buscador).",
+      "description": "Compound inputs: prefixes, suffixes, and add-ons (URL, currency, icon, search).",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/input-groups/InputGroups.tsx",
@@ -599,7 +599,7 @@
     },
     "app-banners": {
       "domain": "applications",
-      "description": "Notificaciones a nivel de aplicación: impersonación, prueba por vencer, incidente de servicio.",
+      "description": "Application-level notifications: impersonation, trial expiring, service incident.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/app-banners/AppBanners.tsx",
@@ -616,7 +616,7 @@
     },
     "grid-lists": {
       "domain": "applications",
-      "description": "Grid de tarjetas: layout responsivo de tiles con miniatura, título, subtítulo y badge de estado.",
+      "description": "Card grid: responsive tile layout with thumbnail, title, subtitle, and status badge.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/grid-lists/GridLists.tsx",
@@ -633,7 +633,7 @@
     },
     "page-card-section-headers": {
       "domain": "applications",
-      "description": "Familia de encabezados de aplicación: encabezado de página, encabezado de tarjeta y barras superior/inferior de sección.",
+      "description": "Family of application headers: page header, card header, and section top/bottom bars.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/page-card-section-headers/PageCardSectionHeaders.tsx",
@@ -650,7 +650,7 @@
     },
     "status-monitoring": {
       "domain": "applications",
-      "description": "Panel de estado de servicios: banner general, indicador y badge por servicio, uptime y último incidente.",
+      "description": "Service status panel: overall banner, per-service indicator and badge, uptime, and last incident.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/status-monitoring/StatusMonitoring.tsx",
@@ -667,7 +667,7 @@
     },
     "description-list": {
       "domain": "applications",
-      "description": "Lista de detalle clave/valor para vistas de registro (pedido, perfil, etc).",
+      "description": "Key/value detail list for record views (order, profile, etc.).",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/description-list/DescriptionList.tsx",
@@ -684,7 +684,7 @@
     },
     "list": {
       "domain": "applications",
-      "description": "Lista de registros de aplicación: fila con avatar, texto primario/secundario, badge de estado y acción — sin las columnas tabulares de Table.",
+      "description": "Application record list: row with avatar, primary/secondary text, status badge, and action — without Table's tabular columns.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/list/List.tsx",
@@ -701,7 +701,7 @@
     },
     "containers": {
       "domain": "applications",
-      "description": "Envoltorios de layout de página: ancho máximo y padding horizontal consistente (angosto, predeterminado, ancho, completo) para centrar contenido.",
+      "description": "Page layout wrappers: max width and consistent horizontal padding (narrow, default, wide, full) for centering content.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/containers/Containers.tsx",
@@ -718,7 +718,7 @@
     },
     "list-containers": {
       "domain": "applications",
-      "description": "Contenedor especializado para listas: encabezado, cuerpo con scroll (overflow-y: auto) y footer con resumen + acción.",
+      "description": "Specialized container for lists: header, scrolling body (overflow-y: auto), and footer with summary + action.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/list-containers/ListContainers.tsx",
@@ -735,7 +735,7 @@
     },
     "panels": {
       "domain": "applications",
-      "description": "Superficies de panel genéricas para agrupar contenido: encabezado y una grilla responsiva de paneles con título, cuerpo y acción de footer opcional.",
+      "description": "Generic panel surfaces for grouping content: a header and a responsive grid of panels with title, body, and an optional footer action.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/panels/Panels.tsx",
@@ -752,7 +752,7 @@
     },
     "media-objects": {
       "domain": "applications",
-      "description": "Media + texto: fila con avatar (imagen o iniciales), encabezado, cuerpo y meta opcional — el patrón clásico de 'media object' para comentarios o actividad.",
+      "description": "Media + text: row with avatar (image or initials), heading, body, and optional meta — the classic 'media object' pattern for comments or activity.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/applications/media-objects/MediaObjects.tsx",
@@ -769,7 +769,7 @@
     },
     "product-card": {
       "domain": "ecommerce",
-      "description": "Tarjeta de producto: imagen, badge de oferta, título, precio y CTA.",
+      "description": "Product card: image, sale badge, title, price, and CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/product-card/ProductCard.tsx",
@@ -786,7 +786,7 @@
     },
     "product-details": {
       "domain": "ecommerce",
-      "description": "Página de detalle de producto: galería, precio, stock, variantes, cantidad y carrito.",
+      "description": "Product detail page: gallery, price, stock, variants, quantity, and add-to-cart.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/product-details/ProductDetails.tsx",
@@ -803,7 +803,7 @@
     },
     "store-nav": {
       "domain": "ecommerce",
-      "description": "Navegación de tienda: logo, enlaces de categorías, buscador y carrito con contador.",
+      "description": "Store navigation: logo, category links, search, and cart with item counter.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/store-nav/StoreNav.tsx",
@@ -820,7 +820,7 @@
     },
     "promo": {
       "domain": "ecommerce",
-      "description": "Barra de promoción sitewide: mensaje, CTA opcional y botón de cierre opcional.",
+      "description": "Sitewide promo bar: message, optional CTA, and optional dismiss button.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/promo/Promo.tsx",
@@ -837,7 +837,7 @@
     },
     "category-preview": {
       "domain": "ecommerce",
-      "description": "Grid de tiles de categoría: imagen y etiqueta enlazando a las páginas de categoría.",
+      "description": "Category tile grid: image and label linking to category pages.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/category-preview/CategoryPreview.tsx",
@@ -854,7 +854,7 @@
     },
     "category-filters": {
       "domain": "ecommerce",
-      "description": "Filtros facetados de barra lateral: combobox de categoría, tallas y rango de precio.",
+      "description": "Sidebar faceted filters: category combobox, sizes, and price range.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/category-filters/CategoryFilters.tsx",
@@ -871,7 +871,7 @@
     },
     "product-lists": {
       "domain": "ecommerce",
-      "description": "Grid de productos: encabezado de sección, tarjetas de producto y paginación simple.",
+      "description": "Product grid: section header, product cards, and simple pagination.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/product-lists/ProductLists.tsx",
@@ -888,7 +888,7 @@
     },
     "product-features": {
       "domain": "ecommerce",
-      "description": "Grid de características de producto: icono, etiqueta y descripción.",
+      "description": "Product features grid: icon, label, and description.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/product-features/ProductFeatures.tsx",
@@ -905,7 +905,7 @@
     },
     "reviews": {
       "domain": "ecommerce",
-      "description": "Reseñas de clientes: resumen de calificación promedio con desglose por estrellas y lista de reseñas individuales.",
+      "description": "Customer reviews: average rating summary with a star breakdown and a list of individual reviews.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/reviews/Reviews.tsx",
@@ -922,7 +922,7 @@
     },
     "shopping-cart": {
       "domain": "ecommerce",
-      "description": "Carrito de compras: línea de productos con imagen, cantidad y opción de quitar, subtotal y CTA de checkout.",
+      "description": "Shopping cart: product line items with image, quantity, and remove option, subtotal, and checkout CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/shopping-cart/ShoppingCart.tsx",
@@ -939,7 +939,7 @@
     },
     "checkout-forms": {
       "domain": "ecommerce",
-      "description": "Formulario de checkout: dirección de envío y datos de pago agrupados en un formulario multi-sección.",
+      "description": "Checkout form: shipping address and payment details grouped in a multi-section form.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/checkout-forms/CheckoutForms.tsx",
@@ -956,7 +956,7 @@
     },
     "order-summaries": {
       "domain": "ecommerce",
-      "description": "Resumen del pedido: línea de productos con cantidad, subtotal, envío, impuestos y total. Solo lectura.",
+      "description": "Order summary: product line items with quantity, subtotal, shipping, tax, and total. Read-only.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/order-summaries/OrderSummaries.tsx",
@@ -973,7 +973,7 @@
     },
     "order-history": {
       "domain": "ecommerce",
-      "description": "Historial de pedidos: lista de pedidos anteriores con estado, fecha y total, cada uno enlazando a su detalle.",
+      "description": "Order history: list of past orders with status, date, and total, each linking to its detail page.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/order-history/OrderHistory.tsx",
@@ -990,7 +990,7 @@
     },
     "incentives": {
       "domain": "ecommerce",
-      "description": "Franja de incentivos de confianza: envío gratis, cambios y devoluciones fáciles, y pago seguro, cada uno con icono y descripción breve.",
+      "description": "Trust incentives strip: free shipping, easy exchanges and returns, and secure payment, each with an icon and short description.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/ecommerce/incentives/Incentives.tsx",
@@ -1007,7 +1007,7 @@
     },
     "portfolio-header": {
       "domain": "portfolio",
-      "description": "Encabezado de portafolio: avatar, nombre, rol, bio, enlaces y CTA.",
+      "description": "Portfolio header: avatar, name, role, bio, links, and CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/portfolio/portfolio-header/PortfolioHeader.tsx",
@@ -1024,7 +1024,7 @@
     },
     "portfolio-sections": {
       "domain": "portfolio",
-      "description": "Showcase de trabajo: grid de proyectos con imagen, categoría y enlace de caso de estudio.",
+      "description": "Work showcase: project grid with image, category, and case-study link.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/portfolio/portfolio-sections/PortfolioSections.tsx",
@@ -1041,7 +1041,7 @@
     },
     "long-form-content": {
       "domain": "portfolio",
-      "description": "Layout de caso de estudio / lectura larga: kicker, headline, dek, imagen de portada y secciones de prosa con pull-quote.",
+      "description": "Case study / long-form reading layout: kicker, headline, dek, cover image, and prose sections with a pull-quote.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/portfolio/long-form-content/LongFormContent.tsx",
@@ -1058,7 +1058,7 @@
     },
     "story": {
       "domain": "images-ads",
-      "description": "Plantilla vertical 9:16 para ads / historias: kicker, título y CTA.",
+      "description": "Vertical 9:16 template for ads / stories: kicker, title, and CTA.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "blocks/images-ads/story/Story.tsx",
@@ -1077,7 +1077,7 @@
   "screens": {
     "sign-in": {
       "domain": "applications",
-      "description": "Pantalla de inicio de sesión: correo/contraseña, recordarme, olvidé mi contraseña y enlace a registro.",
+      "description": "Sign-in screen: email/password, remember me, forgot password, and a link to sign up.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/sign-in/SignIn.tsx",
@@ -1094,7 +1094,7 @@
     },
     "sign-up": {
       "domain": "applications",
-      "description": "Pantalla de registro: nombre, correo, contraseña, confirmación y aceptación de términos.",
+      "description": "Sign-up screen: name, email, password, confirmation, and terms acceptance.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/sign-up/SignUp.tsx",
@@ -1111,7 +1111,7 @@
     },
     "forgot-password": {
       "domain": "applications",
-      "description": "Pantalla de recuperación de contraseña: solicita el correo y confirma el envío del enlace.",
+      "description": "Forgot-password screen: asks for the email and confirms the link was sent.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/forgot-password/ForgotPassword.tsx",
@@ -1128,7 +1128,7 @@
     },
     "reset-password": {
       "domain": "applications",
-      "description": "Pantalla para elegir una nueva contraseña tras verificar el código de recuperación.",
+      "description": "Screen for choosing a new password after verifying the recovery code.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/reset-password/ResetPassword.tsx",
@@ -1145,7 +1145,7 @@
     },
     "verify": {
       "domain": "applications",
-      "description": "Pantalla de verificación por código (OTP): confirma la dirección de correo o el restablecimiento de contraseña.",
+      "description": "Code verification (OTP) screen: confirms the email address or the password reset.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/verify/Verify.tsx",
@@ -1162,7 +1162,7 @@
     },
     "welcome": {
       "domain": "applications",
-      "description": "Pantalla de bienvenida: primer paso del onboarding, mensaje de saludo y CTA para comenzar. No compone ningún bloque — solo primitives.",
+      "description": "Welcome screen: first step of onboarding, greeting message, and CTA to get started. Composes no block — primitives only.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/welcome/Welcome.tsx",
@@ -1179,7 +1179,7 @@
     },
     "profile-setup": {
       "domain": "applications",
-      "description": "Pantalla de configuración de perfil: compone el bloque form-layouts (nombre, correo, biografía, rol y zona horaria).",
+      "description": "Profile setup screen: composes the form-layouts block (name, email, bio, role, and timezone).",
       "composes": ["form-layouts"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1197,7 +1197,7 @@
     },
     "plan-select": {
       "domain": "applications",
-      "description": "Pantalla de selección de plan/workspace: compone el bloque grid-lists — cada tile de plan reutiliza su tarjeta de título/subtítulo/badge de estado.",
+      "description": "Plan/workspace selection screen: composes the grid-lists block — each plan tile reuses its title/subtitle/status-badge card.",
       "composes": ["grid-lists"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1215,7 +1215,7 @@
     },
     "invite-team": {
       "domain": "applications",
-      "description": "Pantalla de invitación de equipo: compone el bloque list para las filas de invitados, junto a un formulario propio de correo + botón para agregar.",
+      "description": "Team invite screen: composes the list block for invitee rows, alongside its own email form + add button.",
       "composes": ["list"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1233,7 +1233,7 @@
     },
     "referral-invite": {
       "domain": "applications",
-      "description": "Pantalla de inicio del flow Referral: formulario propio con el nombre del usuario y un CTA para generar el enlace de referido — no compone ningún bloque.",
+      "description": "Starting screen of the Referral flow: its own form with the user's name and a CTA to generate the referral link — composes no block.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/referral-invite/ReferralInvite.tsx",
@@ -1250,7 +1250,7 @@
     },
     "referral-share": {
       "domain": "applications",
-      "description": "Pantalla de compartir del flow Referral (cross-domain Applications + Marketing): compone el bloque Marketing share-invite para el enlace, los botones de canal y el formulario de invitación por correo.",
+      "description": "Share screen of the Referral flow (cross-domain Applications + Marketing): composes the Marketing share-invite block for the link, channel buttons, and the email invite form.",
       "composes": ["share-invite"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1268,7 +1268,7 @@
     },
     "referral-reward": {
       "domain": "applications",
-      "description": "Pantalla final del flow Referral: resumen de recompensa acumulada, lista de invitados con su estado y CTA de reclamo — no compone ningún bloque.",
+      "description": "Final screen of the Referral flow: summary of accumulated reward, list of invitees with their status, and a claim CTA — composes no block.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/applications/referral-reward/ReferralReward.tsx",
@@ -1285,7 +1285,7 @@
     },
     "cart": {
       "domain": "ecommerce",
-      "description": "Pantalla de carrito: line items con cantidad y opción de quitar, subtotal y CTA para continuar a envío. Compone el bloque shopping-cart. También se puede agregar de forma independiente.",
+      "description": "Cart screen: line items with quantity and remove option, subtotal, and a CTA to continue to shipping. Composes the shopping-cart block. Can also be added standalone.",
       "composes": ["shopping-cart"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1303,7 +1303,7 @@
     },
     "shipping": {
       "domain": "ecommerce",
-      "description": "Pantalla de dirección de envío y pago: compone el bloque checkout-forms (dirección + tarjeta en un solo formulario).",
+      "description": "Shipping address and payment screen: composes the checkout-forms block (address + card in a single form).",
       "composes": ["checkout-forms"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1321,7 +1321,7 @@
     },
     "payment": {
       "domain": "ecommerce",
-      "description": "Pantalla de método de pago: re-presenta el bloque checkout-forms, precargado con los valores de envío, para confirmar o ajustar la tarjeta.",
+      "description": "Payment method screen: re-presents the checkout-forms block, pre-filled with the shipping values, to confirm or adjust the card.",
       "composes": ["checkout-forms"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1339,7 +1339,7 @@
     },
     "review": {
       "domain": "ecommerce",
-      "description": "Pantalla de revisión del pedido: compone el bloque order-summaries (solo lectura) junto a un resumen de envío/pago propio de la pantalla.",
+      "description": "Order review screen: composes the order-summaries block (read-only) alongside the screen's own shipping/payment summary.",
       "composes": ["order-summaries"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1357,7 +1357,7 @@
     },
     "confirmation": {
       "domain": "ecommerce",
-      "description": "Pantalla de confirmación de pedido: mensaje de éxito, número de pedido y CTA para seguir comprando. No compone ningún bloque — solo primitives.",
+      "description": "Order confirmation screen: success message, order number, and a CTA to keep shopping. Composes no block — primitives only.",
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
         "react": "screens/ecommerce/confirmation/Confirmation.tsx",
@@ -1375,7 +1375,7 @@
   },
   "flows": {
     "auth": {
-      "description": "Flujo de autenticación completo: inicio de sesión, registro, recuperación y restablecimiento de contraseña, y verificación por código, con un ensamblaje de ejemplo de estado local.",
+      "description": "Complete authentication flow: sign-in, sign-up, password recovery and reset, and code verification, with a local-state example assembly.",
       "composes": ["sign-in", "sign-up", "forgot-password", "reset-password", "verify"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1392,7 +1392,7 @@
       }
     },
     "checkout": {
-      "description": "Flujo de checkout completo — el capstone de E-Commerce: carrito, envío, pago, revisión y confirmación, con un ensamblaje de ejemplo de estado local. Primera vez que las screens de un flow componen bloques de E-Commerce (shopping-cart, checkout-forms, order-summaries) en vez de solo primitives, ejercitando la resolución recursiva de `composes`.",
+      "description": "Complete checkout flow — the E-Commerce capstone: cart, shipping, payment, review, and confirmation, with a local-state example assembly. The first time a flow's screens compose E-Commerce blocks (shopping-cart, checkout-forms, order-summaries) instead of just primitives, exercising the recursive resolution of `composes`.",
       "composes": ["cart", "shipping", "payment", "review", "confirmation"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1409,7 +1409,7 @@
       }
     },
     "onboarding": {
-      "description": "Flujo de onboarding completo — el capstone de Applications: bienvenida, perfil, selección de plan/workspace e invitación de equipo, con un ensamblaje de ejemplo de estado local. Las screens componen los bloques Applications form-layouts, grid-lists y list en vez de solo primitives, ejercitando la resolución recursiva de `composes`.",
+      "description": "Complete onboarding flow — the Applications capstone: welcome, profile, plan/workspace selection, and team invite, with a local-state example assembly. The screens compose the Applications form-layouts, grid-lists, and list blocks instead of just primitives, exercising the recursive resolution of `composes`.",
       "composes": ["welcome", "profile-setup", "plan-select", "invite-team"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {
@@ -1426,7 +1426,7 @@
       }
     },
     "referral": {
-      "description": "Flujo de referidos — cross-domain (Applications + Marketing), el último en salir: invita (genera tu enlace), comparte (compone el bloque Marketing share-invite) y reward/claim, con un ensamblaje de ejemplo de estado local. La screen `referral-share` compone el bloque share-invite en vez de reimplementar su UI, ejercitando la resolución recursiva de `composes` a través de dominios.",
+      "description": "Referral flow — cross-domain (Applications + Marketing), the last one out: invite (generate your link), share (composes the Marketing share-invite block), and reward/claim, with a local-state example assembly. The `referral-share` screen composes the share-invite block instead of reimplementing its UI, exercising the recursive resolution of `composes` across domains.",
       "composes": ["referral-invite", "referral-share", "referral-reward"],
       "dependencies": ["@moderno-ui/{framework}"],
       "files": {

@@ -1396,13 +1396,13 @@ test('list groups blocks by domain and includes the portfolio blocks', () => {
 test('list groups screens and flows in their own sections, separate from blocks', () => {
   const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
 
-  assert.match(output, /Screens disponibles/)
-  assert.match(output, /Flows disponibles/)
+  assert.match(output, /Screens available/)
+  assert.match(output, /Flows available/)
 
-  const screensIndex = output.indexOf('Screens disponibles')
-  const flowsIndex = output.indexOf('Flows disponibles')
+  const screensIndex = output.indexOf('Screens available')
+  const flowsIndex = output.indexOf('Flows available')
   const signInIndex = output.indexOf('sign-in')
-  const authIndex = output.indexOf('auth')
+  const authIndex = output.indexOf('\x1b[1mauth\x1b[0m')
 
   assert.ok(screensIndex > -1 && flowsIndex > screensIndex, 'expected Screens before Flows')
   assert.ok(signInIndex > screensIndex && signInIndex < flowsIndex, 'expected sign-in listed under Screens')
@@ -1561,7 +1561,7 @@ test('add checkout flow recursively resolves composes and copies all five screen
   assert.match(output, /shopping-cart/)
   assert.match(output, /checkout-forms/)
   assert.match(output, /order-summaries/)
-  assert.match(output, /Trajo también/)
+  assert.match(output, /Also pulled in/)
 
   const cart = await readFile(join(dest, 'screens/ecommerce/cart/Cart.tsx'), 'utf8')
   assert.match(cart, /export function Cart/)
@@ -1694,8 +1694,8 @@ test('add copies the shipping, payment, review and confirmation screens standalo
 test('list groups the checkout flow and its screens separate from blocks', () => {
   const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
 
-  const screensIndex = output.indexOf('Screens disponibles')
-  const flowsIndex = output.indexOf('Flows disponibles')
+  const screensIndex = output.indexOf('Screens available')
+  const flowsIndex = output.indexOf('Flows available')
   // Search for the bolded screen/flow entry name specifically (`\x1b[1mcart\x1b[0m`)
   // rather than a bare substring match, since "cart" also occurs inside the
   // "shopping-cart" block entry listed earlier under Blocks.
@@ -1723,7 +1723,7 @@ test('add onboarding flow recursively resolves composes and copies all four scre
   assert.match(output, /form-layouts/)
   assert.match(output, /grid-lists/)
   assert.match(output, /\blist\b/)
-  assert.match(output, /Trajo también/)
+  assert.match(output, /Also pulled in/)
 
   const welcome = await readFile(join(dest, 'screens/applications/welcome/Welcome.tsx'), 'utf8')
   assert.match(welcome, /export function Welcome/)
@@ -1851,8 +1851,8 @@ test('add copies the profile-setup, plan-select and invite-team screens standalo
 test('list groups the onboarding flow and its screens separate from blocks', () => {
   const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
 
-  const screensIndex = output.indexOf('Screens disponibles')
-  const flowsIndex = output.indexOf('Flows disponibles')
+  const screensIndex = output.indexOf('Screens available')
+  const flowsIndex = output.indexOf('Flows available')
   // Search for the bolded screen/flow entry name specifically rather than a
   // bare substring match, since e.g. "list" also occurs inside the "list"
   // block entry listed earlier under Blocks.
@@ -1877,7 +1877,7 @@ test('add referral flow recursively resolves composes and copies all three scree
   assert.match(output, /referral-share/)
   assert.match(output, /referral-reward/)
   assert.match(output, /share-invite/)
-  assert.match(output, /Trajo también/)
+  assert.match(output, /Also pulled in/)
 
   const referralInvite = await readFile(join(dest, 'screens/applications/referral-invite/ReferralInvite.tsx'), 'utf8')
   assert.match(referralInvite, /export function ReferralInvite/)
@@ -1992,8 +1992,8 @@ test('add referral-reward works standalone with no composed block', async (t) =>
 test('list groups the referral flow and its screens separate from blocks', () => {
   const output = execFileSync('node', [CLI, 'list'], { encoding: 'utf8' })
 
-  const screensIndex = output.indexOf('Screens disponibles')
-  const flowsIndex = output.indexOf('Flows disponibles')
+  const screensIndex = output.indexOf('Screens available')
+  const flowsIndex = output.indexOf('Flows available')
   const referralInviteIndex = output.indexOf('\x1b[1mreferral-invite\x1b[0m')
   const referralIndex = output.indexOf('\x1b[1mreferral\x1b[0m')
 

@@ -38,7 +38,7 @@ _Avoid_: skin, palette, style, branding.
 The machine-readable set of `md-*` class names — and the variant/size composition
 that builds them (`md-btn` + `md-btn--${variant}`) — that the [[styled-layer]] applies
 to markup and `styles.css` realizes as rules. The seam between the rendered DOM and the
-look. Owned once (`@moderno/class-contract`) so a rename is one edit, not five, and
+look. Owned once (`@moderno-ui/class-contract`) so a rename is one edit, not five, and
 generated CSS selectors are guaranteed to match the names the frameworks emit. Distinct
 from [[semantic-role]], which names token values, not component classes.
 _Avoid_: classnames, BEM, css contract, stylesheet API.

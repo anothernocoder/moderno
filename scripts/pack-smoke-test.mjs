@@ -72,13 +72,15 @@ function exportSpecifiers(manifest) {
   return keys.map((subpath) => (subpath === '.' ? manifest.name : `${manifest.name}${subpath.slice(1)}`))
 }
 
-function buildVerifierSource(manifest) {
+function buildVerifierSource(manifest, extraSetupSource, extraVerifierSource) {
   const specifiers = exportSpecifiers(manifest)
   const binNames = Object.keys(manifest.bin ?? {})
   return `
 import { spawnSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
+
+${extraSetupSource ?? ''}
 
 const checks = []
 
@@ -115,6 +117,8 @@ for (const binName of ${JSON.stringify(binNames)}) {
   }
 }
 
+${extraVerifierSource ?? ''}
+
 process.stdout.write(JSON.stringify(checks))
 `
 }
@@ -126,8 +130,23 @@ process.stdout.write(JSON.stringify(checks))
  *
  * Returns { pkg, ok, checks }, where checks is a flat list of per-entry-point
  * pass/fail results.
+ *
+ * `options.extraSetupSource`, if given, is a snippet of ESM source spliced in
+ * at the top of the generated verify.mjs, before the standard export/bin
+ * checks run — use it to register `node:module` customization hooks (e.g. to
+ * teach plain Node how to load file types the standard loader can't, such as
+ * `.svelte`) so that later imports, including the standard export checks,
+ * succeed.
+ *
+ * `options.extraVerifierSource`, if given, is a snippet of ESM source spliced
+ * in at the end of the generated verify.mjs (which runs from `installDir`,
+ * against the freshly-installed tarball, before it's torn down). It has an
+ * in-scope `checks` array to push additional `{ kind, specifier, ok, detail? }`
+ * entries onto — use it for real, package-specific checks (e.g. actually
+ * rendering a component) that go beyond "the export resolves".
  */
-export async function smokeTestPackage(pkgPathOrName) {
+export async function smokeTestPackage(pkgPathOrName, options = {}) {
+  const { extraSetupSource, extraVerifierSource } = options
   const pkgDir = packageDirFor(pkgPathOrName)
   const manifest = await readManifest(pkgDir)
 
@@ -156,7 +175,7 @@ export async function smokeTestPackage(pkgPathOrName) {
     })
 
     const verifierPath = join(installDir, 'verify.mjs')
-    await writeFile(verifierPath, buildVerifierSource(manifest))
+    await writeFile(verifierPath, buildVerifierSource(manifest, extraSetupSource, extraVerifierSource))
     const stdout = execFileSync(process.execPath, [verifierPath], { cwd: installDir, encoding: 'utf8' })
     const checks = JSON.parse(stdout)
 

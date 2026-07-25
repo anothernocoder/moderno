@@ -4,6 +4,14 @@
   import DatePickerNavView from './DatePickerNavView.svelte'
   import { parts } from '@moderno-ui/class-contract'
 
+  // No props: DatePicker.Content only reads its api from DatePickerRoot's context.
+  // Explicit (empty) $props() so @sveltejs/package can emit a modern `Component<...>`
+  // type here — without it, svelte2tsx falls back to a legacy, package-private
+  // `$$__sveltets_2_IsomorphicComponent` type that can't be re-exported by name,
+  // which breaks .d.ts emission for anything (like index.ts's `DatePicker` object)
+  // that re-exports this component.
+  const _props: Record<string, never> = $props()
+
   const api = getDatePickerContext()
 </script>
 

@@ -5,3 +5,4 @@ dist/
 .claude/settings.local.json
 .astro/
 .turbo/
+.svelte-kit/

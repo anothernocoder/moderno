@@ -5,19 +5,21 @@
   "type": "module",
   "license": "MIT",
   "files": [
-    "src"
+    "dist"
   ],
   "exports": {
     ".": {
-      "svelte": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./dist/styles.css"
   },
   "sideEffects": [
     "*.css"
   ],
   "scripts": {
+    "build": "svelte-package --input src --output dist && node scripts/clean-dist.mjs",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest run"
   },
@@ -51,6 +53,7 @@
     "svelte": ">=5"
   },
   "devDependencies": {
+    "@sveltejs/package": "^2.5.8",
     "@sveltejs/vite-plugin-svelte": "^4.0.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/svelte": "^5.4.2",

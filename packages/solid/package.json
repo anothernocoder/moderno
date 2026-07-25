@@ -5,19 +5,22 @@
   "type": "module",
   "license": "MIT",
   "files": [
-    "src"
+    "dist"
   ],
   "exports": {
-    "./styles.css": "./src/styles.css",
+    "./styles.css": "./dist/styles.css",
     ".": {
-      "solid": "./src/index.tsx",
-      "default": "./src/index.tsx"
+      "types": "./dist/index.d.ts",
+      "solid": "./dist/index.js",
+      "default": "./dist/index.js"
     }
   },
+  "types": "./dist/index.d.ts",
   "sideEffects": [
     "*.css"
   ],
   "scripts": {
+    "build": "vite build",
     "check": "tsc --noEmit",
     "test": "vitest run"
   },
@@ -56,6 +59,7 @@
     "jsdom": "^29.1.1",
     "solid-js": "^1.9.13",
     "vite": "^5.4.20",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-solid": "^2.11.12"
   }
 }

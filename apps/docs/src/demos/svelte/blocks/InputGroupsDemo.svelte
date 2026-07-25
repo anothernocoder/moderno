@@ -1,5 +1,5 @@
 <script lang="ts">
-  import InputGroups from '@moderno/registry/blocks/applications/input-groups/InputGroups.svelte'
+  import InputGroups from '@moderno-ui/registry/blocks/applications/input-groups/InputGroups.svelte'
 </script>
 
 <InputGroups />

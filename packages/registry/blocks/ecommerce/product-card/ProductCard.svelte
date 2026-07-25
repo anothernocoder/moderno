@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — ProductCard (Svelte). Copy-paste; edit freely.
   // Product tile. Uses the Card + Badge + Button primitives + Moderno tokens.
-  import { Card, Badge, Button } from '@moderno/svelte'
+  import { Card, Badge, Button } from '@moderno-ui/svelte'
 
   let {
     image,

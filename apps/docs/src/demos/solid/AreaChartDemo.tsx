@@ -1,4 +1,4 @@
-import { AreaChart } from '@moderno/solid'
+import { AreaChart } from '@moderno-ui/solid'
 
 const DATA = [
   { x: 0, y: 12 },

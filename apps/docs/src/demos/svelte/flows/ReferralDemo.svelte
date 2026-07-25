@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ReferralExample from '@moderno/registry/flows/referral/Referral.example.svelte'
+  import ReferralExample from '@moderno-ui/registry/flows/referral/Referral.example.svelte'
 
   // `step` is a plain string prop passed from the MDX doc across the
   // Astro-island boundary (which serializes to JSON) so each screen can be

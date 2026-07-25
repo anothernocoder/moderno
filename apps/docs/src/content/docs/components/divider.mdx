@@ -4,10 +4,10 @@ description: Visual and semantic separator, optionally labeled. Pure CSS, closed
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Divider as RDivider } from '@moderno/react'
-import { Divider as VDivider } from '@moderno/vue'
-import { Divider as SDivider } from '@moderno/svelte'
-import { Divider as ODivider } from '@moderno/solid'
+import { Divider as RDivider } from '@moderno-ui/react'
+import { Divider as VDivider } from '@moderno-ui/vue'
+import { Divider as SDivider } from '@moderno-ui/svelte'
+import { Divider as ODivider } from '@moderno-ui/solid'
 
 **Divider** separates content with `role="separator"` semantics, optionally with a centered label. It's a **closed-prop** primitive, pure CSS.
 
@@ -53,7 +53,7 @@ import { Divider as ODivider } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Divider } from '@moderno/react'
+import { Divider } from '@moderno-ui/react'
 
 <Divider />
 <Divider label="or" />
@@ -63,7 +63,7 @@ import { Divider } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Divider } from '@moderno/vue'
+import { Divider } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -76,7 +76,7 @@ import { Divider } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Divider } from '@moderno/svelte'
+  import { Divider } from '@moderno-ui/svelte'
 </script>
 
 <Divider />
@@ -86,7 +86,7 @@ import { Divider } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Divider } from '@moderno/solid'
+import { Divider } from '@moderno-ui/solid'
 
 <Divider />
 <Divider label="or" />

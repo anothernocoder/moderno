@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Avatar, Card } from '@moderno/solid'
+import { Avatar, Card } from '@moderno-ui/solid'
 
 export interface TeamMember {
   name: string

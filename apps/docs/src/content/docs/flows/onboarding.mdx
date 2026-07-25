@@ -75,27 +75,27 @@ Pulling the `onboarding` flow copies the four screens it composes (`welcome`, `p
 `plan-select`, `invite-team`) **and** the Applications blocks those screens in turn compose
 (`form-layouts`, `grid-lists`, `list`) **plus** the example assembly. The CLI resolves `composes`
 recursively (flow → screen → block) and dedups by name — primitives are never copied, they stay an
-`@moderno/<framework>` npm dependency.
+`@moderno-ui/<framework>` npm dependency.
 
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```sh
-npx @moderno/registry add onboarding --framework react
+npx @moderno-ui/registry add onboarding --framework react
 ```
 </TabItem>
 <TabItem label="Vue">
 ```sh
-npx @moderno/registry add onboarding --framework vue
+npx @moderno-ui/registry add onboarding --framework vue
 ```
 </TabItem>
 <TabItem label="Svelte">
 ```sh
-npx @moderno/registry add onboarding --framework svelte
+npx @moderno-ui/registry add onboarding --framework svelte
 ```
 </TabItem>
 <TabItem label="Solid">
 ```sh
-npx @moderno/registry add onboarding --framework solid
+npx @moderno-ui/registry add onboarding --framework solid
 ```
 </TabItem>
 </Tabs>
@@ -107,17 +107,17 @@ This prints every screen and block it pulled in, then copies
 `--dest`. Pass `--no-example` to copy only the composed screens and blocks:
 
 ```sh
-npx @moderno/registry add onboarding --framework react --no-example
+npx @moderno-ui/registry add onboarding --framework react --no-example
 ```
 
 Want just the welcome screen, with no flow context at all? It's addable standalone — and since it
 composes no block, nothing else comes along with it:
 
 ```sh
-npx @moderno/registry add welcome --framework react
+npx @moderno-ui/registry add welcome --framework react
 ```
 
-After copying, install the `@moderno/<framework>` primitive package and
+After copying, install the `@moderno-ui/<framework>` primitive package and
 [import the styles](/introduction/installation/). From there, the code — including navigation and
 state — is yours.
 

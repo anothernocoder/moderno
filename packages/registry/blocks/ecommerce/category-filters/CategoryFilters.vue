@@ -5,7 +5,7 @@
 // Combobox + Button + NumberInput primitives + Moderno tokens, no bespoke
 // interaction logic beyond what Combobox already provides.
 import { ref } from 'vue'
-import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno/vue'
+import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno-ui/vue'
 
 export interface CategoryFiltersState {
   category?: string

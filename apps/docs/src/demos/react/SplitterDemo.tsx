@@ -1,4 +1,4 @@
-import { Splitter } from '@moderno/react'
+import { Splitter } from '@moderno-ui/react'
 
 export default function SplitterDemo() {
   return (

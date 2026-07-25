@@ -1,4 +1,4 @@
-import { Splitter } from '@moderno/solid'
+import { Splitter } from '@moderno-ui/solid'
 
 export default function SplitterDemo() {
   return (

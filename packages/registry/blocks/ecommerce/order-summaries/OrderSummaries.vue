@@ -7,7 +7,7 @@
 // quantity editing). Composes the Divider primitive + Moderno tokens — no
 // new primitives.
 import { computed } from 'vue'
-import { Divider } from '@moderno/vue'
+import { Divider } from '@moderno-ui/vue'
 
 export interface OrderSummariesItem {
   id: string | number

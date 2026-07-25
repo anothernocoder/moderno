@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LineChart } from '@moderno/vue'
+import { LineChart } from '@moderno-ui/vue'
 
 const data = [
   { x: 0, y: 12 },

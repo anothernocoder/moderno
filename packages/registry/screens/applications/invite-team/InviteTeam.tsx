@@ -1,5 +1,5 @@
 import type { CSSProperties, FormEvent } from 'react'
-import { Button, Input } from '@moderno/react'
+import { Button, Input } from '@moderno-ui/react'
 import { List, type ListItem } from '../../../blocks/applications/list/List'
 
 export type { ListItem }

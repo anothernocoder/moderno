@@ -1,5 +1,5 @@
 import { For, type JSX } from 'solid-js'
-import { Accordion } from '@moderno/solid'
+import { Accordion } from '@moderno-ui/solid'
 
 export interface FaqItem {
   question: string

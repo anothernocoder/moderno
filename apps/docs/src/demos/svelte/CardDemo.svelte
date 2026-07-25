@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Card, Button } from '@moderno/svelte'
+  import { Card, Button } from '@moderno-ui/svelte'
 </script>
 
 <Card>

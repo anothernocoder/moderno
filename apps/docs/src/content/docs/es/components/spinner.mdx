@@ -4,10 +4,10 @@ description: Spinner de carga indeterminada. Pura CSS, closed-prop.
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Spinner as RSpinner } from '@moderno/react'
-import { Spinner as VSpinner } from '@moderno/vue'
-import { Spinner as SSpinner } from '@moderno/svelte'
-import { Spinner as OSpinner } from '@moderno/solid'
+import { Spinner as RSpinner } from '@moderno-ui/react'
+import { Spinner as VSpinner } from '@moderno-ui/vue'
+import { Spinner as SSpinner } from '@moderno-ui/svelte'
+import { Spinner as OSpinner } from '@moderno-ui/solid'
 
 **Spinner** indica carga indeterminada. Primitive **closed-prop**, pura CSS. Lleva `role="status"` y `aria-label`; la animación respeta `prefers-reduced-motion`.
 
@@ -49,7 +49,7 @@ import { Spinner as OSpinner } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Spinner } from '@moderno/react'
+import { Spinner } from '@moderno-ui/react'
 
 <Spinner size="lg" label="Cargando datos" />
 ```
@@ -57,7 +57,7 @@ import { Spinner } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Spinner } from '@moderno/vue'
+import { Spinner } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -68,7 +68,7 @@ import { Spinner } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Spinner } from '@moderno/svelte'
+  import { Spinner } from '@moderno-ui/svelte'
 </script>
 
 <Spinner size="lg" label="Cargando datos" />
@@ -76,7 +76,7 @@ import { Spinner } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Spinner } from '@moderno/solid'
+import { Spinner } from '@moderno-ui/solid'
 
 <Spinner size="lg" label="Cargando datos" />
 ```

@@ -3,7 +3,7 @@ import { computed, useId } from 'vue'
 import * as dialog from '@zag-js/dialog'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { provideSheet } from './sheet-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 // Vue's defineProps<T>() macro defaults absent optional boolean props to
 // `false`, not `undefined` — that would make the dialog machine see `open`

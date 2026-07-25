@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DonutChart } from '@moderno/vue'
+import { DonutChart } from '@moderno-ui/vue'
 
 const data = [
   { label: 'Direct', value: 456 },

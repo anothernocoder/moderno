@@ -4,7 +4,7 @@
 // contract (values/onChange/onSubmit) with no internal state and no router — the
 // consumer owns state and navigation. Composes the Input and Button primitives +
 // Moderno tokens.
-import { Button, Input } from '@moderno/vue'
+import { Button, Input } from '@moderno-ui/vue'
 
 export interface ResetPasswordValues {
   password: string

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDatePicker } from './date-picker-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const api = useDatePicker('Label')
 </script>

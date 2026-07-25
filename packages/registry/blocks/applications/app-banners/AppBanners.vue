@@ -3,7 +3,7 @@
 // Application-level system notification banners: impersonation, trial, and incident notices
 // stacked full-width at the top of an authenticated app shell. Uses the Button primitive + Moderno tokens.
 import { ref, computed } from 'vue'
-import { Button } from '@moderno/vue'
+import { Button } from '@moderno-ui/vue'
 
 type AppBannerVariant = 'info' | 'success' | 'warning' | 'error'
 

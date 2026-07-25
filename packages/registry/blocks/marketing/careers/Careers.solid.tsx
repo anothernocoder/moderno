@@ -1,4 +1,4 @@
-import { Badge, Button, Divider } from '@moderno/solid'
+import { Badge, Button, Divider } from '@moderno-ui/solid'
 import { For, Show } from 'solid-js'
 import type { JSX } from 'solid-js'
 

@@ -2,7 +2,7 @@ import { For, Show, createMemo, createUniqueId } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as toast from '@zag-js/toast'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export type ToastOptions = toast.Options
 export type Toaster = toast.Store

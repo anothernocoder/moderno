@@ -2,7 +2,7 @@
 // Moderno block — Testimonials (Vue). Copy-paste; edit freely.
 // Social proof section: centered header above a grid of customer quotes with author and avatar.
 // Uses the Card + Avatar primitives + Moderno tokens.
-import { Avatar, Card } from '@moderno/vue'
+import { Avatar, Card } from '@moderno-ui/vue'
 
 export interface TestimonialItem {
   quote: string

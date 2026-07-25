@@ -1,4 +1,4 @@
-import { Card } from '@moderno/solid'
+import { Card } from '@moderno-ui/solid'
 import { For, Show } from 'solid-js'
 import type { JSX } from 'solid-js'
 

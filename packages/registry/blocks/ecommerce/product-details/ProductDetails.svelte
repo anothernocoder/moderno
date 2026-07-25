@@ -3,7 +3,7 @@
   // E-commerce product detail page: image gallery, rating, price with compare-at,
   // stock badge, variant selector, quantity stepper and add-to-cart. Uses the
   // Badge + Button + NumberInput primitives + Moderno tokens.
-  import { Badge, Button, NumberInput } from '@moderno/svelte'
+  import { Badge, Button, NumberInput } from '@moderno-ui/svelte'
 
   export type ProductDetailsStockVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

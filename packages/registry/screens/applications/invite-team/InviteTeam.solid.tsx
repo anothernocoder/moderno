@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { Button, Input } from '@moderno/solid'
+import { Button, Input } from '@moderno-ui/solid'
 import { List, type ListItem } from '../../../blocks/applications/list/List.solid'
 
 export type { ListItem }

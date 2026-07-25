@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte'
   import { portal } from '@zag-js/svelte'
   import { getSelectContext } from './select-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let { children }: { children?: Snippet } = $props()
   const api = getSelectContext()

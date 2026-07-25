@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, createToaster, Toaster } from '@moderno/svelte'
+  import { Button, createToaster, Toaster } from '@moderno-ui/svelte'
 
   const toaster = createToaster({ placement: 'bottom-end' })
 </script>

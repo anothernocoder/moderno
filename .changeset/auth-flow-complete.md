@@ -1,5 +1,5 @@
 ---
-"@moderno/registry": minor
+"@moderno-ui/registry": minor
 ---
 
 Completes the **Auth** flow (ADR-0005) beyond its sign-in-only tracer: adds the `sign-up`,

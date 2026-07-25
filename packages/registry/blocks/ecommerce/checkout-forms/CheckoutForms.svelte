@@ -5,8 +5,8 @@
   // number/expiry/CVC are plain text inputs — no masking, no validation, no luhn-check.
   // Uses the Input + Select + Divider + Button primitives + Moderno tokens. Static
   // UI-only demo: no real payment processing, values only live in local controlled state.
-  import { Button, Divider, Input, Select } from '@moderno/svelte'
-  import type { SelectItem } from '@moderno/svelte'
+  import { Button, Divider, Input, Select } from '@moderno-ui/svelte'
+  import type { SelectItem } from '@moderno-ui/svelte'
 
   export interface CheckoutFormsValues {
     fullName: string

@@ -1,5 +1,5 @@
 {
-  "name": "@moderno/vue",
+  "name": "@moderno-ui/vue",
   "version": "0.1.0",
   "description": "Moderno styled components for Vue (Zag.js behavior core + Moderno tokens).",
   "type": "module",
@@ -19,10 +19,10 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@moderno/chart-core": "workspace:*",
-    "@moderno/class-contract": "workspace:*",
-    "@moderno/styles": "workspace:*",
-    "@moderno/tokens": "workspace:*",
+    "@moderno-ui/chart-core": "workspace:*",
+    "@moderno-ui/class-contract": "workspace:*",
+    "@moderno-ui/styles": "workspace:*",
+    "@moderno-ui/tokens": "workspace:*",
     "@zag-js/accordion": "^1.0.0",
     "@zag-js/carousel": "^1.0.0",
     "@zag-js/checkbox": "^1.0.0",

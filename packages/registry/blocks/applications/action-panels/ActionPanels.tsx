@@ -1,5 +1,5 @@
 import { Fragment, type CSSProperties } from 'react'
-import { Button, Card, Divider } from '@moderno/react'
+import { Button, Card, Divider } from '@moderno-ui/react'
 
 export interface ActionPanelItem {
   title: string

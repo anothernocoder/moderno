@@ -1,5 +1,5 @@
 import { splitProps, type JSX } from 'solid-js'
-import { cx, type ButtonSize, type ButtonVariant } from '@moderno/class-contract'
+import { cx, type ButtonSize, type ButtonVariant } from '@moderno-ui/class-contract'
 
 export interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant

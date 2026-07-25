@@ -1,4 +1,4 @@
-import { Carousel } from '@moderno/react'
+import { Carousel } from '@moderno-ui/react'
 
 const slides = ['Diseño', 'Desarrollo', 'Pruebas', 'Lanzamiento']
 

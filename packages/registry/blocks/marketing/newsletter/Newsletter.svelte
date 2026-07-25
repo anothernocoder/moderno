@@ -2,7 +2,7 @@
   // Moderno block — Newsletter (Svelte). Copy-paste; edit freely.
   // Email signup / subscription section: centered header above an inline email form.
   // Uses the Input + Button primitives + Moderno tokens.
-  import { Button, Input } from '@moderno/svelte'
+  import { Button, Input } from '@moderno-ui/svelte'
 
   let {
     kicker = 'Newsletter',

@@ -1,8 +1,8 @@
 ---
-"@moderno/react": patch
-"@moderno/vue": patch
-"@moderno/svelte": patch
-"@moderno/solid": patch
+"@moderno-ui/react": patch
+"@moderno-ui/vue": patch
+"@moderno-ui/svelte": patch
+"@moderno-ui/solid": patch
 ---
 
 Add render-test coverage for the compositional primitives — Tabs, Accordion,

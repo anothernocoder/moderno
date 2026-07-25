@@ -1,7 +1,7 @@
 import { Fragment, useId, type ReactNode } from 'react'
 import * as splitter from '@zag-js/splitter'
 import { useMachine, normalizeProps } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface SplitterPanelDef {
   /** Unique id for the panel. */

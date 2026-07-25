@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HTMLInputAttributes } from 'svelte/elements'
-  import { cx, parts } from '@moderno/class-contract'
+  import { cx, parts } from '@moderno-ui/class-contract'
 
   let {
     label,

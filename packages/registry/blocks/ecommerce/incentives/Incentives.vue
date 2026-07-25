@@ -4,7 +4,7 @@
 // per incentive (free shipping, easy returns, secure payment). Composes
 // the Card primitive + Moderno tokens. No new primitives, no bespoke
 // interaction logic — purely presentational.
-import { Card } from '@moderno/vue'
+import { Card } from '@moderno-ui/vue'
 
 export type IncentiveIcon = 'shipping' | 'returns' | 'payment'
 

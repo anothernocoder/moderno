@@ -1,7 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as popover from '@zag-js/popover'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export interface PopoverProps {
   /** Label of the trigger button. */

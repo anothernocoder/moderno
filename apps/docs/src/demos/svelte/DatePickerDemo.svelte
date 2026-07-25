@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DatePicker } from '@moderno/svelte'
+  import { DatePicker } from '@moderno-ui/svelte'
 </script>
 
 <div style="max-width: 280px">

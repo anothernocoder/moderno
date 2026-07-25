@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cx, parts, type AlertVariant } from '@moderno/class-contract'
+import { cx, parts, type AlertVariant } from '@moderno-ui/class-contract'
 
 const props = defineProps<{ variant?: AlertVariant; title?: string }>()
 </script>

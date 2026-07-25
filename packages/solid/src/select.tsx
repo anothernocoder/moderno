@@ -2,7 +2,7 @@ import { createMemo, createUniqueId, Show, type JSX } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 export interface SelectItem {

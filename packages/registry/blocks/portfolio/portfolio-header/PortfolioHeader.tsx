@@ -1,4 +1,4 @@
-import { Avatar, Chip, Button } from '@moderno/react'
+import { Avatar, Chip, Button } from '@moderno-ui/react'
 
 export interface PortfolioLink {
   label: string

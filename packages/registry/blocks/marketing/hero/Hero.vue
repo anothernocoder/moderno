@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Moderno block — Hero (Vue). Copy-paste; edit freely.
 // Uses the Button primitive + Moderno tokens (--md-* custom properties).
-import { Button } from '@moderno/vue'
+import { Button } from '@moderno-ui/vue'
 
 withDefaults(
   defineProps<{

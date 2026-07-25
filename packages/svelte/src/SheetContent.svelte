@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte'
   import { portal } from '@zag-js/svelte'
   import { getSheetContext } from './sheet-context'
-  import { cx, parts, type SheetSide } from '@moderno/class-contract'
+  import { cx, parts, type SheetSide } from '@moderno-ui/class-contract'
 
   let { side = 'right', children }: { side?: SheetSide; children?: Snippet } = $props()
   const api = getSheetContext()

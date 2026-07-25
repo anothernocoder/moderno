@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Avatar, Badge, Button, Divider } from '@moderno/solid'
+import { Avatar, Badge, Button, Divider } from '@moderno-ui/solid'
 
 export type ListItemStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

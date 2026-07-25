@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { cx, parts, type DividerOrientation } from '@moderno/class-contract'
+  import { cx, parts, type DividerOrientation } from '@moderno-ui/class-contract'
 
   let {
     orientation = 'horizontal',

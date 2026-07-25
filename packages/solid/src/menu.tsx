@@ -2,7 +2,7 @@ import { Show, For, createMemo, createUniqueId } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import * as menu from '@zag-js/menu'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export interface MenuItem {
   label: string

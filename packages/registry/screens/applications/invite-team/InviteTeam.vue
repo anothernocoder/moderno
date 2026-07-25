@@ -8,7 +8,7 @@
 // allowance the Checkout ticket used for its confirmation screen. `invite`
 // fires on submit; `remove-invite` forwards the composed List's
 // `item-action`; `next` finishes onboarding.
-import { Button, Input } from '@moderno/vue'
+import { Button, Input } from '@moderno-ui/vue'
 import List from '../../../blocks/applications/list/List.vue'
 import type { ListItem } from '../../../blocks/applications/list/List.vue'
 

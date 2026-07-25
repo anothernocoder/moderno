@@ -1,4 +1,4 @@
-import { Sheet } from '@moderno/solid'
+import { Sheet } from '@moderno-ui/solid'
 
 export default function SheetDemo() {
   return (

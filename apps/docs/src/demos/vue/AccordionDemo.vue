@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Accordion } from '@moderno/vue'
+import { Accordion } from '@moderno-ui/vue'
 </script>
 
 <template>

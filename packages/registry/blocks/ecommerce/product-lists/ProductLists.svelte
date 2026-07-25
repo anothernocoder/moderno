@@ -5,7 +5,7 @@
   // tokens — same tile markup as the ProductCard block, duplicated here so
   // this block stays self-contained. No new primitives, no bespoke
   // interaction logic beyond local page state.
-  import { Card, Badge, Button } from '@moderno/svelte'
+  import { Card, Badge, Button } from '@moderno-ui/svelte'
 
   export interface ProductListItem {
     id?: string | number

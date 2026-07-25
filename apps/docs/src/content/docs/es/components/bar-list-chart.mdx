@@ -13,7 +13,7 @@ import OBarListChartDemo from '../../../../demos/solid/BarListChartDemo.tsx'
 una pista del ancho completo del gráfico con un relleno proporcional a su parte del
 valor más grande — la etiqueta y el valor se renderizan como texto SVG junto al
 relleno. Construye sobre el mismo modelo de geometría de **chart-core** que
-[Line chart](/es/components/line-chart/) (ADR-0004) — `@moderno/chart-core`,
+[Line chart](/es/components/line-chart/) (ADR-0004) — `@moderno-ui/chart-core`,
 construido sobre `d3-scale` + `d3-shape` — calculada una sola vez y renderizada como
 SVG por cada paquete de framework. El color de la pista, el relleno y el texto viene
 de tokens `--md-*`. Primitive **closed-prop** (ADR-0003) — se pasan `data` y props de
@@ -50,7 +50,7 @@ clasificado para una lista de barras convencional.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { BarListChart } from '@moderno/react'
+import { BarListChart } from '@moderno-ui/react'
 
 <BarListChart
   data={[
@@ -67,7 +67,7 @@ import { BarListChart } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { BarListChart } from '@moderno/vue'
+import { BarListChart } from '@moderno-ui/vue'
 
 const data = [
   { label: 'Directo', value: 456 },
@@ -84,7 +84,7 @@ const data = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { BarListChart } from '@moderno/svelte'
+  import { BarListChart } from '@moderno-ui/svelte'
 
   const data = [
     { label: 'Directo', value: 456 },
@@ -98,7 +98,7 @@ const data = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { BarListChart } from '@moderno/solid'
+import { BarListChart } from '@moderno-ui/solid'
 
 <BarListChart
   data={[

@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { cx, parts, type CalloutVariant } from '@moderno/class-contract'
+import { cx, parts, type CalloutVariant } from '@moderno-ui/class-contract'
 
 export interface CalloutProps {
   variant?: CalloutVariant

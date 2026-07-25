@@ -29,7 +29,7 @@ a live `region`) come from Zag; Moderno owns the markup and the `md-toast-*` cla
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { createToaster, Toaster } from '@moderno/react'
+import { createToaster, Toaster } from '@moderno-ui/react'
 
 // Module-level singleton: create once, mount one <Toaster>, call from anywhere.
 export const toaster = createToaster({ placement: 'bottom-end' })
@@ -47,7 +47,7 @@ function App() {
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { createToaster, Toaster } from '@moderno/vue'
+import { createToaster, Toaster } from '@moderno-ui/vue'
 
 const toaster = createToaster({ placement: 'bottom-end' })
 </script>
@@ -61,7 +61,7 @@ const toaster = createToaster({ placement: 'bottom-end' })
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { createToaster, Toaster } from '@moderno/svelte'
+  import { createToaster, Toaster } from '@moderno-ui/svelte'
 
   const toaster = createToaster({ placement: 'bottom-end' })
 </script>
@@ -72,7 +72,7 @@ const toaster = createToaster({ placement: 'bottom-end' })
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { createToaster, Toaster } from '@moderno/solid'
+import { createToaster, Toaster } from '@moderno-ui/solid'
 
 const toaster = createToaster({ placement: 'bottom-end' })
 

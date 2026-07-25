@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Contact from '@moderno/registry/blocks/marketing/contact/Contact.vue'
+import Contact from '@moderno-ui/registry/blocks/marketing/contact/Contact.vue'
 </script>
 
 <template>

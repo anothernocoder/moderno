@@ -4,10 +4,10 @@ description: Navegación accesible página por página sobre conjuntos de result
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Pagination as RPagination } from '@moderno/react'
-import { Pagination as VPagination } from '@moderno/vue'
-import { Pagination as SPagination } from '@moderno/svelte'
-import { Pagination as OPagination } from '@moderno/solid'
+import { Pagination as RPagination } from '@moderno-ui/react'
+import { Pagination as VPagination } from '@moderno-ui/vue'
+import { Pagination as SPagination } from '@moderno-ui/svelte'
+import { Pagination as OPagination } from '@moderno-ui/solid'
 
 **Pagination** navega un conjunto de resultados largo página por página — disparadores de
 anterior/siguiente, elementos de página numerados y una elipsis para rangos truncados.
@@ -43,7 +43,7 @@ Primitive **closed-prop** (ADR-0003) sobre la máquina `pagination` de Zag.js.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Pagination } from '@moderno/react'
+import { Pagination } from '@moderno-ui/react'
 
 <Pagination count={95} defaultPageSize={10} defaultPage={1} />
 ```
@@ -51,7 +51,7 @@ import { Pagination } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Pagination } from '@moderno/vue'
+import { Pagination } from '@moderno-ui/vue'
 import { ref } from 'vue'
 const pagina = ref(1)
 </script>
@@ -64,7 +64,7 @@ const pagina = ref(1)
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Pagination } from '@moderno/svelte'
+  import { Pagination } from '@moderno-ui/svelte'
   let pagina = $state(1)
 </script>
 
@@ -73,7 +73,7 @@ const pagina = ref(1)
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Pagination } from '@moderno/solid'
+import { Pagination } from '@moderno-ui/solid'
 import { createSignal } from 'solid-js'
 
 const [pagina, setPagina] = createSignal(1)

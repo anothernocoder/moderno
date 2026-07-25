@@ -1,5 +1,5 @@
 import { For, type JSX } from 'solid-js'
-import { Button, Card, Divider } from '@moderno/solid'
+import { Button, Card, Divider } from '@moderno-ui/solid'
 
 export interface ActionPanelItem {
   title: string

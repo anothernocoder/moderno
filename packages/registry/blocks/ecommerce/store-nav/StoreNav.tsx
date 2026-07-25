@@ -1,5 +1,5 @@
 import { useState, type CSSProperties, type FormEvent } from 'react'
-import { Badge, Input } from '@moderno/react'
+import { Badge, Input } from '@moderno-ui/react'
 
 export interface StoreNavCategory {
   label: string

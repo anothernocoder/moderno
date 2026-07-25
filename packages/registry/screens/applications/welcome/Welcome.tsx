@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Button } from '@moderno/react'
+import { Button } from '@moderno-ui/react'
 
 export interface WelcomeProps {
   onNext: () => void

@@ -5,7 +5,7 @@
   // a checkout CTA. Composes the Card + Button + NumberInput primitives +
   // Moderno tokens. Quantity is simple local state per line item, updated
   // through the NumberInput primitive — no bespoke stepper, no new primitives.
-  import { Button, Card, NumberInput } from '@moderno/svelte'
+  import { Button, Card, NumberInput } from '@moderno-ui/svelte'
 
   export interface ShoppingCartItem {
     id: string | number

@@ -4,7 +4,7 @@
 // pill, and total, linking into order details via a plain `href` per order
 // — no routing logic, just an anchor. Composes the Card + Badge primitives +
 // Moderno tokens — no new primitives, no bespoke interaction logic.
-import { Badge, Card } from '@moderno/vue'
+import { Badge, Card } from '@moderno-ui/vue'
 
 export type OrderHistoryStatus = 'delivered' | 'shipping' | 'processing' | 'cancelled'
 

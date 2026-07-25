@@ -1,5 +1,5 @@
 import { createSignal, For, Show, type JSX } from 'solid-js'
-import { Badge, Input } from '@moderno/solid'
+import { Badge, Input } from '@moderno-ui/solid'
 
 export interface StoreNavCategory {
   label: string

@@ -1,5 +1,5 @@
 ---
-"@moderno/registry": minor
+"@moderno-ui/registry": minor
 ---
 
 Adds the **Checkout** flow (ADR-0005) — the E-Commerce domain capstone, and the first flow
@@ -20,7 +20,7 @@ checkout journey.
 local `step` union across all five screens, and the cart items / checkout values carried forward
 between them (no router, no state library). `moderno add checkout --framework <fw>` transitively
 copies the five screens plus the three composed blocks (`shopping-cart`, `checkout-forms`,
-`order-summaries`, deduped) and the example assembly; primitives stay an `@moderno/<framework>`
+`order-summaries`, deduped) and the example assembly; primitives stay an `@moderno-ui/<framework>`
 npm dependency and are never copied. Adds a bilingual `checkout` flow docs page (EN + `/es/`) and
 CLI/registry tests covering the transitive composition, the standalone `cart` add, `--no-example`,
 and per-framework file existence.

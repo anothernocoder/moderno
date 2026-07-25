@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Splitter } from '@moderno/svelte'
+  import { Splitter } from '@moderno-ui/svelte'
 </script>
 
 <div style="height: 260px">

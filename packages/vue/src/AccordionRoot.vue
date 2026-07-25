@@ -3,7 +3,7 @@ import { computed, useId } from 'vue'
 import * as accordion from '@zag-js/accordion'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { provideAccordion } from './accordion-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{
   defaultValue?: string[]

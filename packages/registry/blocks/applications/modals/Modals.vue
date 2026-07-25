@@ -3,7 +3,7 @@
 // Application settings panel: a list of common account actions, each opening a centered
 // Dialog primitive — an informational confirmation, an export notice and a destructive
 // "delete account" warning. Uses the Badge + Dialog primitives + Moderno tokens.
-import { Badge, Dialog } from '@moderno/vue'
+import { Badge, Dialog } from '@moderno-ui/vue'
 
 interface ModalAction {
   id: string

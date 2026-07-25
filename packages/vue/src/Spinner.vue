@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cx, type SpinnerSize } from '@moderno/class-contract'
+import { cx, type SpinnerSize } from '@moderno-ui/class-contract'
 
 const props = withDefaults(
   defineProps<{

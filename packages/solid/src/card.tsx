@@ -1,5 +1,5 @@
 import { Show, type JSX } from 'solid-js'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface CardProps {
   title?: JSX.Element

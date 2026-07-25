@@ -1,4 +1,4 @@
-import { Logos } from '@moderno/registry/blocks/marketing/logos/Logos.solid.tsx'
+import { Logos } from '@moderno-ui/registry/blocks/marketing/logos/Logos.solid.tsx'
 
 export default function LogosDemo() {
   return <Logos />

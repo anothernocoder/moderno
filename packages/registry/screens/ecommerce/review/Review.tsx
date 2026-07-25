@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Button, Divider } from '@moderno/react'
+import { Button, Divider } from '@moderno-ui/react'
 import { OrderSummaries, type OrderSummariesItem } from '../../../blocks/ecommerce/order-summaries/OrderSummaries'
 import type { CheckoutFormsValues } from '../../../blocks/ecommerce/checkout-forms/CheckoutForms'
 

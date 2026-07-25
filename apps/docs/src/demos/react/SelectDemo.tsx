@@ -1,4 +1,4 @@
-import { Select } from '@moderno/react'
+import { Select } from '@moderno-ui/react'
 
 const frutas = [
   { label: 'Manzana', value: 'apple' },

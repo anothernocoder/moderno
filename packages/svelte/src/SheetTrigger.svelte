@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { getSheetContext } from './sheet-context'
-  import { cx } from '@moderno/class-contract'
+  import { cx } from '@moderno-ui/class-contract'
 
   let { children }: { children?: Snippet } = $props()
   const api = getSheetContext()

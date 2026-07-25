@@ -1,9 +1,9 @@
 ---
-"@moderno/react": minor
-"@moderno/vue": minor
-"@moderno/svelte": minor
-"@moderno/solid": minor
-"@moderno/styles": minor
+"@moderno-ui/react": minor
+"@moderno-ui/vue": minor
+"@moderno-ui/svelte": minor
+"@moderno-ui/solid": minor
+"@moderno-ui/styles": minor
 ---
 
 Add the **Carousel** primitive across all four frameworks — a horizontally (or
@@ -14,4 +14,4 @@ required `slideCount`, plus `orientation`, `page`/`defaultPage`, `onPageChange`,
 `padding`, `translations`), `Carousel.ItemGroup`, `Carousel.Item`, `Carousel.Control`,
 `Carousel.PrevTrigger`, `Carousel.NextTrigger`, `Carousel.IndicatorGroup` (a render
 function / scoped slot / parameterized snippet called per snap point), and
-`Carousel.Indicator`. Adds the `md-carousel-*` classes to `@moderno/styles`.
+`Carousel.Indicator`. Adds the `md-carousel-*` classes to `@moderno-ui/styles`.

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, createToaster, Toaster } from '@moderno/vue'
+import { Button, createToaster, Toaster } from '@moderno-ui/vue'
 
 const toaster = createToaster({ placement: 'bottom-end' })
 </script>

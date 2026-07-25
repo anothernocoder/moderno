@@ -1,4 +1,4 @@
-import { Accordion } from '@moderno/solid'
+import { Accordion } from '@moderno-ui/solid'
 
 export default function AccordionDemo() {
   return (

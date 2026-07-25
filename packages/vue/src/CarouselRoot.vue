@@ -3,7 +3,7 @@ import { computed, onMounted, onUnmounted, ref, useId } from 'vue'
 import * as carousel from '@zag-js/carousel'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { provideCarousel } from './carousel-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{
   /** The total number of slides. */

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { buildSparkGeometry, type ChartPoint } from '@moderno/chart-core'
-  import { parts } from '@moderno/class-contract'
+  import { buildSparkGeometry, type ChartPoint } from '@moderno-ui/chart-core'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     data,

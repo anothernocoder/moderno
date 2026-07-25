@@ -1,5 +1,5 @@
 import type { JSX } from 'solid-js'
-import { Button } from '@moderno/solid'
+import { Button } from '@moderno-ui/solid'
 
 export interface WelcomeProps {
   onNext: () => void

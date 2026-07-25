@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Badge, Button } from '@moderno/react'
+import { Badge, Button } from '@moderno-ui/react'
 
 export type ReferralRewardStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tabs } from '@moderno/vue'
+import { Tabs } from '@moderno-ui/vue'
 </script>
 
 <template>

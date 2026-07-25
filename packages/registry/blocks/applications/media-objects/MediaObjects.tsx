@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Avatar } from '@moderno/react'
+import { Avatar } from '@moderno-ui/react'
 
 export interface MediaObjectItem {
   id: string

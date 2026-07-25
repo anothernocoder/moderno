@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import * as menu from '@zag-js/menu'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export interface MenuItem {
   label: string

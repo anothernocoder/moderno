@@ -1,4 +1,4 @@
-import { Button } from '@moderno/solid'
+import { Button } from '@moderno-ui/solid'
 import type { JSX } from 'solid-js'
 
 export interface StoryProps {

@@ -38,22 +38,22 @@ importers:
       '@astrojs/vue':
         specifier: ^6.0.1
         version: 6.0.1(@types/node@24.13.2)(astro@6.4.7(@types/node@24.13.2)(rollup@4.62.0))(vue@3.5.38(typescript@5.9.3))
-      '@moderno/react':
+      '@moderno-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@moderno/registry':
+      '@moderno-ui/registry':
         specifier: workspace:*
         version: link:../../packages/registry
-      '@moderno/solid':
+      '@moderno-ui/solid':
         specifier: workspace:*
         version: link:../../packages/solid
-      '@moderno/svelte':
+      '@moderno-ui/svelte':
         specifier: workspace:*
         version: link:../../packages/svelte
-      '@moderno/tokens':
+      '@moderno-ui/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@moderno/vue':
+      '@moderno-ui/vue':
         specifier: workspace:*
         version: link:../../packages/vue
       astro:
@@ -95,16 +95,16 @@ importers:
 
   packages/react:
     dependencies:
-      '@moderno/chart-core':
+      '@moderno-ui/chart-core':
         specifier: workspace:*
         version: link:../chart-core
-      '@moderno/class-contract':
+      '@moderno-ui/class-contract':
         specifier: workspace:*
         version: link:../class-contract
-      '@moderno/styles':
+      '@moderno-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@moderno/tokens':
+      '@moderno-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@zag-js/accordion':
@@ -195,31 +195,31 @@ importers:
 
   packages/registry:
     devDependencies:
-      '@moderno/react':
+      '@moderno-ui/react':
         specifier: workspace:*
         version: link:../react
-      '@moderno/solid':
+      '@moderno-ui/solid':
         specifier: workspace:*
         version: link:../solid
-      '@moderno/svelte':
+      '@moderno-ui/svelte':
         specifier: workspace:*
         version: link:../svelte
-      '@moderno/vue':
+      '@moderno-ui/vue':
         specifier: workspace:*
         version: link:../vue
 
   packages/solid:
     dependencies:
-      '@moderno/chart-core':
+      '@moderno-ui/chart-core':
         specifier: workspace:*
         version: link:../chart-core
-      '@moderno/class-contract':
+      '@moderno-ui/class-contract':
         specifier: workspace:*
         version: link:../class-contract
-      '@moderno/styles':
+      '@moderno-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@moderno/tokens':
+      '@moderno-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@zag-js/accordion':
@@ -304,26 +304,26 @@ importers:
 
   packages/styles:
     dependencies:
-      '@moderno/tokens':
+      '@moderno-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
     devDependencies:
-      '@moderno/class-contract':
+      '@moderno-ui/class-contract':
         specifier: workspace:*
         version: link:../class-contract
 
   packages/svelte:
     dependencies:
-      '@moderno/chart-core':
+      '@moderno-ui/chart-core':
         specifier: workspace:*
         version: link:../chart-core
-      '@moderno/class-contract':
+      '@moderno-ui/class-contract':
         specifier: workspace:*
         version: link:../class-contract
-      '@moderno/styles':
+      '@moderno-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@moderno/tokens':
+      '@moderno-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@zag-js/accordion':
@@ -413,16 +413,16 @@ importers:
 
   packages/vue:
     dependencies:
-      '@moderno/chart-core':
+      '@moderno-ui/chart-core':
         specifier: workspace:*
         version: link:../chart-core
-      '@moderno/class-contract':
+      '@moderno-ui/class-contract':
         specifier: workspace:*
         version: link:../class-contract
-      '@moderno/styles':
+      '@moderno-ui/styles':
         specifier: workspace:*
         version: link:../styles
-      '@moderno/tokens':
+      '@moderno-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@zag-js/accordion':

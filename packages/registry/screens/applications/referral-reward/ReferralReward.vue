@@ -6,7 +6,7 @@
 // their status), and a claim CTA. No block fits this one-off summary card,
 // so it composes only the Badge/Button primitives + Moderno tokens, the same
 // allowance the Onboarding flow's `welcome` screen used.
-import { Badge, Button } from '@moderno/vue'
+import { Badge, Button } from '@moderno-ui/vue'
 
 export type ReferralRewardStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

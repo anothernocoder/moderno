@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SparkChart } from '@moderno/vue'
+import { SparkChart } from '@moderno-ui/vue'
 
 const data = [
   { x: 0, y: 12 },

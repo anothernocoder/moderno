@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTabs } from './tabs-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const api = useTabs('List')
 </script>

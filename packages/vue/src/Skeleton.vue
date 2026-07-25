@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { cx, type SkeletonVariant } from '@moderno/class-contract'
+import { cx, type SkeletonVariant } from '@moderno-ui/class-contract'
 
 const props = defineProps<{
   variant?: SkeletonVariant

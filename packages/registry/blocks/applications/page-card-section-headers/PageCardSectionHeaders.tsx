@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Badge, Button, Card, Divider } from '@moderno/react'
+import { Badge, Button, Card, Divider } from '@moderno-ui/react'
 
 export interface PageHeaderBreadcrumb {
   label: string

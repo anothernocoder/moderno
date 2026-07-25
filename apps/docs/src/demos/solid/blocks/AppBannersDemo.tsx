@@ -1,4 +1,4 @@
-import { AppBanners } from '@moderno/registry/blocks/applications/app-banners/AppBanners.solid.tsx'
+import { AppBanners } from '@moderno-ui/registry/blocks/applications/app-banners/AppBanners.solid.tsx'
 
 export default function AppBannersDemo() {
   return <AppBanners />

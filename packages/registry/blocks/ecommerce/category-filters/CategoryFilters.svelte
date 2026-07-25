@@ -4,7 +4,7 @@
   // Combobox, a size toggle group and a min/max price range. Composes the
   // Combobox + Button + NumberInput primitives + Moderno tokens, no bespoke
   // interaction logic beyond what Combobox already provides.
-  import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno/svelte'
+  import { Button, Combobox, NumberInput, type ComboboxItem } from '@moderno-ui/svelte'
 
   export interface CategoryFiltersState {
     category?: string

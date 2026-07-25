@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Moderno block — Features (Vue). Copy-paste; edit freely.
 // Feature highlight grid: icon, title, and description per item. Uses the Card primitive + Moderno tokens.
-import { Card } from '@moderno/vue'
+import { Card } from '@moderno-ui/vue'
 
 export interface FeatureItem {
   icon?: string

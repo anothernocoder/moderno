@@ -3,7 +3,7 @@
 // Post listing / preview grid: centered header above a responsive grid of post cards.
 // Uses the Card + Avatar + Badge primitives + Moderno tokens.
 import { computed } from 'vue'
-import { Avatar, Badge, Card } from '@moderno/vue'
+import { Avatar, Badge, Card } from '@moderno-ui/vue'
 
 export interface BlogPostPreview {
   title: string

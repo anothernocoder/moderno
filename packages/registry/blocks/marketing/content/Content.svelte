@@ -2,7 +2,7 @@
   // Moderno block — Content (Svelte). Copy-paste; edit freely.
   // General content/prose section: heading, subtitle, and long-form copy broken into headed
   // sections. Uses the Divider primitive + Moderno tokens.
-  import { Divider } from '@moderno/svelte'
+  import { Divider } from '@moderno-ui/svelte'
 
   interface ContentSection {
     heading?: string

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BarChart } from '@moderno/vue'
+import { BarChart } from '@moderno-ui/vue'
 
 const data = [
   { label: 'Jan', value: 12 },

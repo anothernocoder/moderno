@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { cx, parts, type AlertVariant } from '@moderno/class-contract'
+import { cx, parts, type AlertVariant } from '@moderno-ui/class-contract'
 
 export interface AlertProps {
   variant?: AlertVariant

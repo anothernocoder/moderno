@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { getAccordionContext, getAccordionItemContext } from './accordion-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let { children }: { children?: Snippet } = $props()
   const api = getAccordionContext()

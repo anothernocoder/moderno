@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Moderno block — Stats (Vue). Copy-paste; edit freely.
 // KPI metric row. Uses the Card + Badge primitives + Moderno tokens.
-import { Card, Badge } from '@moderno/vue'
+import { Card, Badge } from '@moderno-ui/vue'
 
 interface StatItem {
   label: string

@@ -4,7 +4,7 @@
   // containers (narrow, default, wide, full-bleed) for centering page content at different
   // widths. Uses the Card + Badge primitives + Moderno tokens — no bespoke interaction logic,
   // just layout.
-  import { Badge, Card } from '@moderno/svelte'
+  import { Badge, Card } from '@moderno-ui/svelte'
 
   interface ContainerVariant {
     id: string

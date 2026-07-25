@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { cx, parts, type BadgeVariant } from '@moderno/class-contract'
+import { cx, parts, type BadgeVariant } from '@moderno-ui/class-contract'
 
 export interface BadgeProps {
   variant?: BadgeVariant

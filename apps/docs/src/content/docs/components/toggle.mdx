@@ -4,10 +4,10 @@ description: On/off switch for instant binary settings. Zag behavior core (switc
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Toggle as RToggle } from '@moderno/react'
-import { Toggle as VToggle } from '@moderno/vue'
-import { Toggle as SToggle } from '@moderno/svelte'
-import { Toggle as OToggle } from '@moderno/solid'
+import { Toggle as RToggle } from '@moderno-ui/react'
+import { Toggle as VToggle } from '@moderno-ui/vue'
+import { Toggle as SToggle } from '@moderno-ui/svelte'
+import { Toggle as OToggle } from '@moderno-ui/solid'
 
 **Toggle** is an on/off switch for binary settings that apply instantly. A **closed-prop** primitive (ADR-0003) built on Zag.js's `switch` machine: keyboard, focus, and ARIA come from the behavior core; Moderno provides the `md-*` class contract.
 
@@ -49,7 +49,7 @@ import { Toggle as OToggle } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Toggle } from '@moderno/react'
+import { Toggle } from '@moderno-ui/react'
 
 <Toggle label="Notifications" defaultChecked onCheckedChange={(c) => console.log(c)} />
 ```
@@ -57,7 +57,7 @@ import { Toggle } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Toggle } from '@moderno/vue'
+import { Toggle } from '@moderno-ui/vue'
 import { ref } from 'vue'
 const on = ref(true)
 </script>
@@ -70,7 +70,7 @@ const on = ref(true)
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Toggle } from '@moderno/svelte'
+  import { Toggle } from '@moderno-ui/svelte'
   let on = $state(true)
 </script>
 
@@ -79,7 +79,7 @@ const on = ref(true)
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Toggle } from '@moderno/solid'
+import { Toggle } from '@moderno-ui/solid'
 
 <Toggle label="Notifications" defaultChecked onCheckedChange={(c) => console.log(c)} />
 ```

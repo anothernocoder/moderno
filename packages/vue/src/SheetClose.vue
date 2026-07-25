@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSheet } from './sheet-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 withDefaults(defineProps<{ closeLabel?: string }>(), { closeLabel: 'Close' })
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Sheet } from '@moderno/vue'
+import { Sheet } from '@moderno-ui/vue'
 </script>
 
 <template>

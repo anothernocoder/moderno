@@ -1,5 +1,5 @@
 import { createSignal, For, Show, type JSX } from 'solid-js'
-import { Button, Input, Textarea } from '@moderno/solid'
+import { Button, Input, Textarea } from '@moderno-ui/solid'
 
 export interface ContactInfoItem {
   label: string

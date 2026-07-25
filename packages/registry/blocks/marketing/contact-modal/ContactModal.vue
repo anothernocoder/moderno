@@ -5,7 +5,7 @@
 // Dialog primitive with your direct contact info. Uses the Input + Textarea + Button + Dialog
 // primitives + Moderno tokens.
 import { reactive } from 'vue'
-import { Button, Dialog, Input, Textarea } from '@moderno/vue'
+import { Button, Dialog, Input, Textarea } from '@moderno-ui/vue'
 
 export interface ContactModalFormValues {
   name: string

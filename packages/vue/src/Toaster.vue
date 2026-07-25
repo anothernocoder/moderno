@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as toast from '@zag-js/toast'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import ToastItem from './ToastItem.vue'
 import type { Toaster } from './toast'
 

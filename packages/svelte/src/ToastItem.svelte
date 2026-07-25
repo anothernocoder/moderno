@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as toastMachine from '@zag-js/toast'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
-  import { cx, parts } from '@moderno/class-contract'
+  import { cx, parts } from '@moderno-ui/class-contract'
 
   let {
     toast,

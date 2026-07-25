@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — Header (Svelte). Copy-paste; edit freely.
   // Site header / marketing navigation: logo, nav links, and CTA button(s) in a top bar. Uses the Button primitive + Moderno tokens.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   interface HeaderNavItem {
     label: string

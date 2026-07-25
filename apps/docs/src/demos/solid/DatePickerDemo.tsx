@@ -1,4 +1,4 @@
-import { DatePicker } from '@moderno/solid'
+import { DatePicker } from '@moderno-ui/solid'
 
 export default function DatePickerDemo() {
   return (

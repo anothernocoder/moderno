@@ -6,7 +6,7 @@
   // masked-payment recap alongside it is this screen's own simple text markup —
   // there's no dedicated "read-only address/card" block to compose, so it isn't
   // duplicating any block's internals. `onNext` places the order.
-  import { Button, Divider } from '@moderno/svelte'
+  import { Button, Divider } from '@moderno-ui/svelte'
   import OrderSummaries from '../../../blocks/ecommerce/order-summaries/OrderSummaries.svelte'
   import type { OrderSummariesItem } from '../../../blocks/ecommerce/order-summaries/OrderSummaries.svelte'
   import type { CheckoutFormsValues } from '../../../blocks/ecommerce/checkout-forms/CheckoutForms.svelte'

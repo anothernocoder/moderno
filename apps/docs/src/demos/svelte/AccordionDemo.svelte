@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Accordion } from '@moderno/svelte'
+  import { Accordion } from '@moderno-ui/svelte'
 </script>
 
 <Accordion.Root defaultValue={['envios']} collapsible>

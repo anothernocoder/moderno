@@ -11,8 +11,8 @@ live demo, install command, and a props reference. This closes the gap left open
 pass"). Today the only block documentation is `introduccion/blocks.mdx`, which lists
 per-block install commands but has no props tables and no live demos.
 
-Blocks are copy-paste compositions delivered by the `@moderno/registry` CLI, distinct
-from the versioned `@moderno/<framework>` npm primitives already documented under
+Blocks are copy-paste compositions delivered by the `@moderno-ui/registry` CLI, distinct
+from the versioned `@moderno-ui/<framework>` npm primitives already documented under
 `componentes/`.
 
 ## Scope
@@ -70,14 +70,14 @@ apps/docs/src/demos/<fw>/blocks/<Block>Demo.<ext>
 
   ```tsx
   // src/demos/react/blocks/HeroDemo.tsx
-  import { Hero } from '@moderno/registry/blocks/marketing/hero/Hero.tsx'
+  import { Hero } from '@moderno-ui/registry/blocks/marketing/hero/Hero.tsx'
   export default function HeroDemo() {
     return <Hero />
   }
   ```
 
 - Solid imports the `.solid.tsx` variant:
-  `import { Hero } from '@moderno/registry/blocks/marketing/hero/Hero.solid.tsx'`.
+  `import { Hero } from '@moderno-ui/registry/blocks/marketing/hero/Hero.solid.tsx'`.
 
 This dogfoods the registry: the live demo renders exactly the file the CLI copies.
 
@@ -90,7 +90,7 @@ existing integration `include` globs, so React/Solid JSX would not be compiled. 
 1. `react(...)` — add the registry path to `include` and **exclude** the Solid variant:
    ```js
    react({
-     include: ['**/packages/react/**', '**/@moderno/react/**', '**/demos/react/**',
+     include: ['**/packages/react/**', '**/@moderno-ui/react/**', '**/demos/react/**',
                '**/registry/blocks/**/*.tsx'],
      exclude: ['**/*.solid.tsx'],
    })
@@ -98,13 +98,13 @@ existing integration `include` globs, so React/Solid JSX would not be compiled. 
 2. `solid(...)` — add the Solid variant to `include`:
    ```js
    solid({
-     include: ['**/packages/solid/**', '**/@moderno/solid/**', '**/demos/solid/**',
+     include: ['**/packages/solid/**', '**/@moderno-ui/solid/**', '**/demos/solid/**',
                '**/registry/blocks/**/*.solid.tsx'],
    })
    ```
-3. `vite.ssr.noExternal` — add `'@moderno/registry'` so its sources are bundled, not
+3. `vite.ssr.noExternal` — add `'@moderno-ui/registry'` so its sources are bundled, not
    treated as an external require.
-4. `apps/docs/package.json` — add `"@moderno/registry": "workspace:*"` dev dependency so
+4. `apps/docs/package.json` — add `"@moderno-ui/registry": "workspace:*"` dev dependency so
    pnpm symlinks it into `node_modules` (resolution + Vite `server.fs.allow` coverage).
 
 `.vue`/`.svelte` block sources are handled by their catch-all integrations; no glob
@@ -124,8 +124,8 @@ Each block `.mdx` follows the `componentes/card.mdx` pattern:
 3. `## Demo en vivo` — `<Tabs syncKey="framework">` with 4 `<TabItem>`s, each wrapping the
    demo in `<div class="md-demo">` and hydrating with `client:only` (matching components).
 4. `## Instalación` — `<Tabs syncKey="framework">` with the
-   `npx @moderno/registry add <block> --framework <fw>` command per tab, plus a note to
-   install `@moderno/<fw>` and [import styles](/introduccion/instalacion/).
+   `npx @moderno-ui/registry add <block> --framework <fw>` command per tab, plus a note to
+   install `@moderno-ui/<fw>` and [import styles](/introduccion/instalacion/).
 5. `## Props` — a table `Prop | Tipo | Default | Descripción`. Blocks with item sub-types
    (`StatItem` for stats, `PortfolioLink` for portfolio-header) get a second table for
    that shape.
@@ -150,7 +150,7 @@ Each block `.mdx` follows the `componentes/card.mdx` pattern:
 
 Astro builds the `.mdx` → renders the page → each `client:only` island hydrates with its
 framework runtime → the demo imports the registry block source → the block imports
-`@moderno/<fw>` primitives + reads `--md-*` tokens from the globally-loaded theme CSS
+`@moderno-ui/<fw>` primitives + reads `--md-*` tokens from the globally-loaded theme CSS
 (`moderno-theme.css`, already wired). Primitives and tokens already resolve for the
 existing component demos, so the only new resolution path is the registry import handled
 by the config changes above.
@@ -162,7 +162,7 @@ by the config changes above.
 - **`fs.allow`** — importing across the workspace requires Vite to allow the registry
   path. Adding the `workspace:*` dep symlinks it under `node_modules`, which Vite allows
   by default. Verify no "outside allowed paths" error.
-- **Deep subpath import** — `@moderno/registry` has no `exports` map, so deep imports
+- **Deep subpath import** — `@moderno-ui/registry` has no `exports` map, so deep imports
   (`/blocks/...`) are permitted (legacy resolution). If a future `exports` map is added,
   it must expose `./blocks/*`.
 - **Solid TDZ** — existing `optimizeDeps.exclude: ['@zag-js/solid']` already handles the
@@ -170,7 +170,7 @@ by the config changes above.
 
 ## Testing / verification
 
-1. `pnpm --filter @moderno/docs dev` (or repo `pnpm docs`).
+1. `pnpm --filter @moderno-ui/docs dev` (or repo `pnpm docs`).
 2. Load each of the 5 block pages.
 3. For every page, switch through all 4 framework tabs; confirm each demo renders the
    block (no `client:only` blank, no console errors).

@@ -1,5 +1,5 @@
 import { createMemo, For, Show, type JSX } from 'solid-js'
-import { Divider } from '@moderno/solid'
+import { Divider } from '@moderno-ui/solid'
 
 export interface OrderSummariesItem {
   id: string | number

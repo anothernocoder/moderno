@@ -2,7 +2,7 @@
 // Moderno block — Banner (Vue). Copy-paste; edit freely.
 // Dismissible top-of-page promo/announcement strip. Uses the Button primitive + Moderno tokens.
 import { ref } from 'vue'
-import { Button } from '@moderno/vue'
+import { Button } from '@moderno-ui/vue'
 
 const props = withDefaults(
   defineProps<{

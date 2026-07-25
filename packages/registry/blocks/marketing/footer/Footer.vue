@@ -3,7 +3,7 @@
 // Site footer: logo/tagline, navigation link columns, legal links, social links, and copyright.
 // Uses the Divider primitive + Moderno tokens.
 import { computed } from 'vue'
-import { Divider } from '@moderno/vue'
+import { Divider } from '@moderno-ui/vue'
 
 export interface FooterLink {
   label: string

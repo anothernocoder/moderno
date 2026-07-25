@@ -2,7 +2,7 @@
   // Moderno block — Team (Svelte). Copy-paste; edit freely.
   // Team section: centered header above a grid of member profile cards with avatar, name, role, and bio.
   // Uses the Card + Avatar primitives + Moderno tokens.
-  import { Avatar, Card } from '@moderno/svelte'
+  import { Avatar, Card } from '@moderno-ui/svelte'
 
   export interface TeamMember {
     name: string

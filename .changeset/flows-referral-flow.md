@@ -1,5 +1,5 @@
 ---
-"@moderno/registry": minor
+"@moderno-ui/registry": minor
 ---
 
 Adds the **Share and Invite** block (design system §2.3 "Data display") and the **Referral** flow
@@ -26,7 +26,7 @@ domain-agnostic recursive `composes` resolution.
 local `step` union across all three screens, and the referrer's name / generated share link /
 growing invites list carried forward between them (no router, no state library). `moderno add
 referral --framework <fw>` transitively copies the three screens plus the composed `share-invite`
-block and the example assembly; primitives stay an `@moderno/<framework>` npm dependency and are
+block and the example assembly; primitives stay an `@moderno-ui/<framework>` npm dependency and are
 never copied. Adds a bilingual `referral` flow docs page (EN + `/es/`) plus a standalone
 `share-invite` block docs page, and CLI/registry tests covering the cross-domain transitive
 composition, the standalone `share-invite` block add, the standalone `referral-invite`/

@@ -2,7 +2,7 @@
 // Moderno block — BlogHeader (Vue). Copy-paste; edit freely.
 // Index/landing header for a blog: centered kicker/title/subtitle above a row of category chips.
 // Uses the Chip primitive + Moderno tokens.
-import { Chip } from '@moderno/vue'
+import { Chip } from '@moderno-ui/vue'
 
 const DEFAULT_CATEGORIES = ['Producto', 'Ingeniería', 'Diseño']
 

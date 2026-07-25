@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as dialog from '@zag-js/dialog'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 // Dialog renders multiple root nodes (trigger + teleported overlay), so there
 // is no single element to inherit wrapper attributes onto.

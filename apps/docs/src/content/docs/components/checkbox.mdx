@@ -4,10 +4,10 @@ description: Boolean multi-select control, with indeterminate state. Zag (checkb
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Checkbox as RCheckbox } from '@moderno/react'
-import { Checkbox as VCheckbox } from '@moderno/vue'
-import { Checkbox as SCheckbox } from '@moderno/svelte'
-import { Checkbox as OCheckbox } from '@moderno/solid'
+import { Checkbox as RCheckbox } from '@moderno-ui/react'
+import { Checkbox as VCheckbox } from '@moderno-ui/vue'
+import { Checkbox as SCheckbox } from '@moderno-ui/svelte'
+import { Checkbox as OCheckbox } from '@moderno-ui/solid'
 
 **Checkbox** is a boolean multi-select control that supports the **indeterminate** (mixed) state. It's a **closed-prop** primitive (ADR-0003) built on Zag.js's `checkbox` machine.
 
@@ -53,7 +53,7 @@ import { Checkbox as OCheckbox } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Checkbox } from '@moderno/react'
+import { Checkbox } from '@moderno-ui/react'
 
 <Checkbox label="I accept the terms" onCheckedChange={(c) => console.log(c)} />
 <Checkbox label="Mixed" defaultChecked="indeterminate" />
@@ -62,7 +62,7 @@ import { Checkbox } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Checkbox } from '@moderno/vue'
+import { Checkbox } from '@moderno-ui/vue'
 import { ref } from 'vue'
 const checked = ref(false)
 </script>
@@ -75,7 +75,7 @@ const checked = ref(false)
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Checkbox } from '@moderno/svelte'
+  import { Checkbox } from '@moderno-ui/svelte'
   let checked = $state(false)
 </script>
 
@@ -84,7 +84,7 @@ const checked = ref(false)
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Checkbox } from '@moderno/solid'
+import { Checkbox } from '@moderno-ui/solid'
 
 <Checkbox label="I accept the terms" onCheckedChange={(c) => console.log(c)} />
 ```

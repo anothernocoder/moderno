@@ -4,10 +4,10 @@ description: User or entity avatar with an image or initials fallback. Pure CSS,
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Avatar as RAvatar } from '@moderno/react'
-import { Avatar as VAvatar } from '@moderno/vue'
-import { Avatar as SAvatar } from '@moderno/svelte'
-import { Avatar as OAvatar } from '@moderno/solid'
+import { Avatar as RAvatar } from '@moderno-ui/react'
+import { Avatar as VAvatar } from '@moderno-ui/vue'
+import { Avatar as SAvatar } from '@moderno-ui/svelte'
+import { Avatar as OAvatar } from '@moderno-ui/solid'
 
 **Avatar** shows a user image or, in its absence, their initials. A **closed-prop** primitive, pure CSS.
 
@@ -53,7 +53,7 @@ import { Avatar as OAvatar } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Avatar } from '@moderno/react'
+import { Avatar } from '@moderno-ui/react'
 
 <Avatar src="/u/hector.jpg" alt="Héctor" size="lg" />
 <Avatar initials="HS" />
@@ -62,7 +62,7 @@ import { Avatar } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Avatar } from '@moderno/vue'
+import { Avatar } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -74,7 +74,7 @@ import { Avatar } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Avatar } from '@moderno/svelte'
+  import { Avatar } from '@moderno-ui/svelte'
 </script>
 
 <Avatar src="/u/hector.jpg" alt="Héctor" size="lg" />
@@ -83,7 +83,7 @@ import { Avatar } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Avatar } from '@moderno/solid'
+import { Avatar } from '@moderno-ui/solid'
 
 <Avatar src="/u/hector.jpg" alt="Héctor" size="lg" />
 <Avatar initials="HS" />

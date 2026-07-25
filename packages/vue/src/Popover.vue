@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as popover from '@zag-js/popover'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 // Trigger renders inline; panel is teleported to the body.
 defineOptions({ inheritAttrs: false })

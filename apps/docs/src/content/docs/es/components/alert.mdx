@@ -4,10 +4,10 @@ description: Mensaje de feedback inline (info/éxito/advertencia/error). Pura CS
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Alert as RAlert } from '@moderno/react'
-import { Alert as VAlert } from '@moderno/vue'
-import { Alert as SAlert } from '@moderno/svelte'
-import { Alert as OAlert } from '@moderno/solid'
+import { Alert as RAlert } from '@moderno-ui/react'
+import { Alert as VAlert } from '@moderno-ui/vue'
+import { Alert as SAlert } from '@moderno-ui/svelte'
+import { Alert as OAlert } from '@moderno-ui/solid'
 
 **Alert** muestra feedback inline para la vista actual. Primitive **closed-prop**, pura CSS
 — sin máquina de Zag, consistente con [Callout](/es/components/callout/).
@@ -54,7 +54,7 @@ import { Alert as OAlert } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Alert } from '@moderno/react'
+import { Alert } from '@moderno-ui/react'
 
 <Alert variant="error" title="Error">
   No se pudo guardar: el stock mínimo no puede superar el punto de reorden.
@@ -64,7 +64,7 @@ import { Alert } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Alert } from '@moderno/vue'
+import { Alert } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -77,7 +77,7 @@ import { Alert } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Alert } from '@moderno/svelte'
+  import { Alert } from '@moderno-ui/svelte'
 </script>
 
 <Alert variant="error" title="Error">
@@ -87,7 +87,7 @@ import { Alert } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Alert } from '@moderno/solid'
+import { Alert } from '@moderno-ui/solid'
 
 <Alert variant="error" title="Error">
   No se pudo guardar: el stock mínimo no puede superar el punto de reorden.

@@ -4,10 +4,10 @@ description: Pull-down of actions revealed from a trigger button. Zag behavior c
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Menu as RMenu } from '@moderno/react'
-import { Menu as VMenu } from '@moderno/vue'
-import { Menu as SMenu } from '@moderno/svelte'
-import { Menu as OMenu } from '@moderno/solid'
+import { Menu as RMenu } from '@moderno-ui/react'
+import { Menu as VMenu } from '@moderno-ui/vue'
+import { Menu as SMenu } from '@moderno-ui/svelte'
+import { Menu as OMenu } from '@moderno-ui/solid'
 
 export const actions = [
   { label: 'Edit', value: 'edit' },
@@ -52,7 +52,7 @@ contract. For picking a form value, use `Select` or `Combobox` instead.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Menu } from '@moderno/react'
+import { Menu } from '@moderno-ui/react'
 
 const actions = [
   { label: 'Edit', value: 'edit' },
@@ -65,7 +65,7 @@ const actions = [
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Menu } from '@moderno/vue'
+import { Menu } from '@moderno-ui/vue'
 const actions = [
   { label: 'Edit', value: 'edit' },
   { label: 'Delete', value: 'delete' },
@@ -80,7 +80,7 @@ const actions = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Menu } from '@moderno/svelte'
+  import { Menu } from '@moderno-ui/svelte'
   const actions = [
     { label: 'Edit', value: 'edit' },
     { label: 'Delete', value: 'delete' },
@@ -92,7 +92,7 @@ const actions = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Menu } from '@moderno/solid'
+import { Menu } from '@moderno-ui/solid'
 
 const actions = [
   { label: 'Edit', value: 'edit' },

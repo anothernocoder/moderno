@@ -1,5 +1,5 @@
 {
-  "name": "@moderno/registry",
+  "name": "@moderno-ui/registry",
   "version": "0.1.0",
   "description": "Moderno blocks registry — copy-paste CLI that pulls a block's per-framework source into your repo.",
   "type": "module",
@@ -18,9 +18,9 @@
     "test": "node --test"
   },
   "devDependencies": {
-    "@moderno/react": "workspace:*",
-    "@moderno/solid": "workspace:*",
-    "@moderno/svelte": "workspace:*",
-    "@moderno/vue": "workspace:*"
+    "@moderno-ui/react": "workspace:*",
+    "@moderno-ui/solid": "workspace:*",
+    "@moderno-ui/svelte": "workspace:*",
+    "@moderno-ui/vue": "workspace:*"
   }
 }

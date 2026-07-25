@@ -1,4 +1,4 @@
-import { Card, Avatar, Badge, Button } from '@moderno/react'
+import { Card, Avatar, Badge, Button } from '@moderno-ui/react'
 
 export type GridListStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

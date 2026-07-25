@@ -3,7 +3,7 @@
 // Vertically stacked list of records, each rendered as its own card with an
 // avatar, primary/secondary text, a status badge, meta, and a row action.
 // Uses the Card + Avatar + Badge + Button primitives + Moderno tokens.
-import { Avatar, Badge, Button, Card } from '@moderno/vue'
+import { Avatar, Badge, Button, Card } from '@moderno-ui/vue'
 
 export type StackedListStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

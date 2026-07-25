@@ -12,7 +12,7 @@ import OLineChartDemo from '../../../demos/solid/LineChartDemo.tsx'
 **Line chart** plots `{x, y}` data as an SVG path, optionally with a dot per point. It
 is the tracer primitive for the chart core (ADR-0004): the geometry — scales and the
 line path — is computed once in the framework-neutral **chart-core**
-(`@moderno/chart-core`, built on `d3-scale` + `d3-shape`), and each framework package
+(`@moderno-ui/chart-core`, built on `d3-scale` + `d3-shape`), and each framework package
 only renders that geometry as SVG. Stroke and point color come from `--md-*` tokens, so
 theming (light/dark) is inherited from CSS with no JS color plumbing. A **closed-prop**
 primitive (ADR-0003) — pass `data` and size props, no compositional anatomy.
@@ -47,7 +47,7 @@ primitive (ADR-0003) — pass `data` and size props, no compositional anatomy.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { LineChart } from '@moderno/react'
+import { LineChart } from '@moderno-ui/react'
 
 <LineChart
   data={[
@@ -65,7 +65,7 @@ import { LineChart } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { LineChart } from '@moderno/vue'
+import { LineChart } from '@moderno-ui/vue'
 
 const data = [
   { x: 0, y: 12 },
@@ -82,7 +82,7 @@ const data = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { LineChart } from '@moderno/svelte'
+  import { LineChart } from '@moderno-ui/svelte'
 
   const data = [
     { x: 0, y: 12 },
@@ -96,7 +96,7 @@ const data = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { LineChart } from '@moderno/solid'
+import { LineChart } from '@moderno-ui/solid'
 
 <LineChart
   data={[

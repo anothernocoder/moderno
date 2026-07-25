@@ -2,7 +2,7 @@
   // Moderno block — AppBanners (Svelte). Copy-paste; edit freely.
   // Application-level system notification banners: impersonation, trial, and incident notices
   // stacked full-width at the top of an authenticated app shell. Uses the Button primitive + Moderno tokens.
-  import { Button } from '@moderno/svelte'
+  import { Button } from '@moderno-ui/svelte'
 
   type AppBannerVariant = 'info' | 'success' | 'warning' | 'error'
 

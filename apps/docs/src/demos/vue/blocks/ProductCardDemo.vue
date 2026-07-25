@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ProductCard from '@moderno/registry/blocks/ecommerce/product-card/ProductCard.vue'
+import ProductCard from '@moderno-ui/registry/blocks/ecommerce/product-card/ProductCard.vue'
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BlogHeader from '@moderno/registry/blocks/marketing/blog-header/BlogHeader.vue'
+import BlogHeader from '@moderno-ui/registry/blocks/marketing/blog-header/BlogHeader.vue'
 </script>
 
 <template>

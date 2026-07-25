@@ -1,4 +1,4 @@
-// CSS generator for @moderno/styles.
+// CSS generator for @moderno-ui/styles.
 //
 // Assembles styles.css from ordered segments. Segments tagged 'enforced' are
 // checked against the class contract's legal-name set in both directions; 'legacy'

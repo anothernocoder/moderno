@@ -65,13 +65,13 @@ export default defineConfig({
         },
       ],
     }),
-    // Block/screen/flow sources live in @moderno/registry; route their .tsx to
+    // Block/screen/flow sources live in @moderno-ui/registry; route their .tsx to
     // React and .solid.tsx to Solid. React must exclude the Solid variant since
     // both integrations transform .tsx.
     react({
       include: [
         '**/packages/react/**',
-        '**/@moderno/react/**',
+        '**/@moderno-ui/react/**',
         '**/demos/react/**',
         '**/registry/blocks/**/*.tsx',
         '**/registry/screens/**/*.tsx',
@@ -82,7 +82,7 @@ export default defineConfig({
     solid({
       include: [
         '**/packages/solid/**',
-        '**/@moderno/solid/**',
+        '**/@moderno-ui/solid/**',
         '**/demos/solid/**',
         '**/registry/blocks/**/*.solid.tsx',
         '**/registry/screens/**/*.solid.tsx',
@@ -94,7 +94,7 @@ export default defineConfig({
   ],
   vite: {
     // Force a single instance of each framework runtime so Zag's context
-    // (provided in @moderno/* components) reaches the components in the app tree.
+    // (provided in @moderno-ui/* components) reaches the components in the app tree.
     resolve: {
       dedupe: ['vue', 'solid-js', 'svelte', 'react', 'react-dom'],
     },
@@ -106,13 +106,13 @@ export default defineConfig({
     },
     ssr: {
       noExternal: [
-        '@moderno/tokens',
-        '@moderno/styles',
-        '@moderno/react',
-        '@moderno/vue',
-        '@moderno/svelte',
-        '@moderno/solid',
-        '@moderno/registry',
+        '@moderno-ui/tokens',
+        '@moderno-ui/styles',
+        '@moderno-ui/react',
+        '@moderno-ui/vue',
+        '@moderno-ui/svelte',
+        '@moderno-ui/solid',
+        '@moderno-ui/registry',
       ],
     },
   },

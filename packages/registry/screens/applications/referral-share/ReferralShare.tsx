@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Button } from '@moderno/react'
+import { Button } from '@moderno-ui/react'
 import { ShareInvite, type ShareChannel, type ShareInviteItem } from '../../../blocks/marketing/share-invite/ShareInvite'
 
 export type { ShareChannel, ShareInviteItem }

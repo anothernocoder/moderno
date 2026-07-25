@@ -4,10 +4,10 @@ description: Contextual hint shown on hover or focus. Zag behavior core (tooltip
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Tooltip as RTooltip } from '@moderno/react'
-import { Tooltip as VTooltip } from '@moderno/vue'
-import { Tooltip as STooltip } from '@moderno/svelte'
-import { Tooltip as OTooltip } from '@moderno/solid'
+import { Tooltip as RTooltip } from '@moderno-ui/react'
+import { Tooltip as VTooltip } from '@moderno-ui/vue'
+import { Tooltip as STooltip } from '@moderno-ui/svelte'
+import { Tooltip as OTooltip } from '@moderno-ui/solid'
 
 **Tooltip** shows a contextual hint when you hover over or focus the trigger. A **closed-prop** primitive (ADR-0003) built on Zag.js's `tooltip` machine, positioned with popper. Like `Dialog`, it takes the trigger as `triggerLabel` (string) and renders its own button.
 
@@ -41,7 +41,7 @@ import { Tooltip as OTooltip } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Tooltip } from '@moderno/react'
+import { Tooltip } from '@moderno-ui/react'
 
 <Tooltip triggerLabel="Save" content="Saves your changes" />
 ```
@@ -49,7 +49,7 @@ import { Tooltip } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Tooltip } from '@moderno/vue'
+import { Tooltip } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -60,7 +60,7 @@ import { Tooltip } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Tooltip } from '@moderno/svelte'
+  import { Tooltip } from '@moderno-ui/svelte'
 </script>
 
 <Tooltip triggerLabel="Save" content="Saves your changes" />
@@ -68,7 +68,7 @@ import { Tooltip } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Tooltip } from '@moderno/solid'
+import { Tooltip } from '@moderno-ui/solid'
 
 <Tooltip triggerLabel="Save" content="Saves your changes" />
 ```

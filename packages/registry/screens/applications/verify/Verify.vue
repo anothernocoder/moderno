@@ -5,7 +5,7 @@
 // consumer owns state and navigation. Composes the Input and Button primitives +
 // Moderno tokens.
 import { computed } from 'vue'
-import { Button, Input } from '@moderno/vue'
+import { Button, Input } from '@moderno-ui/vue'
 
 export interface VerifyValues {
   code: string

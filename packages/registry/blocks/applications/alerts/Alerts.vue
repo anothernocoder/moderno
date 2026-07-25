@@ -3,7 +3,7 @@
 // Inline info/success/warning/error message patterns composed into an application
 // layout section (dashboard/form alerts area). Uses the Alert + Button primitives + Moderno tokens.
 import { ref } from 'vue'
-import { Alert, Button } from '@moderno/vue'
+import { Alert, Button } from '@moderno-ui/vue'
 
 export type AlertVariant = 'info' | 'success' | 'warning' | 'error'
 

@@ -7,7 +7,7 @@
 // a full-height container (e.g. `#root { height: 100vh }`) — the shell fills 100%
 // of its parent rather than forcing the viewport height itself.
 import { computed, ref } from 'vue'
-import { Avatar, Badge, Button, Divider } from '@moderno/vue'
+import { Avatar, Badge, Button, Divider } from '@moderno-ui/vue'
 
 export interface ApplicationShellsNavItem {
   id: string

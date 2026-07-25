@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as checkbox from '@zag-js/checkbox'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 type CheckedState = boolean | 'indeterminate'
 

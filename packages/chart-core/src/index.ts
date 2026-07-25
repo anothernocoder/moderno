@@ -1,5 +1,5 @@
 // Chart core — the charting analogue of the behavior-core (see ADR-0004): pure
-// geometry shared by every @moderno/{framework} chart primitive. No DOM, no
+// geometry shared by every @moderno-ui/{framework} chart primitive. No DOM, no
 // framework deps — only d3-scale (axes) + d3-shape (path generation).
 
 import { scaleBand, scaleLinear } from 'd3-scale'

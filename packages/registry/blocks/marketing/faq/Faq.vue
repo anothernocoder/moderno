@@ -2,7 +2,7 @@
 // Moderno block — Faq (Vue). Copy-paste; edit freely.
 // Frequently-asked-questions section: centered header above a Q&A list. Uses the Accordion
 // primitive + Moderno tokens.
-import { Accordion } from '@moderno/vue'
+import { Accordion } from '@moderno-ui/vue'
 
 export interface FaqItem {
   question: string

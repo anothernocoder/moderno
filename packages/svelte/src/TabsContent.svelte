@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte'
   import { getTabsContext } from './tabs-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let { value, children }: { value: string; children?: Snippet } = $props()
   const api = getTabsContext()

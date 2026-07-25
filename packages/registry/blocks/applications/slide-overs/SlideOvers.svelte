@@ -5,7 +5,7 @@
   // actions. Uses the Sheet + Input + Button + Divider primitives + Moderno tokens — the
   // panel's open/close state is the Sheet primitive's own controlled API, no bespoke overlay
   // or focus-trap logic here.
-  import { Button, Divider, Input, Sheet } from '@moderno/svelte'
+  import { Button, Divider, Input, Sheet } from '@moderno-ui/svelte'
 
   export interface SlideOversFormValues {
     name: string

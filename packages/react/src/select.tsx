@@ -1,7 +1,7 @@
 import { useId, useMemo, type ReactNode } from 'react'
 import * as select from '@zag-js/select'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 export interface SelectItem {

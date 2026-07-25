@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type CSSProperties, type FormEvent } from 'react'
-import { Button, Input, Textarea } from '@moderno/react'
+import { Button, Input, Textarea } from '@moderno-ui/react'
 
 export interface ContactInfoItem {
   label: string

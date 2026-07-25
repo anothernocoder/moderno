@@ -12,7 +12,7 @@ import ODonutChartDemo from '../../../demos/solid/DonutChartDemo.tsx'
 **Donut chart** plots `{label, value}` data as one SVG arc per datum, sized
 proportionally to its share of the total — in input order, not re-sorted by size. It
 builds on the same **chart-core** geometry model as [Line chart](/components/line-chart/)
-(ADR-0004) — `@moderno/chart-core`, built on `d3-scale` + `d3-shape`'s `pie`/`arc`
+(ADR-0004) — `@moderno-ui/chart-core`, built on `d3-scale` + `d3-shape`'s `pie`/`arc`
 generators — computed once and rendered as SVG by each framework package. Slices cycle
 through five `--md-*` semantic color tokens (`primary`, `info`, `success`, `warning`,
 `error`) since the token set has no dedicated categorical chart palette. A
@@ -49,7 +49,7 @@ anatomy.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { DonutChart } from '@moderno/react'
+import { DonutChart } from '@moderno-ui/react'
 
 <DonutChart
   data={[
@@ -66,7 +66,7 @@ import { DonutChart } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { DonutChart } from '@moderno/vue'
+import { DonutChart } from '@moderno-ui/vue'
 
 const data = [
   { label: 'Direct', value: 456 },
@@ -83,7 +83,7 @@ const data = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { DonutChart } from '@moderno/svelte'
+  import { DonutChart } from '@moderno-ui/svelte'
 
   const data = [
     { label: 'Direct', value: 456 },
@@ -97,7 +97,7 @@ const data = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { DonutChart } from '@moderno/solid'
+import { DonutChart } from '@moderno-ui/solid'
 
 <DonutChart
   data={[

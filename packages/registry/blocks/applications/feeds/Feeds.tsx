@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Avatar, Badge } from '@moderno/react'
+import { Avatar, Badge } from '@moderno-ui/react'
 
 export type FeedTagVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

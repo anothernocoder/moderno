@@ -5,7 +5,7 @@ description: How to pull blocks (layout compositions) into your repo with Modern
 
 Moderno ships through **two channels** (ADR-0001):
 
-- **Primitives** → npm packages (`@moderno/react`, etc.). Versioned; fixes propagate from the
+- **Primitives** → npm packages (`@moderno-ui/react`, etc.). Versioned; fixes propagate from the
   center. They are the [components](/components/button/).
 - **Blocks** → **copy-paste registry**. Layout compositions (Hero, Pricing, app shell)
   that you copy into your repo and edit freely. They don't update on their own — that's the
@@ -15,17 +15,17 @@ Moderno ships through **two channels** (ADR-0001):
 
 ```sh
 # See the available blocks
-npx @moderno/registry list
+npx @moderno-ui/registry list
 
 # Copy a block into your project, for your framework
-npx @moderno/registry add hero --framework react --dest ./src/blocks
+npx @moderno-ui/registry add hero --framework react --dest ./src/blocks
 ```
 
 The command copies the block file (for the chosen framework) to `--dest`
 (defaults to `./src/blocks`). From there the code is **yours**: edit it however you like.
 
 After copying it, make sure you have the corresponding primitive package installed
-(`@moderno/<framework>`) and that you've [imported the styles](/introduction/installation/).
+(`@moderno-ui/<framework>`) and that you've [imported the styles](/introduction/installation/).
 
 ## Available blocks
 

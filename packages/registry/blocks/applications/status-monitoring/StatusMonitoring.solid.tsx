@@ -1,5 +1,5 @@
 import { createMemo, For, type JSX } from 'solid-js'
-import { Badge, Divider, Indicator } from '@moderno/solid'
+import { Badge, Divider, Indicator } from '@moderno-ui/solid'
 
 export type ServiceStatus = 'operational' | 'degraded' | 'down'
 

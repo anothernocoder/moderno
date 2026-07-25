@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as numberInput from '@zag-js/number-input'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     label,

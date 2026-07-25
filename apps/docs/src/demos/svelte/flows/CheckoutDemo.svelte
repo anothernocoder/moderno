@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CheckoutExample from '@moderno/registry/flows/checkout/Checkout.example.svelte'
+  import CheckoutExample from '@moderno-ui/registry/flows/checkout/Checkout.example.svelte'
 
   // `step` is a plain string prop passed from the MDX doc across the
   // Astro-island boundary (which serializes to JSON) so each screen can be

@@ -1,7 +1,7 @@
 <script lang="ts">
   // Moderno block — Pricing (Svelte). Copy-paste; edit freely.
   // Plan comparison section. Uses the Card + Badge + Button + Divider primitives + Moderno tokens.
-  import { Card, Badge, Button, Divider } from '@moderno/svelte'
+  import { Card, Badge, Button, Divider } from '@moderno-ui/svelte'
 
   export interface PricingPlan {
     name: string

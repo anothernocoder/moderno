@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDatePicker } from './date-picker-context'
 import DatePickerNavView from './DatePickerNavView.vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 // Content is teleported to the body; trigger stays in flow.
 defineOptions({ inheritAttrs: false })

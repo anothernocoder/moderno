@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Card } from '@moderno/solid'
+import { Card } from '@moderno-ui/solid'
 
 export type ProductFeatureIcon = 'material' | 'warranty' | 'shipping' | 'care'
 

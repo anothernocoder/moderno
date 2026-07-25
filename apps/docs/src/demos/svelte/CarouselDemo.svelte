@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Carousel } from '@moderno/svelte'
+  import { Carousel } from '@moderno-ui/svelte'
 
   const slides = ['Diseño', 'Desarrollo', 'Pruebas', 'Lanzamiento']
 </script>

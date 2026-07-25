@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as tooltip from '@zag-js/tooltip'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 // Trigger renders inline; content is teleported to the body.
 defineOptions({ inheritAttrs: false })

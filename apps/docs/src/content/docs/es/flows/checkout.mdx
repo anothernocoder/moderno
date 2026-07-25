@@ -90,27 +90,27 @@ Traer el flow `checkout` copia las cinco screens que compone (`cart`, `shipping`
 (`shopping-cart`, `checkout-forms`, `order-summaries`, deduplicados ya que `shipping` y `payment`
 usan ambos `checkout-forms`) **más** el ensamblaje de ejemplo. El CLI resuelve `composes` de forma
 recursiva (flow → screen → bloque) y deduplica por nombre — los primitives nunca se copian, siguen
-siendo una dependencia npm `@moderno/<framework>`.
+siendo una dependencia npm `@moderno-ui/<framework>`.
 
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```sh
-npx @moderno/registry add checkout --framework react
+npx @moderno-ui/registry add checkout --framework react
 ```
 </TabItem>
 <TabItem label="Vue">
 ```sh
-npx @moderno/registry add checkout --framework vue
+npx @moderno-ui/registry add checkout --framework vue
 ```
 </TabItem>
 <TabItem label="Svelte">
 ```sh
-npx @moderno/registry add checkout --framework svelte
+npx @moderno-ui/registry add checkout --framework svelte
 ```
 </TabItem>
 <TabItem label="Solid">
 ```sh
-npx @moderno/registry add checkout --framework solid
+npx @moderno-ui/registry add checkout --framework solid
 ```
 </TabItem>
 </Tabs>
@@ -123,7 +123,7 @@ bloques se copian planos en la raíz de `--dest`. Pasa `--no-example` para copia
 bloques compuestos:
 
 ```sh
-npx @moderno/registry add checkout --framework react --no-example
+npx @moderno-ui/registry add checkout --framework react --no-example
 ```
 
 ¿Solo quieres el carrito, sin el contexto del flow? Se puede agregar de forma independiente —se
@@ -131,10 +131,10 @@ reutiliza fuera del recorrido de checkout también— y sigue trayendo de forma 
 `shopping-cart` que compone:
 
 ```sh
-npx @moderno/registry add cart --framework react
+npx @moderno-ui/registry add cart --framework react
 ```
 
-Tras copiarlo, instala el primitive `@moderno/<framework>` e
+Tras copiarlo, instala el primitive `@moderno-ui/<framework>` e
 [importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo la
 navegación y el estado — es tuyo.
 

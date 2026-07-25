@@ -6,7 +6,7 @@
   // no clipboard access or async logic lives here, just callbacks
   // (`onCopyLink`, `onShare`, `onInvite`) the consumer wires up. Uses the
   // Input/Button/Badge primitives + Moderno tokens (--md-* custom properties).
-  import { Badge, Button, Input } from '@moderno/svelte'
+  import { Badge, Button, Input } from '@moderno-ui/svelte'
 
   export type ShareInviteStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

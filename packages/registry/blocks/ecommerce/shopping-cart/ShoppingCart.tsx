@@ -1,5 +1,5 @@
 import { useMemo, useState, type CSSProperties } from 'react'
-import { Button, Card, NumberInput } from '@moderno/react'
+import { Button, Card, NumberInput } from '@moderno-ui/react'
 
 export interface ShoppingCartItem {
   id: string | number

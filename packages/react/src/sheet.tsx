@@ -1,7 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as dialog from '@zag-js/dialog'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
-import { cx, parts, type SheetSide } from '@moderno/class-contract'
+import { cx, parts, type SheetSide } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 type SheetApi = ReturnType<typeof dialog.connect>

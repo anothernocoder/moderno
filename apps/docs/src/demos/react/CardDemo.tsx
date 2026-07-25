@@ -1,4 +1,4 @@
-import { Card, Button } from '@moderno/react'
+import { Card, Button } from '@moderno-ui/react'
 
 export default function CardDemo() {
   return (

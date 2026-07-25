@@ -1,5 +1,5 @@
 <script lang="ts">
-  import DescriptionList from '@moderno/registry/blocks/applications/description-list/DescriptionList.svelte'
+  import DescriptionList from '@moderno-ui/registry/blocks/applications/description-list/DescriptionList.svelte'
 </script>
 
 <DescriptionList />

@@ -3,8 +3,8 @@
   // Settings/profile-edit form page layout: grouped fieldsets with headings, a responsive
   // multi-column field grid, section dividers, and a footer action row. Uses the Input +
   // Textarea + Select + Divider + Button primitives + Moderno tokens.
-  import { Button, Divider, Input, Select, Textarea } from '@moderno/svelte'
-  import type { SelectItem } from '@moderno/svelte'
+  import { Button, Divider, Input, Select, Textarea } from '@moderno-ui/svelte'
+  import type { SelectItem } from '@moderno-ui/svelte'
 
   export interface FormLayoutsValues {
     firstName: string

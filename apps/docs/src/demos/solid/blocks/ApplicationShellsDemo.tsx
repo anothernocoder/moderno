@@ -1,4 +1,4 @@
-import { ApplicationShells } from '@moderno/registry/blocks/applications/application-shells/ApplicationShells.solid.tsx'
+import { ApplicationShells } from '@moderno-ui/registry/blocks/applications/application-shells/ApplicationShells.solid.tsx'
 
 export default function ApplicationShellsDemo() {
   return (

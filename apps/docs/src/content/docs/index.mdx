@@ -20,12 +20,12 @@ Moderno cleanly separates two responsibilities:
   ARIA, state machines — lives in [Zag.js](https://zagjs.com), consumed directly
   through its per-framework adapters. It's the same core for all four.
 - **Look (tokens + compiled CSS).** The visual appearance is expressed as
-  [design tokens](https://www.w3.org/community/design-tokens/) (`@moderno/tokens`)
+  [design tokens](https://www.w3.org/community/design-tokens/) (`@moderno-ui/tokens`)
   surfaced as CSS custom properties, and a compiled `md-*` class contract
-  (`@moderno/styles`). Re-theming means re-mapping semantic roles, without touching components.
+  (`@moderno-ui/styles`). Re-theming means re-mapping semantic roles, without touching components.
 
-Each per-framework package (`@moderno/react`, `@moderno/vue`, `@moderno/svelte`,
-`@moderno/solid`) writes the component anatomy and wires Zag's _prop-getters_ to the
+Each per-framework package (`@moderno-ui/react`, `@moderno-ui/vue`, `@moderno-ui/svelte`,
+`@moderno-ui/solid`) writes the component anatomy and wires Zag's _prop-getters_ to the
 `md-*` class contract.
 
 ## Two delivery channels

@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type CSSProperties, type FormEvent } from 'react'
-import { Button, Input } from '@moderno/react'
+import { Button, Input } from '@moderno-ui/react'
 
 export interface InputGroupsProps {
   website?: string

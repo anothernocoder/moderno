@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte'
   import * as splitter from '@zag-js/splitter'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   export interface SplitterPanelDef {
     /** Unique id for the panel; content is provided via a snippet of the same name. */

@@ -8,7 +8,7 @@
   // allowance the Checkout ticket used for its confirmation screen. `onInvite`
   // fires on submit; `onRemoveInvite` forwards the composed List's
   // `onItemAction`; `onNext` finishes onboarding.
-  import { Button, Input } from '@moderno/svelte'
+  import { Button, Input } from '@moderno-ui/svelte'
   import List from '../../../blocks/applications/list/List.svelte'
   import type { ListItem } from '../../../blocks/applications/list/List.svelte'
 

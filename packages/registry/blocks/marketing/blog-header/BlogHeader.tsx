@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Chip } from '@moderno/react'
+import { Chip } from '@moderno-ui/react'
 
 export interface BlogHeaderProps {
   kicker?: string

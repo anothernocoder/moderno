@@ -2,7 +2,7 @@
   // Moderno block — Alerts (Svelte). Copy-paste; edit freely.
   // Inline info/success/warning/error message patterns composed into an application
   // layout section (dashboard/form alerts area). Uses the Alert + Button primitives + Moderno tokens.
-  import { Alert, Button } from '@moderno/svelte'
+  import { Alert, Button } from '@moderno-ui/svelte'
 
   export type AlertVariant = 'info' | 'success' | 'warning' | 'error'
 

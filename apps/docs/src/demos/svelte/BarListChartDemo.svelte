@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { BarListChart } from '@moderno/svelte'
+  import { BarListChart } from '@moderno-ui/svelte'
 
   const data = [
     { label: 'Direct', value: 456 },

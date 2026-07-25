@@ -2,7 +2,7 @@
   // Moderno block — Testimonials (Svelte). Copy-paste; edit freely.
   // Social proof section: centered header above a grid of customer quotes with author and avatar.
   // Uses the Card + Avatar primitives + Moderno tokens.
-  import { Avatar, Card } from '@moderno/svelte'
+  import { Avatar, Card } from '@moderno-ui/svelte'
 
   export interface TestimonialItem {
     quote: string

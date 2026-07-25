@@ -5,7 +5,7 @@
 // Input + Button primitives + Moderno tokens; the "join" is pure CSS layout —
 // shared 1px borders between adjoining segments, no new primitives.
 import { ref } from 'vue'
-import { Button, Input } from '@moderno/vue'
+import { Button, Input } from '@moderno-ui/vue'
 
 const props = withDefaults(
   defineProps<{

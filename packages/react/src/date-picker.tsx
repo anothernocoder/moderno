@@ -1,7 +1,7 @@
 import { useId, useMemo, type ReactNode } from 'react'
 import * as datepicker from '@zag-js/date-picker'
 import { useMachine, normalizeProps, Portal } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 import { createPartContext } from './create-part-context'
 
 type DatePickerApi = ReturnType<typeof datepicker.connect>

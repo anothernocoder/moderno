@@ -1,6 +1,6 @@
 import { For } from 'solid-js'
 import type { JSX } from 'solid-js'
-import { Avatar, Badge } from '@moderno/solid'
+import { Avatar, Badge } from '@moderno-ui/solid'
 
 export type FeedTagVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

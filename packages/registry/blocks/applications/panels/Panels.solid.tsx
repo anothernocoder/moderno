@@ -1,5 +1,5 @@
 import { For, type JSX } from 'solid-js'
-import { Button, Card } from '@moderno/solid'
+import { Button, Card } from '@moderno-ui/solid'
 
 export interface PanelItem {
   id: string

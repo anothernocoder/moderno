@@ -1,4 +1,4 @@
-import { BarChart } from '@moderno/solid'
+import { BarChart } from '@moderno-ui/solid'
 
 const DATA = [
   { label: 'Jan', value: 12 },

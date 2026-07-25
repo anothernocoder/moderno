@@ -1,4 +1,4 @@
-import { Footer } from '@moderno/registry/blocks/marketing/footer/Footer.solid.tsx'
+import { Footer } from '@moderno-ui/registry/blocks/marketing/footer/Footer.solid.tsx'
 
 export default function FooterDemo() {
   return <Footer />

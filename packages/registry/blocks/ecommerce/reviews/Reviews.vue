@@ -6,7 +6,7 @@
 // Badge + Card + Progress primitives + Moderno tokens. Star ratings render as
 // inline SVG stars, matching the Product Features inline-icon convention. No
 // new primitives, no bespoke interaction logic — purely presentational.
-import { Avatar, Badge, Card, Progress } from '@moderno/vue'
+import { Avatar, Badge, Card, Progress } from '@moderno-ui/vue'
 
 export interface ReviewsBreakdownItem {
   stars: number

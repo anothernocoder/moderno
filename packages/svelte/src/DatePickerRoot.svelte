@@ -3,7 +3,7 @@
   import * as datepicker from '@zag-js/date-picker'
   import { useMachine, normalizeProps } from '@zag-js/svelte'
   import { setDatePickerContext } from './date-picker-context'
-  import { parts } from '@moderno/class-contract'
+  import { parts } from '@moderno-ui/class-contract'
 
   let {
     selectionMode,

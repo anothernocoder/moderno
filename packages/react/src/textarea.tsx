@@ -1,5 +1,5 @@
 import { useId, type TextareaHTMLAttributes, type ReactNode } from 'react'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children'> {
   label?: ReactNode

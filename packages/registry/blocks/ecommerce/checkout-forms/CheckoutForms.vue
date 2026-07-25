@@ -6,8 +6,8 @@
 // Uses the Input + Select + Divider + Button primitives + Moderno tokens. Static
 // UI-only demo: no real payment processing, values only live in local controlled state.
 import { reactive } from 'vue'
-import { Button, Divider, Input, Select } from '@moderno/vue'
-import type { SelectItem } from '@moderno/vue'
+import { Button, Divider, Input, Select } from '@moderno-ui/vue'
+import type { SelectItem } from '@moderno-ui/vue'
 
 export interface CheckoutFormsValues {
   fullName: string

@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Badge, Button, Card, Divider } from '@moderno/solid'
+import { Badge, Button, Card, Divider } from '@moderno-ui/solid'
 
 export interface PageHeaderBreadcrumb {
   label: string

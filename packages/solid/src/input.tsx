@@ -1,5 +1,5 @@
 import { splitProps, createUniqueId, Show, type JSX } from 'solid-js'
-import { cx, parts } from '@moderno/class-contract'
+import { cx, parts } from '@moderno-ui/class-contract'
 
 export interface InputProps extends Omit<JSX.InputHTMLAttributes<HTMLInputElement>, 'children'> {
   label?: JSX.Element

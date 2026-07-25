@@ -2,7 +2,7 @@
 // Moderno block — ProductCard (Vue). Copy-paste; edit freely.
 // Product tile. Uses the Card + Badge + Button primitives + Moderno tokens.
 import { computed } from 'vue'
-import { Card, Badge, Button } from '@moderno/vue'
+import { Card, Badge, Button } from '@moderno-ui/vue'
 
 const props = withDefaults(
   defineProps<{

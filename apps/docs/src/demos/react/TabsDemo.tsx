@@ -1,4 +1,4 @@
-import { Tabs } from '@moderno/react'
+import { Tabs } from '@moderno-ui/react'
 
 export default function TabsDemo() {
   return (

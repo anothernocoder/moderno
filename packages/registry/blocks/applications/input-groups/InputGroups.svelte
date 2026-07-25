@@ -4,7 +4,7 @@
   // an icon-button add-on (copy API key) and an input+button search combo. Uses the
   // Input + Button primitives + Moderno tokens; the "join" is pure CSS layout —
   // shared 1px borders between adjoining segments, no new primitives.
-  import { Button, Input } from '@moderno/svelte'
+  import { Button, Input } from '@moderno-ui/svelte'
 
   let {
     website = 'mi-tienda',

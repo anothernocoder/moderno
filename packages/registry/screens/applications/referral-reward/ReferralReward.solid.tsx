@@ -1,5 +1,5 @@
 import { For, Show, type JSX } from 'solid-js'
-import { Badge, Button } from '@moderno/solid'
+import { Badge, Button } from '@moderno-ui/solid'
 
 export type ReferralRewardStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

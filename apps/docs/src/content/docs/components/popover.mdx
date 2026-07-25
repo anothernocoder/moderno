@@ -4,10 +4,10 @@ description: Anchored, non-modal panel revealed from a trigger. Zag behavior cor
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Popover as RPopover } from '@moderno/react'
-import { Popover as VPopover } from '@moderno/vue'
-import { Popover as SPopover } from '@moderno/svelte'
-import { Popover as OPopover } from '@moderno/solid'
+import { Popover as RPopover } from '@moderno-ui/react'
+import { Popover as VPopover } from '@moderno-ui/vue'
+import { Popover as SPopover } from '@moderno-ui/svelte'
+import { Popover as OPopover } from '@moderno-ui/solid'
 
 **Popover** reveals an anchored, non-modal panel from its trigger — richer than a `Tooltip` (it can hold a heading, body copy, and a close button) and lighter than a `Dialog` (it doesn't trap the page behind a backdrop). A **closed-prop** primitive (ADR-0003) built on Zag.js's `popover` machine, positioned with popper. Like `Tooltip`, it takes the trigger as `triggerLabel` (string) and renders its own button.
 
@@ -41,7 +41,7 @@ import { Popover as OPopover } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Popover } from '@moderno/react'
+import { Popover } from '@moderno-ui/react'
 
 <Popover triggerLabel="Details" title="Shipping" content="Free over $50." />
 ```
@@ -49,7 +49,7 @@ import { Popover } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Popover } from '@moderno/vue'
+import { Popover } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -60,7 +60,7 @@ import { Popover } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Popover } from '@moderno/svelte'
+  import { Popover } from '@moderno-ui/svelte'
 </script>
 
 <Popover triggerLabel="Details" title="Shipping" content="Free over $50." />
@@ -68,7 +68,7 @@ import { Popover } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Popover } from '@moderno/solid'
+import { Popover } from '@moderno-ui/solid'
 
 <Popover triggerLabel="Details" title="Shipping" content="Free over $50." />
 ```

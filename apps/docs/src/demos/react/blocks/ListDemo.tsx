@@ -1,4 +1,4 @@
-import { List } from '@moderno/registry/blocks/applications/list/List.tsx'
+import { List } from '@moderno-ui/registry/blocks/applications/list/List.tsx'
 
 export default function ListDemo() {
   return <List />

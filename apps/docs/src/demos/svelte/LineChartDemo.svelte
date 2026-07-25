@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LineChart } from '@moderno/svelte'
+  import { LineChart } from '@moderno-ui/svelte'
 
   const data = [
     { x: 0, y: 12 },

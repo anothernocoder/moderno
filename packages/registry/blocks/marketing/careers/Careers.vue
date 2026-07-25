@@ -3,7 +3,7 @@
 // Jobs/openings section: a list of open roles with title, location, and apply CTA.
 // Uses the Badge + Button + Divider primitives + Moderno tokens.
 import { computed } from 'vue'
-import { Badge, Button, Divider } from '@moderno/vue'
+import { Badge, Button, Divider } from '@moderno-ui/vue'
 
 export interface CareerRole {
   title: string

@@ -1,7 +1,7 @@
 import { For, Show, createMemo, createUniqueId } from 'solid-js'
 import * as pagination from '@zag-js/pagination'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface PaginationProps {
   /** Total number of data items. */

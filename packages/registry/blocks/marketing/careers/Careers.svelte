@@ -2,7 +2,7 @@
   // Moderno block — Careers (Svelte). Copy-paste; edit freely.
   // Jobs/openings section: a list of open roles with title, location, and apply CTA.
   // Uses the Badge + Button + Divider primitives + Moderno tokens.
-  import { Badge, Button, Divider } from '@moderno/svelte'
+  import { Badge, Button, Divider } from '@moderno-ui/svelte'
 
   export interface CareerRole {
     title: string

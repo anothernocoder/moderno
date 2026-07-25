@@ -92,22 +92,22 @@ Traer el flow `auth` copia las cinco screens que compone (`sign-in`, `sign-up`,
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```sh
-npx @moderno/registry add auth --framework react
+npx @moderno-ui/registry add auth --framework react
 ```
 </TabItem>
 <TabItem label="Vue">
 ```sh
-npx @moderno/registry add auth --framework vue
+npx @moderno-ui/registry add auth --framework vue
 ```
 </TabItem>
 <TabItem label="Svelte">
 ```sh
-npx @moderno/registry add auth --framework svelte
+npx @moderno-ui/registry add auth --framework svelte
 ```
 </TabItem>
 <TabItem label="Solid">
 ```sh
-npx @moderno/registry add auth --framework solid
+npx @moderno-ui/registry add auth --framework solid
 ```
 </TabItem>
 </Tabs>
@@ -118,16 +118,16 @@ estructura relativa para que los imports del ejemplo hacia cada screen sigan fun
 `--no-example` para copiar solo las screens compuestas:
 
 ```sh
-npx @moderno/registry add auth --framework react --no-example
+npx @moderno-ui/registry add auth --framework react --no-example
 ```
 
 ¿Solo quieres una screen, sin el contexto del flow? Agrégala directamente:
 
 ```sh
-npx @moderno/registry add sign-up --framework react
+npx @moderno-ui/registry add sign-up --framework react
 ```
 
-Tras copiarlo, instala el primitive `@moderno/<framework>` e
+Tras copiarlo, instala el primitive `@moderno-ui/<framework>` e
 [importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo la
 navegación y el estado — es tuyo.
 

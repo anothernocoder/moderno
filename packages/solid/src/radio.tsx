@@ -1,7 +1,7 @@
 import { For, Show, createMemo, createUniqueId, type JSX } from 'solid-js'
 import * as radio from '@zag-js/radio-group'
 import { useMachine, normalizeProps } from '@zag-js/solid'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface RadioOption {
   value: string

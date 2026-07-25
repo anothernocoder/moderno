@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DonutChart } from '@moderno/svelte'
+  import { DonutChart } from '@moderno-ui/svelte'
 
   const data = [
     { label: 'Direct', value: 456 },

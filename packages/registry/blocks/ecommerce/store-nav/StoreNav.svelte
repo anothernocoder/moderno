@@ -3,7 +3,7 @@
   // E-commerce storefront header navigation: logo, category links, a search field,
   // and a cart icon with an item-count badge. Uses the Badge + Input primitives +
   // Moderno tokens.
-  import { Badge, Input } from '@moderno/svelte'
+  import { Badge, Input } from '@moderno-ui/svelte'
 
   export interface StoreNavCategory {
     label: string

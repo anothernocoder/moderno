@@ -2,7 +2,7 @@
 import { computed, useId } from 'vue'
 import * as numberInput from '@zag-js/number-input'
 import { useMachine, normalizeProps } from '@zag-js/vue'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{
   label?: string

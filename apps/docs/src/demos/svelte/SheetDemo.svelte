@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Sheet } from '@moderno/svelte'
+  import { Sheet } from '@moderno-ui/svelte'
 </script>
 
 <Sheet.Root>

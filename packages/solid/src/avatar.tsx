@@ -1,5 +1,5 @@
 import { Show } from 'solid-js'
-import { cx, parts, type AvatarShape, type AvatarSize } from '@moderno/class-contract'
+import { cx, parts, type AvatarShape, type AvatarSize } from '@moderno-ui/class-contract'
 
 export interface AvatarProps {
   src?: string

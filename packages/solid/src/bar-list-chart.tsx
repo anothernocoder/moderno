@@ -1,6 +1,6 @@
 import { For, createMemo } from 'solid-js'
-import { buildBarListGeometry, type ChartCategoryDatum } from '@moderno/chart-core'
-import { parts } from '@moderno/class-contract'
+import { buildBarListGeometry, type ChartCategoryDatum } from '@moderno-ui/chart-core'
+import { parts } from '@moderno-ui/class-contract'
 
 export interface BarListChartProps {
   /** `{label, value}` pairs, one row per datum, in display order. */

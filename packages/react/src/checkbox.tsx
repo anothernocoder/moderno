@@ -1,7 +1,7 @@
 import { useId, type ReactNode } from 'react'
 import * as checkbox from '@zag-js/checkbox'
 import { useMachine, normalizeProps } from '@zag-js/react'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 export type CheckedState = boolean | 'indeterminate'
 

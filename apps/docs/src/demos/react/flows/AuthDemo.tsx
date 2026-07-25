@@ -1,4 +1,4 @@
-import { AuthExample, type AuthExampleProps } from '@moderno/registry/flows/auth/Auth.example.tsx'
+import { AuthExample, type AuthExampleProps } from '@moderno-ui/registry/flows/auth/Auth.example.tsx'
 
 // `step` is a plain string prop passed from the MDX doc across the
 // Astro-island boundary (which serializes to JSON) so each screen can be

@@ -3,7 +3,7 @@ import { computed, useId } from 'vue'
 import * as tabs from '@zag-js/tabs'
 import { useMachine, normalizeProps } from '@zag-js/vue'
 import { provideTabs } from './tabs-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{ defaultValue?: string; modelValue?: string }>()
 const emit = defineEmits<{ 'update:modelValue': [string] }>()

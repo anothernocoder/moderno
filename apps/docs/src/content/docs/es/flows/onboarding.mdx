@@ -77,27 +77,27 @@ Traer el flow `onboarding` copia las cuatro screens que compone (`welcome`, `pro
 `plan-select`, `invite-team`) **y** los bloques de Applications que esas screens componen a su vez
 (`form-layouts`, `grid-lists`, `list`) **más** el ensamblaje de ejemplo. El CLI resuelve `composes`
 de forma recursiva (flow → screen → bloque) y deduplica por nombre — los primitives nunca se
-copian, siguen siendo una dependencia npm `@moderno/<framework>`.
+copian, siguen siendo una dependencia npm `@moderno-ui/<framework>`.
 
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```sh
-npx @moderno/registry add onboarding --framework react
+npx @moderno-ui/registry add onboarding --framework react
 ```
 </TabItem>
 <TabItem label="Vue">
 ```sh
-npx @moderno/registry add onboarding --framework vue
+npx @moderno-ui/registry add onboarding --framework vue
 ```
 </TabItem>
 <TabItem label="Svelte">
 ```sh
-npx @moderno/registry add onboarding --framework svelte
+npx @moderno-ui/registry add onboarding --framework svelte
 ```
 </TabItem>
 <TabItem label="Solid">
 ```sh
-npx @moderno/registry add onboarding --framework solid
+npx @moderno-ui/registry add onboarding --framework solid
 ```
 </TabItem>
 </Tabs>
@@ -110,17 +110,17 @@ copian planos en la raíz de `--dest`. Pasa `--no-example` para copiar solo las 
 compuestos:
 
 ```sh
-npx @moderno/registry add onboarding --framework react --no-example
+npx @moderno-ui/registry add onboarding --framework react --no-example
 ```
 
 ¿Solo quieres la screen de bienvenida, sin el contexto del flow? Se puede agregar de forma
 independiente — y como no compone ningún bloque, no trae nada más consigo:
 
 ```sh
-npx @moderno/registry add welcome --framework react
+npx @moderno-ui/registry add welcome --framework react
 ```
 
-Tras copiarlo, instala el primitive `@moderno/<framework>` e
+Tras copiarlo, instala el primitive `@moderno-ui/<framework>` e
 [importa los estilos](/es/introduction/installation/). A partir de ahí el código — incluyendo la
 navegación y el estado — es tuyo.
 

@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent, type CSSProperties, type FormEvent } from 'react'
-import { Button, Divider, Input, Select, type SelectItem } from '@moderno/react'
+import { Button, Divider, Input, Select, type SelectItem } from '@moderno-ui/react'
 
 export interface CheckoutFormsValues {
   fullName: string

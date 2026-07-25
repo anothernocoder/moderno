@@ -1,5 +1,5 @@
 import { For, type JSX } from 'solid-js'
-import { Chip } from '@moderno/solid'
+import { Chip } from '@moderno-ui/solid'
 
 export interface BlogHeaderProps {
   kicker?: string

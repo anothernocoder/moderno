@@ -2,7 +2,7 @@
 // Moderno block — GridLists (Vue). Copy-paste; edit freely.
 // Responsive grid of item cards: thumbnail/icon, title, subtitle, and status badge with an
 // action. Uses the Card + Avatar + Badge + Button primitives + Moderno tokens.
-import { Card, Avatar, Badge, Button } from '@moderno/vue'
+import { Card, Avatar, Badge, Button } from '@moderno-ui/vue'
 
 type GridListStatusVariant = 'neutral' | 'solid' | 'success' | 'warning' | 'error' | 'info'
 

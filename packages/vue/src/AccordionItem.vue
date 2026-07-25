@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { provideAccordionItem, useAccordion } from './accordion-context'
-import { parts } from '@moderno/class-contract'
+import { parts } from '@moderno-ui/class-contract'
 
 const props = defineProps<{ value: string; disabled?: boolean }>()
 const api = useAccordion('Item')

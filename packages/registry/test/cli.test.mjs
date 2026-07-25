@@ -556,7 +556,7 @@ test('add copies the category-filters block (ecommerce domain) to --dest', async
   assert.match(output, /category-filters/)
   const copied = await readFile(join(dest, 'CategoryFilters.tsx'), 'utf8')
   assert.match(copied, /export function CategoryFilters/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Combobox/)
 })
 
@@ -580,7 +580,7 @@ test('add copies the product-lists block (ecommerce domain) to --dest', async (t
   assert.match(output, /product-lists/)
   const copied = await readFile(join(dest, 'ProductLists.tsx'), 'utf8')
   assert.match(copied, /export function ProductLists/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Card/)
 })
 
@@ -604,7 +604,7 @@ test('add copies the product-features block (ecommerce domain) to --dest', async
   assert.match(output, /product-features/)
   const copied = await readFile(join(dest, 'ProductFeatures.tsx'), 'utf8')
   assert.match(copied, /export function ProductFeatures/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Card/)
 })
 
@@ -628,7 +628,7 @@ test('add copies the reviews block (ecommerce domain) to --dest', async (t) => {
   assert.match(output, /reviews/)
   const copied = await readFile(join(dest, 'Reviews.tsx'), 'utf8')
   assert.match(copied, /export function Reviews/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Card/)
 })
 
@@ -652,7 +652,7 @@ test('add copies the shopping-cart block (ecommerce domain) to --dest', async (t
   assert.match(output, /shopping-cart/)
   const copied = await readFile(join(dest, 'ShoppingCart.tsx'), 'utf8')
   assert.match(copied, /export function ShoppingCart/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /NumberInput/)
 })
 
@@ -676,7 +676,7 @@ test('add copies the checkout-forms block (ecommerce domain) to --dest', async (
   assert.match(output, /checkout-forms/)
   const copied = await readFile(join(dest, 'CheckoutForms.tsx'), 'utf8')
   assert.match(copied, /export function CheckoutForms/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Select/)
 })
 
@@ -700,7 +700,7 @@ test('add copies the order-summaries block (ecommerce domain) to --dest', async 
   assert.match(output, /order-summaries/)
   const copied = await readFile(join(dest, 'OrderSummaries.tsx'), 'utf8')
   assert.match(copied, /export function OrderSummaries/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Divider/)
 })
 
@@ -724,7 +724,7 @@ test('add copies the order-history block (ecommerce domain) to --dest', async (t
   assert.match(output, /order-history/)
   const copied = await readFile(join(dest, 'OrderHistory.tsx'), 'utf8')
   assert.match(copied, /export function OrderHistory/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Badge/)
 })
 
@@ -748,7 +748,7 @@ test('add copies the incentives block (ecommerce domain) to --dest', async (t) =
   assert.match(output, /incentives/)
   const copied = await readFile(join(dest, 'Incentives.tsx'), 'utf8')
   assert.match(copied, /export function Incentives/)
-  assert.match(copied, /from '@moderno\/react'/)
+  assert.match(copied, /from '@moderno-ui\/react'/)
   assert.match(copied, /Card/)
 })
 

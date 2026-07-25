@@ -4,10 +4,10 @@ description: Punto de estado con pulso opcional y etiqueta. Pura CSS, closed-pro
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
-import { Indicator as RIndicator } from '@moderno/react'
-import { Indicator as VIndicator } from '@moderno/vue'
-import { Indicator as SIndicator } from '@moderno/svelte'
-import { Indicator as OIndicator } from '@moderno/solid'
+import { Indicator as RIndicator } from '@moderno-ui/react'
+import { Indicator as VIndicator } from '@moderno-ui/vue'
+import { Indicator as SIndicator } from '@moderno-ui/svelte'
+import { Indicator as OIndicator } from '@moderno-ui/solid'
 
 **Indicator** es un punto de estado con pulso opcional y etiqueta. Primitive **closed-prop**, pura CSS. A diferencia del punto del [Badge](/es/components/badge/), puede animarse para señalar actividad en vivo.
 
@@ -53,7 +53,7 @@ import { Indicator as OIndicator } from '@moderno/solid'
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { Indicator } from '@moderno/react'
+import { Indicator } from '@moderno-ui/react'
 
 <Indicator variant="success" pulse>En línea</Indicator>
 ```
@@ -61,7 +61,7 @@ import { Indicator } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { Indicator } from '@moderno/vue'
+import { Indicator } from '@moderno-ui/vue'
 </script>
 
 <template>
@@ -72,7 +72,7 @@ import { Indicator } from '@moderno/vue'
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { Indicator } from '@moderno/svelte'
+  import { Indicator } from '@moderno-ui/svelte'
 </script>
 
 <Indicator variant="success" pulse>En línea</Indicator>
@@ -80,7 +80,7 @@ import { Indicator } from '@moderno/vue'
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { Indicator } from '@moderno/solid'
+import { Indicator } from '@moderno-ui/solid'
 
 <Indicator variant="success" pulse>En línea</Indicator>
 ```

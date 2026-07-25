@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Promo from '@moderno/registry/blocks/ecommerce/promo/Promo.svelte'
+  import Promo from '@moderno-ui/registry/blocks/ecommerce/promo/Promo.svelte'
 </script>
 
 <Promo />

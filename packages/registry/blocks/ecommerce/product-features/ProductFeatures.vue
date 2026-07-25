@@ -4,7 +4,7 @@
 // description per feature (material, warranty, shipping, care). Composes
 // the Card primitive + Moderno tokens. No new primitives, no bespoke
 // interaction logic — purely presentational.
-import { Card } from '@moderno/vue'
+import { Card } from '@moderno-ui/vue'
 
 export type ProductFeatureIcon = 'material' | 'warranty' | 'shipping' | 'care'
 

@@ -2,7 +2,7 @@
   // Moderno block — BlogSections (Svelte). Copy-paste; edit freely.
   // Post listing / preview grid: centered header above a responsive grid of post cards.
   // Uses the Card + Avatar + Badge primitives + Moderno tokens.
-  import { Avatar, Badge, Card } from '@moderno/svelte'
+  import { Avatar, Badge, Card } from '@moderno-ui/svelte'
 
   export interface BlogPostPreview {
     title: string

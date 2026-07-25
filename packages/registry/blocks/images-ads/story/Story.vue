@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Moderno block — Story (Vue). Copy-paste; edit freely.
 // Vertical 9:16 ad / social template. Uses the Button primitive + Moderno tokens.
-import { Button } from '@moderno/vue'
+import { Button } from '@moderno-ui/vue'
 
 withDefaults(
   defineProps<{

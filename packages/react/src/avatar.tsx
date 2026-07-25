@@ -1,4 +1,4 @@
-import { cx, parts, type AvatarShape, type AvatarSize } from '@moderno/class-contract'
+import { cx, parts, type AvatarShape, type AvatarSize } from '@moderno-ui/class-contract'
 
 export interface AvatarProps {
   /** Image URL. When absent, `initials` render instead. */

@@ -12,7 +12,7 @@ import OSparkChartDemo from '../../../demos/solid/SparkChartDemo.tsx'
 **Spark chart** plots `{x, y}` data as a minimal SVG line, sized for small inline use
 (defaults to 120×32) and running edge to edge rather than with Line chart's 8px margin.
 It builds on the same **chart-core** geometry model as [Line chart](/components/line-chart/)
-(ADR-0004) — `@moderno/chart-core`, built on `d3-scale` + `d3-shape` — computed once
+(ADR-0004) — `@moderno-ui/chart-core`, built on `d3-scale` + `d3-shape` — computed once
 and rendered as SVG by each framework package. Stroke color comes from `--md-*`
 tokens. A **closed-prop** primitive (ADR-0003) — pass `data` and size props, no
 compositional anatomy.
@@ -47,7 +47,7 @@ compositional anatomy.
 <Tabs syncKey="framework">
 <TabItem label="React">
 ```tsx
-import { SparkChart } from '@moderno/react'
+import { SparkChart } from '@moderno-ui/react'
 
 <SparkChart
   data={[
@@ -65,7 +65,7 @@ import { SparkChart } from '@moderno/react'
 <TabItem label="Vue">
 ```vue
 <script setup lang="ts">
-import { SparkChart } from '@moderno/vue'
+import { SparkChart } from '@moderno-ui/vue'
 
 const data = [
   { x: 0, y: 12 },
@@ -82,7 +82,7 @@ const data = [
 <TabItem label="Svelte">
 ```svelte
 <script lang="ts">
-  import { SparkChart } from '@moderno/svelte'
+  import { SparkChart } from '@moderno-ui/svelte'
 
   const data = [
     { x: 0, y: 12 },
@@ -96,7 +96,7 @@ const data = [
 </TabItem>
 <TabItem label="Solid">
 ```tsx
-import { SparkChart } from '@moderno/solid'
+import { SparkChart } from '@moderno-ui/solid'
 
 <SparkChart
   data={[

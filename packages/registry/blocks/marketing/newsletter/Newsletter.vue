@@ -3,7 +3,7 @@
 // Email signup / subscription section: centered header above an inline email form.
 // Uses the Input + Button primitives + Moderno tokens.
 import { ref } from 'vue'
-import { Button, Input } from '@moderno/vue'
+import { Button, Input } from '@moderno-ui/vue'
 
 const props = withDefaults(
   defineProps<{

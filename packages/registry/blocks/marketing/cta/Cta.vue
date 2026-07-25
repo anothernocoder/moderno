@@ -2,7 +2,7 @@
 // Moderno block — Cta (Vue). Copy-paste; edit freely.
 // A focused headline + CTA button section — no kicker, no subtitle-as-secondary-emphasis.
 // Uses the Button primitive + Moderno tokens (--md-* custom properties).
-import { Button } from '@moderno/vue'
+import { Button } from '@moderno-ui/vue'
 
 withDefaults(
   defineProps<{

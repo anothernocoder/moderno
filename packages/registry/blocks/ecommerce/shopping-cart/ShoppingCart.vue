@@ -6,7 +6,7 @@
 // Moderno tokens. Quantity is simple local state per line item, updated
 // through the NumberInput primitive — no bespoke stepper, no new primitives.
 import { computed, ref } from 'vue'
-import { Button, Card, NumberInput } from '@moderno/vue'
+import { Button, Card, NumberInput } from '@moderno-ui/vue'
 
 export interface ShoppingCartItem {
   id: string | number

@@ -72,10 +72,12 @@ function exportSpecifiers(manifest) {
   return keys.map((subpath) => (subpath === '.' ? manifest.name : `${manifest.name}${subpath.slice(1)}`))
 }
 
-function buildVerifierSource(manifest) {
+function buildVerifierSource(manifest, { verifierPreamble, extraVerifierSource } = {}) {
   const specifiers = exportSpecifiers(manifest)
   const binNames = Object.keys(manifest.bin ?? {})
   return `
+${verifierPreamble ?? ''}
+
 import { spawnSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
@@ -115,6 +117,8 @@ for (const binName of ${JSON.stringify(binNames)}) {
   }
 }
 
+${extraVerifierSource ?? ''}
+
 process.stdout.write(JSON.stringify(checks))
 `
 }
@@ -124,10 +128,54 @@ process.stdout.write(JSON.stringify(checks))
  * tarballs into a fresh scratch directory outside the pnpm workspace, and
  * exercises the package's public entry point (exports + bin).
  *
- * Returns { pkg, ok, checks }, where checks is a flat list of per-entry-point
- * pass/fail results.
+ * Returns { pkg, ok, checks, scratchRoot, installDir }, where checks is a flat
+ * list of per-entry-point pass/fail results, and scratchRoot/installDir point
+ * at the npm-install scratch directory used to run the checks.
+ *
+ * By default the scratch directory is removed before returning. Pass
+ * `{ keepInstallDir: true }` to keep it around (e.g. to run additional,
+ * package-specific checks against the freshly-installed tarball from the
+ * caller's own process) — the caller is then responsible for removing
+ * `scratchRoot` itself.
+ *
+ * `options.postInstall`, if given, is an async callback run against the same
+ * scratch install *before* it's torn down — `({ installDir, pkgDir, manifest
+ * }) => Promise<checks[]>` — for packages that need a stronger check than a
+ * bare export-resolves smoke test (e.g. actually rendering a component
+ * against the built output) from a separate process/toolchain of the
+ * caller's choosing. Its returned checks (same `{ kind, specifier, ok,
+ * detail? }` shape as the built-in ones) are folded into the result.
+ *
+ * `options.conditions`, if given, is a list of extra Node.js `--conditions`
+ * flags to pass when running the built-in export-resolution check (e.g.
+ * `['browser']` for a package whose compiled output calls DOM-only APIs at
+ * module scope, and whose `exports` map requires the "browser" condition to
+ * resolve to a build that provides them instead of an SSR/no-op stub).
+ *
+ * `options.extraNpmPackages`, if given, is a list of extra npm specifiers
+ * (fetched from the real registry, not packed from the workspace) installed
+ * alongside the tarballs — e.g. `['jsdom@^29.1.1']` to give a DOM-dependent
+ * export-resolution check somewhere to render into.
+ *
+ * `options.verifierPreamble`, if given, is raw ESM source prepended to the
+ * built-in export-resolution verifier script, run before it resolves/imports
+ * each `exports` entry — e.g. to install jsdom globals, or register
+ * `node:module` customization hooks so plain Node can load file types the
+ * standard loader can't (such as `.svelte`), so that later imports —
+ * including the standard export checks — succeed.
+ *
+ * `options.extraVerifierSource`, if given, is a snippet of ESM source spliced
+ * in at the end of the generated verify.mjs (which runs from `installDir`,
+ * against the freshly-installed tarball, before it's torn down, in the same
+ * process/module-resolution context as `verifierPreamble` and the built-in
+ * checks). It has an in-scope `checks` array to push additional `{ kind,
+ * specifier, ok, detail? }` entries onto — use it for real, package-specific
+ * checks (e.g. actually rendering a component) that need any loader hooks
+ * registered by `verifierPreamble` to still be active.
  */
-export async function smokeTestPackage(pkgPathOrName) {
+export async function smokeTestPackage(pkgPathOrName, options = {}) {
+  const { keepInstallDir = false, postInstall, conditions, extraNpmPackages, verifierPreamble, extraVerifierSource } =
+    options
   const pkgDir = packageDirFor(pkgPathOrName)
   const manifest = await readManifest(pkgDir)
 
@@ -150,19 +198,29 @@ export async function smokeTestPackage(pkgPathOrName) {
       JSON.stringify({ name: 'moderno-smoke-scratch', private: true, type: 'module', version: '0.0.0' }, null, 2)
     )
 
-    execFileSync('npm', ['install', '--no-audit', '--no-fund', ...tarballs], {
+    execFileSync('npm', ['install', '--no-audit', '--no-fund', ...tarballs, ...(extraNpmPackages ?? [])], {
       cwd: installDir,
       encoding: 'utf8',
     })
 
     const verifierPath = join(installDir, 'verify.mjs')
-    await writeFile(verifierPath, buildVerifierSource(manifest))
-    const stdout = execFileSync(process.execPath, [verifierPath], { cwd: installDir, encoding: 'utf8' })
+    await writeFile(verifierPath, buildVerifierSource(manifest, { verifierPreamble, extraVerifierSource }))
+    const nodeConditions = (conditions ?? []).map((condition) => `--conditions=${condition}`)
+    const stdout = execFileSync(process.execPath, [...nodeConditions, verifierPath], {
+      cwd: installDir,
+      encoding: 'utf8',
+    })
     const checks = JSON.parse(stdout)
 
-    return { pkg: manifest.name, ok: checks.every((c) => c.ok), checks }
+    if (postInstall) {
+      checks.push(...(await postInstall({ installDir, pkgDir, manifest })))
+    }
+
+    return { pkg: manifest.name, ok: checks.every((c) => c.ok), checks, scratchRoot, installDir }
   } finally {
-    await rm(scratchRoot, { recursive: true, force: true })
+    if (!keepInstallDir) {
+      await rm(scratchRoot, { recursive: true, force: true })
+    }
   }
 }
 

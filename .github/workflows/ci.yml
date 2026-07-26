@@ -20,6 +20,12 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # class-contract, chart-core, react, vue, svelte, and solid now ship
+      # built dist/ output (exports/files point there, not at src/) — anything
+      # that cross-imports them (e.g. styles' class-contract enforcement test)
+      # needs dist/ to exist before tests run.
+      - run: pnpm build
+
       # Class-contract enforcement: the golden + bidirectional checks fail loudly
       # if any md-* selector drifts from the contract, or a class is renamed on
       # either side of the seam.

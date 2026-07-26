@@ -5,14 +5,21 @@
   "type": "module",
   "license": "MIT",
   "files": [
-    "src"
+    "dist"
   ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "scripts": {
+    "build": "tsup",
     "check": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.0"
   }
 }

@@ -5,13 +5,14 @@
   "type": "module",
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "exports": {
     "./styles.css": "./dist/styles.css",
     ".": {
       "types": "./dist/index.d.ts",
-      "solid": "./dist/index.js",
+      "solid": "./src/index.tsx",
       "default": "./dist/index.js"
     }
   },

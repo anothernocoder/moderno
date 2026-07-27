@@ -15,3 +15,7 @@ Five canonical triage roles mapped to default label strings (`needs-triage`, `ne
 ### Domain docs
 
 Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+### Changesets
+
+Any change to what a published `packages/*` package ships (behavior, API, or build output) needs a changeset. See `docs/agents/changesets.md`.

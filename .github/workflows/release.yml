@@ -7,9 +7,28 @@ on:
 # Standard Changesets flow: on every push to main, this either opens/updates
 # a "Version Packages" PR (if changesets are pending in .changeset/) or, when
 # that PR has just been merged (no changesets left to consume), runs the
-# publish step. `id-token: write` is what lets `npm publish` authenticate via
+# publish step. `id-token: write` is what lets `pnpm publish` authenticate via
 # npm Trusted Publishing (OIDC) — no NPM_TOKEN or other long-lived secret is
 # referenced anywhere in this workflow.
+#
+# PR creation requires the repo's "Allow GitHub Actions to create and approve
+# pull requests" setting (Settings > Actions > General) to be enabled — without
+# it, `changesets/action` computes and pushes the version-bump commit fine but
+# fails outright when it tries to open the PR.
+#
+# The `release` script (root package.json) intentionally uses `pnpm -r publish`
+# rather than `changeset publish`: the latter shells out to plain `npm publish`
+# per package, which does not rewrite internal `workspace:*` dependency ranges
+# first — react/vue/svelte/solid depend on class-contract/chart-core/styles/
+# tokens via `workspace:*`, so they'd publish broken. `pnpm publish` rewrites
+# those to real versions at pack time, same as it does for a local `pnpm pack`.
+# `changeset version` (part of the same `release` invocation via changesets/
+# action) still owns computing versions and changelogs — only the final
+# publish mechanism changed. See:
+# https://github.com/changesets/changesets/issues/432,
+# https://github.com/changesets/action/issues/246, and
+# https://pnpm.io/using-changesets (recommends this exact `pnpm publish -r`
+# pattern for pnpm workspaces).
 #
 # One-time manual step outside this repo: npm Trusted Publishing still
 # requires the maintainer to link each package to this workflow

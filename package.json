@@ -13,7 +13,7 @@
     "smoke-test": "node --test scripts/pack-smoke-test.test.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build && changeset publish"
+    "release": "turbo run build && pnpm -r publish --access public --no-git-checks"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",

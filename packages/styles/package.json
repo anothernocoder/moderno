@@ -1,6 +1,6 @@
 {
   "name": "@moderno-ui/styles",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Moderno compiled component CSS — the framework-agnostic md-* class contract. Consumes @moderno-ui/tokens vars.",
   "type": "module",
   "license": "MIT",

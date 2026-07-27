@@ -1,6 +1,6 @@
 {
   "name": "@moderno-ui/react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Moderno styled components for React (Zag.js behavior core + Moderno tokens).",
   "type": "module",
   "license": "MIT",

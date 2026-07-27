@@ -12,9 +12,21 @@ Skip it for changes with zero effect on the published package: test-only changes
 
 ## How
 
-Run `pnpm changeset`, pick the affected package(s) and a bump type, and write a one-paragraph summary — it becomes the CHANGELOG entry for each package it's applied to.
+Don't run the interactive `pnpm changeset` wizard — it's a TTY prompt, not agent-friendly. Instead, write the file directly: create `.changeset/<kebab-case-slug>.md` (any unique, descriptive slug — doesn't need to match Changesets' own random-word generator) with YAML frontmatter mapping each affected package to a bump type, followed by a blank line and a short summary in prose. Match the exact format already used by the files in `.changeset/` (or the release notes of a merged PR) as a template, e.g.:
+
+```md
+---
+"@moderno-ui/react": minor
+"@moderno-ui/vue": minor
+---
+
+Add the Foo primitive across React and Vue: a display-only variant of Bar
+taking a `label` and `tone` prop.
+```
 
 This repo is entirely pre-1.0 (`0.x`): use `patch` for fixes and internal-but-shipped changes, `minor` for new features and non-breaking additions. Don't use `major`.
+
+Do this as the last step before opening the PR, in the same commit as the change it documents.
 
 ## Don't hand-edit versions or CHANGELOG.md
 

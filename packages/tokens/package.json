@@ -4,6 +4,11 @@
   "description": "Moderno design tokens — framework-free CSS custom properties + W3C DTCG source.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anothernocoder/moderno.git",
+    "directory": "packages/tokens"
+  },
   "files": ["src", "tokens.json"],
   "exports": {
     ".": "./tokens.json",

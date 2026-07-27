@@ -4,6 +4,11 @@
   "description": "Moderno chart core — framework-neutral chart geometry (d3-scale + d3-shape), the charting analogue of the behavior-core.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anothernocoder/moderno.git",
+    "directory": "packages/chart-core"
+  },
   "files": [
     "dist"
   ],

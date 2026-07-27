@@ -4,6 +4,11 @@
   "description": "Moderno blocks registry — copy-paste CLI that pulls a block's per-framework source into your repo.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anothernocoder/moderno.git",
+    "directory": "packages/registry"
+  },
   "bin": {
     "moderno-ui": "./bin/cli.mjs"
   },

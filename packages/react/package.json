@@ -4,6 +4,11 @@
   "description": "Moderno styled components for React (Zag.js behavior core + Moderno tokens).",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anothernocoder/moderno.git",
+    "directory": "packages/react"
+  },
   "files": [
     "dist"
   ],

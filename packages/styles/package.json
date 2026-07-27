@@ -4,6 +4,11 @@
   "description": "Moderno compiled component CSS — the framework-agnostic md-* class contract. Consumes @moderno-ui/tokens vars.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anothernocoder/moderno.git",
+    "directory": "packages/styles"
+  },
   "files": [
     "src"
   ],

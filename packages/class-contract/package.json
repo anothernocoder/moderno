@@ -4,6 +4,11 @@
   "description": "Moderno class contract — the single source for md-* class names, variant builders, and the legal-name set the CSS generator enforces.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anothernocoder/moderno.git",
+    "directory": "packages/class-contract"
+  },
   "files": [
     "dist"
   ],

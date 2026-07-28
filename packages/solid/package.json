@@ -15,6 +15,7 @@
   ],
   "exports": {
     "./styles.css": "./dist/styles.css",
+    "./tokens.css": "./dist/tokens.css",
     ".": {
       "types": "./dist/index.d.ts",
       "solid": "./src/index.tsx",

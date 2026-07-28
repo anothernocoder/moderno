@@ -1,0 +1,6 @@
+/* Re-export of the shared Moderno design tokens.
+   @moderno-ui/tokens is a transitive (non-peer) dependency, so it isn't
+   reachable from consumer app code under strict resolvers like pnpm — see
+   issue #173. Re-exporting it here lets consumers import the tokens through
+   this package instead of installing @moderno-ui/tokens directly. */
+@import "@moderno-ui/tokens/tokens.css";

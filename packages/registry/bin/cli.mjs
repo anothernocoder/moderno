@@ -167,7 +167,7 @@ async function cmdInit() {
   if (detected.length !== 1) {
     console.log(
       `Could not detect exactly one framework (${Object.values(FRAMEWORK_DEP_NAMES).join(', ')}) in package.json.\n` +
-        'Run "npm create moderno@latest" to scaffold a new project instead.',
+        'Run "npm create moderno-ui@latest" to scaffold a new project instead.',
     )
     return
   }

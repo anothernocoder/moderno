@@ -2138,7 +2138,7 @@ test('init prints guidance and writes no config when package.json is missing', a
 
   const output = execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
 
-  assert.match(output, /npm create moderno@latest/)
+  assert.match(output, /npm create moderno-ui@latest/)
   assert.equal(await pathExists(join(dir, 'moderno.config.json')), false)
 })
 
@@ -2148,7 +2148,7 @@ test('init prints guidance and writes no config when no framework dependency is 
 
   const output = execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
 
-  assert.match(output, /npm create moderno@latest/)
+  assert.match(output, /npm create moderno-ui@latest/)
   assert.equal(await pathExists(join(dir, 'moderno.config.json')), false)
 })
 
@@ -2158,7 +2158,7 @@ test('init prints guidance and writes no config when more than one framework dep
 
   const output = execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
 
-  assert.match(output, /npm create moderno@latest/)
+  assert.match(output, /npm create moderno-ui@latest/)
   assert.equal(await pathExists(join(dir, 'moderno.config.json')), false)
 })
 

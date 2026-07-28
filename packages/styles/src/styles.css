@@ -6,6 +6,31 @@
    Consumes the --md-* custom properties from @moderno/tokens.
    ============================================================ */
 
+/* ============================================================
+   Self-hosted faces for --md-font-sans/--md-font-serif (declared in
+   @moderno-ui/tokens). Weight 400, Latin subset — Hedvig Letters
+   Sans/Serif are single-weight families (Google Fonts has no other
+   static weight to request), so partials that set a bolder
+   font-weight already fall back to the browser's synthetic bold,
+   same as before this change. SIL Open Font License 1.1: see
+   ./fonts/OFL.txt.
+   ============================================================ */
+
+@font-face {
+  font-family: "Hedvig Letters Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/hedvig-letters-sans-latin-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Hedvig Letters Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/hedvig-letters-serif-latin-400.woff2") format("woff2");
+}
 /* ---------- Button (pure CSS, no behavior core) ---------- */
 .md-btn {
   display: inline-flex;

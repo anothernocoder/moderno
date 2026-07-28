@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { mkdtemp, readFile, rm } from 'node:fs/promises'
+import { access, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -14,6 +14,15 @@ async function withTmpDir(t) {
   const dir = await mkdtemp(join(tmpdir(), 'moderno-registry-'))
   t.after(() => rm(dir, { recursive: true, force: true }))
   return dir
+}
+
+async function pathExists(path) {
+  try {
+    await access(path)
+    return true
+  } catch {
+    return false
+  }
 }
 
 test('add copies the requested block+framework file to --dest', async (t) => {
@@ -2099,4 +2108,93 @@ test('rewriteRelativeImports leaves relative imports unrelated to any composed i
   )
 
   assert.strictEqual(rewritten, content)
+})
+
+// ── init: framework detection + moderno.config.json (#139) ─────────────────
+
+test('init detects a single framework and writes moderno.config.json', async (t) => {
+  const dir = await withTmpDir(t)
+  await writeFile(join(dir, 'package.json'), JSON.stringify({ dependencies: { react: '^18.0.0' } }))
+
+  const output = execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
+
+  assert.match(output, /react/)
+  const config = JSON.parse(await readFile(join(dir, 'moderno.config.json'), 'utf8'))
+  assert.deepEqual(config, { framework: 'react' })
+})
+
+test('init maps the "solid-js" dependency to the "solid" framework', async (t) => {
+  const dir = await withTmpDir(t)
+  await writeFile(join(dir, 'package.json'), JSON.stringify({ devDependencies: { 'solid-js': '^1.8.0' } }))
+
+  execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
+
+  const config = JSON.parse(await readFile(join(dir, 'moderno.config.json'), 'utf8'))
+  assert.deepEqual(config, { framework: 'solid' })
+})
+
+test('init prints guidance and writes no config when package.json is missing', async (t) => {
+  const dir = await withTmpDir(t)
+
+  const output = execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
+
+  assert.match(output, /npm create moderno@latest/)
+  assert.equal(await pathExists(join(dir, 'moderno.config.json')), false)
+})
+
+test('init prints guidance and writes no config when no framework dependency is present', async (t) => {
+  const dir = await withTmpDir(t)
+  await writeFile(join(dir, 'package.json'), JSON.stringify({ dependencies: { lodash: '^4.17.0' } }))
+
+  const output = execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
+
+  assert.match(output, /npm create moderno@latest/)
+  assert.equal(await pathExists(join(dir, 'moderno.config.json')), false)
+})
+
+test('init prints guidance and writes no config when more than one framework dependency is present', async (t) => {
+  const dir = await withTmpDir(t)
+  await writeFile(join(dir, 'package.json'), JSON.stringify({ dependencies: { react: '^18.0.0', vue: '^3.4.0' } }))
+
+  const output = execFileSync('node', [CLI, 'init'], { encoding: 'utf8', cwd: dir })
+
+  assert.match(output, /npm create moderno@latest/)
+  assert.equal(await pathExists(join(dir, 'moderno.config.json')), false)
+})
+
+// ── add: --framework falls back to moderno.config.json (#139) ──────────────
+
+test('add without --framework uses the framework saved in moderno.config.json', async (t) => {
+  const dir = await withTmpDir(t)
+  await writeFile(join(dir, 'moderno.config.json'), JSON.stringify({ framework: 'vue' }))
+
+  execFileSync('node', [CLI, 'add', 'pricing', '--dest', 'out'], { encoding: 'utf8', cwd: dir })
+
+  const copied = await readFile(join(dir, 'out', 'Pricing.vue'), 'utf8')
+  assert.match(copied, /Moderno block — Pricing \(Vue\)/)
+})
+
+test('add --framework overrides a saved moderno.config.json', async (t) => {
+  const dir = await withTmpDir(t)
+  await writeFile(join(dir, 'moderno.config.json'), JSON.stringify({ framework: 'vue' }))
+
+  execFileSync('node', [CLI, 'add', 'pricing', '--framework', 'react', '--dest', 'out'], {
+    encoding: 'utf8',
+    cwd: dir,
+  })
+
+  const copied = await readFile(join(dir, 'out', 'Pricing.tsx'), 'utf8')
+  assert.match(copied, /export function Pricing/)
+})
+
+test('add without --framework and without moderno.config.json still fails with the existing error', async (t) => {
+  const dir = await withTmpDir(t)
+
+  assert.throws(
+    () => execFileSync('node', [CLI, 'add', 'pricing', '--dest', 'out'], { encoding: 'utf8', cwd: dir }),
+    (err) => {
+      assert.match(err.stderr, /Missing --framework/)
+      return true
+    },
+  )
 })

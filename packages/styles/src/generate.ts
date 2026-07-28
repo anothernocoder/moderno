@@ -27,6 +27,7 @@ export type SegmentSource = {
  */
 export const STYLE_SEGMENTS: SegmentSource[] = [
   { kind: 'enforced', name: 'head', file: './partials/_head.css' },
+  { kind: 'enforced', name: 'fonts', file: './partials/_fonts.css' },
   { kind: 'enforced', name: 'button', file: './partials/button.css' },
   { kind: 'enforced', name: 'dialog', file: './partials/dialog.css' },
   { kind: 'enforced', name: 'sheet', file: './partials/sheet.css' },

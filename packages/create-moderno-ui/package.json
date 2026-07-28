@@ -1,5 +1,5 @@
 {
-  "name": "create-moderno",
+  "name": "create-moderno-ui",
   "version": "0.1.0",
   "description": "Scaffolds a new project pre-wired with Moderno (Starter tier, ADR-0006) — Vite + React today, Vue to follow.",
   "type": "module",
@@ -7,10 +7,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anothernocoder/moderno.git",
-    "directory": "packages/create-moderno"
+    "directory": "packages/create-moderno-ui"
   },
   "bin": {
-    "create-moderno": "./bin/cli.mjs"
+    "create-moderno-ui": "./bin/cli.mjs"
   },
   "files": [
     "bin"

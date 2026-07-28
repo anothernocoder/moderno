@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const CLI = resolve(__dirname, '../bin/cli.mjs')
 
 async function withTmpDir(t) {
-  const dir = await mkdtemp(join(tmpdir(), 'create-moderno-'))
+  const dir = await mkdtemp(join(tmpdir(), 'create-moderno-ui-'))
   t.after(() => rm(dir, { recursive: true, force: true }))
   return dir
 }

@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 /**
- * create-moderno — scaffolds a brand-new project pre-wired with Moderno (the
- * "Starter" distribution tier, ADR-0006), invoked via `npm create moderno@latest`.
+ * create-moderno-ui — scaffolds a brand-new project pre-wired with Moderno (the
+ * "Starter" distribution tier, ADR-0006), invoked via `npm create moderno-ui@latest`.
+ * Bare `moderno` is squatted on npm by an unrelated package, so every npm-facing
+ * name in this project reads `moderno-ui` — this scaffold is no exception.
  *
  * Usage:
- *   npm create moderno@latest <target-dir> -- --framework react
+ *   npm create moderno-ui@latest <target-dir> -- --framework react
  *
  * v1 only ships the React+Vite template — the framework prompt only ever lists
  * what actually exists (Vue lands in a follow-up ticket, see issue #138), so
@@ -119,7 +121,8 @@ async function scaffold(targetDir, framework) {
 
 async function main() {
   const { positional, flags } = parseArgs(process.argv.slice(2))
-  if (!positional[0]) fail('Missing target directory. E.g.: npm create moderno@latest my-app -- --framework react')
+  if (!positional[0])
+    fail('Missing target directory. E.g.: npm create moderno-ui@latest my-app -- --framework react')
   const targetDir = resolve(process.cwd(), positional[0])
 
   const framework = flags.framework || flags.f || (await promptFramework())

@@ -100,7 +100,7 @@ importers:
         specifier: ^8.3.0
         version: 8.5.1(@microsoft/api-extractor@7.58.12(@types/node@24.13.2))(postcss@8.5.15)(typescript@5.9.3)
 
-  packages/create-moderno:
+  packages/create-moderno-ui:
     dependencies:
       create-vite:
         specifier: ^9.1.1

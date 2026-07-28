@@ -1,6 +1,6 @@
 {
   "name": "@moderno-ui/svelte",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Moderno styled components for Svelte (Zag.js behavior core + Moderno tokens).",
   "type": "module",
   "license": "MIT",

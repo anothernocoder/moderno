@@ -8,9 +8,10 @@ export default defineConfig({
   clean: true,
   outDir: 'dist',
   async onSuccess() {
-    // tsup doesn't handle CSS; copy the hand-authored stylesheet into dist so
-    // `files: ["dist"]` alone is sufficient for `./styles.css` to resolve.
+    // tsup doesn't handle CSS; copy the hand-authored stylesheets into dist so
+    // `files: ["dist"]` alone is sufficient for `./styles.css`/`./tokens.css` to resolve.
     await mkdir('dist', { recursive: true })
     await copyFile('src/styles.css', 'dist/styles.css')
+    await copyFile('src/tokens.css', 'dist/tokens.css')
   },
 })

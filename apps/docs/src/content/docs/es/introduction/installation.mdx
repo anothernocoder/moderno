@@ -39,12 +39,36 @@ que necesita. No instalas Zag por separado.
 ## 2. Importa los estilos una vez
 
 En el punto de entrada de tu app, importa los tokens y el CSS de componentes. Los tokens
-definen las custom properties `--md-*`; el CSS de componentes define las clases `md-*`.
+definen las custom properties `--md-*`; el CSS de componentes define las clases `md-*`. Ambos
+se re-exportan desde el paquete de tu framework, así que no necesitas instalar
+`@moderno-ui/tokens` por separado.
 
+<Tabs syncKey="framework">
+<TabItem label="React">
 ```ts
-import '@moderno-ui/tokens/tokens.css'
-import '@moderno-ui/react/styles.css' // o /vue, /svelte, /solid — es el mismo CSS compartido
+import '@moderno-ui/react/tokens.css'
+import '@moderno-ui/react/styles.css'
 ```
+</TabItem>
+<TabItem label="Vue">
+```ts
+import '@moderno-ui/vue/tokens.css'
+import '@moderno-ui/vue/styles.css'
+```
+</TabItem>
+<TabItem label="Svelte">
+```ts
+import '@moderno-ui/svelte/tokens.css'
+import '@moderno-ui/svelte/styles.css'
+```
+</TabItem>
+<TabItem label="Solid">
+```ts
+import '@moderno-ui/solid/tokens.css'
+import '@moderno-ui/solid/styles.css'
+```
+</TabItem>
+</Tabs>
 
 ## 3. Elige el tema
 

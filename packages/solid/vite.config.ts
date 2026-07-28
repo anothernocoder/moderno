@@ -4,15 +4,18 @@ import { defineConfig, type Plugin } from 'vite'
 import solid from 'vite-plugin-solid'
 import dts from 'vite-plugin-dts'
 
-// src/styles.css is a re-export, not something index.tsx imports, so Vite's
-// bundler never sees it. Copy it straight into dist/ so the package's
-// `./styles.css` export keeps resolving after `files`/`exports` move to dist.
+// src/styles.css and src/tokens.css are re-exports, not something index.tsx
+// imports, so Vite's bundler never sees them. Copy them straight into dist/
+// so the package's `./styles.css`/`./tokens.css` exports keep resolving after
+// `files`/`exports` move to dist.
 function copyStylesCss(): Plugin {
   return {
     name: 'copy-styles-css',
     closeBundle() {
       mkdirSync(resolve(__dirname, 'dist'), { recursive: true })
-      copyFileSync(resolve(__dirname, 'src/styles.css'), resolve(__dirname, 'dist/styles.css'))
+      for (const file of ['styles.css', 'tokens.css']) {
+        copyFileSync(resolve(__dirname, `src/${file}`), resolve(__dirname, `dist/${file}`))
+      }
     },
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@moderno-ui/solid",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Moderno styled components for Solid (Zag.js behavior core + Moderno tokens).",
   "type": "module",
   "license": "MIT",

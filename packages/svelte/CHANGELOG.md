@@ -1,5 +1,21 @@
 # @moderno-ui/svelte
 
+## 0.2.1
+
+### Patch Changes
+
+- c793977: Add a `./tokens.css` subpath export to each framework package, re-exporting
+  `@moderno-ui/tokens/tokens.css`. `@moderno-ui/tokens` is a transitive
+  (non-peer) dependency, so under strict resolvers like pnpm it isn't
+  reachable from consumer app code — only npm's flat `node_modules` hoisting
+  happened to make `import '@moderno-ui/tokens/tokens.css'` resolve. Consumers
+  can now write `import '@moderno-ui/react/tokens.css'` (or `/vue`, `/svelte`,
+  `/solid`) instead, which works regardless of package manager or hoisting
+  behavior. The existing `@moderno-ui/tokens/tokens.css` import continues to
+  work unchanged.
+- Updated dependencies [bcd825e]
+  - @moderno-ui/styles@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

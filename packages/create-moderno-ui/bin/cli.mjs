@@ -7,10 +7,10 @@
  *
  * Usage:
  *   npm create moderno-ui@latest <target-dir> -- --framework react
+ *   npm create moderno-ui@latest <target-dir> -- --framework vue
  *
- * v1 only ships the React+Vite template — the framework prompt only ever lists
- * what actually exists (Vue lands in a follow-up ticket, see issue #138), so
- * there's no "coming soon" entry to pick.
+ * The framework prompt only ever lists what actually has a template (see
+ * FRAMEWORKS below) — no disabled/"coming soon" entries for Svelte or Solid.
  */
 import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
@@ -20,12 +20,17 @@ import { basename, dirname, join, resolve } from 'node:path'
 
 const require = createRequire(import.meta.url)
 
-// Keyed so a follow-up ticket can add `vue` here without touching the flow below.
+// Keyed so a follow-up ticket can add another framework here without touching the flow below.
 const FRAMEWORKS = {
   react: {
     viteTemplate: 'react-ts',
     entryFile: 'src/main.tsx',
     packageName: '@moderno-ui/react',
+  },
+  vue: {
+    viteTemplate: 'vue-ts',
+    entryFile: 'src/main.ts',
+    packageName: '@moderno-ui/vue',
   },
 }
 
@@ -49,13 +54,14 @@ function fail(message) {
 }
 
 async function promptFramework() {
+  const options = Object.keys(FRAMEWORKS)
   if (!process.stdin.isTTY) {
-    fail('Missing --framework <react>. Pass it explicitly when running non-interactively.')
+    fail(`Missing --framework <${options.join('|')}>. Pass it explicitly when running non-interactively.`)
   }
   const rl = createInterface({ input: process.stdin, output: process.stdout })
-  const answer = (await rl.question('Which framework? (react) ')).trim().toLowerCase()
+  const answer = (await rl.question(`Which framework? (${options.join('/')}) `)).trim().toLowerCase()
   rl.close()
-  return answer || 'react'
+  return answer || options[0]
 }
 
 /**

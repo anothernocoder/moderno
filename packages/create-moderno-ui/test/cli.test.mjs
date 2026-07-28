@@ -36,6 +36,27 @@ test('scaffolds a Vite + React project pre-wired with Moderno', async (t) => {
   assert.match(indexHtml, /<html[^>]*\bdata-theme="dark"[^>]*>/)
 })
 
+test('scaffolds a Vite + Vue project pre-wired with Moderno', async (t) => {
+  const parent = await withTmpDir(t)
+  const target = join(parent, 'my-app')
+
+  const output = execFileSync('node', [CLI, target, '--framework', 'vue'], { encoding: 'utf8' })
+  assert.match(output, /Scaffolded a Moderno-ready vue project/)
+
+  const pkg = JSON.parse(await readFile(join(target, 'package.json'), 'utf8'))
+  assert.equal(pkg.dependencies['@moderno-ui/vue'], 'latest')
+  assert.equal(pkg.dependencies['@moderno-ui/tokens'], 'latest')
+  // create-vite's own deps must survive untouched.
+  assert.ok(pkg.dependencies.vue)
+
+  const entry = await readFile(join(target, 'src/main.ts'), 'utf8')
+  assert.match(entry, /import '@moderno-ui\/tokens\/tokens\.css'/)
+  assert.match(entry, /import '@moderno-ui\/vue\/styles\.css'/)
+
+  const indexHtml = await readFile(join(target, 'index.html'), 'utf8')
+  assert.match(indexHtml, /<html[^>]*\bdata-theme="dark"[^>]*>/)
+})
+
 test('does not copy any Moderno block/screen/flow into the generated project', async (t) => {
   const parent = await withTmpDir(t)
   const target = join(parent, 'my-app')

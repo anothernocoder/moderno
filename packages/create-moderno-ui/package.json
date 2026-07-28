@@ -1,7 +1,7 @@
 {
   "name": "create-moderno-ui",
   "version": "0.1.0",
-  "description": "Scaffolds a new project pre-wired with Moderno (Starter tier, ADR-0006) — Vite + React today, Vue to follow.",
+  "description": "Scaffolds a new project pre-wired with Moderno (Starter tier, ADR-0006) — Vite + React or Vite + Vue.",
   "type": "module",
   "license": "MIT",
   "repository": {

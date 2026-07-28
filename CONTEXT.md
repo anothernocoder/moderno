@@ -91,7 +91,7 @@ _Avoid_: catalog, store, repo.
 The third distribution channel, alongside [[primitive]] (npm) and [[registry]]
 (copy-paste): a brand-new project scaffold, pre-integrated with Moderno — framework
 package installed, tokens/styles imported, theme set — delivered by the standalone
-`create-moderno` package (`npm create moderno@latest`). Unlike the [[registry]], which
+`create-moderno-ui` package (`npm create moderno-ui@latest`). Unlike the [[registry]], which
 adds pieces to a project that already exists, a Starter creates the project itself.
 _Avoid_: scaffold, boilerplate, template, kit.
 

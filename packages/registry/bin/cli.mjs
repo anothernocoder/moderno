@@ -3,7 +3,8 @@
  * @moderno-ui/registry — minimal copy-paste CLI for Moderno blocks, screens and flows.
  *
  * Usage:
- *   moderno-ui add <block|screen|flow> --framework <react|vue|svelte|solid> [--dest <dir>] [--no-example]
+ *   moderno-ui init
+ *   moderno-ui add <block|screen|flow> [--framework <react|vue|svelte|solid>] [--dest <dir>] [--no-example]
  *   moderno-ui list
  *
  * Blocks are layout-heavy compositions delivered by copy (ADR-0001). Screens and
@@ -19,6 +20,9 @@ import { fileURLToPath } from 'node:url'
 
 const PKG_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const FRAMEWORKS = ['react', 'vue', 'svelte', 'solid']
+// The npm package name for each framework differs from its `--framework` value for Solid.
+const FRAMEWORK_DEP_NAMES = { react: 'react', vue: 'vue', svelte: 'svelte', solid: 'solid-js' }
+const CONFIG_FILE = 'moderno.config.json'
 // Order matters for `list`: blocks, then screens, then flows.
 const KINDS = [
   { key: 'blocks', label: 'block', heading: 'Blocks' },
@@ -57,6 +61,15 @@ async function exists(path) {
     return true
   } catch {
     return false
+  }
+}
+
+/** Reads and parses a JSON file, returning `null` if it's missing or invalid. */
+async function readJson(path) {
+  try {
+    return JSON.parse(await readFile(path, 'utf8'))
+  } catch {
+    return null
   }
 }
 
@@ -142,16 +155,39 @@ async function cmdList() {
       console.log('')
     }
   }
-  console.log('Usage: moderno-ui add <block|screen|flow> --framework <react|vue|svelte|solid>\n')
+  console.log('Usage: moderno-ui add <block|screen|flow> [--framework <react|vue|svelte|solid>]\n')
+}
+
+/** Detects the consumer's framework from package.json deps and writes moderno.config.json. */
+async function cmdInit() {
+  const pkg = await readJson(join(process.cwd(), 'package.json'))
+  const deps = { ...pkg?.dependencies, ...pkg?.devDependencies }
+  const detected = FRAMEWORKS.filter((fw) => FRAMEWORK_DEP_NAMES[fw] in deps)
+
+  if (detected.length !== 1) {
+    console.log(
+      `Could not detect exactly one framework (${Object.values(FRAMEWORK_DEP_NAMES).join(', ')}) in package.json.\n` +
+        'Run "npm create moderno-ui@latest" to scaffold a new project instead.',
+    )
+    return
+  }
+
+  const framework = detected[0]
+  await writeFile(join(process.cwd(), CONFIG_FILE), `${JSON.stringify({ framework }, null, 2)}\n`)
+  console.log(`\x1b[32m✔\x1b[0m Detected \x1b[1m${framework}\x1b[0m. Wrote ${CONFIG_FILE}.`)
 }
 
 async function cmdAdd(positional, flags) {
   const name = positional[0]
-  const framework = flags.framework || flags.f
+  let framework = flags.framework || flags.f
   const dest = flags.dest || './src/blocks'
   const noExample = Boolean(flags['no-example'])
 
   if (!name) fail('Missing name. E.g.: moderno-ui add hero --framework react')
+  if (!framework) {
+    const config = await readJson(join(process.cwd(), CONFIG_FILE))
+    framework = config?.framework
+  }
   if (!framework) fail('Missing --framework <react|vue|svelte|solid>')
   if (!FRAMEWORKS.includes(framework)) fail(`Invalid framework: ${framework}. Use one of: ${FRAMEWORKS.join(', ')}`)
 
@@ -200,6 +236,9 @@ async function cmdAdd(positional, flags) {
 async function main() {
   const { command, positional, flags } = parseArgs(process.argv.slice(2))
   switch (command) {
+    case 'init':
+      await cmdInit()
+      break
     case 'add':
       await cmdAdd(positional, flags)
       break
@@ -207,7 +246,9 @@ async function main() {
       await cmdList()
       break
     default:
-      console.log('Commands: moderno-ui add <block|screen|flow> --framework <fw> [--no-example]  |  moderno-ui list')
+      console.log(
+        'Commands: moderno-ui init  |  moderno-ui add <block|screen|flow> [--framework <fw>] [--no-example]  |  moderno-ui list',
+      )
       process.exit(command ? 1 : 0)
   }
 }

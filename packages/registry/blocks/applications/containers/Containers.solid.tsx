@@ -77,7 +77,7 @@ const variantDescStyle: JSX.CSSProperties = {
   'line-height': 1.5,
 }
 const viewportStyle: JSX.CSSProperties = {
-  background: 'var(--md-surface-subtle)',
+  background: 'var(--md-surface-muted)',
   border: '1px dashed var(--md-border-default)',
   padding: '16px',
 }

@@ -20,7 +20,7 @@
     "@moderno-ui/svelte": "workspace:*",
     "@moderno-ui/tokens": "workspace:*",
     "@moderno-ui/vue": "workspace:*",
-    "astro": "^7.1.0",
+    "astro": "^7.2.8",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "solid-js": "^1.9.13",
